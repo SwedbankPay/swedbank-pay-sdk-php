@@ -1,0 +1,19 @@
+{
+  "name": "payex/php-api",
+  "type": "library",
+  "description": "A PHP client library for PayEx Payments API",
+  "keywords": ["payex"],
+  "homepage": "https://github.com/aait/payex-php-api",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.3",
+    "ext-soap": "*",
+    "ext-dom": "*",
+    "ext-xml": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "PayEx\\": "src/PayEx/"
+    }
+  }
+}
