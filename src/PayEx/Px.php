@@ -4,9 +4,6 @@ namespace PayEx;
 
 class Px
 {
-    /** @var array SOAP Options */
-    protected $_options = array();
-
     /** @var bool PayEx Debug mode */
     protected $_debug_mode = true;
 
@@ -15,6 +12,12 @@ class Px
 
     /** @var string Encryption Key */
     protected $_encryption_key = '';
+
+    /** @var string User Agent */
+    protected $_user_agent = '';
+
+    /** @var bool SSL verify */
+    protected $_is_ssl_verify = true;
 
     /** @see http://www.payexpim.com/technical-reference/wsdl/wsdl-files/ */
     /** @var array WSDL Files */
@@ -57,30 +60,6 @@ class Px
     );
 
     /**
-     * Constructor
-     * @param array $options
-     */
-    public function __construct($options = array())
-    {
-        // SSL Verification option
-        if (isset($options['ssl_verify'])) {
-            if (!$options['ssl_verify']) {
-                $context = stream_context_create(array(
-                    'ssl' => array(
-                        'verify_peer' => false,
-                        'allow_self_signed' => true
-                    )
-                ));
-                $options['stream_context'] = $context;
-            }
-
-            unset($options['ssl_verify']);
-        }
-
-        $this->_options = $options;
-    }
-
-    /**
      * Set PayEx Environment
      * @param string $account
      * @param string $key
@@ -94,6 +73,58 @@ class Px
 
         // Init WSDL
         $this->initWSDL($this->_debug_mode);
+    }
+
+    /**
+     * Set User Agent
+     * @param $user_agent
+     */
+    public function setUserAgent($user_agent)
+    {
+        $this->_user_agent = $user_agent;
+    }
+
+    /**
+     * Set SSL Verification Flag
+     * @param $is_ssl_verify
+     */
+    public function setIsSSLVerify($is_ssl_verify)
+    {
+        $this->_is_ssl_verify = $is_ssl_verify;
+    }
+
+    /**
+     * Get SOAP Options
+     * @return array
+     */
+    protected function getOptions()
+    {
+        // Stream Context Options
+        $stream_context_options = [];
+
+        // User Agent option
+        if (!empty($this->_user_agent)) {
+            $stream_context_options = array_merge($stream_context_options, [
+                'http' => [
+                    'header' => 'User-Agent: ' . $this->_user_agent
+                ]
+            ]);
+        }
+
+        // SSL Verification option
+        if (!$this->_is_ssl_verify) {
+            $stream_context_options = array_merge($stream_context_options, [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'allow_self_signed' => true
+                ]
+            ]);
+        }
+
+        // Create Stream Context
+        return [
+            'stream_context' => stream_context_create($stream_context_options)
+        ];
     }
 
     /**
@@ -205,7 +236,7 @@ class Px
         $arguments[0]['hash'] = $this->getHash($arguments[0]);
 
         // Call PayEx Method
-        $client = new \SoapClient($wsdl, $this->_options);
+        $client = new \SoapClient($wsdl, $this->getOptions());
         $result = $client->__soapCall($px_function, $arguments);
         if (!property_exists($result, $px_function . 'Result')) {
             throw new \Exception('Invalid PayEx Response.');
