@@ -77,7 +77,7 @@ class Px
 
     /**
      * Set User Agent
-     * @param $user_agent
+     * @param string $user_agent
      */
     public function setUserAgent($user_agent)
     {
@@ -86,7 +86,7 @@ class Px
 
     /**
      * Set SSL Verification Flag
-     * @param $is_ssl_verify
+     * @param bool $is_ssl_verify
      */
     public function setIsSSLVerify($is_ssl_verify)
     {
@@ -151,7 +151,7 @@ class Px
 
     /**
      * Get WSDL File
-     * @param $px_function
+     * @param string $px_function
      * @return bool
      */
     protected function getWSDL($px_function)
@@ -166,7 +166,7 @@ class Px
 
     /**
      * Parse PayEx XML Response
-     * @param $xml_body
+     * @param string $xml_body
      * @return array|bool
      */
     protected function parseFields($xml_body)
@@ -202,8 +202,8 @@ class Px
 
     /**
      * Magic Method: Call PayEx Function
-     * @param $px_function
-     * @param $arguments
+     * @param string $px_function
+     * @param array $arguments
      * @return array|bool
      * @throws \Exception
      */
@@ -252,18 +252,11 @@ class Px
 
     /**
      * Get Hash Params
-     *
-     * Hexadecimal md5 hash built up by the value of the following parameters (for Initialize7):
-     * accountNumber + purchaseOperation + price + priceArgList + currency + vat + orderID +
-     * productNumber + description + clientIPAddress + clientIdentifier + additionalValues +
-     * externalID + returnUrl + view + agreementRef + cancelUrl + clientLanguage
-     *
-     * All parameters are added together – the ‘plus’ character is not included.
-     * In addition the encryption key must be included at the end of the string before performing the md5-hash.
+     * Hexadecimal md5 hash
      * @param array $params
      * @return string
      */
-    protected function getHash($params)
+    protected function getHash(array $params)
     {
         $params = trim(implode('', $params));
         return strtoupper(md5($params . $this->_encryption_key));
