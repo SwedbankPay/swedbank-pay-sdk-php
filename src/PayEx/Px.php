@@ -4,6 +4,8 @@ namespace PayEx;
 
 class Px
 {
+    const VERSION = '1.0.1';
+
     /** @var bool PayEx Debug mode */
     protected $_debug_mode = true;
 
@@ -58,6 +60,15 @@ class Px
             'PreparePurchaseCC', 'PurchaseCC'
         ]
     ];
+
+    /**
+     * Get Version
+     * @return string
+     */
+    public function getVersion()
+    {
+        return self::VERSION;
+    }
 
     /**
      * Set PayEx Environment
