@@ -1,0 +1,24 @@
+language: php
+sudo: false
+
+php:
+  - 5.6
+  - 7.0
+  - hhvm
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: hhvm
+
+script:
+  - cd tests
+  - phpunit --version
+  - phpunit ./ -c ./phpunit.xml
+  #- phpunit ./tests -c ./tests/phpunit.xml
+
+notifications:
+  email:
+    recipients:
+      - ottofromhell@gmail.com
+    on_failure: always
