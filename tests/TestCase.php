@@ -2,7 +2,7 @@
 
 namespace PayEx;
 
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
     /** @var Px */
     protected $px;
