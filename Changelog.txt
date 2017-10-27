@@ -1,0 +1,8 @@
+Version 1.0.2
+* Changed SOAP WSDL for test environment
+
+Version 1.0.1
+* Added tests
+
+Version 1.0.0
+* First release

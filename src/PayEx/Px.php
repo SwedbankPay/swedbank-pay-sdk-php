@@ -4,7 +4,7 @@ namespace PayEx;
 
 class Px
 {
-    const VERSION = '1.0.1';
+    const VERSION = '1.0.2';
 
     /** @var bool PayEx Debug mode */
     protected $_debug_mode = true;
