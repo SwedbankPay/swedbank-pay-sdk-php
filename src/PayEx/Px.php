@@ -144,11 +144,11 @@ class Px
      */
     protected function initWSDL($debug_mode)
     {
-        self::$_wsdl['PxOrderWSDL'] = 'https://test-external.payex.com/pxorder/pxorder.asmx?WSDL';
-        self::$_wsdl['PxConfinedWSDL'] = 'https://test-confined.payex.com/PxConfined/pxorder.asmx?WSDL';
-        self::$_wsdl['PxVerificationWSDL'] = 'https://test-external.payex.com/PxVerification/pxverification.asmx?WSDL';
-        self::$_wsdl['PxAgreementWSDL'] = 'https://test-external.payex.com/pxagreement/pxagreement.asmx?WSDL';
-        self::$_wsdl['PxRecurringWSDL'] = 'https://test-external.payex.com/pxagreement/pxrecurring.asmx?WSDL';
+        self::$_wsdl['PxOrderWSDL'] = 'https://external.externaltest.payex.com/pxorder/pxorder.asmx?WSDL';
+        self::$_wsdl['PxConfinedWSDL'] = 'https://confined.externaltest.payex.com/PxConfined/Pxorder.asmx?WSDL';
+        self::$_wsdl['PxVerificationWSDL'] = 'https://external.externaltest.payex.com/pxverification/pxverification.asmx?WSDL';
+        self::$_wsdl['PxAgreementWSDL'] = 'https://external.externaltest.payex.com/pxagreement/pxagreement.asmx?WSDL';
+        self::$_wsdl['PxRecurringWSDL'] = 'https://external.externaltest.payex.com/pxagreement/pxrecurring.asmx?WSDL';
 
         // Set Live environment
         if (!$debug_mode) {
