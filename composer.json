@@ -1,9 +1,9 @@
 {
   "name": "payex/php-api",
   "type": "library",
-  "description": "A PHP client library for PayEx Payments API",
+  "description": "PayEx Payments API Library for PHP provide library work with PayEx Payments API",
   "keywords": ["payex"],
-  "homepage": "https://github.com/aait/payex-php-api",
+  "homepage": "https://github.com/PayEx/PayEx.Ecommerce.Php",
   "license": "MIT",
   "require": {
     "php": ">=5.3",
@@ -12,7 +12,7 @@
     "ext-xml": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "~6.4"
+    "phpunit/phpunit": "~5.7|~6.4"
   },
   "autoload": {
     "psr-4": {
