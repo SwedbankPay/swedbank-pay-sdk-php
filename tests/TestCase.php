@@ -1,27 +1,25 @@
 <?php
 
-namespace PayEx;
-
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    /** @var Px */
-    protected $px;
+    /** @var \PayEx\Api\Client */
+    protected $client;
 
     protected function setUp()
     {
-        if (!defined('ACCOUNT_NUMBER') ||
-            !defined('ENCRYPTION_KEY')||
-            !defined('TEST_MODE'))
+        if (!defined('MERCHANT_TOKEN') ||
+            !defined('PAYEE_ID'))
         {
             $this->fail('Test failed: Constants are not defined');
         }
 
-        $this->px = new Px();
-        $this->px->setEnvironment(ACCOUNT_NUMBER, ENCRYPTION_KEY, TEST_MODE);
+        $this->client = new \PayEx\Api\Client();
+        $this->client->setMerchantToken(MERCHANT_TOKEN);
+        $this->client->setMode(\PayEx\Api\Client::MODE_TEST);
     }
 
     protected function tearDown()
     {
-        $this->px = null;
+        $this->client = null;
     }
 }
