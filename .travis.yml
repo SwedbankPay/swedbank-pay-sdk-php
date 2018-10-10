@@ -1,25 +1,24 @@
 language: php
 sudo: false
-
 php:
-  - 5.6
-  - 7.0
-  - 7.1
-  - hhvm
-
+- 5.6
+- 7.0
+- 7.1
+- hhvm
 matrix:
   fast_finish: true
   allow_failures:
-    - php: hhvm
-
+  - php: hhvm
 script:
-  - cd tests
-  - phpunit --version
-  - phpunit ./ -c ./phpunit.xml
-  #- phpunit ./tests -c ./tests/phpunit.xml
-
+- cd tests
+- phpunit --version
+- phpunit ./ -c ./phpunit.xml
 notifications:
   email:
     recipients:
-      - ottofromhell@gmail.com
+    - ottofromhell@gmail.com
     on_failure: always
+env:
+  global:
+  - secure: qo6i5YMqLJ/ERbuWdjSwBt7FFbpWxfjRdzoMmayvigk61SJzdJJD6YFD1kSb1MXboDg7pP3j6CrziM7mNTDef/EgImIQev1NA21K3gBnhTTSGdR5Wr3U1y98ZmsXjLszq+xk6RToSojewoHua94X0ME9Xvzf8+7jWvmI0WhjanLl6oP92oRlvK3XKG2MzTLqUs8OgjtYyxa+o5NEA0QL7EQ2ML331IcmJsUj9cfuAniVIUe2+GM/CAHrTGvcfRRjNmItln0DZrvGVbxV1m1GoRnntPQXJzHvLh32LBa3VkHwjE7kapZKy5op2De8tZPqDSU1ECdpOLphBgcwOVipI8kG2N0RYdek8FCBt9bWAffS88p2cJX0YsUXHqd9Uyx4ZcvgnnZWzzN8W00X8KxqBpyuU/8CRpvYi5oQSnHWLjF8Q2CWClb1p0JaOih3I1iieIiyuVouSjawvcetEpKVEY1MZd7wPBeEOuwukv+tSrOOnSt1I92QGHHN4uRVZCsCmk8+QTHkPpDWBmYZkWCrOwdG9mM7vwmCwpGV34Ov+rqeH2TL0lKuCms30Tik4P17kYL2Dz3avHIxkJPI98lPKodTMDftTPbviJU/z28iHWSYUDhSx8a+lsyf1H+1OOnqTTCq4PC7dyH746D9QpImuhb3B4HN+y3Nr7HBsZ0XMKU=
+  - secure: J2iHo/pRYXQfHsyXh/2b3vc5WFo9q6HFW1E9HlQwfwo6+GKFZHrVJmHEMcXRUcKoA4xd4ykVzl0cyo5X9nXWcZ2/mbSPSiScJiddfh07Wlp3CZXFQmfzirSM87jglWo5OSixScJJ+SDlq5cPuW2YRr6AnR64LuhyUA/3QgroE8qo8yhBovHOJE8xIYNAyN8mftJMPz6ctFwutzsU85i3rMGrxnDaF6zIQ2UtBcq/fZLaKF/fs3noLm772xlEhmrYkDgTyMGiMSAyLbcSBHV7lV3O4sJpoSOlZzD5CxhQIROG3fn8RxqiD+ADVh5nj7Md7DOoJa69NgpBOvxzWbmfA8crrbIstbGFWMspfI97C1VPc/73CgmEqWhM/K9zFC08Z+2iyjz53oIrhQmE4EhsrfebWbiq6GyGrZAiNjHC+pRmU562XAPUzdKpkR31GSegeWEYTmIgGLo2SKLheNr4g6wCam8MUcg+tPs+ZdHLtQdmkZvTCdDsH49Ik/2p711AFF6T8wSoKF6srCJlMzBYdjuahx4hz1940dFZxIX182KyODujBV5/T5+0O1oCNhE9CcriKcpvPoIOrbiG7snRrxN3EmTHXr1cz1r7D5WT8HL/Zirg2gh82gZOpvtiNmBpC35fGFVeRGGb2IvGgVXDsrbmlmST3WkHqF9ClJ9BsSk=
