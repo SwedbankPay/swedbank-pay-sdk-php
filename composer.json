@@ -1,9 +1,10 @@
 {
   "name": "payex/payex-ecom-php",
   "type": "library",
-  "version": "1.0.0",
-  "description": "PayEx API Library for PHP",
+  "version": "2.0.0",
+  "description": "PayEx Payments API Library for PHP provide library work with PayEx Payments API",
   "keywords": ["payex"],
+  "homepage": "https://github.com/PayEx/PayEx.Ecommerce.Php",
   "license": "MIT",
   "require": {
     "ext-curl": "*",
