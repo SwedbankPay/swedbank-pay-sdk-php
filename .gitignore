@@ -1,0 +1,2 @@
+*.phar
+tests/*.local.ini
