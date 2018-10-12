@@ -2,7 +2,7 @@
   "name": "payex/payex-ecom-php",
   "type": "library",
   "version": "2.0.0",
-  "description": "PayEx Payments API Library for PHP provide library work with PayEx Payments API",
+  "description": "PayEx Payments API Library for PHP - provided library works with PayEx Ecommerce API platform",
   "keywords": ["payex"],
   "homepage": "https://github.com/PayEx/PayEx.Ecommerce.Php",
   "license": "MIT",
