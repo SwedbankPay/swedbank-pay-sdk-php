@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "PayEx\\": "src/PayEx/Api/"
+      "PayEx\\": "src/PayEx/"
     }
   }
 }
