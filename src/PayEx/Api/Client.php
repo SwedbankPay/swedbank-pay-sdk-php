@@ -5,7 +5,7 @@ namespace PayEx\Api;
 class Client
 {
     const USER_AGENT = 'PayEx HTTP Client';
-    const VERSION = '2.0.0';
+    const VERSION = '2.0.1';
     const MODE_PRODUCTION = 'production';
     const MODE_TEST = 'test';
 
