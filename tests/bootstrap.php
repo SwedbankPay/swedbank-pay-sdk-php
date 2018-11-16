@@ -1,6 +1,13 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+	require_once __DIR__ . '/../vendor/autoload.php';
+} else {
+	require_once __DIR__ . '/../src/PayEx/Api/Exception.php';
+	require_once __DIR__ . '/../src/PayEx/Api/Response.php';
+	require_once __DIR__ . '/../src/PayEx/Api/Client.php';
+}
+
 require_once __DIR__ . '/TestCase.php';
 
 if (getenv('MERCHANT_TOKEN') && getenv('PAYEE_ID')) {
