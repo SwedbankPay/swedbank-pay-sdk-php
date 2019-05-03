@@ -13,6 +13,7 @@ script:
 - cd tests
 - phpunit --version
 - phpunit ./ -c ./phpunit.xml
+install: composer install
 notifications:
   email:
     recipients:
