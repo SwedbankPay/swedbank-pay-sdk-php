@@ -13,7 +13,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /** @var Client $client */
     protected $client;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         if (!defined('MERCHANT_TOKEN') ||
             MERCHANT_TOKEN === '<merchant_token>') {
