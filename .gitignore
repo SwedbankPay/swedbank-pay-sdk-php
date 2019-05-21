@@ -1,3 +1,4 @@
 *.phar
 tests/*.local.ini
 vendor
+composer.lock

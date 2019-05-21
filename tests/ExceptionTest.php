@@ -10,10 +10,10 @@ class ExceptionTest extends TestCase
         $e = null;
         try {
             $result = $this->client->request('POST', '/psp/creditcard/payments', array());
-        } catch (\PayEx\Api\Exception $e) {
+        } catch (\PayEx\Api\Client\Exception $e) {
             //
         }
 
-        $this->assertInstanceOf('\PayEx\Api\Exception', $e);
+        $this->assertInstanceOf('\PayEx\Api\Client\Exception', $e);
     }
 }

@@ -3,9 +3,15 @@
 if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
 	require_once __DIR__ . '/../vendor/autoload.php';
 } else {
-	require_once __DIR__ . '/../src/PayEx/Api/Exception.php';
-	require_once __DIR__ . '/../src/PayEx/Api/Response.php';
-	require_once __DIR__ . '/../src/PayEx/Api/Client.php';
+    spl_autoload_register(function ($className) {
+        $autoLoadPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR;
+        $classFile = $autoLoadPath . str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
+        if (file_exists($classFile)) {
+            require_once $classFile;
+            return true;
+        }
+        return false;
+    });
 }
 
 require_once __DIR__ . '/TestCase.php';
