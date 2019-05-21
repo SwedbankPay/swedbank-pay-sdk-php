@@ -1,7 +1,13 @@
 <?php
+// phpcs:ignoreFile
 
 namespace PayEx\Api;
 
+/**
+ * Class Client
+ * @package PayEx\Api
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
+ */
 class Client
 {
     const USER_AGENT = 'PayEx HTTP Client';
@@ -73,6 +79,9 @@ class Client
      * Set Merchant Token
      *
      * @param $merchant_token
+     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
+     * @SuppressWarnings(PHPMD.CamelCasePropertyName)
+     * @SuppressWarnings(PHPMD.CamelCaseParameterName)
      */
     public function setMerchantToken($merchant_token)
     {
@@ -97,11 +106,10 @@ class Client
     public function setMode($mode)
     {
         $this->mode = $mode;
+        $this->api_endpoint = 'https://api.payex.com';
 
         if ($this->mode === self::MODE_PRODUCTION) {
             $this->api_endpoint = 'https://api.payex.com';
-        } else {
-            $this->api_endpoint = 'https://api.externalintegration.payex.com';
         }
     }
 
@@ -144,6 +152,10 @@ class Client
      *
      * @return array|mixed|object
      * @throws Exception
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.CamelCaseVariableName)
      */
     public function request($method, $url, $params = array())
     {
