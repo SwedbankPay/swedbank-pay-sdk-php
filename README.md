@@ -1,4 +1,4 @@
-# PayEx Payments API Library for PHP [![Build Status](https://travis-ci.org/PayEx/PayEx.Ecommerce.Php.svg?branch=master)](https://travis-ci.org/PayEx/PayEx.Ecommerce.Php)
+# PayEx Payments API Library for PHP [![Build Status](https://travis-ci.org/PayEx/payex-sdk-php.svg?branch=master)](https://travis-ci.org/PayEx/payex-sdk-php)
 
 ## Description ##
 
