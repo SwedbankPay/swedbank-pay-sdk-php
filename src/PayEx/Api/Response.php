@@ -7,6 +7,7 @@ namespace PayEx\Api;
  * Class Response
  * @package PayEx\Api
  * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class Response implements \ArrayAccess
 {

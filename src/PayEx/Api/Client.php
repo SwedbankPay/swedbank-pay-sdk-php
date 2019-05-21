@@ -81,6 +81,7 @@ class Client
      * @param $merchant_token
      * @SuppressWarnings(PHPMD.CamelCaseVariableName)
      * @SuppressWarnings(PHPMD.CamelCasePropertyName)
+     * @SuppressWarnings(PHPMD.CamelCaseParameterName)
      */
     public function setMerchantToken($merchant_token)
     {
