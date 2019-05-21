@@ -3,6 +3,11 @@
 
 namespace PayEx\Api;
 
+/**
+ * Class Response
+ * @package PayEx\Api
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ */
 class Response implements \ArrayAccess
 {
     /**
@@ -129,6 +134,7 @@ class Response implements \ArrayAccess
      * @param mixed $value
      * @return void
      * @link http://www.php.net/manual/en/arrayaccess.offsetset.php
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function offsetSet($offset, $value)
     {
@@ -208,6 +214,8 @@ class Response implements \ArrayAccess
      * @param bool   $single
      *
      * @return bool|string|array
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function getOperationByRel($rel, $single = true)
     {

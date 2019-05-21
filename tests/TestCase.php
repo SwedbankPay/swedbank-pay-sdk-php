@@ -31,7 +31,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
             ->setMode(Client::MODE_TEST);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->client = null;
     }
