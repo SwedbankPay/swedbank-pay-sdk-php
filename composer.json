@@ -2,14 +2,22 @@
   "name": "payex/payex-sdk-php",
   "type": "library",
   "version": "3.0.0",
-  "description": "PayEx Payments API Library for PHP - provided library works with PayEx Ecommerce API platform",
+  "description": "The PayEx SDK for PHP simplifies integrations against PayEx' Ecommerce API platform by providing native PHP interface towards the REST API.",
   "authors": [
     {
       "name": "Sammy Nordström",
       "email": "sammy.nordstrom@visma.com"
+     },
+     {
+       "name": "Richard Birnik",
+       "email": "richard@aait.se"
+     },
+     {
+       "name": "Asbjørn Ulsberg",
+       "email": "asbjorn.ulsberg@payex.com"
      }
   ],
-  "keywords": ["payex"],
+  "keywords": ["payex", "sdk", "payments", "ecommerce"],
   "homepage": "https://github.com/PayEx/payex-sdk-php",
   "license": "MIT",
   "require": {
