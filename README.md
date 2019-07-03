@@ -1,4 +1,10 @@
-# PayEx SDK for PHP [![Build Status][travis-badge]][travis]
+# PayEx SDK for PHP
+
+[![Build Status][travis-badge]][travis]
+[![Latest Stable Version][version-badge]][packagist]
+[![Total Downloads][downloads-badge]][packagist]
+[![License][license-badge]][packagist]
+
 
 ## Description
 
@@ -36,3 +42,7 @@ composer require payex/payex-sdk-php
   [releases]:       https://github.com/PayEx/payex-sdk-php/releases
   [composer]:       https://getcomposer.org
   [composer-intro]: https://getcomposer.org/doc/00-intro.md
+  [version-badge]:      https://poser.pugx.org/payex/payex-sdk-php/version
+  [downloads-badge]:    https://poser.pugx.org/payex/payex-sdk-php/downloads
+  [license-badge]:      https://poser.pugx.org/payex/payex-sdk-php/license
+  [packagist]:          https://packagist.org/packages/payex/payex-sdk-php
