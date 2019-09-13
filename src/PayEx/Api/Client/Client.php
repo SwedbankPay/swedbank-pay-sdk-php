@@ -404,6 +404,7 @@ class Client extends ClientResource
         }
 
         curl_setopt_array($this->getCurlHandler(), [
+            CURLOPT_CAINFO        => $this->getSystemCaRootBundlePath(),
             CURLOPT_USERAGENT     => $this->getUserAgent(),
             CURLOPT_HTTPHEADER    => $this->getHeaders(),
             CURLOPT_URL           => $this->getBaseUrl() . $this->getEndpoint(),
@@ -509,5 +510,100 @@ class Client extends ClientResource
     public function patch($url, $params = array())
     {
         return $this->request('PATCH', $url, $params);
+    }
+
+    /**
+     * Returns the system CA bundle path, or a path to the bundled one
+     *
+     * This method was adapted from Sslurp.
+     * https://github.com/EvanDotPro/Sslurp
+     *
+     * (c) Evan Coury <me@evancoury.com>
+     *
+     * For the full copyright and license information, please see below:
+     *
+     * Copyright (c) 2013, Evan Coury
+     * All rights reserved.
+     *
+     * Redistribution and use in source and binary forms, with or without modification,
+     * are permitted provided that the following conditions are met:
+     *
+     *     * Redistributions of source code must retain the above copyright notice,
+     *       this list of conditions and the following disclaimer.
+     *
+     *     * Redistributions in binary form must reproduce the above copyright notice,
+     *       this list of conditions and the following disclaimer in the documentation
+     *       and/or other materials provided with the distribution.
+     *
+     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+     * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+     * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+     * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+     * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+     * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+     * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+     * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+     * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+     * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+     *
+     * @return string          path to a CA bundle file or directory
+     */
+    private function getSystemCaRootBundlePath()
+    {
+        // If SSL_CERT_FILE env variable points to a valid certificate/bundle, use that.
+        // This mimics how OpenSSL uses the SSL_CERT_FILE env variable.
+        if ($caPath = getenv('SSL_CERT_FILE') and @is_readable($caPath)) {
+            return $caPath;
+        }
+
+        if ($caPath = ini_get('curl.cainfo') and @is_readable($caPath)) {
+            return $caPath;
+        }
+
+        if ($caPath = ini_get('openssl.cafile') and @is_readable($caPath)) {
+            return $caPath;
+        }
+
+        $caBundlePaths = [
+            // Fedora, RHEL, CentOS (ca-certificates package)
+            '/etc/pki/tls/certs/ca-bundle.crt',
+            // Debian, Ubuntu, Gentoo, Arch Linux (ca-certificates package)
+            '/etc/ssl/certs/ca-certificates.crt',
+            // SUSE, openSUSE (ca-certificates package)
+            '/etc/ssl/ca-bundle.pem',
+            // FreeBSD (ca_root_nss_package)
+            '/usr/local/share/certs/ca-root-nss.crt',
+            // Cygwin
+            '/usr/ssl/certs/ca-bundle.crt',
+            // OS X macports, curl-ca-bundle package
+            '/opt/local/share/curl/curl-ca-bundle.crt',
+            // Default cURL CA bunde path (without --with-ca-bundle option)
+            '/usr/local/share/curl/curl-ca-bundle.crt',
+            // Really old RedHat?
+            '/usr/share/ssl/certs/ca-bundle.crt',
+            // OpenBSD
+            '/etc/ssl/cert.pem',
+            // FreeBSD 10.x
+            '/usr/local/etc/ssl/cert.pem',
+            // OS X homebrew, openssl package
+            '/usr/local/etc/openssl/cert.pem',
+            // SLES 12 (provided by the ca-certificates package)
+            '/var/lib/ca-certificates/ca-bundle.pem',
+            // OS X provided by homebrew (using the default path)
+            '/usr/local/etc/openssl/cert.pem',
+            // Google app engine
+            '/etc/ca-certificates.crt',
+            // Windows?
+            'C:\\windows\\system32\\curl-ca-bundle.crt',
+            'C:\\windows\\curl-ca-bundle.crt',
+        ];
+
+        foreach ($caBundlePaths as $caPath) {
+            if (@is_readable($caPath)) {
+                return $caPath;
+            }
+        }
+
+        return __DIR__ . DIRECTORY_SEPARATOR . 'cacert.pem';
     }
 }
