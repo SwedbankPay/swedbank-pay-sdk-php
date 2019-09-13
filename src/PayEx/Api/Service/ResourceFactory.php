@@ -267,8 +267,6 @@ class ResourceFactory
     /**
      * @param string $string
      * @return null|string
-     * @SuppressWarnings(PHPMD.CountInLoopExpression)
-     * @SuppressWarnings("design")
      */
     private function unCamelCaseStr($string = '')
     {
@@ -280,9 +278,9 @@ class ResourceFactory
 
         $formattedParts = array();
         array_shift($splitParts);
-        for ($i = 0; $i < count($splitParts); $i++) {
+        foreach ($splitParts as $i => $splitPart) {
             if ($i % 2) {
-                $formattedParts[] = strtolower($splitParts[$i - 1] . $splitParts[$i]);
+                $formattedParts[] = strtolower($splitParts[$i - 1] . $splitPart);
             }
         }
 
