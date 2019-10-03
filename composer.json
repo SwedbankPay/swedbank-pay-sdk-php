@@ -18,7 +18,7 @@
      }
   ],
   "keywords": ["SwedbankPay", "sdk", "payments", "ecommerce"],
-  "homepage": "https://github.com/SwedbankPay/swedbank-sdk-php",
+  "homepage": "https://github.com/SwedbankPay/swedbank-pay-sdk-php",
   "license": "MIT",
   "require": {
     "ext-curl": "*",
