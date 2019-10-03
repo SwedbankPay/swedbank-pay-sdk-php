@@ -19,6 +19,11 @@ use PayEx\Api\Service\Resource\Data\RequestInterface as RequestResourceInterface
 use PayEx\Api\Service\Resource\Response as ResponseResource;
 use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
+/**
+ * Class ResourceFactory
+ * @package PayEx\Api\Service
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ */
 class ResourceFactory
 {
     protected $helper;
@@ -222,26 +227,45 @@ class ResourceFactory
         return false;
     }
 
+    /**
+     * @param $resource
+     * @param string $service
+     * @param string $type
+     * @return array
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
     private function getResourceNsLookups($resource, $service = '', $type = '')
     {
         $resource = $this->camelCaseStr($resource);
-        $service = ($service) ? $this->camelCaseStr($service) . '\\' : '';
+
+        if ($service) {
+            $service = implode('\\', array_map([$this, 'camelCaseStr'], explode('/', $service))) . '\\';
+        }
+
         $type = ($type) ? $this->camelCaseStr($type) . '\\' : '';
 
         $resourceNsLookUps = [];
 
         switch ($type) {
-            /** @noinspection PhpMissingBreakStatementInspection */
             case 'Collection\\':
                 $resourceNsLookUps[] = __NAMESPACE__ . "\\{$service}Resource\\Collection\\{$resource}Collection";
+                if ($service && $service != 'Payment\\') {
+                    $resourceNsLookUps[] = __NAMESPACE__ . "\\Payment\\Resource\\Collection\\{$resource}Collection";
+                }
                 $resourceNsLookUps[] = __NAMESPACE__ . "\\Resource\\Collection\\{$resource}Collection";
                 break;
             default:
                 if ($type) {
                     $resourceNsLookUps[] = __NAMESPACE__ . "\\{$service}Resource\\{$type}{$resource}";
+                    if ($service && $service != 'Payment\\') {
+                        $resourceNsLookUps[] = __NAMESPACE__ . "\\Payment\\Resource\\{$type}{$resource}";
+                    }
                     $resourceNsLookUps[] = __NAMESPACE__ . "\\Resource\\{$type}{$resource}";
                 }
                 $resourceNsLookUps[] = __NAMESPACE__ . "\\{$service}Resource\\{$resource}";
+                if ($service && $service != 'Payment\\') {
+                    $resourceNsLookUps[] = __NAMESPACE__ . "\\Payment\\Resource\\{$resource}";
+                }
                 $resourceNsLookUps[] = __NAMESPACE__ . "\\Resource\\{$resource}";
                 break;
         }
@@ -278,9 +302,9 @@ class ResourceFactory
 
         $formattedParts = array();
         array_shift($splitParts);
-        foreach ($splitParts as $i => $splitPart) {
+        for ($i = 0; $i < count($splitParts); $i++) {
             if ($i % 2) {
-                $formattedParts[] = strtolower($splitParts[$i - 1] . $splitPart);
+                $formattedParts[] = strtolower($splitParts[$i - 1] . $splitParts[$i]);
             }
         }
 
