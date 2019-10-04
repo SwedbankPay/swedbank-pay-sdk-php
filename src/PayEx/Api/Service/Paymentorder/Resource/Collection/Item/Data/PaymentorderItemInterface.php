@@ -5,7 +5,7 @@ namespace PayEx\Api\Service\Paymentorder\Resource\Collection\Item\Data;
 use PayEx\Framework\Data\DataObjectCollectionItemInterface;
 
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderCampaignInvoiceInterface;
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderCreditCardInterface;
+use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderCreditcardInterface;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderInvoiceInterface;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderSwishInterface;
 
@@ -22,12 +22,12 @@ interface PaymentorderItemInterface extends DataObjectCollectionItemInterface
     const SWISH = 'swish';
 
     /**
-     * @return PaymentorderCreditCardInterface
+     * @return PaymentorderCreditcardInterface
      */
     public function getCreditCard();
 
     /**
-     * @param PaymentorderCreditCardInterface $creditCard
+     * @param PaymentorderCreditcardInterface $creditCard
      * @return $this
      */
     public function setCreditCard($creditCard);
