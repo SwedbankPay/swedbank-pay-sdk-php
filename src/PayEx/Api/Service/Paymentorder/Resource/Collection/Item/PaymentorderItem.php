@@ -5,7 +5,7 @@ namespace PayEx\Api\Service\Paymentorder\Resource\Collection\Item;
 use PayEx\Framework\DataObjectCollectionItem;
 
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderCampaignInvoiceInterface;
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderCreditCardInterface;
+use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderCreditcardInterface;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderInvoiceInterface;
 use PayEx\Api\Service\Paymentorder\Resource\Collection\Item\Data\PaymentorderItemInterface;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderSwishInterface;
@@ -17,7 +17,7 @@ class PaymentorderItem extends DataObjectCollectionItem implements PaymentorderI
 {
 
     /**
-     * @return PaymentorderCreditCardInterface
+     * @return PaymentorderCreditcardInterface
      */
     public function getCreditCard()
     {
@@ -25,7 +25,7 @@ class PaymentorderItem extends DataObjectCollectionItem implements PaymentorderI
     }
 
     /**
-     * @param PaymentorderCreditCardInterface $creditCard
+     * @param PaymentorderCreditcardInterface $creditCard
      * @return $this
      */
     public function setCreditCard($creditCard)

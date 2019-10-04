@@ -2,7 +2,7 @@
 
 namespace PayEx\Api\Service\Paymentorder\Resource\Request;
 
-use PayEx\Api\Service\Paymentorder\Resource\Collection\ItemsCollection;
+use PayEx\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
 use PayEx\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderMetadataInterface;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderPayeeInfoInterface;
@@ -220,7 +220,7 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     }
 
     /**
-     * @return ItemsCollection
+     * @return PaymentorderItemsCollection
      */
     public function getItems()
     {
@@ -228,13 +228,13 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     }
 
     /**
-     * @param ItemsCollection|array $items
+     * @param PaymentorderItemsCollection|array $items
      * @return $this
      */
     public function setItems($items)
     {
-        if (!($items instanceof ItemsCollection)) {
-            $items = new ItemsCollection($items);
+        if (!($items instanceof PaymentorderItemsCollection)) {
+            $items = new PaymentorderItemsCollection($items);
         }
 
         return $this->offsetSet(self::ITEMS, $items);
