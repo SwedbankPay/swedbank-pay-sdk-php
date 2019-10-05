@@ -32,7 +32,7 @@ Once composer is installed, execute the following command in your project root
 to install this SDK:
 
 ```sh
-composer require SwedbankPay/swedbank-pay-sdk-php
+composer require swedbank-pay/swedbank-pay-sdk-php
 ```
 
   [travis]:           https://travis-ci.org/SwedbankPay/swedbank-pay-sdk-php
@@ -41,7 +41,7 @@ composer require SwedbankPay/swedbank-pay-sdk-php
   [releases]:         https://travis-ci.org/SwedbankPay/swedbank-pay-sdk-php/releases
   [composer]:         https://getcomposer.org
   [composer-intro]:   https://getcomposer.org/doc/00-intro.md
-  [version-badge]:    https://poser.pugx.org/SwedbankPay/swedbank-pay-sdk-php/version
-  [downloads-badge]:  https://poser.pugx.org/SwedbankPay/swedbank-pay-sdk-php/downloads
-  [license-badge]:    https://poser.pugx.org/SwedbankPay/swedbank-pay-sdk-php/license
-  [packagist]:        https://packagist.org/packages/SwedbankPay/swedbank-pay-sdk-php
+  [version-badge]:    https://poser.pugx.org/swedbank-pay/swedbank-pay-sdk-php/version
+  [downloads-badge]:  https://poser.pugx.org/swedbank-pay/swedbank-pay-sdk-php/downloads
+  [license-badge]:    https://poser.pugx.org/swedbank-pay/swedbank-pay-sdk-php/license
+  [packagist]:        https://packagist.org/packages/swedbank-pay/swedbank-pay-sdk-php
