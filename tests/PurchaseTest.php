@@ -1,13 +1,13 @@
 <?php
 
 use PayEx\Api\Service\Paymentorder\Resource\Request\Paymentorder;
-use PayEx\Api\Service\Paymentorder\Resource\Collection\ItemsCollection;
+use PayEx\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
 
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderUrl;
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayer;
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderMetadata;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderCreditCard;
+use PayEx\Api\Service\Paymentorder\Resource\PaymentorderCreditcard;
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderInvoice;
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderCampaignInvoice;
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderSwish;
@@ -48,7 +48,7 @@ class PurchaseTest extends TestCase
             ->setKey3(3.1)
             ->setKey4(false);
 
-        $creditCard = new PaymentorderCreditCard();
+        $creditCard = new PaymentorderCreditcard();
         $creditCard->setNo3DSecure(false)
             ->setNo3DSecureForStoredCard(false)
             ->setRejectCardNot3DSecureEnrolled(false)
@@ -69,7 +69,7 @@ class PurchaseTest extends TestCase
         $swish = new PaymentorderSwish();
         $swish->setEnableEcomOnly(false);
 
-        $paymentorderItems = new ItemsCollection();
+        $paymentorderItems = new PaymentorderItemsCollection();
         $paymentorderItems->addItem([
             'credit_card' => $creditCard,
             'invoice' => $invoice,
