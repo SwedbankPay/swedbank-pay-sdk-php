@@ -6,14 +6,14 @@ use PayEx\Api\Service\Paymentorder\Resource\PaymentorderUrl as PaymentorderUrlDa
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
 use PayEx\Api\Service\Paymentorder\Resource\Request\Paymentorder;
 use PayEx\Api\Service\Paymentorder\Request\Purchase;
-use PayEx\Api\Service\Paymentorder\Request\CurrentPayment;
+use PayEx\Api\Service\Paymentorder\Request\GetCurrentPayment;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
     /** @var Client $client */
     protected $client;
 
-    protected function setUp(): void
+    protected function setUp()
     {
         if (!defined('MERCHANT_TOKEN') ||
             MERCHANT_TOKEN === '<merchant_token>') {
@@ -31,7 +31,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
             ->setMode(Client::MODE_TEST);
     }
 
-    protected function tearDown(): void
+    protected function tearDown()
     {
         $this->client = null;
     }
@@ -49,9 +49,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @return string|null
      * @throws \PayEx\Api\Client\Exception
      */
-    protected function getPaymentId()
+    protected function getPaymentOrderId()
     {
-        return $this->getPaymentResponse()->getResponseData()['payment_order']['id'];
+        return $this->createPaymentOrder()->getResponseData()['payment_order']['id'];
     }
 
     /**
@@ -60,9 +60,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function getPaymentToken()
     {
-        $currentPayment = new CurrentPayment();
+        $currentPayment = new GetCurrentPayment();
         $currentPayment->setClient($this->client)
-            ->setRequestEndpoint('/psp/paymentorders/' . $this->getPaymentId() . '/currentPayment');
+            ->setRequestEndpoint( $this->getPaymentOrderId() . '/currentPayment');
 
         $response = $currentPayment->send();
 
@@ -73,7 +73,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @return \PayEx\Api\Service\Data\ResponseInterface
      * @throws \PayEx\Api\Client\Exception
      */
-    private function getPaymentResponse()
+    private function createPaymentOrder()
     {
         $urlData = new PaymentorderUrlData();
         $urlData->setHostUrls(['https://example.com', 'https://example.net'])
