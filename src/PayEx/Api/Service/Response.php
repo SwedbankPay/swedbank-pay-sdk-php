@@ -37,6 +37,13 @@ class Response extends AbstractSimpleDataObject implements ResponseInterface
             return;
         }
 
+        if (class_exists($this->getRequestService()->getResponseResourceFQCN())) {
+            $responseResourceFCQN = $this->getRequestService()->getResponseResourceFQCN();
+            $responseResource = new $responseResourceFCQN($data);
+            $this->setResponseResource($responseResource);
+            return;
+        }
+
         if (is_array($data) || is_string($data)) {
             if (!($this->resourceFactory instanceof ResourceFactory)) {
                 $this->resourceFactory = new ResourceFactory();

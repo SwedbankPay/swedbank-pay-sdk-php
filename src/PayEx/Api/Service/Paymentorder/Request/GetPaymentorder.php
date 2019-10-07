@@ -9,14 +9,7 @@ class GetPaymentorder extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-    }
-
-    /**
-     * @param string $paymentId
-     */
-    public function setPaymentId($paymentId)
-    {
-        return $this->setRequestEndpoint('/psp/paymentorders/' . $paymentId);
+        $this->setRequestEndpoint('/psp/paymentorders/%s');
     }
 
     /**

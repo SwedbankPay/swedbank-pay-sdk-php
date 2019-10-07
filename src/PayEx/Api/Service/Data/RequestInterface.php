@@ -19,6 +19,8 @@ interface RequestInterface extends SimpleDataObjectInterface
 
     const SERVICE_OPERATION = 'service_operation';
 
+    const RESPONSE_RESOURCE_FQCN = 'response_resource_fqcn';
+
     /**
      * @return string
      */
@@ -79,6 +81,17 @@ interface RequestInterface extends SimpleDataObjectInterface
      * @return $this
      */
     public function setServiceOperation($serviceOperation);
+
+    /**
+     * @return string
+     */
+    public function getResponseResourceFQCN();
+
+    /**
+     * @param string $responseResourceFQCN
+     * @return $this
+     */
+    public function setResponseResourceFQCN($responseResourceFQCN);
 
     /**
      * @return array|null
