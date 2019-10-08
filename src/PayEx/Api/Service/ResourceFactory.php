@@ -302,7 +302,8 @@ class ResourceFactory
 
         $formattedParts = array();
         array_shift($splitParts);
-        for ($i = 0; $i < count($splitParts); $i++) {
+        $count = count($splitParts);
+        for ($i = 0; $i < $count; $i++) {
             if ($i % 2) {
                 $formattedParts[] = strtolower($splitParts[$i - 1] . $splitParts[$i]);
             }
