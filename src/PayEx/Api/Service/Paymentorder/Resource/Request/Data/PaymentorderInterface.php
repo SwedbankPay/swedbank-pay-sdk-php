@@ -2,7 +2,7 @@
 
 namespace PayEx\Api\Service\Paymentorder\Resource\Request\Data;
 
-use PayEx\Api\Service\Paymentorder\Resource\Collection\ItemsCollection;
+use PayEx\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderMetadataInterface;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderPayeeInfoInterface;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderPayerInterface;
@@ -176,12 +176,12 @@ interface PaymentorderInterface extends RequestInterface
     public function setMetadata($metadata);
 
     /**
-     * @return ItemsCollection
+     * @return PaymentorderItemsCollection
      */
     public function getItems();
 
     /**
-     * @param ItemsCollection|array $items
+     * @param PaymentorderItemsCollection|array $items
      * @return $this
      */
     public function setItems($items);

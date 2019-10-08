@@ -1,21 +1,24 @@
 {
   "name": "swedbank-pay/swedbank-pay-sdk-php",
   "type": "library",
-  "version": "3.0.0",
   "description": "The Swedbank Pay SDK for PHP simplifies integrations against Swedbank Pay's API Platform by providing native PHP interface towards the REST API.",
   "authors": [
     {
       "name": "Sammy Nordström",
       "email": "sammy.nordstrom@visma.com"
-     },
-     {
-       "name": "Richard Birnik",
-       "email": "richard@aait.se"
-     },
-     {
-       "name": "Asbjørn Ulsberg",
-       "email": "asbjorn.ulsberg@payex.com"
-     }
+    },
+    {
+      "name": "Md Shahriar Siraj",
+      "email": "shahriar.siraj@visma.com"
+    },
+    {
+      "name": "Richard Birnik",
+      "email": "richard@aait.se"
+    },
+    {
+      "name": "Asbjørn Ulsberg",
+      "email": "asbjorn.ulsberg@payex.com"
+    }
   ],
   "keywords": ["SwedbankPay", "sdk", "payments", "ecommerce"],
   "homepage": "https://github.com/SwedbankPay/swedbank-pay-sdk-php",

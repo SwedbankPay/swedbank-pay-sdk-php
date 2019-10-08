@@ -3,6 +3,7 @@
 namespace PayEx\Api\Service;
 
 use PayEx\Api\Service\Data\ResponseInterface;
+use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 use PayEx\Framework\AbstractSimpleDataObject;
 
 use PayEx\Api\Service\Data\RequestInterface;
@@ -161,6 +162,23 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
     public function setRequestResource($serviceResource)
     {
         return $this->offsetSet(self::REQUEST_RESOURCE, $serviceResource);
+    }
+
+    /**
+     * @return ResponseResourceInterface
+     */
+    public function getResponseResourceFQCN()
+    {
+        return $this->offsetGet(self::RESPONSE_RESOURCE_FQCN);
+    }
+
+    /**
+     * @param ResponseResourceInterface $responseResource
+     * @return $this
+     */
+    public function setResponseResourceFQCN($responseResourceFQCN)
+    {
+        return $this->offsetSet(self::RESPONSE_RESOURCE_FQCN, $responseResourceFQCN);
     }
 
     /**

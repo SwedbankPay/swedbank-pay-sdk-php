@@ -2,14 +2,8 @@
 
 namespace PayEx\Api\Service\Paymentorder\Request;
 
-use PayEx\Api\Service\Request;
+use PayEx\Api\Service\Creditcard\Request\Recur as CreditcardRecur;
 
-class Recur extends Request
+class Recur extends CreditcardRecur
 {
-    public function setup()
-    {
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/creditcard/payments');
-        $this->setServiceOperation('Recur');
-    }
 }

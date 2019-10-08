@@ -6,7 +6,7 @@ use PayEx\Api\Service\Paymentorder\Resource\PaymentorderUrl as PaymentorderUrlDa
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
 use PayEx\Api\Service\Paymentorder\Resource\Request\Paymentorder;
 use PayEx\Api\Service\Paymentorder\Request\Purchase;
-use PayEx\Api\Service\Paymentorder\Request\CurrentPayment;
+use PayEx\Api\Service\Paymentorder\Request\GetCurrentPayment;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -40,18 +40,24 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @param $length
      * @return bool|string
      */
-    protected function generateRandomString($length)
+    protected function generateRandomString($length = 12)
     {
-        return substr(str_shuffle(md5(time())),0,$length);
+        $characters = '0123456789';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
     /**
      * @return string|null
      * @throws \PayEx\Api\Client\Exception
      */
-    protected function getPaymentId()
+    protected function getPaymentOrderId()
     {
-        return $this->getPaymentResponse()->getResponseData()['payment_order']['id'];
+        return $this->createPaymentOrder()->getResponseData()['payment_order']['id'];
     }
 
     /**
@@ -60,9 +66,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function getPaymentToken()
     {
-        $currentPayment = new CurrentPayment();
+        $currentPayment = new GetCurrentPayment();
         $currentPayment->setClient($this->client)
-            ->setRequestEndpoint('/psp/paymentorders/' . $this->getPaymentId() . '/currentPayment');
+            ->setRequestEndpoint( $this->getPaymentOrderId() . '/currentPayment');
 
         $response = $currentPayment->send();
 
@@ -73,7 +79,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @return \PayEx\Api\Service\Data\ResponseInterface
      * @throws \PayEx\Api\Client\Exception
      */
-    private function getPaymentResponse()
+    private function createPaymentOrder()
     {
         $urlData = new PaymentorderUrlData();
         $urlData->setHostUrls(['https://example.com', 'https://example.net'])
@@ -85,7 +91,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
         $payeeInfo = new PaymentorderPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString(30))
+            ->setPayeeReference($this->generateRandomString())
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456');
