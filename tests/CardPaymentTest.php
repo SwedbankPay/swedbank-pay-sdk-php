@@ -36,7 +36,7 @@ class CardPaymentTest extends TestCase
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString(30))
+            ->setPayeeReference($this->generateRandomString(12))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')
@@ -70,7 +70,7 @@ class CardPaymentTest extends TestCase
             ->setDescription('Test Purchase')
             ->setUserAgent('Mozilla/5.0...')
             ->setLanguage('sv-SE')
-            ->setPayerReference($this->generateRandomString(30))
+            ->setPayerReference($this->generateRandomString(12))
             ->setUrls($url)
             ->setPayeeInfo($payeeInfo)
             ->setPrices($prices);
@@ -119,7 +119,7 @@ class CardPaymentTest extends TestCase
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString(30))
+            ->setPayeeReference($this->generateRandomString(12))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')
@@ -142,7 +142,7 @@ class CardPaymentTest extends TestCase
             ->setDescription('Test Purchase')
             ->setUserAgent('Mozilla/5.0...')
             ->setLanguage('sv-SE')
-            ->setPayerReference($this->generateRandomString(30))
+            ->setPayerReference($this->generateRandomString(12))
             ->setUrls($url)
             ->setPayeeInfo($payeeInfo);
 

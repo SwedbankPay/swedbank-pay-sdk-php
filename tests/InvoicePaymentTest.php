@@ -40,7 +40,7 @@ class InvoicePaymentTest extends TestCase
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString(30))
+            ->setPayeeReference($this->generateRandomString(12))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')
