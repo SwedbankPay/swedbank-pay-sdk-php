@@ -10,7 +10,7 @@ interface TransactionResourceInterface
     * @return string
     */
     public function getId();
-
+    
     /**
     * @param string $resourceId
     * @return $this

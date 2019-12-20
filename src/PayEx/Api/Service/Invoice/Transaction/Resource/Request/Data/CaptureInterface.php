@@ -2,9 +2,9 @@
 
 namespace PayEx\Api\Service\Invoice\Transaction\Resource\Request\Data;
 
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\ItemDescriptionListCollection;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\VatSummaryCollection;
 use PayEx\Api\Service\Payment\Transaction\Resource\Request\Data\TransferInterface;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\Data\DescriptionItemInterface;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\Data\VatSummaryItemInterface;
 
 /**
  * Transaction Capture Interface
@@ -29,23 +29,23 @@ interface CaptureInterface extends TransferInterface
     public function setActivity($activity);
 
     /**
-     * @return DescriptionItemInterface
+     * @return ItemDescriptionListCollection
      */
     public function getItemDescriptions();
 
     /**
-     * @param DescriptionItemInterface|array $itemDescriptions
+     * @param ItemDescriptionListCollection|array $itemDescriptions
      * @return $this
      */
     public function setItemDescriptions($itemDescriptions);
 
     /**
-     * @return VatSummaryItemInterface
+     * @return VatSummaryCollection
      */
     public function getVatSummary();
 
     /**
-     * @param VatSummaryItemInterface $vatSummary
+     * @param VatSummaryCollection $vatSummary
      * @return $this
      */
     public function setVatSummary($vatSummary);

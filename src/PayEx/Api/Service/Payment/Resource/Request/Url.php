@@ -47,6 +47,23 @@ class Url extends Resource implements UrlInterface
     /**
      * @return string
      */
+    public function getPaymentUrl()
+    {
+        return $this->offsetGet(self::PAYMENT_URL);
+    }
+
+    /**
+     * @param string $paymentUrl
+     * @return $this
+     */
+    public function setPaymentUrl($paymentUrl)
+    {
+        return $this->offsetSet(self::PAYMENT_URL, $paymentUrl);
+    }
+
+    /**
+     * @return string
+     */
     public function getCallbackUrl()
     {
         return $this->offsetGet(self::CALLBACK_URL);

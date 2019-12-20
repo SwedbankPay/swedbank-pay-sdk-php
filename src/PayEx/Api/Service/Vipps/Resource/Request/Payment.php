@@ -13,7 +13,7 @@ use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
 class Payment extends PaymentRequest implements PaymentInterface
 {
     use PaymentTrait;
-
+    
     /**
      * @return PricesCollection
      */

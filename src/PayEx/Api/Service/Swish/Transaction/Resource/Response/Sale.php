@@ -24,7 +24,7 @@ class Sale extends TransactionResource implements SaleInterface
         $this->offsetSet(self::DATE, $date);
         return $this;
     }
-
+    
     /**
      * @return string
      */

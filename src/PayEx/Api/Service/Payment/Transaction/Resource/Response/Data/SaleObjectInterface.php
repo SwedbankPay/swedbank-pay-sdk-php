@@ -10,7 +10,7 @@ interface SaleObjectInterface extends TransactionResponseInterface
     * @return TransactionResourceInterface
     */
     public function getSale();
-
+    
     /**
     * @param TransactionResourceInterface $sale
     * @return $this

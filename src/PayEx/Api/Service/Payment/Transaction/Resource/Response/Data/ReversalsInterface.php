@@ -12,7 +12,7 @@ interface ReversalsInterface extends TransactionResourceInterface
     * @return TransactionListCollection
     */
     public function getReversalList();
-
+    
     /**
     * @param TransactionListCollection $reversalList
     * @return $this

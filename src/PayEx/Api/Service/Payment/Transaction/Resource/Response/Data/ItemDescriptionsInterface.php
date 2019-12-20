@@ -14,18 +14,18 @@ interface ItemDescriptionsInterface extends TransactionResourceInterface
     * @return ItemDescriptionListCollection
     */
     public function getItemDescriptionList();
-
+    
     /**
     * @param ItemDescriptionListCollection $itemDescriptionList
     * @return $this
     */
     public function setItemDescriptionList($itemDescriptionList);
-
+    
     /**
     * @return VatSummaryCollection
     */
     public function getVatSummary();
-
+    
     /**
     * @param VatSummaryCollection $vatSummary
     * @return $this

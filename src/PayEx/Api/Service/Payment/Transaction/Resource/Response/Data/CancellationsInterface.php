@@ -12,7 +12,7 @@ interface CancellationsInterface extends TransactionResourceInterface
     * @return TransactionListCollection
     */
     public function getCancellationList();
-
+    
     /**
     * @param TransactionListCollection $cancellationList
     * @return $this

@@ -4,7 +4,7 @@ namespace PayEx\Api\Service\Swish\Resource\Request;
 
 use PayEx\Api\Service\Payment\Resource\PaymentTrait;
 use PayEx\Api\Service\Payment\Resource\Request\Payment as PaymentRequest;
-use PayEx\Api\Service\Swish\Resource\Data\PaymentSwishInterface;
+use PayEx\Api\Service\Swish\Resource\Request\Data\PaymentSwishInterface;
 use PayEx\Api\Service\Swish\Resource\Request\Data\PaymentInterface;
 use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
 

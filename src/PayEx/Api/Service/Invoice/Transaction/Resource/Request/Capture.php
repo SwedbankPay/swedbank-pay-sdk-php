@@ -4,10 +4,8 @@ namespace PayEx\Api\Service\Invoice\Transaction\Resource\Request;
 
 use PayEx\Api\Service\Payment\Transaction\Resource\Request\Transfer;
 use PayEx\Api\Service\Invoice\Transaction\Resource\Request\Data\CaptureInterface;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\Data\DescriptionItemInterface;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\Data\VatSummaryItemInterface;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\ItemDescriptionCollection;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\VatSummaryCollection;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\ItemDescriptionListCollection;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\VatSummaryCollection;
 
 /**
  * Transaction capture data object
@@ -32,7 +30,7 @@ class Capture extends Transfer implements CaptureInterface
     }
 
     /**
-     * @return DescriptionItemInterface
+     * @return ItemDescriptionListCollection
      */
     public function getItemDescriptions()
     {
@@ -40,20 +38,20 @@ class Capture extends Transfer implements CaptureInterface
     }
 
     /**
-     * @param DescriptionItemInterface|array $itemDescriptions
+     * @param ItemDescriptionListCollection|array $itemDescriptions
      * @return $this
      */
     public function setItemDescriptions($itemDescriptions)
     {
-        if (!($itemDescriptions instanceof ItemDescriptionCollection)) {
-            $itemDescriptions = new ItemDescriptionCollection($itemDescriptions);
+        if (!($itemDescriptions instanceof ItemDescriptionListCollection)) {
+            $itemDescriptions = new ItemDescriptionListCollection($itemDescriptions);
         }
 
         return $this->offsetSet(self::ITEM_DESCRIPTIONS, $itemDescriptions);
     }
 
     /**
-     * @return VatSummaryItemInterface
+     * @return VatSummaryCollection
      */
     public function getVatSummary()
     {
@@ -61,7 +59,7 @@ class Capture extends Transfer implements CaptureInterface
     }
 
     /**
-     * @param VatSummaryItemInterface|array $vatSummary
+     * @param VatSummaryCollection|array $vatSummary
      * @return $this
      */
     public function setVatSummary($vatSummary)

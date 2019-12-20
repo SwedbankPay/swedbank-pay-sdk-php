@@ -12,7 +12,7 @@ interface SalesInterface extends TransactionResourceInterface
     * @return TransactionListCollection
     */
     public function getSaleList();
-
+    
     /**
     * @param TransactionListCollection $saleList
     * @return $this

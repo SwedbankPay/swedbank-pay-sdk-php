@@ -32,216 +32,216 @@ interface AuthorizationInterface extends TransactionResourceInterface
      * @SuppressWarnings(PHPMD.BooleanGetMethodName)
     */
     public function getDirect();
-
+    
     /**
     * @param bool $direct
     * @return $this
     */
     public function setDirect($direct);
-
+    
     /**
     * @return string
     */
     public function getPaymentToken();
-
+    
     /**
     * @param string $paymentToken
     * @return $this
     */
     public function setPaymentToken($paymentToken);
-
+    
     /**
     * @return string
     */
     public function getRecurrenceToken();
-
+    
     /**
     * @param string $recurrenceToken
     * @return $this
     */
     public function setRecurrenceToken($recurrenceToken);
-
+    
     /**
     * @return string
     */
     public function getMaskedPan();
-
+    
     /**
     * @param string $maskedPan
     * @return $this
     */
     public function setMaskedPan($maskedPan);
-
+    
     /**
     * @return string
     */
     public function getExpiryDate();
-
+    
     /**
     * @param string $expiryDate
     * @return $this
     */
     public function setExpiryDate($expiryDate);
-
+    
     /**
     * @return string
     */
     public function getPanToken();
-
+    
     /**
     * @param string $panToken
     * @return $this
     */
     public function setPanToken($panToken);
-
+    
     /**
     * @return string
     */
     public function getCardBrand();
-
+    
     /**
     * @param string $cardBrand
     * @return $this
     */
     public function setCardBrand($cardBrand);
-
+    
     /**
     * @return string
     */
     public function getCardType();
-
+    
     /**
     * @param string $cardType
     * @return $this
     */
     public function setCardType($cardType);
-
+    
     /**
     * @return string
     */
     public function getIssuingBank();
-
+    
     /**
     * @param string $issuingBank
     * @return $this
     */
     public function setIssuingBank($issuingBank);
-
+    
     /**
     * @return string
     */
     public function getCountryCode();
-
+    
     /**
     * @param string $countryCode
     * @return $this
     */
     public function setCountryCode($countryCode);
-
+    
     /**
     * @return string
     */
     public function getAcquirerTransactionType();
-
+    
     /**
      * @param string $transactionType
      * @return $this
      */
     public function setAcquirerTransactionType($transactionType);
-
+    
     /**
      * @return string
     */
     public function getIssuerAuthorizationApprovalCode();
-
+    
     /**
      * @param string $authApprovalCode
      * @return $this
      */
     public function setIssuerAuthorizationApprovalCode($authApprovalCode);
-
+    
     /**
     * @return string
     */
     public function getAcquirerStan();
-
+    
     /**
     * @param string $acquirerStan
     * @return $this
     */
     public function setAcquirerStan($acquirerStan);
-
+    
     /**
     * @return string
     */
     public function getAcquirerTerminalId();
-
+    
     /**
     * @param string $acquirerTerminalId
     * @return $this
     */
     public function setAcquirerTerminalId($acquirerTerminalId);
-
+    
     /**
     * @return string
     */
     public function getAcquirerTransactionTime();
-
+    
     /**
      * @param string $transactionTime
      * @return $this
      */
     public function setAcquirerTransactionTime($transactionTime);
-
+    
     /**
     * @return string
     */
     public function getAuthenticationStatus();
-
+    
     /**
     * @param string $authenticationStatus
     * @return $this
     */
     public function setAuthenticationStatus($authenticationStatus);
-
+    
     /**
     * @return string
     */
     public function getNonPaymentToken();
-
+    
     /**
     * @param string $nonPaymentToken
     * @return $this
     */
     public function setNonPaymentToken($nonPaymentToken);
-
+    
     /**
     * @return string
     */
     public function getExternalNonPaymentToken();
-
+    
     /**
      * @param string $nonPaymentToken
      * @return $this
      */
     public function setExternalNonPaymentToken($nonPaymentToken);
-
+    
     /**
     * @return string
     */
     public function getExternalSiteId();
-
+    
     /**
     * @param string $externalSiteId
     * @return $this
     */
     public function setExternalSiteId($externalSiteId);
-
+    
     /**
     * @return string
     */
     public function getTransactionInitiator();
-
+    
     /**
     * @param string $transactionInitiator
     * @return $this

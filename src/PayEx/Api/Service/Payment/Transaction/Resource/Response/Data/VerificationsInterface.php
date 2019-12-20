@@ -10,7 +10,7 @@ interface VerificationsInterface extends TransactionResourceInterface
     * @return string
     */
     public function getVerificationList();
-
+    
     /**
     * @param string $verificationList
     * @return $this

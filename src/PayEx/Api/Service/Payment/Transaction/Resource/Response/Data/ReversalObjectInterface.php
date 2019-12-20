@@ -10,7 +10,7 @@ interface ReversalObjectInterface extends TransactionResponseInterface
     * @return TransactionResourceInterface
     */
     public function getReversal();
-
+    
     /**
     * @param TransactionResourceInterface $reversal
     * @return $this

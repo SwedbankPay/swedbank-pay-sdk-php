@@ -12,7 +12,7 @@ interface AuthorizationsInterface extends TransactionResourceInterface
     * @return TransactionListCollection
     */
     public function getAuthorizationList();
-
+    
     /**
     * @param TransactionListCollection $authorizationList
     * @return $this

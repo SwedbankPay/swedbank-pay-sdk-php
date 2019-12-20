@@ -13,18 +13,18 @@ interface SaleInterface extends TransactionResourceInterface
     * @return string
     */
     public function getDate();
-
+    
     /**
     * @param string $date
     * @return $this
     */
     public function setDate($date);
-
+    
     /**
     * @return string
     */
     public function getPaymentRequestToken();
-
+    
     /**
     * @param string $paymentRequestToken
     * @return $this

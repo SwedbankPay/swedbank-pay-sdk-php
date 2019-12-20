@@ -10,7 +10,7 @@ interface AuthorizationsObjectInterface extends TransactionsResponseInterface
     * @return AuthorizationsInterface
     */
     public function getAuthorizations();
-
+    
     /**
     * @param AuthorizationsInterface $authorizations
     * @return $this
