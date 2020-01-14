@@ -2,6 +2,7 @@
 
 namespace PayEx\Api\Service\Payment\Resource\Data;
 
+use PayEx\Api\Service\Data\ResourceInterface;
 use PayEx\Api\Service\Payment\Resource\Request\Data\PayeeInfoInterface;
 use PayEx\Api\Service\Payment\Resource\Request\Data\UrlInterface;
 use PayEx\Api\Service\Resource\Data\RequestInterface;
@@ -11,7 +12,7 @@ use PayEx\Api\Service\Resource\Data\RequestInterface;
  *
  * @api
  */
-interface PaymentInterface extends RequestInterface
+interface PaymentInterface extends ResourceInterface
 {
     const INTENT = 'intent';
     const CURRENCY = 'currency';

@@ -9,7 +9,7 @@ class DataObjectCollection implements DataObjectCollectionInterface
     const ITEM_FQCN = 'PayEx\\Framework\\DataObjectCollectionItem';
 
     /**
-     * DataObjectCollectionItem[]
+     * PaymentorderItem[]
      *
      * @var array
      * @access private
@@ -17,7 +17,7 @@ class DataObjectCollection implements DataObjectCollectionInterface
     protected $items = [];
 
     /**
-     * Fully Qualified Class Name for Collection Item
+     * OperationsItem Fully Qualified Class Name
      *
      * @var string
      * @access private

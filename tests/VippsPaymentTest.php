@@ -4,11 +4,11 @@ use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
 use PayEx\Api\Service\Payment\Resource\Collection\Item\PriceItem;
 use PayEx\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
 use PayEx\Api\Service\Vipps\Request\Purchase;
-use PayEx\Api\Service\Vipps\Resource\PaymentPayeeInfo;
-use PayEx\Api\Service\Vipps\Resource\PaymentPrefillInfo;
-use PayEx\Api\Service\Vipps\Resource\PaymentUrl;
+use PayEx\Api\Service\Vipps\Resource\Request\PaymentPayeeInfo;
+use PayEx\Api\Service\Vipps\Resource\Request\PaymentPrefillInfo;
+use PayEx\Api\Service\Vipps\Resource\Request\PaymentUrl;
 use PayEx\Api\Service\Vipps\Resource\Request\Payment;
-use PayEx\Api\Service\Vipps\Resource\VippsPaymentObject;
+use PayEx\Api\Service\Vipps\Resource\Request\VippsPaymentObject;
 
 use PayEx\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use PayEx\Api\Service\Vipps\Transaction\Request\CreateAuthorization;
@@ -28,13 +28,14 @@ class VippsPaymentTest extends TestCase
         $url = new PaymentUrl();
         $url->setCompleteUrl('http://test-dummy.net/payment-completed')
             ->setCancelUrl('http://test-dummy.net/payment-canceled')
+            ->setPaymentUrl('https://example.com/perform-payment')
             ->setCallbackUrl('http://test-dummy.net/payment-callback')
             ->setLogoUrl('https://example.com/logo.png')
             ->setTermsOfService('https://example.com/terms.pdf');
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString())
+            ->setPayeeReference($this->generateRandomString(30))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')

@@ -2,6 +2,7 @@
 
 namespace PayEx\Api\Service\Paymentorder\Resource\Request\Data;
 
+use PayEx\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use PayEx\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderMetadataInterface;
 use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderPayeeInfoInterface;
@@ -27,6 +28,7 @@ interface PaymentorderInterface extends RequestInterface
     const URLS = 'urls';
     const PAYEE_INFO = 'payee_info';
     const PAYER = 'payer';
+    const ORDER_ITEMS = 'orderItems';
     const METADATA = 'metadata';
     const ITEMS = 'items';
     const INTENT = 'intent';
@@ -165,15 +167,15 @@ interface PaymentorderInterface extends RequestInterface
     public function setPayer($payer);
 
     /**
-     * @return PaymentorderMetadataInterface
+     * @return OrderItemsCollection
      */
-    public function getMetadata();
+    public function getOrderItems();
 
     /**
-     * @param PaymentorderMetadataInterface $metadata
+     * @param OrderItemsCollection|array $orderItems
      * @return $this
      */
-    public function setMetadata($metadata);
+    public function setOrderItems($orderItems);
 
     /**
      * @return PaymentorderItemsCollection
@@ -185,6 +187,17 @@ interface PaymentorderInterface extends RequestInterface
      * @return $this
      */
     public function setItems($items);
+
+    /**
+     * @return PaymentorderMetadataInterface
+     */
+    public function getMetadata();
+
+    /**
+     * @param PaymentorderMetadataInterface $metadata
+     * @return $this
+     */
+    public function setMetadata($metadata);
 
     /**
      * @return string

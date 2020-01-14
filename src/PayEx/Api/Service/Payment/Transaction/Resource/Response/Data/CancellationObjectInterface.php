@@ -10,7 +10,7 @@ interface CancellationObjectInterface extends TransactionResponseInterface
     * @return TransactionResourceInterface
     */
     public function getCancellation();
-
+    
     /**
     * @param TransactionResourceInterface $cancellation
     * @return $this

@@ -12,7 +12,7 @@ interface CapturesInterface extends TransactionResourceInterface
     * @return TransactionListCollection
     */
     public function getCaptureList();
-
+    
     /**
     * @param TransactionListCollection $captureList
     * @return $this

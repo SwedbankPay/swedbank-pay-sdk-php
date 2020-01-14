@@ -3,12 +3,12 @@
 use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
 use PayEx\Api\Service\Payment\Resource\Collection\Item\PriceItem;
 use PayEx\Api\Service\Swish\Request\Purchase;
-use PayEx\Api\Service\Swish\Resource\PaymentPayeeInfo;
-use PayEx\Api\Service\Swish\Resource\PaymentPrefillInfo;
-use PayEx\Api\Service\Swish\Resource\PaymentSwish;
-use PayEx\Api\Service\Swish\Resource\PaymentUrl;
+use PayEx\Api\Service\Swish\Resource\Request\PaymentPayeeInfo;
+use PayEx\Api\Service\Swish\Resource\Request\PaymentPrefillInfo;
+use PayEx\Api\Service\Swish\Resource\Request\PaymentSwish;
+use PayEx\Api\Service\Swish\Resource\Request\PaymentUrl;
 use PayEx\Api\Service\Swish\Resource\Request\Payment;
-use PayEx\Api\Service\Swish\Resource\SwishPaymentObject;
+use PayEx\Api\Service\Swish\Resource\Request\SwishPaymentObject;
 
 use PayEx\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use PayEx\Api\Service\Swish\Transaction\Request\CreateSale;
@@ -35,7 +35,7 @@ class SwishPaymentTest extends TestCase
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString())
+            ->setPayeeReference($this->generateRandomString(30))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')

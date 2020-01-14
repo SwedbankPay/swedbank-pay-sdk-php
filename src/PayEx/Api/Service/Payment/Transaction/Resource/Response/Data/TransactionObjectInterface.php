@@ -2,7 +2,7 @@
 
 namespace PayEx\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Response\Data\TransactionInterface;
+//use PayEx\Api\Service\Payment\Transaction\Response\Data\TransactionInterface;
 
 interface TransactionObjectInterface extends TransactionResponseInterface
 {

@@ -2,11 +2,12 @@
 
 namespace PayEx\Api\Service\Paymentorder\Transaction\Resource\Request;
 
-use PayEx\Api\Service\Resource\Request as RequestResource;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\TransactionTrait;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Request\Data\TransactionInterface;
+use PayEx\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\ItemDescriptionCollection;
 use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\VatSummaryCollection;
+use PayEx\Api\Service\Paymentorder\Transaction\Resource\Request\Data\TransactionInterface;
+use PayEx\Api\Service\Paymentorder\Transaction\Resource\TransactionTrait;
+use PayEx\Api\Service\Resource\Request as RequestResource;
 
 /**
  * Transaction data object
@@ -14,6 +15,27 @@ use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\VatSummaryCol
 class Transaction extends RequestResource implements TransactionInterface
 {
     use TransactionTrait;
+
+    /**
+     * @return OrderItemsCollection
+     */
+    public function getOrderItems()
+    {
+        return $this->offsetGet(self::ORDER_ITEMS);
+    }
+
+    /**
+     * @param OrderItemsCollection|array $orderItems
+     * @return $this
+     */
+    public function setOrderItems($orderItems)
+    {
+        if (!($orderItems instanceof OrderItemsCollection)) {
+            $orderItems = new OrderItemsCollection($orderItems);
+        }
+
+        return $this->offsetSet(self::ORDER_ITEMS, $orderItems);
+    }
 
     /**
      * @return ItemDescriptionCollection

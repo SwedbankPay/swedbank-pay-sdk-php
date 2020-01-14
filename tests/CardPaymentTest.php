@@ -29,6 +29,7 @@ class CardPaymentTest extends TestCase
         $url = new PaymentUrl();
         $url->setCompleteUrl('http://test-dummy.net/payment-completed')
             ->setCancelUrl('http://test-dummy.net/payment-canceled')
+            ->setPaymentUrl('https://example.com/perform-payment')
             ->setCallbackUrl('http://test-dummy.net/payment-callback')
             ->setLogoUrl('https://example.com/logo.png')
             ->setTermsOfService('https://example.com/terms.pdf')
@@ -36,7 +37,7 @@ class CardPaymentTest extends TestCase
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString())
+            ->setPayeeReference($this->generateRandomString(30))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')
@@ -70,7 +71,7 @@ class CardPaymentTest extends TestCase
             ->setDescription('Test Purchase')
             ->setUserAgent('Mozilla/5.0...')
             ->setLanguage('sv-SE')
-            ->setPayerReference($this->generateRandomString())
+            ->setPayerReference($this->generateRandomString(30))
             ->setUrls($url)
             ->setPayeeInfo($payeeInfo)
             ->setPrices($prices);
@@ -119,7 +120,7 @@ class CardPaymentTest extends TestCase
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString())
+            ->setPayeeReference($this->generateRandomString(30))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')
@@ -142,7 +143,7 @@ class CardPaymentTest extends TestCase
             ->setDescription('Test Purchase')
             ->setUserAgent('Mozilla/5.0...')
             ->setLanguage('sv-SE')
-            ->setPayerReference($this->generateRandomString())
+            ->setPayerReference($this->generateRandomString(30))
             ->setUrls($url)
             ->setPayeeInfo($payeeInfo);
 

@@ -10,7 +10,7 @@ interface CancellationsObjectInterface extends TransactionsResponseInterface
     * @return CancellationsInterface
     */
     public function getCancellations();
-
+    
     /**
     * @param CancellationsInterface $cancellations
     * @return $this

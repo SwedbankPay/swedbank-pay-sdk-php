@@ -1,16 +1,13 @@
 <?php
 
 use PayEx\Api\Service\Paymentorder\Resource\Request\Paymentorder;
-use PayEx\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
+use PayEx\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
+use PayEx\Api\Service\Paymentorder\Resource\Collection\Item\OrderItem;
 
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderUrl;
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayer;
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderMetadata;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderCreditcard;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderInvoice;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderCampaignInvoice;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderSwish;
 
 use PayEx\Api\Service\Paymentorder\Request\Purchase;
 use PayEx\Api\Service\Paymentorder\Resource\PaymentorderObject;
@@ -28,13 +25,14 @@ class PurchaseTest extends TestCase
         $urlData->setHostUrls(['https://example.com', 'https://example.net'])
             ->setCompleteUrl('https://example.com/payment-completed')
             ->setCancelUrl('https://example.com/payment-canceled')
+            ->setPaymentUrl('https://example.com/perform-payment')
             ->setCallbackUrl('https://api.internaltest.payex.com/psp/fakecallback')
             ->setTermsOfService('https://example.com/termsandconditoons.pdf')
             ->setLogoUrl('https://example.com/logo.png');
 
         $payeeInfo = new PaymentorderPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString())
+            ->setPayeeReference($this->generateRandomString(30))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456');
@@ -48,34 +46,26 @@ class PurchaseTest extends TestCase
             ->setKey3(3.1)
             ->setKey4(false);
 
-        $creditCard = new PaymentorderCreditcard();
-        $creditCard->setNo3DSecure(false)
-            ->setNo3DSecureForStoredCard(false)
-            ->setRejectCardNot3DSecureEnrolled(false)
-            ->setRejectCreditCards(false)
-            ->setRejectDebitCards(false)
-            ->setRejectConsumerCards(false)
-            ->setRejectCorporateCards(false)
-            ->setRejectAuthenticationStatusA(false)
-            ->setRejectAuthenticationStatusU(false);
+        $orderItems = new OrderItemsCollection();
 
-        $invoice = new PaymentorderInvoice();
-        $invoice->setFeeAmount(1900);
+        $orderItem = new OrderItem();
+        $orderItem->setReference('P1')
+            ->setName('Product1')
+            ->setType('PRODUCT')
+            ->setItemClass('ProductGroup1')
+            ->setItemUrl('https://example.com/products/123')
+            ->setImageUrl('https://example.com/product123.jpg')
+            ->setDescription('Product 1 description')
+            ->setDiscountDescription('Volume discount')
+            ->setQuantity(1)
+            ->setUnitPrice(1500)
+            ->setQuantityUnit('pcs')
+            ->setDiscountDescription(0)
+            ->setVatPercent(0)
+            ->setAmount(1500)
+            ->setVatAmount(0);
 
-        $campaignInvoice = new PaymentorderCampaignInvoice();
-        $campaignInvoice->setCampaignCode('Campaign1')
-            ->setFeeAmount(2900);
-
-        $swish = new PaymentorderSwish();
-        $swish->setEnableEcomOnly(false);
-
-        $paymentorderItems = new PaymentorderItemsCollection();
-        $paymentorderItems->addItem([
-            'credit_card' => $creditCard,
-            'invoice' => $invoice,
-            'campaign_invoice' => $campaignInvoice,
-            'swish' => $swish
-        ]);
+        $orderItems->addItem($orderItem);
 
         $paymentOrder = new Paymentorder();
         $paymentOrder->setOperation('Purchase')
@@ -90,7 +80,7 @@ class PurchaseTest extends TestCase
             ->setUrls($urlData)
             ->setPayeeInfo($payeeInfo)
             ->setMetadata($metadata)
-            ->setItems($paymentorderItems);
+            ->setOrderItems($orderItems);
 
         $paymentOrderObject = new PaymentorderObject();
         $paymentOrderObject->setPaymentorder($paymentOrder);
@@ -113,6 +103,7 @@ class PurchaseTest extends TestCase
         $this->assertTrue(is_array($result));
         $this->assertTrue(isset($result['payment_order']));
         $this->assertTrue(isset($result['payment_order']['items']));
+        $this->assertTrue(isset($result['payment_order']['order_items']));
         $this->assertTrue(isset($result['operations']));
         $this->assertTrue(($result['payment_order']['operation']) === 'Purchase');
     }

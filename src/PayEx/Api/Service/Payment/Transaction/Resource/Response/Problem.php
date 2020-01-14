@@ -25,7 +25,7 @@ class Problem extends Resource implements ProblemInterface
         $this->offsetSet(self::TYPE, $type);
         return $this;
     }
-
+    
     /**
      * @return string
      */
@@ -43,7 +43,7 @@ class Problem extends Resource implements ProblemInterface
         $this->offsetSet(self::TITLE, $title);
         return $this;
     }
-
+    
     /**
      * @return string
      */
@@ -61,7 +61,7 @@ class Problem extends Resource implements ProblemInterface
         $this->offsetSet(self::STATUS, $status);
         return $this;
     }
-
+    
     /**
      * @return string
      */
@@ -79,7 +79,7 @@ class Problem extends Resource implements ProblemInterface
         $this->offsetSet(self::DETAIL, $detail);
         return $this;
     }
-
+    
     /**
      * @return ProblemsCollection
      */

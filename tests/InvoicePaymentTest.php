@@ -3,17 +3,17 @@
 use PayEx\Api\Service\Consumer\Resource\ConsumerAddress;
 use PayEx\Api\Service\Invoice\Request\CreateApprovedLegalAddress;
 use PayEx\Api\Service\Invoice\Request\CreateInvoice;
-use PayEx\Api\Service\Invoice\Resource\AddresseeObject;
+use PayEx\Api\Service\Invoice\Resource\Request\AddresseeObject;
 use PayEx\Api\Service\Invoice\Resource\Request\Addressee;
 use PayEx\Api\Service\Invoice\Resource\Request\Invoice;
 use PayEx\Api\Service\Invoice\Transaction\Resource\Request\Consumer;
 use PayEx\Api\Service\Invoice\Transaction\Resource\Request\Transaction;
 use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
 use PayEx\Api\Service\Payment\Resource\Collection\Item\PriceItem;
-use PayEx\Api\Service\Invoice\Resource\PaymentPayeeInfo;
-use PayEx\Api\Service\Invoice\Resource\PaymentUrl;
+use PayEx\Api\Service\Invoice\Resource\Request\PaymentPayeeInfo;
+use PayEx\Api\Service\Invoice\Resource\Request\PaymentUrl;
 use PayEx\Api\Service\Invoice\Resource\Request\Payment;
-use PayEx\Api\Service\Invoice\Resource\InvoicePaymentObject;
+use PayEx\Api\Service\Invoice\Resource\Request\InvoicePaymentObject;
 
 use PayEx\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use PayEx\Api\Service\Invoice\Transaction\Request\CreateAuthorization;
@@ -40,7 +40,7 @@ class InvoicePaymentTest extends TestCase
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString())
+            ->setPayeeReference($this->generateRandomString(30))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')
@@ -71,7 +71,7 @@ class InvoicePaymentTest extends TestCase
         $invoicePaymentObject = new InvoicePaymentObject();
         $invoicePaymentObject->setPayment($payment);
         $invoicePaymentObject->setInvoice($invoice);
-
+        
 
         $this->invoiceRequest = new CreateInvoice($invoicePaymentObject);
         $this->invoiceRequest->setClient($this->client);
