@@ -4,6 +4,10 @@ namespace PayEx\Framework;
 
 use PayEx\Framework\Data\DataObjectCollectionInterface;
 
+/**
+ * Class DataObjectCollection
+ * @SuppressWarnings(PHPMD.NumberOfChildren)
+ */
 class DataObjectCollection implements DataObjectCollectionInterface
 {
     const ITEM_FQCN = 'PayEx\\Framework\\DataObjectCollectionItem';

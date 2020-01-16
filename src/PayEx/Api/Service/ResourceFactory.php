@@ -332,6 +332,7 @@ class ResourceFactory
     /**
      * @param string $string
      * @return null|string
+     * @SuppressWarnings(PHPMD.CountInLoopExpression)
      */
     private function unCamelCaseStr($string = '')
     {

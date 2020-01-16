@@ -2,6 +2,7 @@
 
 namespace PayEx\Framework;
 
+use Exception;
 use PayEx\Framework\Data\DataTransferObjectInterface;
 use PayEx\Framework\Data\SimpleDataObjectInterface;
 
@@ -199,6 +200,6 @@ abstract class AbstractSimpleDataObject implements SimpleDataObjectInterface, \A
                 return $this->offsetExists($key);
         }
 
-        throw new \Exception(sprintf('Invalid method %s::%s', get_class($this), $method));
+        throw new Exception(sprintf('Invalid method %s::%s', get_class($this), $method));
     }
 }
