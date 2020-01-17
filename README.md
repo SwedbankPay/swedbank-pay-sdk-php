@@ -56,3 +56,4 @@ composer require swedbank-pay/swedbank-pay-sdk-php
   [license-badge]:    https://poser.pugx.org/swedbank-pay/swedbank-pay-sdk-php/license
   [packagist]:        https://packagist.org/packages/swedbank-pay/swedbank-pay-sdk-php
   [og-image]:         https://repository-images.githubusercontent.com/211837579/b7c1d900-e7a7-11e9-8f55-5ecd50309fe4
+
