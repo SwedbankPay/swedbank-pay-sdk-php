@@ -58,6 +58,7 @@ class DataObjectHelper
         $arr = [];
         foreach ($assocArray as $key => $value) {
             if (is_string($key) && $key != '') {
+                $matches = [];
                 preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][Data-z0-9])|[A-Za-z][Data-z0-9]+)!', $key, $matches);
                 $ret = $matches[0];
                 foreach ($ret as &$match) {
