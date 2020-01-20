@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Vipps\Transaction\Resource\Response\Collection\Item;
+namespace SwedbankPay\Api\Service\Vipps\Transaction\Resource\Response\Collection\Item;
 
-use PayEx\Api\Service\Vipps\Transaction\Resource\Response\Collection\Item\Data\AuthorizationListItemInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\TransactionListItem;
+use SwedbankPay\Api\Service\Vipps\Transaction\Resource\Response\Collection\Item\Data\AuthorizationListItemInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\TransactionListItem;
 
 class AuthorizationListItem extends TransactionListItem implements AuthorizationListItemInterface
 {

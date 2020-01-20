@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\TransactionListItem;
-use PayEx\Framework\DataObjectCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\TransactionListItem;
+use SwedbankPay\Framework\DataObjectCollection;
 
 class TransactionListCollection extends DataObjectCollection
 {

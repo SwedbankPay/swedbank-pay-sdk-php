@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Transaction\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Creditcard\Transaction\Resource\Request\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Data\TransferInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Data\TransferInterface;
 
 /**
  * Transaction Capture Interface

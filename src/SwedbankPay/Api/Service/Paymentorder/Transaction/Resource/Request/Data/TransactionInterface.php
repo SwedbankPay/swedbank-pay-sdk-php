@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Transaction\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Request\Data;
 
-use PayEx\Api\Service\Resource\Data\RequestInterface;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\ItemDescriptionCollection;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\VatSummaryCollection;
+use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection\ItemDescriptionCollection;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection\VatSummaryCollection;
 
 /**
  * Transaction interface

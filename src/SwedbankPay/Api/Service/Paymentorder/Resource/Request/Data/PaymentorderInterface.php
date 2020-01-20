@@ -1,13 +1,13 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data;
 
-use PayEx\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderMetadataInterface;
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderPayeeInfoInterface;
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderPayerInterface;
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderUrlInterface;
-use PayEx\Api\Service\Resource\Data\RequestInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderMetadataInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayeeInfoInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayerInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderUrlInterface;
+use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
 
 /**
  * Payment order interface

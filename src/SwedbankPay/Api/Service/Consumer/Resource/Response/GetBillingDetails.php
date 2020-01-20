@@ -1,11 +1,11 @@
 <?php
 
-namespace PayEx\Api\Service\Consumer\Resource\Response;
+namespace SwedbankPay\Api\Service\Consumer\Resource\Response;
 
-use PayEx\Api\Service\Resource\Response as ResponseResource;
+use SwedbankPay\Api\Service\Resource\Response as ResponseResource;
 
-use PayEx\Api\Service\Consumer\Resource\Data\ConsumerAddressInterface;
-use PayEx\Api\Service\Consumer\Resource\Response\Data\GetBillingDetailsInterface;
+use SwedbankPay\Api\Service\Consumer\Resource\Data\ConsumerAddressInterface;
+use SwedbankPay\Api\Service\Consumer\Resource\Response\Data\GetBillingDetailsInterface;
 
 /**
  * Get Billing Details response resource object

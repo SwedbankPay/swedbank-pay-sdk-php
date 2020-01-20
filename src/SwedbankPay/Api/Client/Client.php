@@ -1,12 +1,12 @@
 <?php
 
-namespace PayEx\Api\Client;
+namespace SwedbankPay\Api\Client;
 
-use PayEx\Api\Client\Resource\Client as ClientResource;
+use SwedbankPay\Api\Client\Resource\Client as ClientResource;
 
 /**
  * Class Client
- * @package PayEx\Api\Client
+ * @package SwedbankPay\Api\Client
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class Client extends ClientResource
@@ -14,7 +14,7 @@ class Client extends ClientResource
     /**
      * Client Name
      */
-    const CLIENT_NAME = 'PayEx HTTP Client';
+    const CLIENT_NAME = 'SwedbankPay HTTP Client';
 
     /**
      * Client Version

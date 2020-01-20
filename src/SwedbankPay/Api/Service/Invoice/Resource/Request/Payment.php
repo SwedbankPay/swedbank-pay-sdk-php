@@ -1,11 +1,11 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Resource\Request;
+namespace SwedbankPay\Api\Service\Invoice\Resource\Request;
 
-use PayEx\Api\Service\Payment\Resource\PaymentTrait;
-use PayEx\Api\Service\Payment\Resource\Request\Payment as PaymentRequest;
-use PayEx\Api\Service\Invoice\Resource\Request\Data\PaymentInterface;
-use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
+use SwedbankPay\Api\Service\Payment\Resource\PaymentTrait;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Payment as PaymentRequest;
+use SwedbankPay\Api\Service\Invoice\Resource\Request\Data\PaymentInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 
 /**
  * Invoice payment data object

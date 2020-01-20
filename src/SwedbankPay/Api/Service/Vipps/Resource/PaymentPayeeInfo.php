@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Vipps\Resource;
+namespace SwedbankPay\Api\Service\Vipps\Resource;
 
-use PayEx\Api\Service\Payment\Resource\Request\PayeeInfo;
-use PayEx\Api\Service\Vipps\Resource\Data\PaymentPayeeInfoInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Request\PayeeInfo;
+use SwedbankPay\Api\Service\Vipps\Resource\Data\PaymentPayeeInfoInterface;
 
 /**
  * Vipps payment payee info data object

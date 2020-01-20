@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\AuthorizationsInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\AuthorizationsObjectInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\AuthorizationsInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\AuthorizationsObjectInterface;
 
 class AuthorizationsObject extends TransactionResponse implements AuthorizationsObjectInterface
 {

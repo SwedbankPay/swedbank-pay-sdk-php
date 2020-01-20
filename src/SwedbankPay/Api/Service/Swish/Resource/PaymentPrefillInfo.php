@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Swish\Resource;
+namespace SwedbankPay\Api\Service\Swish\Resource;
 
-use PayEx\Api\Service\Swish\Resource\Data\PaymentPrefillInfoInterface;
-use PayEx\Api\Service\Payment\Resource\Request\PrefillInfo;
+use SwedbankPay\Api\Service\Swish\Resource\Data\PaymentPrefillInfoInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Request\PrefillInfo;
 
 /**
  * Swish payment prefill info data object

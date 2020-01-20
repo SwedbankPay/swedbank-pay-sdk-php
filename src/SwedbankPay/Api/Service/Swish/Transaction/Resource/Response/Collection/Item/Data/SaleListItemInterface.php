@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Swish\Transaction\Resource\Response\Collection\Item\Data;
+namespace SwedbankPay\Api\Service\Swish\Transaction\Resource\Response\Collection\Item\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\Data\TransactionListItemInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\Data\TransactionListItemInterface;
 
 interface SaleListItemInterface extends TransactionListItemInterface
 {

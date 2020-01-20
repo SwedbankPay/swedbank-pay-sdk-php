@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Resource\Collection\Item;
+namespace SwedbankPay\Api\Service\Paymentorder\Resource\Collection\Item;
 
-use PayEx\Framework\DataObjectCollectionItem;
-use PayEx\Api\Service\Paymentorder\Resource\Collection\Item\Data\PaymentListItemInterface;
+use SwedbankPay\Framework\DataObjectCollectionItem;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\Item\Data\PaymentListItemInterface;
 
 /**
  * Payment payment list data object

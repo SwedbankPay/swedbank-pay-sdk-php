@@ -1,19 +1,19 @@
 <?php
 
-use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
-use PayEx\Api\Service\Payment\Resource\Collection\Item\PriceItem;
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
-use PayEx\Api\Service\Vipps\Request\Purchase;
-use PayEx\Api\Service\Vipps\Resource\PaymentPayeeInfo;
-use PayEx\Api\Service\Vipps\Resource\PaymentPrefillInfo;
-use PayEx\Api\Service\Vipps\Resource\PaymentUrl;
-use PayEx\Api\Service\Vipps\Resource\Request\Payment;
-use PayEx\Api\Service\Vipps\Resource\VippsPaymentObject;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
+use SwedbankPay\Api\Service\Vipps\Request\Purchase;
+use SwedbankPay\Api\Service\Vipps\Resource\PaymentPayeeInfo;
+use SwedbankPay\Api\Service\Vipps\Resource\PaymentPrefillInfo;
+use SwedbankPay\Api\Service\Vipps\Resource\PaymentUrl;
+use SwedbankPay\Api\Service\Vipps\Resource\Request\Payment;
+use SwedbankPay\Api\Service\Vipps\Resource\VippsPaymentObject;
 
-use PayEx\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
-use PayEx\Api\Service\Vipps\Transaction\Request\CreateAuthorization;
-use PayEx\Api\Service\Vipps\Transaction\Resource\Request\TransactionAuthorization;
-use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
+use SwedbankPay\Api\Service\Vipps\Transaction\Request\CreateAuthorization;
+use SwedbankPay\Api\Service\Vipps\Transaction\Resource\Request\TransactionAuthorization;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
 class VippsPaymentTest extends TestCase
 {
@@ -21,7 +21,7 @@ class VippsPaymentTest extends TestCase
     protected $authorizationRequest;
 
     /**
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testPurchaseRequest()
     {
@@ -94,7 +94,7 @@ class VippsPaymentTest extends TestCase
     /**
      * @depends VippsPaymentTest::testPurchaseRequest
      * @param string $paymentId
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testCreateAuthorizationTransaction($paymentId)
     {

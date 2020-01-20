@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Resource;
+namespace SwedbankPay\Api\Service\Invoice\Resource;
 
-use PayEx\Api\Service\Invoice\Resource\Data\PaymentUrlInterface;
-use PayEx\Api\Service\Payment\Resource\Request\Url;
+use SwedbankPay\Api\Service\Invoice\Resource\Data\PaymentUrlInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Url;
 
 /**
  * Invoice payment url data object

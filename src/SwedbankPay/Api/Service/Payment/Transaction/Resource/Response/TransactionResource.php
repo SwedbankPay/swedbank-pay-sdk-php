@@ -1,13 +1,13 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResourceInterface;
-use PayEx\Api\Service\Resource;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResourceInterface;
+use SwedbankPay\Api\Service\Resource;
 
 /**
  * Class TransactionResource
- * @package PayEx\Api\Service\Payment\Transaction\Resource\Response
+ * @package SwedbankPay\Api\Service\Payment\Transaction\Resource\Response
  * @SuppressWarnings(PHPMD.NumberOfChildren)
  */
 class TransactionResource extends Resource implements TransactionResourceInterface

@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\VerificationsObjectInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\VerificationsObjectInterface;
 
 class VerificationsObject extends TransactionResponse implements VerificationsObjectInterface
 {

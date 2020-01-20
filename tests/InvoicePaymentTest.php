@@ -1,24 +1,24 @@
 <?php
 
-use PayEx\Api\Service\Consumer\Resource\ConsumerAddress;
-use PayEx\Api\Service\Invoice\Request\CreateApprovedLegalAddress;
-use PayEx\Api\Service\Invoice\Request\CreateInvoice;
-use PayEx\Api\Service\Invoice\Resource\AddresseeObject;
-use PayEx\Api\Service\Invoice\Resource\Request\Addressee;
-use PayEx\Api\Service\Invoice\Resource\Request\Invoice;
-use PayEx\Api\Service\Invoice\Transaction\Resource\Request\Consumer;
-use PayEx\Api\Service\Invoice\Transaction\Resource\Request\Transaction;
-use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
-use PayEx\Api\Service\Payment\Resource\Collection\Item\PriceItem;
-use PayEx\Api\Service\Invoice\Resource\PaymentPayeeInfo;
-use PayEx\Api\Service\Invoice\Resource\PaymentUrl;
-use PayEx\Api\Service\Invoice\Resource\Request\Payment;
-use PayEx\Api\Service\Invoice\Resource\InvoicePaymentObject;
+use SwedbankPay\Api\Service\Consumer\Resource\ConsumerAddress;
+use SwedbankPay\Api\Service\Invoice\Request\CreateApprovedLegalAddress;
+use SwedbankPay\Api\Service\Invoice\Request\CreateInvoice;
+use SwedbankPay\Api\Service\Invoice\Resource\AddresseeObject;
+use SwedbankPay\Api\Service\Invoice\Resource\Request\Addressee;
+use SwedbankPay\Api\Service\Invoice\Resource\Request\Invoice;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Consumer;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Transaction;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
+use SwedbankPay\Api\Service\Invoice\Resource\PaymentPayeeInfo;
+use SwedbankPay\Api\Service\Invoice\Resource\PaymentUrl;
+use SwedbankPay\Api\Service\Invoice\Resource\Request\Payment;
+use SwedbankPay\Api\Service\Invoice\Resource\InvoicePaymentObject;
 
-use PayEx\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
-use PayEx\Api\Service\Invoice\Transaction\Request\CreateAuthorization;
-use PayEx\Api\Service\Invoice\Transaction\Resource\Request\Authorization;
-use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\CreateAuthorization;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Authorization;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
 class InvoicePaymentTest extends TestCase
 {
@@ -27,7 +27,7 @@ class InvoicePaymentTest extends TestCase
     protected $authorizationRequest;
 
     /**
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testInvoicePaymentRequest()
     {
@@ -101,7 +101,7 @@ class InvoicePaymentTest extends TestCase
     /**
      * @depends InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testCreateApprovedLegalAddress($paymentId)
     {
@@ -137,7 +137,7 @@ class InvoicePaymentTest extends TestCase
     /**
      * @depends InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testCreateAuthorizationTransaction($paymentId)
     {

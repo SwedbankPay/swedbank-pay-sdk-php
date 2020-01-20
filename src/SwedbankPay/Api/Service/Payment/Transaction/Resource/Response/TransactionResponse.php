@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResponseInterface;
-use PayEx\Api\Service\Resource\ResponseTrait;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResponseInterface;
+use SwedbankPay\Api\Service\Resource\ResponseTrait;
 
 class TransactionResponse extends TransactionResource implements TransactionResponseInterface
 {

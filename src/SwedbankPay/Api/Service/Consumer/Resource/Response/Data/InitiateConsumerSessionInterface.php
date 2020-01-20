@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Consumer\Resource\Response\Data;
+namespace SwedbankPay\Api\Service\Consumer\Resource\Response\Data;
 
-use PayEx\Api\Service\Resource\Data\ResponseInterface;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface;
 
 /**
  * Consumer address data interface

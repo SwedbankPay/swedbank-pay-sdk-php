@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Client\Resource;
+namespace SwedbankPay\Api\Client\Resource;
 
-use PayEx\Api\Client\Resource\Data\ClientInterface;
-use PayEx\Framework\AbstractDataTransferObject;
+use SwedbankPay\Api\Client\Resource\Data\ClientInterface;
+use SwedbankPay\Framework\AbstractDataTransferObject;
 
 class Client extends AbstractDataTransferObject implements ClientInterface
 {

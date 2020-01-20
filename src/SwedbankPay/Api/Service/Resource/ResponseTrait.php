@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Resource;
+namespace SwedbankPay\Api\Service\Resource;
 
-use PayEx\Api\Service\Resource\Collection\OperationsCollection;
+use SwedbankPay\Api\Service\Resource\Collection\OperationsCollection;
 
 trait ResponseTrait
 {

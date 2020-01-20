@@ -1,6 +1,6 @@
 <?php
 
-namespace PayEx\Framework;
+namespace SwedbankPay\Framework;
 
 class DataObjectHelper
 {

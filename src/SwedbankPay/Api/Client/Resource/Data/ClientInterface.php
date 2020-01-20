@@ -1,6 +1,6 @@
 <?php
 
-namespace PayEx\Api\Client\Resource\Data;
+namespace SwedbankPay\Api\Client\Resource\Data;
 
 interface ClientInterface
 {

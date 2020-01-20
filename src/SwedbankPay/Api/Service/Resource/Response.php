@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Resource;
+namespace SwedbankPay\Api\Service\Resource;
 
-use PayEx\Api\Service\Resource;
-use PayEx\Api\Service\Resource\Data\ResponseInterface;
+use SwedbankPay\Api\Service\Resource;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface;
 
 /**
  * Base Class for data response objects

@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Resource\Collection\Item;
+namespace SwedbankPay\Api\Service\Resource\Collection\Item;
 
-use PayEx\Api\Service\Resource\Collection\Item\Data\OperationsItemInterface;
-use PayEx\Framework\DataObjectCollectionItem;
+use SwedbankPay\Api\Service\Resource\Collection\Item\Data\OperationsItemInterface;
+use SwedbankPay\Framework\DataObjectCollectionItem;
 
 /**
  * Consumer data object

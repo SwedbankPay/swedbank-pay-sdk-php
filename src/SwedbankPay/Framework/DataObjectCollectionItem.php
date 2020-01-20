@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Framework;
+namespace SwedbankPay\Framework;
 
-use PayEx\Framework\Data\DataObjectCollectionItemInterface;
+use SwedbankPay\Framework\Data\DataObjectCollectionItemInterface;
 
 class DataObjectCollectionItem extends AbstractSimpleDataObject implements DataObjectCollectionItemInterface
 {

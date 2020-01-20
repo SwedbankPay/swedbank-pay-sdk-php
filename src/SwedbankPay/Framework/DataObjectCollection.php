@@ -1,12 +1,12 @@
 <?php
 
-namespace PayEx\Framework;
+namespace SwedbankPay\Framework;
 
-use PayEx\Framework\Data\DataObjectCollectionInterface;
+use SwedbankPay\Framework\Data\DataObjectCollectionInterface;
 
 class DataObjectCollection implements DataObjectCollectionInterface
 {
-    const ITEM_FQCN = 'PayEx\\Framework\\DataObjectCollectionItem';
+    const ITEM_FQCN = 'SwedbankPay\\Framework\\DataObjectCollectionItem';
 
     /**
      * DataObjectCollectionItem[]

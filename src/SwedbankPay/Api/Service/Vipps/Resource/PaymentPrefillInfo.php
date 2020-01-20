@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Vipps\Resource;
+namespace SwedbankPay\Api\Service\Vipps\Resource;
 
-use PayEx\Api\Service\Vipps\Resource\Data\PaymentPrefillInfoInterface;
-use PayEx\Api\Service\Payment\Resource\Request\PrefillInfo;
+use SwedbankPay\Api\Service\Vipps\Resource\Data\PaymentPrefillInfoInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Request\PrefillInfo;
 
 /**
  * Vipps payment prefill info data object

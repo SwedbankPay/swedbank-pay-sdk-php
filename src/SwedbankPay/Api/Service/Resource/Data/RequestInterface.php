@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Resource\Data;
+namespace SwedbankPay\Api\Service\Resource\Data;
 
-use PayEx\Framework\Data\DataTransferObjectInterface;
+use SwedbankPay\Framework\Data\DataTransferObjectInterface;
 
 interface RequestInterface extends DataTransferObjectInterface
 {

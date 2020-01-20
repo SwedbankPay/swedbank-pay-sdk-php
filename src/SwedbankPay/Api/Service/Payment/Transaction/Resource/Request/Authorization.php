@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Request;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Request;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Data\AuthorizationInterface;
-use PayEx\Api\Service\Resource\Request as RequestResource;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Data\AuthorizationInterface;
+use SwedbankPay\Api\Service\Resource\Request as RequestResource;
 
 /**
  * Authorization data object

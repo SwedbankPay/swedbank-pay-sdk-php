@@ -1,12 +1,12 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Request;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Request;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Data\TransactionObjectInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Data\AuthorizationInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Data\CancellationInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Data\TransferInterface;
-use PayEx\Api\Service\Resource\Request;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Data\TransactionObjectInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Data\AuthorizationInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Data\CancellationInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Data\TransferInterface;
+use SwedbankPay\Api\Service\Resource\Request;
 
 /**
  * Transaction object

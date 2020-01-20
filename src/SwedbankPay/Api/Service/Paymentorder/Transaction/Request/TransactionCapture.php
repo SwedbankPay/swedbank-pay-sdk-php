@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Transaction\Request;
+namespace SwedbankPay\Api\Service\Paymentorder\Transaction\Request;
 
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Request;
 
 class TransactionCapture extends Request
 {

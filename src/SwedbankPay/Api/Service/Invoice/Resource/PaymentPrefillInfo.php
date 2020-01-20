@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Resource;
+namespace SwedbankPay\Api\Service\Invoice\Resource;
 
-use PayEx\Api\Service\Invoice\Resource\Data\PaymentPrefillInfoInterface;
-use PayEx\Api\Service\Resource;
+use SwedbankPay\Api\Service\Invoice\Resource\Data\PaymentPrefillInfoInterface;
+use SwedbankPay\Api\Service\Resource;
 
 /**
  * Invoice payment prefill info data object

@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Resource\Collection\Item;
+namespace SwedbankPay\Api\Service\Payment\Resource\Collection\Item;
 
-use PayEx\Api\Service\Payment\Resource\Collection\Item\Data\PriceItemInterface;
-use PayEx\Framework\DataObjectCollectionItem;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\Data\PriceItemInterface;
+use SwedbankPay\Framework\DataObjectCollectionItem;
 
 /**
  * Swish payment price data object

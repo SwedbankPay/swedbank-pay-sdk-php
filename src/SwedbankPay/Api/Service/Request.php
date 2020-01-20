@@ -1,18 +1,18 @@
 <?php
 
-namespace PayEx\Api\Service;
+namespace SwedbankPay\Api\Service;
 
-use PayEx\Api\Service\Data\ResponseInterface;
-use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
-use PayEx\Framework\AbstractSimpleDataObject;
+use SwedbankPay\Api\Service\Data\ResponseInterface;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Framework\AbstractSimpleDataObject;
 
-use PayEx\Api\Service\Data\RequestInterface;
-use PayEx\Api\Service\Data\ResourceInterface;
+use SwedbankPay\Api\Service\Data\RequestInterface;
+use SwedbankPay\Api\Service\Data\ResourceInterface;
 
-use PayEx\Api\Service\Resource\Data\RequestInterface as RequestResourceInterface;
+use SwedbankPay\Api\Service\Resource\Data\RequestInterface as RequestResourceInterface;
 
-use PayEx\Api\Client\Client;
-use PayEx\Api\Client\Exception as ClientException;
+use SwedbankPay\Api\Client\Client;
+use SwedbankPay\Api\Client\Exception as ClientException;
 
 /**
  * Base class for service requests

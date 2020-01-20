@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Api\Service\Swish\Resource;
+namespace SwedbankPay\Api\Service\Swish\Resource;
 
-use PayEx\Api\Service\Swish\Resource\Data\SwishPaymentObjectInterface;
-use PayEx\Api\Service\Swish\Resource\Request\Data\PaymentInterface;
-use PayEx\Api\Service\Resource;
+use SwedbankPay\Api\Service\Swish\Resource\Data\SwishPaymentObjectInterface;
+use SwedbankPay\Api\Service\Swish\Resource\Request\Data\PaymentInterface;
+use SwedbankPay\Api\Service\Resource;
 
 /**
  * Swish Payment object

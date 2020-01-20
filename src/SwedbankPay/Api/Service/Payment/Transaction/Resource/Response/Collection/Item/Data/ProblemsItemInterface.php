@@ -1,6 +1,6 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\Data;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\Data;
 
 interface ProblemsItemInterface
 {

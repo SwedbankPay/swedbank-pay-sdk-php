@@ -1,22 +1,22 @@
 <?php
 
-use PayEx\Api\Service\Paymentorder\Resource\Request\Paymentorder;
-use PayEx\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
 
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderUrl;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayer;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderMetadata;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderCreditcard;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderInvoice;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderCampaignInvoice;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderSwish;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderUrl;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderPayer;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderMetadata;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderCreditcard;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderInvoice;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderCampaignInvoice;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderSwish;
 
-use PayEx\Api\Service\Paymentorder\Request\Purchase;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderObject;
+use SwedbankPay\Api\Service\Paymentorder\Request\Purchase;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderObject;
 
-use PayEx\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
-use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
 class PurchaseTest extends TestCase
 {

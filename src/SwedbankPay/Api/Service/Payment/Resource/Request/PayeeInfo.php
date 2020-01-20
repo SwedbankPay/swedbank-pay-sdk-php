@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Resource\Request;
+namespace SwedbankPay\Api\Service\Payment\Resource\Request;
 
-use PayEx\Api\Service\Payment\Resource\Request\Data\PayeeInfoInterface;
-use PayEx\Api\Service\Resource;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Data\PayeeInfoInterface;
+use SwedbankPay\Api\Service\Resource;
 
 /**
  * Payee info data object

@@ -1,6 +1,6 @@
 <?php
 
-namespace PayEx\Framework\Data;
+namespace SwedbankPay\Framework\Data;
 
 interface DataTransferObjectInterface extends SimpleDataObjectInterface
 {

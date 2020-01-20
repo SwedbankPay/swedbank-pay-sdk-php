@@ -1,6 +1,6 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Creditcard\Transaction\Resource\Response;
 
 trait AuthorizationTrait
 {

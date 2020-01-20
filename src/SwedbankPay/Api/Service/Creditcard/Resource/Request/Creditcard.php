@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Resource\Request;
+namespace SwedbankPay\Api\Service\Creditcard\Resource\Request;
 
-use PayEx\Api\Service\Resource;
-use PayEx\Api\Service\Creditcard\Resource\Request\Data\CreditcardInterface;
+use SwedbankPay\Api\Service\Resource;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\CreditcardInterface;
 
 /**
  * Credit card data object

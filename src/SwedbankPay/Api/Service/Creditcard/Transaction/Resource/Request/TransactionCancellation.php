@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Transaction\Resource\Request;
+namespace SwedbankPay\Api\Service\Creditcard\Transaction\Resource\Request;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Cancellation;
-use PayEx\Api\Service\Creditcard\Transaction\Resource\Request\Data\TransactionCancellationInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Cancellation;
+use SwedbankPay\Api\Service\Creditcard\Transaction\Resource\Request\Data\TransactionCancellationInterface;
 
 /**
  * Transaction cancellation data object

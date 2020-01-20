@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service;
+namespace SwedbankPay\Api\Service;
 
-use PayEx\Api\Service\Data\ResourceInterface;
-use PayEx\Framework\AbstractDataTransferObject;
+use SwedbankPay\Api\Service\Data\ResourceInterface;
+use SwedbankPay\Framework\AbstractDataTransferObject;
 
 /**
  * Base Class for data transfer objects

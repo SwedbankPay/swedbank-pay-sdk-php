@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Resource\Request;
+namespace SwedbankPay\Api\Service\Payment\Resource\Request;
 
-use PayEx\Api\Service\Resource;
-use PayEx\Api\Service\Payment\Resource\Request\Data\UrlInterface;
+use SwedbankPay\Api\Service\Resource;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Data\UrlInterface;
 
 /**
  * Payment order url data object

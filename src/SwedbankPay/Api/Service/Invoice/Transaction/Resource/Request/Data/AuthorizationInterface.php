@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Transaction\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Data;
 
-use PayEx\Api\Service\Consumer\Resource\Data\ConsumerAddressInterface;
-use PayEx\Api\Service\Resource\Data\RequestInterface;
+use SwedbankPay\Api\Service\Consumer\Resource\Data\ConsumerAddressInterface;
+use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
 
 /**
  * Transaction Authorization Interface

@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Consumer\Request;
+namespace SwedbankPay\Api\Service\Consumer\Request;
 
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Request;
 
 class InitiateConsumerSession extends Request
 {

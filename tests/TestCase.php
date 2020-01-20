@@ -1,12 +1,12 @@
 <?php
 
-use PayEx\Api\Client\Client;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderObject;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderUrl as PaymentorderUrlData;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
-use PayEx\Api\Service\Paymentorder\Resource\Request\Paymentorder;
-use PayEx\Api\Service\Paymentorder\Request\Purchase;
-use PayEx\Api\Service\Paymentorder\Request\GetCurrentPayment;
+use SwedbankPay\Api\Client\Client;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderObject;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderUrl as PaymentorderUrlData;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
+use SwedbankPay\Api\Service\Paymentorder\Request\Purchase;
+use SwedbankPay\Api\Service\Paymentorder\Request\GetCurrentPayment;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -53,7 +53,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * @return string|null
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     protected function getPaymentOrderId()
     {
@@ -62,7 +62,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * @return mixed
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     protected function getPaymentToken()
     {
@@ -76,8 +76,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return \PayEx\Api\Service\Data\ResponseInterface
-     * @throws \PayEx\Api\Client\Exception
+     * @return \SwedbankPay\Api\Service\Data\ResponseInterface
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     private function createPaymentOrder()
     {

@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\VatSummaryItem;
-use PayEx\Framework\DataObjectCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\VatSummaryItem;
+use SwedbankPay\Framework\DataObjectCollection;
 
 class VatSummaryCollection extends DataObjectCollection
 {

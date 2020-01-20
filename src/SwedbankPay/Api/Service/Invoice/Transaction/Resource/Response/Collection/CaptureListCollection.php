@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Transaction\Resource\Response\Collection;
+namespace SwedbankPay\Api\Service\Invoice\Transaction\Resource\Response\Collection;
 
-use PayEx\Api\Service\Invoice\Transaction\Resource\Response\Collection\Item\CaptureListItem;
-use PayEx\Framework\DataObjectCollection;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Response\Collection\Item\CaptureListItem;
+use SwedbankPay\Framework\DataObjectCollection;
 
 class CaptureListCollection extends DataObjectCollection
 {

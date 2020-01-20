@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Vipps\Transaction\Resource\Response\Collection;
+namespace SwedbankPay\Api\Service\Vipps\Transaction\Resource\Response\Collection;
 
-use PayEx\Api\Service\Vipps\Transaction\Resource\Response\Collection\Item\AuthorizationListItem;
-use PayEx\Framework\DataObjectCollection;
+use SwedbankPay\Api\Service\Vipps\Transaction\Resource\Response\Collection\Item\AuthorizationListItem;
+use SwedbankPay\Framework\DataObjectCollection;
 
 class AuthorizationListCollection extends DataObjectCollection
 {

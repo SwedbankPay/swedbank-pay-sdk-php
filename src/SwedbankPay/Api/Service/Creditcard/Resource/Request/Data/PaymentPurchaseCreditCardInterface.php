@@ -1,6 +1,6 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Creditcard\Resource\Request\Data;
 
 /**
  * Purchase credit card interface

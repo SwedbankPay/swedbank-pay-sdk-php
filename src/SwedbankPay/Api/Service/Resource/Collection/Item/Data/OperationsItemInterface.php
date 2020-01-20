@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Resource\Collection\Item\Data;
+namespace SwedbankPay\Api\Service\Resource\Collection\Item\Data;
 
-use PayEx\Framework\Data\DataObjectCollectionItemInterface;
+use SwedbankPay\Framework\Data\DataObjectCollectionItemInterface;
 
 /**
  * Consumer national identifier data interface

@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Request;
+namespace SwedbankPay\Api\Service\Creditcard\Request;
 
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Request;
 
 class RemovePaymentToken extends Request
 {

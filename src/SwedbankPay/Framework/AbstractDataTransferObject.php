@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Framework;
+namespace SwedbankPay\Framework;
 
-use PayEx\Framework\Data\DataTransferObjectInterface;
+use SwedbankPay\Framework\Data\DataTransferObjectInterface;
 
 /**
  * Base Class for data transfer objects

@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\Data;
+namespace SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\Data;
 
-use PayEx\Framework\Data\DataObjectCollectionItemInterface;
+use SwedbankPay\Framework\Data\DataObjectCollectionItemInterface;
 
 /**
  * Transaction item descriptions interface

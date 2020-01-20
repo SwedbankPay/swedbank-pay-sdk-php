@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Request;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Request;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Data\TransferInterface;
-use PayEx\Api\Service\Resource\Request as RequestResource;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Data\TransferInterface;
+use SwedbankPay\Api\Service\Resource\Request as RequestResource;
 
 /**
  * Transfer (Capture & Reversal) data object

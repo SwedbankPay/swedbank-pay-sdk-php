@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Swish\Transaction\Resource\Response\Collection;
+namespace SwedbankPay\Api\Service\Swish\Transaction\Resource\Response\Collection;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\TransactionListCollection;
-use PayEx\Api\Service\Swish\Transaction\Resource\Response\Collection\Item\SaleListItem;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\TransactionListCollection;
+use SwedbankPay\Api\Service\Swish\Transaction\Resource\Response\Collection\Item\SaleListItem;
 
 class SaleListCollection extends TransactionListCollection
 {

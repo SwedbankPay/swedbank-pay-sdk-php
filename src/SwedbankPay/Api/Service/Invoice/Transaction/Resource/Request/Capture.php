@@ -1,13 +1,13 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Transaction\Resource\Request;
+namespace SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Transfer;
-use PayEx\Api\Service\Invoice\Transaction\Resource\Request\Data\CaptureInterface;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\Data\DescriptionItemInterface;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\Data\VatSummaryItemInterface;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\ItemDescriptionCollection;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\VatSummaryCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Transfer;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Data\CaptureInterface;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\Data\DescriptionItemInterface;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\Data\VatSummaryItemInterface;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection\ItemDescriptionCollection;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection\VatSummaryCollection;
 
 /**
  * Transaction capture data object
