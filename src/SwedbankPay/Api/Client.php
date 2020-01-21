@@ -13,7 +13,7 @@ use SwedbankPay\Api\Response;
  * @package SwedbankPay\Api
  * @SuppressWarnings(PHPMD.CamelCasePropertyName)
  */
-class Client
+class Client extends \SwedbankPay\Api\Client\Client
 {
     const USER_AGENT = 'SwedbankPay HTTP Client';
     const VERSION = '2.0.1';
