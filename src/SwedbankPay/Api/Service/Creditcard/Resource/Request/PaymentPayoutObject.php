@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Resource\Request;
+namespace SwedbankPay\Api\Service\Creditcard\Resource\Request;
 
-use PayEx\Api\Service\Creditcard\Resource\Request\Data\PaymentPayoutObjectInterface;
-use PayEx\Api\Service\Creditcard\Resource\Request\Data\PaymentRecurInterface;
-use PayEx\Api\Service\Resource;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\PaymentPayoutObjectInterface;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\PaymentRecurInterface;
+use SwedbankPay\Api\Service\Resource;
 
 /**
  * Payout payment object

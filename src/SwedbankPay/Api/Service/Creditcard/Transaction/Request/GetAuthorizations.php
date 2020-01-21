@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Transaction\Request;
+namespace SwedbankPay\Api\Service\Creditcard\Transaction\Request;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\AuthorizationsObject;
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\AuthorizationsObject;
+use SwedbankPay\Api\Service\Request;
 
 class GetAuthorizations extends Request
 {

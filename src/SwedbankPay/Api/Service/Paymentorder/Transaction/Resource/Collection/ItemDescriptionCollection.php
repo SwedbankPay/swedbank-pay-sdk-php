@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection;
+namespace SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection;
 
-use PayEx\Framework\DataObjectCollection;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\DescriptionItem;
+use SwedbankPay\Framework\DataObjectCollection;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection\Item\DescriptionItem;
 
 class ItemDescriptionCollection extends DataObjectCollection
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Swish\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Swish\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Swish\Transaction\Resource\Response\Data\SaleInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\TransactionResource;
+use SwedbankPay\Api\Service\Swish\Transaction\Resource\Response\Data\SaleInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionResource;
 
 class Sale extends TransactionResource implements SaleInterface
 {

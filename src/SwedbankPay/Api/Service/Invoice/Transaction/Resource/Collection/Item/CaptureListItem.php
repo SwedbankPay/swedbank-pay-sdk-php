@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Transaction\Resource\Collection\Item;
+namespace SwedbankPay\Api\Service\Invoice\Transaction\Resource\Collection\Item;
 
-use PayEx\Api\Service\Invoice\Transaction\Resource\Collection\Item\Data\CaptureListItemInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\TransactionListItem;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResourceInterface;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Collection\Item\Data\CaptureListItemInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\TransactionListItem;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResourceInterface;
 
 class CaptureListItem extends TransactionListItem implements CaptureListItemInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Resource\Collection\Item\Data;
+namespace SwedbankPay\Api\Service\Paymentorder\Resource\Collection\Item\Data;
 
-use PayEx\Framework\Data\DataObjectCollectionItemInterface;
+use SwedbankPay\Framework\Data\DataObjectCollectionItemInterface;
 
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderCampaignInvoiceInterface;
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderCreditcardInterface;
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderInvoiceInterface;
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderSwishInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderCampaignInvoiceInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderCreditcardInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderInvoiceInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderSwishInterface;
 
 /**
  * Payment order items interface

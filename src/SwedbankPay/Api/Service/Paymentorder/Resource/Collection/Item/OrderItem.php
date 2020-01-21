@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Resource\Collection\Item;
+namespace SwedbankPay\Api\Service\Paymentorder\Resource\Collection\Item;
 
-use PayEx\Api\Service\Paymentorder\Resource\Collection\Item\Data\OrderItemInterface;
-use PayEx\Framework\DataObjectCollectionItem;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\Item\Data\OrderItemInterface;
+use SwedbankPay\Framework\DataObjectCollectionItem;
 
 class OrderItem extends DataObjectCollectionItem implements OrderItemInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Vipps\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Vipps\Resource\Request\Data;
 
-use PayEx\Api\Service\Payment\Resource\Request\Data\UrlInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Data\UrlInterface;
 
 /**
  * Vipps payment url interface

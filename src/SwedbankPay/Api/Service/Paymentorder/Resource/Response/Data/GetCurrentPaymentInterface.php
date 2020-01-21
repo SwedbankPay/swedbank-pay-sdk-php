@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Resource\Response\Data;
+namespace SwedbankPay\Api\Service\Paymentorder\Resource\Response\Data;
 
-use PayEx\Api\Service\Payment\Resource\Response\Data\PaymentResponseInterface;
-use PayEx\Api\Service\Resource\Data\ResponseInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Response\Data\PaymentResponseInterface;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface;
 
 /**
  * Payment order payments interface

@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Vipps\Transaction\Request;
+namespace SwedbankPay\Api\Service\Vipps\Transaction\Request;
 
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Request;
 
 class CreateAuthorization extends Request
 {

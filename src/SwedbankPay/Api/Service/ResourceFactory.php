@@ -1,27 +1,27 @@
 <?php
 
-namespace PayEx\Api\Service;
+namespace SwedbankPay\Api\Service;
 
-use PayEx\Api\Service\Data\ResourceInterface;
-use PayEx\Api\Service\Resource\Data\ResponseInterface;
+use SwedbankPay\Api\Service\Data\ResourceInterface;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface;
 
-use PayEx\Framework\DataObjectCollection as Collection;
-use PayEx\Framework\Data\DataObjectCollectionInterface as CollectionInterface;
+use SwedbankPay\Framework\DataObjectCollection as Collection;
+use SwedbankPay\Framework\Data\DataObjectCollectionInterface as CollectionInterface;
 
-use PayEx\Framework\DataObjectCollectionItem as CollectionItem;
-use PayEx\Framework\Data\DataObjectCollectionItemInterface as CollectionItemInterface;
+use SwedbankPay\Framework\DataObjectCollectionItem as CollectionItem;
+use SwedbankPay\Framework\Data\DataObjectCollectionItemInterface as CollectionItemInterface;
 
-use PayEx\Framework\DataObjectHelper;
+use SwedbankPay\Framework\DataObjectHelper;
 
-use PayEx\Api\Service\Resource\Request as RequestResource;
-use PayEx\Api\Service\Resource\Data\RequestInterface as RequestResourceInterface;
+use SwedbankPay\Api\Service\Resource\Request as RequestResource;
+use SwedbankPay\Api\Service\Resource\Data\RequestInterface as RequestResourceInterface;
 
-use PayEx\Api\Service\Resource\Response as ResponseResource;
-use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Api\Service\Resource\Response as ResponseResource;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
 /**
  * Class ResourceFactory
- * @package PayEx\Api\Service
+ * @package SwedbankPay\Api\Service
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class ResourceFactory

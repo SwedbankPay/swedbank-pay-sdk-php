@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\ProblemsCollection;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\ProblemInterface;
-use PayEx\Api\Service\Resource;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\ProblemsCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\ProblemInterface;
+use SwedbankPay\Api\Service\Resource;
 
 class Problem extends Resource implements ProblemInterface
 {

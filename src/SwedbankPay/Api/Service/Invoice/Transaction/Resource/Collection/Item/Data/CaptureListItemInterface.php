@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Transaction\Resource\Collection\Item\Data;
+namespace SwedbankPay\Api\Service\Invoice\Transaction\Resource\Collection\Item\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\Data\TransactionListItemInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResourceInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\Data\TransactionListItemInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResourceInterface;
 
 interface CaptureListItemInterface extends TransactionListItemInterface
 {

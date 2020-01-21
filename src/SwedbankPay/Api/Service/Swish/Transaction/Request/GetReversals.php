@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Swish\Transaction\Request;
+namespace SwedbankPay\Api\Service\Swish\Transaction\Request;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\ReversalsObject;
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\ReversalsObject;
+use SwedbankPay\Api\Service\Request;
 
 class GetReversals extends Request
 {

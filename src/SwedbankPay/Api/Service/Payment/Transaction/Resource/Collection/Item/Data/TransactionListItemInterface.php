@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Collection\Item\Data;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\Item\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Response\Data\TransactionInterface;
-use PayEx\Api\Service\Resource\Collection\OperationsCollection;
-use PayEx\Framework\Data\DataObjectCollectionItemInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Response\Data\TransactionInterface;
+use SwedbankPay\Api\Service\Resource\Collection\OperationsCollection;
+use SwedbankPay\Framework\Data\DataObjectCollectionItemInterface;
 
 interface TransactionListItemInterface extends DataObjectCollectionItemInterface, TransactionInterface
 {

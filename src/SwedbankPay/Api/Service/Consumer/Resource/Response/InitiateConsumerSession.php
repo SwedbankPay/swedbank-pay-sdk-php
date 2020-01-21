@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Consumer\Resource\Response;
+namespace SwedbankPay\Api\Service\Consumer\Resource\Response;
 
-use PayEx\Api\Service\Resource\Response as ResponseResource;
-use PayEx\Api\Service\Consumer\Resource\Response\Data\InitiateConsumerSessionInterface;
+use SwedbankPay\Api\Service\Resource\Response as ResponseResource;
+use SwedbankPay\Api\Service\Consumer\Resource\Response\Data\InitiateConsumerSessionInterface;
 
 /**
  * Initiate Consumer Session response resource object

@@ -1,17 +1,17 @@
 <?php
 
-namespace PayEx\Api\Service;
+namespace SwedbankPay\Api\Service;
 
-use PayEx\Framework\AbstractSimpleDataObject;
-use PayEx\Framework\Data\DataObjectCollectionInterface;
+use SwedbankPay\Framework\AbstractSimpleDataObject;
+use SwedbankPay\Framework\Data\DataObjectCollectionInterface;
 
-use PayEx\Api\Service\Data\ResponseInterface;
-use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
-use PayEx\Api\Service\Resource\Collection\Item\Data\OperationsItemInterface;
+use SwedbankPay\Api\Service\Data\ResponseInterface;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Api\Service\Resource\Collection\Item\Data\OperationsItemInterface;
 
 /**
  * Class Response
- * @package PayEx\Api\Client
+ * @package SwedbankPay\Api\Client
  */
 class Response extends AbstractSimpleDataObject implements ResponseInterface
 {

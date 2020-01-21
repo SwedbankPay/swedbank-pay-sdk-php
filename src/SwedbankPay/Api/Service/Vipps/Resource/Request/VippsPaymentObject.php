@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Api\Service\Vipps\Resource\Request;
+namespace SwedbankPay\Api\Service\Vipps\Resource\Request;
 
-use PayEx\Api\Service\Vipps\Resource\Request\Data\VippsPaymentObjectInterface;
-use PayEx\Api\Service\Vipps\Resource\Request\Data\PaymentInterface;
-use PayEx\Api\Service\Resource;
+use SwedbankPay\Api\Service\Vipps\Resource\Request\Data\VippsPaymentObjectInterface;
+use SwedbankPay\Api\Service\Vipps\Resource\Request\Data\PaymentInterface;
+use SwedbankPay\Api\Service\Resource;
 
 /**
  * Vipps Payment object

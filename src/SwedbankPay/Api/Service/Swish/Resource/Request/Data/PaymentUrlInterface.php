@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Swish\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Swish\Resource\Request\Data;
 
-use PayEx\Api\Service\Payment\Resource\Request\Data\UrlInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Data\UrlInterface;
 
 /**
  * Swish payment url interface

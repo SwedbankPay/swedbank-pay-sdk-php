@@ -1,6 +1,6 @@
 <?php
 
-namespace PayEx\Api\Client;
+namespace SwedbankPay\Api\Client;
 
 use Throwable;
 

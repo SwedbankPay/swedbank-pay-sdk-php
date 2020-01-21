@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response\Data;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\ItemDescriptionListCollection;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\VatSummaryCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\ItemDescriptionListCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\VatSummaryCollection;
 
 interface ItemDescriptionsInterface extends TransactionResourceInterface
 {

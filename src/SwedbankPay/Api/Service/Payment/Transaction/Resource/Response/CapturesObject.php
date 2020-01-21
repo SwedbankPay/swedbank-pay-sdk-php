@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\CapturesInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\CapturesObjectInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\CapturesInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\CapturesObjectInterface;
 
 class CapturesObject extends TransactionResponse implements CapturesObjectInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Framework;
+namespace SwedbankPay\Framework;
 
 use Exception;
-use PayEx\Framework\Data\DataTransferObjectInterface;
-use PayEx\Framework\Data\SimpleDataObjectInterface;
+use SwedbankPay\Framework\Data\DataTransferObjectInterface;
+use SwedbankPay\Framework\Data\SimpleDataObjectInterface;
 
 /**
  * Abstract class for simple data objects

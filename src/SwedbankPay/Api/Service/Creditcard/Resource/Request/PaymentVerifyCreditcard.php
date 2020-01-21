@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Resource\Request;
+namespace SwedbankPay\Api\Service\Creditcard\Resource\Request;
 
-use PayEx\Api\Service\Creditcard\Resource\Request\Data\PaymentVerifyCreditCardInterface;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\PaymentVerifyCreditCardInterface;
 
 /**
  * Verify credit card

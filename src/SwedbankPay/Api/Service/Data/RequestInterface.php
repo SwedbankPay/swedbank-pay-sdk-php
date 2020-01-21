@@ -1,11 +1,11 @@
 <?php
 
-namespace PayEx\Api\Service\Data;
+namespace SwedbankPay\Api\Service\Data;
 
-use PayEx\Api\Client\Exception as ClientException;
-use PayEx\Api\Service\Request;
-use PayEx\Framework\Data\SimpleDataObjectInterface;
-use PayEx\Api\Service\Resource\Data\RequestInterface as RequestResourceInterface;
+use SwedbankPay\Api\Client\Exception as ClientException;
+use SwedbankPay\Api\Service\Request;
+use SwedbankPay\Framework\Data\SimpleDataObjectInterface;
+use SwedbankPay\Api\Service\Resource\Data\RequestInterface as RequestResourceInterface;
 
 interface RequestInterface extends SimpleDataObjectInterface
 {

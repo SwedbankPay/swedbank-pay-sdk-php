@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Vipps\Request;
+namespace SwedbankPay\Api\Service\Vipps\Request;
 
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Request;
 
 class Purchase extends Request
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Transaction\Resource\Request;
+namespace SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request;
 
-use PayEx\Api\Service\Invoice\Transaction\Resource\Request\Data\ConsumerInterface;
-use PayEx\Api\Service\Resource\Request as RequestResource;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Data\ConsumerInterface;
+use SwedbankPay\Api\Service\Resource\Request as RequestResource;
 
 /**
  * Consumer data object

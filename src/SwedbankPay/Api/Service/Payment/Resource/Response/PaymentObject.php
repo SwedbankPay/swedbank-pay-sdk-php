@@ -1,11 +1,11 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Resource\Response;
+namespace SwedbankPay\Api\Service\Payment\Resource\Response;
 
-use PayEx\Api\Service\Payment\Resource\Request\Data\PaymentRequestInterface;
-use PayEx\Api\Service\Payment\Resource\Response\Data\PaymentResponseInterface;
-use PayEx\Api\Service\Payment\Resource\Response\Data\PaymentObjectInterface;
-use PayEx\Api\Service\Resource\Response;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Data\PaymentRequestInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Response\Data\PaymentResponseInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Response\Data\PaymentObjectInterface;
+use SwedbankPay\Api\Service\Resource\Response;
 
 /**
  * Payment object

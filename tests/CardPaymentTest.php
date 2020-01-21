@@ -1,20 +1,20 @@
 <?php
 
-use PayEx\Api\Service\Creditcard\Request\Purchase;
-use PayEx\Api\Service\Creditcard\Request\Verify;
-use PayEx\Api\Service\Creditcard\Resource\Request\PaymentPurchaseCreditcard;
-use PayEx\Api\Service\Creditcard\Resource\Request\PaymentPurchaseObject;
-use PayEx\Api\Service\Creditcard\Resource\Request\PaymentUrl;
-use PayEx\Api\Service\Creditcard\Resource\Request\PaymentVerifyCreditcard;
-use PayEx\Api\Service\Creditcard\Resource\Request\PaymentVerifyObject;
-use PayEx\Api\Service\Creditcard\Resource\Request\PaymentPurchase;
-use PayEx\Api\Service\Creditcard\Resource\Request\PaymentVerify;
-use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
-use PayEx\Api\Service\Payment\Resource\Collection\Item\PriceItem;
-use PayEx\Api\Service\Creditcard\Resource\Request\PaymentPayeeInfo;
+use SwedbankPay\Api\Service\Creditcard\Request\Purchase;
+use SwedbankPay\Api\Service\Creditcard\Request\Verify;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPurchaseCreditcard;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPurchaseObject;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentUrl;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentVerifyCreditcard;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentVerifyObject;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPurchase;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentVerify;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPayeeInfo;
 
-use PayEx\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
-use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
 class CardPaymentTest extends TestCase
 {
@@ -22,7 +22,7 @@ class CardPaymentTest extends TestCase
     protected $verifyRequest;
 
     /**
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testPurchaseRequest()
     {
@@ -106,7 +106,7 @@ class CardPaymentTest extends TestCase
     }
 
     /**
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testVerifyRequest()
     {

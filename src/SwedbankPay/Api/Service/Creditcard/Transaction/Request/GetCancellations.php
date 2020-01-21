@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Transaction\Request;
+namespace SwedbankPay\Api\Service\Creditcard\Transaction\Request;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\CancellationsObject;
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CancellationsObject;
+use SwedbankPay\Api\Service\Request;
 
 class GetCancellations extends Request
 {

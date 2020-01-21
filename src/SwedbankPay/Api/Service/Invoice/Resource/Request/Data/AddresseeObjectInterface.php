@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Invoice\Resource\Request\Data;
 
-use PayEx\Api\Service\Data\ResourceInterface;
-use PayEx\Api\Service\Invoice\Resource\Request\Data\AddresseeInterface;
+use SwedbankPay\Api\Service\Data\ResourceInterface;
+use SwedbankPay\Api\Service\Invoice\Resource\Request\Data\AddresseeInterface;
 
 /**
  * Addressee object interface

@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Swish\Transaction\Request;
+namespace SwedbankPay\Api\Service\Swish\Transaction\Request;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\SaleObjectInterface;
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\SaleObjectInterface;
+use SwedbankPay\Api\Service\Request;
 
 class CreateSale extends Request
 {

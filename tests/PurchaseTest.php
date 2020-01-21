@@ -1,19 +1,19 @@
 <?php
 
-use PayEx\Api\Service\Paymentorder\Resource\Request\Paymentorder;
-use PayEx\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
-use PayEx\Api\Service\Paymentorder\Resource\Collection\Item\OrderItem;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\Item\OrderItem;
 
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderUrl;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderPayer;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderMetadata;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderUrl;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderPayer;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderMetadata;
 
-use PayEx\Api\Service\Paymentorder\Request\Purchase;
-use PayEx\Api\Service\Paymentorder\Resource\PaymentorderObject;
+use SwedbankPay\Api\Service\Paymentorder\Request\Purchase;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderObject;
 
-use PayEx\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
-use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
 class PurchaseTest extends TestCase
 {

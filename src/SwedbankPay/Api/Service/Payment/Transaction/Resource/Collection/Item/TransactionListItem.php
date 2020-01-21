@@ -1,11 +1,11 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Collection\Item;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\Item;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Collection\Item\Data\TransactionListItemInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\TransactionTrait;
-use PayEx\Api\Service\Resource\ResponseTrait;
-use PayEx\Framework\DataObjectCollectionItem;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\Item\Data\TransactionListItemInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionTrait;
+use SwedbankPay\Api\Service\Resource\ResponseTrait;
+use SwedbankPay\Framework\DataObjectCollectionItem;
 
 class TransactionListItem extends DataObjectCollectionItem implements TransactionListItemInterface
 {

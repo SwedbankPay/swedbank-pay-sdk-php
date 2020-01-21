@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Swish\Request;
+namespace SwedbankPay\Api\Service\Swish\Request;
 
-use PayEx\Api\Service\Payment\Resource\Response\PaymentObject;
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Payment\Resource\Response\PaymentObject;
+use SwedbankPay\Api\Service\Request;
 
 class GetPayment extends Request
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Creditcard\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Creditcard\Resource\Request\Data;
 
-use PayEx\Api\Service\Data\ResourceInterface;
+use SwedbankPay\Api\Service\Data\ResourceInterface;
 
 /**
  * Remove payment token object interface

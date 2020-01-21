@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Transaction\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Data\CancellationInterface as CancellationTransInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Data\CancellationInterface as CancellationTransInterface;
 
 /**
  * Transaction Cancellation Interface

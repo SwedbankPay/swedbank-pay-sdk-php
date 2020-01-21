@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Transaction\Resource;
+namespace SwedbankPay\Api\Service\Paymentorder\Transaction\Resource;
 
 /**
  * Trait TransactionTrait
- * @package PayEx\Api\Service\Paymentorder\Transaction\Resource
+ * @package SwedbankPay\Api\Service\Paymentorder\Transaction\Resource
  */
 trait TransactionTrait
 {

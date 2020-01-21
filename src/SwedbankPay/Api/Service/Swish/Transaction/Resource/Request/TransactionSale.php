@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Swish\Transaction\Resource\Request;
+namespace SwedbankPay\Api\Service\Swish\Transaction\Resource\Request;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\Authorization;
-use PayEx\Api\Service\Swish\Transaction\Resource\Request\Data\TransactionSaleInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\Authorization;
+use SwedbankPay\Api\Service\Swish\Transaction\Resource\Request\Data\TransactionSaleInterface;
 
 /**
  * Transaction sale data object

@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Consumer\Resource;
+namespace SwedbankPay\Api\Service\Consumer\Resource;
 
-use PayEx\Api\Service\Resource;
-use PayEx\Api\Service\Consumer\Resource\Data\ConsumerAddressInterface;
+use SwedbankPay\Api\Service\Resource;
+use SwedbankPay\Api\Service\Consumer\Resource\Data\ConsumerAddressInterface;
 
 /**
  * Consumer address resource object

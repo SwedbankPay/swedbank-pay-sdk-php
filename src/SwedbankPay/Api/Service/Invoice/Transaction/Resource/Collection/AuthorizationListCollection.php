@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Transaction\Resource\Collection;
+namespace SwedbankPay\Api\Service\Invoice\Transaction\Resource\Collection;
 
-use PayEx\Api\Service\Invoice\Transaction\Resource\Collection\Item\AuthorizationListItem;
-use PayEx\Framework\DataObjectCollection;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Collection\Item\AuthorizationListItem;
+use SwedbankPay\Framework\DataObjectCollection;
 
 class AuthorizationListCollection extends DataObjectCollection
 {

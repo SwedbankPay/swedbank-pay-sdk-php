@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\CancellationsInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\CancellationsObjectInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\CancellationsInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\CancellationsObjectInterface;
 
 class CancellationsObject extends TransactionResponse implements CancellationsObjectInterface
 {

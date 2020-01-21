@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\ReversalsInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\ReversalsObjectInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\ReversalsInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\ReversalsObjectInterface;
 
 class ReversalsObject extends TransactionResponse implements ReversalsObjectInterface
 {

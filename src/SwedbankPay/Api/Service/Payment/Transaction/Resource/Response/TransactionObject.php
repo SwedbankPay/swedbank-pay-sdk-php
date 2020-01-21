@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionObjectInterface;
-use PayEx\Api\Service\Payment\Transaction\Response\Data\TransactionInterface;
-use PayEx\Api\Service\Resource\Response;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionObjectInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Response\Data\TransactionInterface;
+use SwedbankPay\Api\Service\Resource\Response;
 
 class TransactionObject extends TransactionResponse implements TransactionObjectInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Transaction\Resource\Response;
+namespace SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Resource;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Response\Data\CancellationInterface;
-use PayEx\Api\Service\Paymentorder\Transaction\Resource\Response\Data\TransactionInterface;
+use SwedbankPay\Api\Service\Resource;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Response\Data\CancellationInterface;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Response\Data\TransactionInterface;
 
 class Cancellation extends Resource implements CancellationInterface
 {

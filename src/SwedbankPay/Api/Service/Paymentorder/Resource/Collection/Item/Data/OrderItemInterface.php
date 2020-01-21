@@ -1,6 +1,6 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Resource\Collection\Item\Data;
+namespace SwedbankPay\Api\Service\Paymentorder\Resource\Collection\Item\Data;
 
 interface OrderItemInterface
 {

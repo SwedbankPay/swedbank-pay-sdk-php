@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Paymentorder\Resource;
+namespace SwedbankPay\Api\Service\Paymentorder\Resource;
 
-use PayEx\Api\Service\Paymentorder\Resource\Data\PaymentorderSwishInterface;
-use PayEx\Api\Service\Resource;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderSwishInterface;
+use SwedbankPay\Api\Service\Resource;
 
 /**
  * Payment order swish data object

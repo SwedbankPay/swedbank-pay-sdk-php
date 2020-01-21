@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Consumer\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Consumer\Resource\Request\Data;
 
-use PayEx\Api\Service\Resource\Data\RequestInterface;
-use PayEx\Api\Service\Consumer\Resource\Data\ConsumerNationalIdentifierInterface;
+use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
+use SwedbankPay\Api\Service\Consumer\Resource\Data\ConsumerNationalIdentifierInterface;
 
 /**
  * Consumer session request resource interface

@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Resource\Collection\Item;
+namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\Item;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Collection\Item\Data\ProblemsItemInterface;
-use PayEx\Framework\DataObjectCollectionItem;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\Item\Data\ProblemsItemInterface;
+use SwedbankPay\Framework\DataObjectCollectionItem;
 
 class ProblemsItem extends DataObjectCollectionItem implements ProblemsItemInterface
 {

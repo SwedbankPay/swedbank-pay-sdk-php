@@ -1,9 +1,9 @@
 <?php
 
-namespace PayEx\Api\Service\Data;
+namespace SwedbankPay\Api\Service\Data;
 
-use PayEx\Framework\Data\SimpleDataObjectInterface;
-use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Framework\Data\SimpleDataObjectInterface;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
 interface ResponseInterface extends SimpleDataObjectInterface
 {

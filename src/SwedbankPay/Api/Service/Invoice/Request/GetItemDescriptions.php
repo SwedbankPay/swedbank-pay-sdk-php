@@ -1,8 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Invoice\Request;
+namespace SwedbankPay\Api\Service\Invoice\Request;
 
-use PayEx\Api\Service\Request;
+use SwedbankPay\Api\Service\Request;
 
 class GetItemDescriptions extends Request
 {
