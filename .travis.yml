@@ -18,6 +18,7 @@ script:
   - vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/
   - vendor/bin/phpcs --standard=PSR2 src/
   - vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
+  - vendor/bin/phpcpd src/
 
 install:
   - composer install
