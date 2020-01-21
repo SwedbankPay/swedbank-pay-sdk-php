@@ -167,11 +167,11 @@ class Client extends \SwedbankPay\Api\Client\Client
 	/**
 	 * Set Last Response
 	 *
-	 * @param $last_response
+	 * @param $lastResponse
 	 */
-    public function setLastResponse($last_response)
+    public function setLastResponse($lastResponse)
     {
-    	$this->last_response = $last_response;
+    	$this->last_response = $lastResponse;
     }
 
     /**
