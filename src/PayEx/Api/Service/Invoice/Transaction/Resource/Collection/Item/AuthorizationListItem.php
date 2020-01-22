@@ -4,7 +4,7 @@ namespace PayEx\Api\Service\Invoice\Transaction\Resource\Collection\Item;
 
 use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResourceInterface;
 use PayEx\Api\Service\Invoice\Transaction\Resource\Collection\Item\Data\AuthorizationListItemInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\TransactionListItem;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\Item\TransactionListItem;
 
 class AuthorizationListItem extends TransactionListItem implements AuthorizationListItemInterface
 {

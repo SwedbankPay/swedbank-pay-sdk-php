@@ -2,7 +2,7 @@
 
 namespace PayEx\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\TransactionListCollection;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\TransactionListCollection;
 
 interface CapturesInterface extends TransactionResourceInterface
 {

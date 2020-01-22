@@ -3,7 +3,6 @@
 namespace PayEx\Api\Service\Swish\Resource\Request\Data;
 
 use PayEx\Api\Service\Payment\Resource\Request\Data\PaymentRequestInterface;
-use PayEx\Api\Service\Swish\Resource\Request\Data\PaymentSwishInterface;
 use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
 
 /**

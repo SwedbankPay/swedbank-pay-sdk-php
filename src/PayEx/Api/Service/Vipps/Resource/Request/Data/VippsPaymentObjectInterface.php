@@ -3,7 +3,6 @@
 namespace PayEx\Api\Service\Vipps\Resource\Request\Data;
 
 use PayEx\Api\Service\Data\ResourceInterface;
-use PayEx\Api\Service\Vipps\Resource\Request\Data\PaymentInterface;
 
 /**
  * Vipps Payment object interface

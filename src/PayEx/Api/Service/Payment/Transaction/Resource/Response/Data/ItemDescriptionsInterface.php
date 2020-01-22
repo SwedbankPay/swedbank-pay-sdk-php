@@ -2,8 +2,8 @@
 
 namespace PayEx\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\ItemDescriptionListCollection;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\VatSummaryCollection;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\ItemDescriptionListCollection;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\VatSummaryCollection;
 
 interface ItemDescriptionsInterface extends TransactionResourceInterface
 {

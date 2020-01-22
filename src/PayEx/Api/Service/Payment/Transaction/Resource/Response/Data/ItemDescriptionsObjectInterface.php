@@ -2,8 +2,6 @@
 
 namespace PayEx\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\ItemDescriptionListCollection;
-
 interface ItemDescriptionsObjectInterface
 {
     const PAYMENT = 'payment';

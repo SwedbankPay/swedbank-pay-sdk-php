@@ -2,7 +2,7 @@
 
 namespace PayEx\Api\Service\Swish\Transaction\Resource\Collection\Item\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\Data\TransactionListItemInterface;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\Item\Data\TransactionListItemInterface;
 
 interface SaleListItemInterface extends TransactionListItemInterface
 {

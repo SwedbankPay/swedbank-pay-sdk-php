@@ -2,7 +2,7 @@
 
 namespace PayEx\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\ProblemsCollection;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\ProblemsCollection;
 
 interface ProblemInterface
 {

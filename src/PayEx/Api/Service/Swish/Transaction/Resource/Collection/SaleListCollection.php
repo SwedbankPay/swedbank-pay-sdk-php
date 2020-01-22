@@ -2,7 +2,7 @@
 
 namespace PayEx\Api\Service\Swish\Transaction\Resource\Collection;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\TransactionListCollection;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\TransactionListCollection;
 use PayEx\Api\Service\Swish\Transaction\Resource\Collection\Item\SaleListItem;
 
 class SaleListCollection extends TransactionListCollection

@@ -2,7 +2,7 @@
 
 namespace PayEx\Api\Service\Payment\Transaction\Resource\Collection\Item\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Response\Data\TransactionInterface;
+use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionInterface;
 use PayEx\Api\Service\Resource\Collection\OperationsCollection;
 use PayEx\Framework\Data\DataObjectCollectionItemInterface;
 

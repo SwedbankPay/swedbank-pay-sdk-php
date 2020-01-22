@@ -1,9 +1,8 @@
 <?php
 
-namespace PayEx\Api\Service\Payment\Transaction\Response\Data;
+namespace PayEx\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResourceInterface;
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\TransactionListCollection;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\TransactionListCollection;
 
 interface TransactionsInterface extends TransactionResourceInterface
 {

@@ -2,8 +2,8 @@
 
 namespace PayEx\Api\Service\Payment\Transaction\Resource\Response;
 
-use PayEx\Api\Service\Payment\Transaction\Resource\Response\Collection\TransactionListCollection;
-use PayEx\Api\Service\Payment\Transaction\Response\Data\TransactionsInterface;
+use PayEx\Api\Service\Payment\Transaction\Resource\Collection\TransactionListCollection;
+use PayEx\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionsInterface;
 
 class Transactions extends TransactionResource implements TransactionsInterface
 {

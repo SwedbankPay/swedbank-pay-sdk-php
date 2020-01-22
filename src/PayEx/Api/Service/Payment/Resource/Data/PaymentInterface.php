@@ -5,7 +5,6 @@ namespace PayEx\Api\Service\Payment\Resource\Data;
 use PayEx\Api\Service\Data\ResourceInterface;
 use PayEx\Api\Service\Payment\Resource\Request\Data\PayeeInfoInterface;
 use PayEx\Api\Service\Payment\Resource\Request\Data\UrlInterface;
-use PayEx\Api\Service\Resource\Data\RequestInterface;
 
 /**
  * Payment request resource interface

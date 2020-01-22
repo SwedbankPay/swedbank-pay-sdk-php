@@ -3,8 +3,6 @@
 namespace PayEx\Api\Service\Invoice\Resource\Request\Data;
 
 use PayEx\Api\Service\Data\ResourceInterface;
-use PayEx\Api\Service\Invoice\Resource\Request\Data\InvoiceInterface;
-use PayEx\Api\Service\Invoice\Resource\Request\Data\PaymentInterface;
 
 /**
  * Invoice Payment object interface
