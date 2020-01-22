@@ -1,20 +1,20 @@
 <?php
 
-use PayEx\Api\Service\Payment\Resource\Collection\PricesCollection;
-use PayEx\Api\Service\Payment\Resource\Collection\Item\PriceItem;
-use PayEx\Api\Service\Swish\Request\Purchase;
-use PayEx\Api\Service\Swish\Resource\PaymentPayeeInfo;
-use PayEx\Api\Service\Swish\Resource\PaymentPrefillInfo;
-use PayEx\Api\Service\Swish\Resource\PaymentSwish;
-use PayEx\Api\Service\Swish\Resource\PaymentUrl;
-use PayEx\Api\Service\Swish\Resource\Request\Payment;
-use PayEx\Api\Service\Swish\Resource\SwishPaymentObject;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
+use SwedbankPay\Api\Service\Swish\Request\Purchase;
+use SwedbankPay\Api\Service\Swish\Resource\PaymentPayeeInfo;
+use SwedbankPay\Api\Service\Swish\Resource\PaymentPrefillInfo;
+use SwedbankPay\Api\Service\Swish\Resource\PaymentSwish;
+use SwedbankPay\Api\Service\Swish\Resource\PaymentUrl;
+use SwedbankPay\Api\Service\Swish\Resource\Request\Payment;
+use SwedbankPay\Api\Service\Swish\Resource\SwishPaymentObject;
 
-use PayEx\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
-use PayEx\Api\Service\Swish\Transaction\Request\CreateSale;
-use PayEx\Api\Service\Swish\Transaction\Resource\Request\TransactionSale;
-use PayEx\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
-use PayEx\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
+use SwedbankPay\Api\Service\Swish\Transaction\Request\CreateSale;
+use SwedbankPay\Api\Service\Swish\Transaction\Resource\Request\TransactionSale;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
 class SwishPaymentTest extends TestCase
 {
@@ -22,7 +22,7 @@ class SwishPaymentTest extends TestCase
     protected $saleRequest;
 
     /**
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testPurchaseRequest()
     {
@@ -99,7 +99,7 @@ class SwishPaymentTest extends TestCase
     /**
      * @depends SwishPaymentTest::testPurchaseRequest
      * @param string $paymentId
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testCreateSaleTransaction($paymentId)
     {

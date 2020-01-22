@@ -1,13 +1,13 @@
 <?php
 
-use PayEx\Api\Service\Data\ResponseInterface;
+use SwedbankPay\Api\Service\Data\ResponseInterface;
 
-use PayEx\Api\Service\Consumer\Resource\ConsumerNationalIdentifier as ConsumerNationalIdentifierData;
-use PayEx\Api\Service\Consumer\Resource\Request\InitiateConsumerSession as ConsumerSessionRequestData;
-use PayEx\Api\Service\Consumer\Resource\Response\Data\InitiateConsumerSessionInterface as ConsumerSessionResponseData;
+use SwedbankPay\Api\Service\Consumer\Resource\ConsumerNationalIdentifier as ConsumerNationalIdentifierData;
+use SwedbankPay\Api\Service\Consumer\Resource\Request\InitiateConsumerSession as ConsumerSessionRequestData;
+use SwedbankPay\Api\Service\Consumer\Resource\Response\Data\InitiateConsumerSessionInterface as ConsumerSessionResponseData;
 
-use PayEx\Api\Service\Consumer\Request\InitiateConsumerSession;
-use PayEx\Api\Service\Resource\Collection\OperationsCollection as OperationsCollection;
+use SwedbankPay\Api\Service\Consumer\Request\InitiateConsumerSession;
+use SwedbankPay\Api\Service\Resource\Collection\OperationsCollection as OperationsCollection;
 
 class ConsumerTest extends TestCase
 {
@@ -18,7 +18,7 @@ class ConsumerTest extends TestCase
 
     /**
      * @param bool $noTest
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testInitiateConsumerSession($noTest = false)
     {

@@ -1,16 +1,16 @@
 <?php
 
-use PayEx\Api\Service\Paymentorder\Request\GetPayments;
+use SwedbankPay\Api\Service\Paymentorder\Request\GetPayments;
 
-use PayEx\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
-use PayEx\Api\Service\Paymentorder\Resource\Response\Data\GetPaymentsInterface as GetPaymentsResponseResourceInterface;
+use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Response\Data\GetPaymentsInterface as GetPaymentsResponseResourceInterface;
 
 class PaymentsRequestTest extends TestCase
 {
     protected $paymentsRequest;
 
     /**
-     * @throws \PayEx\Api\Client\Exception
+     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testPaymentsRequest()
     {
