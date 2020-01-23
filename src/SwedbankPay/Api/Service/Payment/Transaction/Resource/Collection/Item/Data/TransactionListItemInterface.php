@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\Item\Data;
 
-use SwedbankPay\Api\Service\Payment\Transaction\Response\Data\TransactionInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionInterface;
 use SwedbankPay\Api\Service\Resource\Collection\OperationsCollection;
 use SwedbankPay\Framework\Data\DataObjectCollectionItemInterface;
 
