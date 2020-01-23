@@ -61,6 +61,7 @@ class Client
 
     /**
      * Client constructor.
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function __construct()
     {

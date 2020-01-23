@@ -379,6 +379,7 @@ class Client extends ClientResource
      *
      * @return array|mixed|object
      * @throws Exception
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function request($requestMethod, $requestEndpoint, $requestParams = [])
     {
