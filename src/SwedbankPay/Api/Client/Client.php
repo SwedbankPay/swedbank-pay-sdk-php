@@ -14,12 +14,7 @@ class Client extends ClientResource
     /**
      * Client Name
      */
-    const CLIENT_NAME = 'SwedbankPay HTTP Client';
-
-    /**
-     * Client Version
-     */
-    const CLIENT_VERSION = '3.0.0';
+    const CLIENT_NAME = 'Swedbank Pay PHP SDK';
 
     /**
      * Mode Test
@@ -65,11 +60,15 @@ class Client extends ClientResource
             )
         );
 
+        // Set version
+        $data = json_decode(file_get_contents(__DIR__ . '/../../../../composer.json'), true);
+        $this->setVersion($data['version']);
+
         $this->setUserAgent(
             sprintf(
                 "%s/%s PHP/%s %s",
                 self::CLIENT_NAME,
-                self::CLIENT_VERSION,
+                $this->getVersion(),
                 phpversion(),
                 $this->getPlatform()
             )
@@ -404,7 +403,7 @@ class Client extends ClientResource
         }
 
         curl_setopt_array($this->getCurlHandler(), [
-            CURLOPT_CAINFO        => $this->getSystemCaRootBundlePath(),
+            CURLOPT_CAINFO        => self::getSystemCaRootBundlePath(),
             CURLOPT_USERAGENT     => $this->getUserAgent(),
             CURLOPT_HTTPHEADER    => $this->getHeaders(),
             CURLOPT_URL           => $this->getBaseUrl() . $this->getEndpoint(),
@@ -548,7 +547,7 @@ class Client extends ClientResource
      *
      * @return string          path to a CA bundle file or directory
      */
-    private function getSystemCaRootBundlePath()
+    public static function getSystemCaRootBundlePath()
     {
         // If SSL_CERT_FILE env variable points to a valid certificate/bundle, use that.
         // This mimics how OpenSSL uses the SSL_CERT_FILE env variable.
@@ -607,6 +606,6 @@ class Client extends ClientResource
             }
         }
 
-        return __DIR__ . DIRECTORY_SEPARATOR . 'cacert.pem';
+        return __DIR__ . '/../../../../cacert.pem';
     }
 }

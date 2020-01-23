@@ -10,6 +10,23 @@ class Client extends AbstractDataTransferObject implements ClientInterface
     /**
      * @return string
      */
+    public function getVersion()
+    {
+        return $this->offsetGet(self::CLIENT_VERSION);
+    }
+
+    /**
+     * @param string $version
+     * @return $this
+     */
+    public function setVersion($version)
+    {
+        return $this->offsetSet(self::CLIENT_VERSION, $version);
+    }
+
+    /**
+     * @return string
+     */
     public function getUserAgent()
     {
         return $this->offsetGet(self::USER_AGENT);

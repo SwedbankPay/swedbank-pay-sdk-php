@@ -4,6 +4,7 @@ namespace SwedbankPay\Api\Client\Resource\Data;
 
 interface ClientInterface
 {
+    const CLIENT_VERSION = 'client_version';
     const USER_AGENT = 'user_agent';
     const MERCHANT_TOKEN = 'merchant_token';
     const PAYEE_ID = 'payee_id';
