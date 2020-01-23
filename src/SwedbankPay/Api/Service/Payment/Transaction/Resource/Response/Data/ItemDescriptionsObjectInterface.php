@@ -2,8 +2,6 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\ItemDescriptionListCollection;
-
 interface ItemDescriptionsObjectInterface
 {
     const PAYMENT = 'payment';

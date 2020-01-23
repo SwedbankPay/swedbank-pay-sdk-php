@@ -3,8 +3,6 @@
 namespace SwedbankPay\Api\Service\Invoice\Resource\Request\Data;
 
 use SwedbankPay\Api\Service\Data\ResourceInterface;
-use SwedbankPay\Api\Service\Invoice\Resource\Request\Data\InvoiceInterface;
-use SwedbankPay\Api\Service\Invoice\Resource\Request\Data\PaymentInterface;
 
 /**
  * Invoice Payment object interface

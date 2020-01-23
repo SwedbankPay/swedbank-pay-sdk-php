@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Swish\Transaction\Resource\Collection\Item;
 
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\TransactionListItem;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\Item\TransactionListItem;
 use SwedbankPay\Api\Service\Swish\Transaction\Resource\Collection\Item\Data\SaleListItemInterface;
 
 class SaleListItem extends TransactionListItem implements SaleListItemInterface

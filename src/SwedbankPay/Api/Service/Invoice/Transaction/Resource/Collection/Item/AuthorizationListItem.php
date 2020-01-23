@@ -4,7 +4,7 @@ namespace SwedbankPay\Api\Service\Invoice\Transaction\Resource\Collection\Item;
 
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResourceInterface;
 use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Collection\Item\Data\AuthorizationListItemInterface;
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\TransactionListItem;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\Item\TransactionListItem;
 
 class AuthorizationListItem extends TransactionListItem implements AuthorizationListItemInterface
 {

@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\ProblemsCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\ProblemsCollection;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\ProblemInterface;
 use SwedbankPay\Api\Service\Resource;
 

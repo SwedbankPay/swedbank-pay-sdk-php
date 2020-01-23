@@ -3,7 +3,6 @@
 namespace SwedbankPay\Api\Service\Vipps\Resource\Request\Data;
 
 use SwedbankPay\Api\Service\Data\ResourceInterface;
-use SwedbankPay\Api\Service\Vipps\Resource\Request\Data\PaymentInterface;
 
 /**
  * Vipps Payment object interface

@@ -3,7 +3,6 @@
 namespace SwedbankPay\Api\Service\Invoice\Resource\Request\Data;
 
 use SwedbankPay\Api\Service\Data\ResourceInterface;
-use SwedbankPay\Api\Service\Invoice\Resource\Request\Data\AddresseeInterface;
 
 /**
  * Addressee object interface

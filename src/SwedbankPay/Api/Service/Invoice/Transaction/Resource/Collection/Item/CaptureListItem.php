@@ -3,7 +3,7 @@
 namespace SwedbankPay\Api\Service\Invoice\Transaction\Resource\Collection\Item;
 
 use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Collection\Item\Data\CaptureListItemInterface;
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\Item\TransactionListItem;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\Item\TransactionListItem;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionResourceInterface;
 
 class CaptureListItem extends TransactionListItem implements CaptureListItemInterface
