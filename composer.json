@@ -2,7 +2,7 @@
   "name": "swedbank-pay/swedbank-pay-sdk-php",
   "type": "library",
   "description": "The Swedbank Pay SDK for PHP simplifies integrations against Swedbank Pay's API Platform by providing native PHP interface towards the REST API.",
-  "version": "4.0.0",
+  "version": "4.0.0-beta.1",
   "authors": [
     {
       "name": "Sammy Nordström",
