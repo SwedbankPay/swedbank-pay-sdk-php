@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\TransactionListCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\TransactionListCollection;
 
 interface CancellationsInterface extends TransactionResourceInterface
 {
@@ -12,7 +12,7 @@ interface CancellationsInterface extends TransactionResourceInterface
     * @return TransactionListCollection
     */
     public function getCancellationList();
-
+    
     /**
     * @param TransactionListCollection $cancellationList
     * @return $this

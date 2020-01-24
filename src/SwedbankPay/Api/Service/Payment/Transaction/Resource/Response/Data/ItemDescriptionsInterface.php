@@ -2,8 +2,8 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\ItemDescriptionListCollection;
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\VatSummaryCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\ItemDescriptionListCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\VatSummaryCollection;
 
 interface ItemDescriptionsInterface extends TransactionResourceInterface
 {
@@ -14,18 +14,18 @@ interface ItemDescriptionsInterface extends TransactionResourceInterface
     * @return ItemDescriptionListCollection
     */
     public function getItemDescriptionList();
-
+    
     /**
     * @param ItemDescriptionListCollection $itemDescriptionList
     * @return $this
     */
     public function setItemDescriptionList($itemDescriptionList);
-
+    
     /**
     * @return VatSummaryCollection
     */
     public function getVatSummary();
-
+    
     /**
     * @param VatSummaryCollection $vatSummary
     * @return $this

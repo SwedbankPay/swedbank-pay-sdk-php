@@ -2,16 +2,16 @@
 
 namespace SwedbankPay\Api\Service\Payment\Resource\Data;
 
+use SwedbankPay\Api\Service\Data\ResourceInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Data\PayeeInfoInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Data\UrlInterface;
-use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
 
 /**
  * Payment request resource interface
  *
  * @api
  */
-interface PaymentInterface extends RequestInterface
+interface PaymentInterface extends ResourceInterface
 {
     const INTENT = 'intent';
     const CURRENCY = 'currency';

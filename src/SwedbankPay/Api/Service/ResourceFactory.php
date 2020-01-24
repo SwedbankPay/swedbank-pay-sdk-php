@@ -57,6 +57,26 @@ class ResourceFactory
 
     /**
      * @param string $service
+     * @param $resourceFqcn
+     * @param array $data
+     * @return ResourceInterface|RequestResourceInterface|ResponseResourceInterface
+     */
+    public function createFromFqcn($service = '', $resourceFqcn = null, $data = [])
+    {
+        /** @var ResourceInterface $resourceObj */
+        if ($this->findFileByNamespace($resourceFqcn)) {
+            $resourceObj = new $resourceFqcn($data);
+        }
+
+        if (!isset($resourceObj)) {
+            $resourceObj = new Resource($data);
+        }
+
+        return $this->createSubResources($service, $resourceObj);
+    }
+
+    /**
+     * @param string $service
      * @param string $resource
      * @param array|object|string $data
      * @return ResourceInterface
@@ -179,7 +199,18 @@ class ResourceFactory
         foreach ($resourceObj->__toArray() as $key => $value) {
             if (is_array($value)) {
                 if ($this->helper->isAssocArray($value)) {
-                    $subResourceObj = $this->newServiceResource($service, $key, $value);
+                    switch (true) {
+                        case ($resourceObj instanceof RequestResourceInterface):
+                            $subResourceObj = $this->newRequestResource($service, $key, $value);
+                            break;
+                        case ($resourceObj instanceof ResponseResourceInterface):
+                            $subResourceObj = $this->newResponseResource($service, $key, $value);
+                            break;
+                        default:
+                            $subResourceObj = $this->newServiceResource($service, $key, $value);
+                            break;
+                    }
+
                     if ($subResourceObj) {
                         $resourceObj->offsetSet($key, $subResourceObj);
                         continue;
@@ -258,13 +289,23 @@ class ResourceFactory
                 if ($type) {
                     $resourceNsLookUps[] = __NAMESPACE__ . "\\{$service}Resource\\{$type}{$resource}";
                     if ($service && $service != 'Payment\\') {
-                        $resourceNsLookUps[] = __NAMESPACE__ . "\\Payment\\Resource\\{$type}{$resource}";
+                        $namespace = __NAMESPACE__ . "\\Payment\\Resource\\{$type}{$resource}";
+                        if (strpos($service, 'Transaction')) {
+                            $namespace = __NAMESPACE__ . "\\Payment\\Transaction\\Resource\\{$type}{$resource}";
+                        }
+
+                        $resourceNsLookUps[] = $namespace;
                     }
                     $resourceNsLookUps[] = __NAMESPACE__ . "\\Resource\\{$type}{$resource}";
                 }
                 $resourceNsLookUps[] = __NAMESPACE__ . "\\{$service}Resource\\{$resource}";
                 if ($service && $service != 'Payment\\') {
-                    $resourceNsLookUps[] = __NAMESPACE__ . "\\Payment\\Resource\\{$resource}";
+                    $namespace = __NAMESPACE__ . "\\Payment\\Resource\\{$resource}";
+                    if (strpos($service, 'Transaction')) {
+                        $namespace = __NAMESPACE__ . "\\Payment\\Transaction\\Resource\\{$resource}";
+                    }
+
+                    $resourceNsLookUps[] = $namespace;
                 }
                 $resourceNsLookUps[] = __NAMESPACE__ . "\\Resource\\{$resource}";
                 break;
@@ -291,6 +332,7 @@ class ResourceFactory
     /**
      * @param string $string
      * @return null|string
+     * @SuppressWarnings(PHPMD.CountInLoopExpression)
      */
     private function unCamelCaseStr($string = '')
     {
@@ -302,8 +344,7 @@ class ResourceFactory
 
         $formattedParts = array();
         array_shift($splitParts);
-        $count = count($splitParts);
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < count($splitParts); $i++) {
             if ($i % 2) {
                 $formattedParts[] = strtolower($splitParts[$i - 1] . $splitParts[$i]);
             }

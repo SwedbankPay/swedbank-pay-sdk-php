@@ -10,7 +10,7 @@ interface ReversalsObjectInterface extends TransactionsResponseInterface
     * @return ReversalsInterface
     */
     public function getReversals();
-
+    
     /**
     * @param ReversalsInterface $reversals
     * @return $this

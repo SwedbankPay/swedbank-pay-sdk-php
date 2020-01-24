@@ -37,25 +37,31 @@ class Response extends AbstractSimpleDataObject implements ResponseInterface
             return;
         }
 
+        if (!($this->resourceFactory instanceof ResourceFactory)) {
+            $this->resourceFactory = new ResourceFactory();
+        }
+
+        $serviceFqcn = get_class($this->getRequestService());
+
+        $baseName = substr($serviceFqcn, strlen(__NAMESPACE__) + 1);
+        $serviceBaseName = substr($baseName, 0, strpos($baseName, '\\'));
+
+        $subServiceBaseName = substr($baseName, strlen($serviceBaseName) + 1);
+        $subServiceBaseName = substr($subServiceBaseName, 0, strpos($subServiceBaseName, '\\'));
+        $requestBaseName = substr($serviceFqcn, strrpos($serviceFqcn, '\\') + 1);
+
+        if (!in_array($subServiceBaseName, ['Request', 'Response'])) {
+            $serviceBaseName .= '\\' . $subServiceBaseName;
+        }
+
         if (class_exists($this->getRequestService()->getResponseResourceFQCN())) {
             $responseResourceFCQN = $this->getRequestService()->getResponseResourceFQCN();
-            $responseResource = new $responseResourceFCQN($data);
+            $responseResource = $this->resourceFactory->createFromFqcn($serviceBaseName, $responseResourceFCQN, $data);
             $this->setResponseResource($responseResource);
             return;
         }
 
         if (is_array($data) || is_string($data)) {
-            if (!($this->resourceFactory instanceof ResourceFactory)) {
-                $this->resourceFactory = new ResourceFactory();
-            }
-
-            $serviceFqcn = get_class($this->getRequestService());
-
-            $serviceBaseName = substr($serviceFqcn, strlen(__NAMESPACE__) + 1);
-            $serviceBaseName = substr($serviceBaseName, 0, strpos($serviceBaseName, '\\'));
-
-            $requestBaseName = substr($serviceFqcn, strrpos($serviceFqcn, '\\')+1);
-
             $this->setResponseResource(
                 $this->resourceFactory->newResponseResource(
                     $serviceBaseName,

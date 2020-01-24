@@ -4,11 +4,11 @@ use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
 use SwedbankPay\Api\Service\Vipps\Request\Purchase;
-use SwedbankPay\Api\Service\Vipps\Resource\PaymentPayeeInfo;
-use SwedbankPay\Api\Service\Vipps\Resource\PaymentPrefillInfo;
-use SwedbankPay\Api\Service\Vipps\Resource\PaymentUrl;
+use SwedbankPay\Api\Service\Vipps\Resource\Request\PaymentPayeeInfo;
+use SwedbankPay\Api\Service\Vipps\Resource\Request\PaymentPrefillInfo;
+use SwedbankPay\Api\Service\Vipps\Resource\Request\PaymentUrl;
 use SwedbankPay\Api\Service\Vipps\Resource\Request\Payment;
-use SwedbankPay\Api\Service\Vipps\Resource\VippsPaymentObject;
+use SwedbankPay\Api\Service\Vipps\Resource\Request\VippsPaymentObject;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use SwedbankPay\Api\Service\Vipps\Transaction\Request\CreateAuthorization;
@@ -28,13 +28,14 @@ class VippsPaymentTest extends TestCase
         $url = new PaymentUrl();
         $url->setCompleteUrl('http://test-dummy.net/payment-completed')
             ->setCancelUrl('http://test-dummy.net/payment-canceled')
+            ->setPaymentUrl('https://example.com/perform-payment')
             ->setCallbackUrl('http://test-dummy.net/payment-callback')
             ->setLogoUrl('https://example.com/logo.png')
             ->setTermsOfService('https://example.com/terms.pdf');
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString())
+            ->setPayeeReference($this->generateRandomString(12))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')

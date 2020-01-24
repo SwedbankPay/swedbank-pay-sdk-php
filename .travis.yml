@@ -2,22 +2,32 @@ dist: xenial
 language: php
 sudo: false
 php:
-- 7.1
-- 7.2
-- 7.3
+  - 7.4
+
 matrix:
   fast_finish: true
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+
 script:
-- vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/
-- vendor/bin/phpcs --standard=PSR2 src/
-- vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
-- vendor/bin/phpcpd src/
-install: composer install
+  - vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/
+  - vendor/bin/phpcs --standard=PSR2 src/
+  - vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
+  #- vendor/bin/phpcpd src/
+
+install:
+  - composer install
+
 notifications:
   email:
-    recipients:
-    - ottofromhell@gmail.com
-    on_failure: always
+    on_success: never
+    on_failure: change
+
 env:
   global:
   - secure: qo6i5YMqLJ/ERbuWdjSwBt7FFbpWxfjRdzoMmayvigk61SJzdJJD6YFD1kSb1MXboDg7pP3j6CrziM7mNTDef/EgImIQev1NA21K3gBnhTTSGdR5Wr3U1y98ZmsXjLszq+xk6RToSojewoHua94X0ME9Xvzf8+7jWvmI0WhjanLl6oP92oRlvK3XKG2MzTLqUs8OgjtYyxa+o5NEA0QL7EQ2ML331IcmJsUj9cfuAniVIUe2+GM/CAHrTGvcfRRjNmItln0DZrvGVbxV1m1GoRnntPQXJzHvLh32LBa3VkHwjE7kapZKy5op2De8tZPqDSU1ECdpOLphBgcwOVipI8kG2N0RYdek8FCBt9bWAffS88p2cJX0YsUXHqd9Uyx4ZcvgnnZWzzN8W00X8KxqBpyuU/8CRpvYi5oQSnHWLjF8Q2CWClb1p0JaOih3I1iieIiyuVouSjawvcetEpKVEY1MZd7wPBeEOuwukv+tSrOOnSt1I92QGHHN4uRVZCsCmk8+QTHkPpDWBmYZkWCrOwdG9mM7vwmCwpGV34Ov+rqeH2TL0lKuCms30Tik4P17kYL2Dz3avHIxkJPI98lPKodTMDftTPbviJU/z28iHWSYUDhSx8a+lsyf1H+1OOnqTTCq4PC7dyH746D9QpImuhb3B4HN+y3Nr7HBsZ0XMKU=

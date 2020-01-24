@@ -2,9 +2,10 @@
 
 namespace SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Request\Data;
 
-use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection\ItemDescriptionCollection;
 use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Collection\VatSummaryCollection;
+use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
 
 /**
  * Transaction interface
@@ -17,6 +18,7 @@ interface TransactionInterface extends RequestInterface
     const AMOUNT = 'amount';
     const VAT_AMOUNT = 'vat_amount';
     const PAYEE_REFERENCE = 'payee_reference';
+    const ORDER_ITEMS = 'orderItems';
     const ITEM_DESCRIPTIONS = 'item_descriptions';
     const VAT_SUMMARY = 'vat_summary';
 
@@ -63,6 +65,17 @@ interface TransactionInterface extends RequestInterface
      * @return $this
      */
     public function setPayeeReference($payeeReference);
+
+    /**
+     * @return OrderItemsCollection
+     */
+    public function getOrderItems();
+
+    /**
+     * @param OrderItemsCollection|array $orderItems
+     * @return $this
+     */
+    public function setOrderItems($orderItems);
 
     /**
      * @return ItemDescriptionCollection

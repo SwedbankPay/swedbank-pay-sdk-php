@@ -10,7 +10,7 @@ interface VerificationObjectInterface extends TransactionsResponseInterface
     * @return TransactionResourceInterface
     */
     public function getVerification();
-
+    
     /**
     * @param TransactionResourceInterface $verification
     * @return $this

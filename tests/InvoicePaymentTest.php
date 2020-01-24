@@ -3,17 +3,17 @@
 use SwedbankPay\Api\Service\Consumer\Resource\ConsumerAddress;
 use SwedbankPay\Api\Service\Invoice\Request\CreateApprovedLegalAddress;
 use SwedbankPay\Api\Service\Invoice\Request\CreateInvoice;
-use SwedbankPay\Api\Service\Invoice\Resource\AddresseeObject;
+use SwedbankPay\Api\Service\Invoice\Resource\Request\AddresseeObject;
 use SwedbankPay\Api\Service\Invoice\Resource\Request\Addressee;
 use SwedbankPay\Api\Service\Invoice\Resource\Request\Invoice;
 use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Consumer;
 use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Transaction;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
-use SwedbankPay\Api\Service\Invoice\Resource\PaymentPayeeInfo;
-use SwedbankPay\Api\Service\Invoice\Resource\PaymentUrl;
+use SwedbankPay\Api\Service\Invoice\Resource\Request\PaymentPayeeInfo;
+use SwedbankPay\Api\Service\Invoice\Resource\Request\PaymentUrl;
 use SwedbankPay\Api\Service\Invoice\Resource\Request\Payment;
-use SwedbankPay\Api\Service\Invoice\Resource\InvoicePaymentObject;
+use SwedbankPay\Api\Service\Invoice\Resource\Request\InvoicePaymentObject;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use SwedbankPay\Api\Service\Invoice\Transaction\Request\CreateAuthorization;
@@ -40,7 +40,7 @@ class InvoicePaymentTest extends TestCase
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString())
+            ->setPayeeReference($this->generateRandomString(30))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')
@@ -71,7 +71,7 @@ class InvoicePaymentTest extends TestCase
         $invoicePaymentObject = new InvoicePaymentObject();
         $invoicePaymentObject->setPayment($payment);
         $invoicePaymentObject->setInvoice($invoice);
-
+        
 
         $this->invoiceRequest = new CreateInvoice($invoicePaymentObject);
         $this->invoiceRequest->setClient($this->client);

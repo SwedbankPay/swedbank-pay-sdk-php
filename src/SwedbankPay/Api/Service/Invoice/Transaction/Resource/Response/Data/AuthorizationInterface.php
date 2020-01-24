@@ -14,18 +14,18 @@ interface AuthorizationInterface extends TransactionResourceInterface
     * @return string
     */
     public function getConsumer();
-
+    
     /**
     * @param TransactionResourceInterface $consumer
     * @return $this
     */
     public function setConsumer($consumer);
-
+    
     /**
     * @return TransactionResourceInterface
     */
     public function getLegalAddress();
-
+    
     /**
     * @param TransactionResourceInterface $legalAddress
     * @return $this
@@ -36,7 +36,7 @@ interface AuthorizationInterface extends TransactionResourceInterface
     * @return TransactionResourceInterface
     */
     public function getBillingAddress();
-
+    
     /**
     * @param TransactionResourceInterface $billingAddress
     * @return $this

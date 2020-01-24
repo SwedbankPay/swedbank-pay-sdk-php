@@ -40,15 +40,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @param $length
      * @return bool|string
      */
-    protected function generateRandomString($length = 12)
+    protected function generateRandomString($length)
     {
-        $characters = '0123456789';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
+        return substr(str_shuffle(md5(time())),0,$length);
     }
 
     /**
@@ -91,7 +85,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
         $payeeInfo = new PaymentorderPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString())
+            ->setPayeeReference($this->generateRandomString(30))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456');

@@ -4,7 +4,7 @@ namespace SwedbankPay\Api\Service\Swish\Resource\Request;
 
 use SwedbankPay\Api\Service\Payment\Resource\PaymentTrait;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Payment as PaymentRequest;
-use SwedbankPay\Api\Service\Swish\Resource\Data\PaymentSwishInterface;
+use SwedbankPay\Api\Service\Swish\Resource\Request\Data\PaymentSwishInterface;
 use SwedbankPay\Api\Service\Swish\Resource\Request\Data\PaymentInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 

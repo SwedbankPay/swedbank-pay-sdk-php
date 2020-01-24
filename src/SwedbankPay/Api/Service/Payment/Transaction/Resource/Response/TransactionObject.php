@@ -3,8 +3,7 @@
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionObjectInterface;
-use SwedbankPay\Api\Service\Payment\Transaction\Response\Data\TransactionInterface;
-use SwedbankPay\Api\Service\Resource\Response;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionInterface;
 
 class TransactionObject extends TransactionResponse implements TransactionObjectInterface
 {

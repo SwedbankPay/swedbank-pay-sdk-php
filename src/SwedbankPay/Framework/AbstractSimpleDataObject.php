@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Framework;
 
-use BadMethodCallException;
+use Exception;
 use SwedbankPay\Framework\Data\DataTransferObjectInterface;
 use SwedbankPay\Framework\Data\SimpleDataObjectInterface;
 
@@ -183,7 +183,7 @@ abstract class AbstractSimpleDataObject implements SimpleDataObjectInterface, \A
      * @param $method
      * @param $arguments
      *
-     * @throws BadMethodCallException
+     * @throws \Exception
      * @return mixed
      */
     public function __call($method, $arguments)
@@ -200,6 +200,6 @@ abstract class AbstractSimpleDataObject implements SimpleDataObjectInterface, \A
                 return $this->offsetExists($key);
         }
 
-        throw new BadMethodCallException(sprintf('Invalid method %s::%s', get_class($this), $method));
+        throw new Exception(sprintf('Invalid method %s::%s', get_class($this), $method));
     }
 }

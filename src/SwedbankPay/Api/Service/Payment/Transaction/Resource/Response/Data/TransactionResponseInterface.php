@@ -12,7 +12,7 @@ interface TransactionResponseInterface extends TransactionResourceInterface, Res
     * @return string
     */
     public function getPayment();
-
+    
     /**
     * @param string $payment
     * @return $this

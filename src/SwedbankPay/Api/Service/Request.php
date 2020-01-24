@@ -165,7 +165,7 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
     }
 
     /**
-     * @return ResponseResourceInterface
+     * @return ResponseResourceInterface|string
      */
     public function getResponseResourceFQCN()
     {
@@ -173,7 +173,7 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
     }
 
     /**
-     * @param ResponseResourceInterface $responseResource
+     * @param ResponseResourceInterface|string $responseResourceFQCN
      * @return $this
      */
     public function setResponseResourceFQCN($responseResourceFQCN)

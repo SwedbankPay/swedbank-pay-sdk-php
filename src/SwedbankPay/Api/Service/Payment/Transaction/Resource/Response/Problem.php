@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\ProblemsCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\ProblemsCollection;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\ProblemInterface;
 use SwedbankPay\Api\Service\Resource;
 
@@ -25,7 +25,7 @@ class Problem extends Resource implements ProblemInterface
         $this->offsetSet(self::TYPE, $type);
         return $this;
     }
-
+    
     /**
      * @return string
      */
@@ -43,7 +43,7 @@ class Problem extends Resource implements ProblemInterface
         $this->offsetSet(self::TITLE, $title);
         return $this;
     }
-
+    
     /**
      * @return string
      */
@@ -61,7 +61,7 @@ class Problem extends Resource implements ProblemInterface
         $this->offsetSet(self::STATUS, $status);
         return $this;
     }
-
+    
     /**
      * @return string
      */
@@ -79,7 +79,7 @@ class Problem extends Resource implements ProblemInterface
         $this->offsetSet(self::DETAIL, $detail);
         return $this;
     }
-
+    
     /**
      * @return ProblemsCollection
      */

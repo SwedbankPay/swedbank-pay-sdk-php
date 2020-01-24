@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\TransactionListCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\TransactionListCollection;
 
 interface ReversalsInterface extends TransactionResourceInterface
 {
@@ -12,7 +12,7 @@ interface ReversalsInterface extends TransactionResourceInterface
     * @return TransactionListCollection
     */
     public function getReversalList();
-
+    
     /**
     * @param TransactionListCollection $reversalList
     * @return $this

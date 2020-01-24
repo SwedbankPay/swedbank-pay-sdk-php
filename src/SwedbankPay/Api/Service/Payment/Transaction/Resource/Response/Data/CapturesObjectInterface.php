@@ -10,7 +10,7 @@ interface CapturesObjectInterface extends TransactionsResponseInterface
     * @return CapturesInterface
     */
     public function getCaptures();
-
+    
     /**
     * @param CapturesInterface $captures
     * @return $this

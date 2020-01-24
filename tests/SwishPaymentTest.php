@@ -3,12 +3,12 @@
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
 use SwedbankPay\Api\Service\Swish\Request\Purchase;
-use SwedbankPay\Api\Service\Swish\Resource\PaymentPayeeInfo;
-use SwedbankPay\Api\Service\Swish\Resource\PaymentPrefillInfo;
-use SwedbankPay\Api\Service\Swish\Resource\PaymentSwish;
-use SwedbankPay\Api\Service\Swish\Resource\PaymentUrl;
+use SwedbankPay\Api\Service\Swish\Resource\Request\PaymentPayeeInfo;
+use SwedbankPay\Api\Service\Swish\Resource\Request\PaymentPrefillInfo;
+use SwedbankPay\Api\Service\Swish\Resource\Request\PaymentSwish;
+use SwedbankPay\Api\Service\Swish\Resource\Request\PaymentUrl;
 use SwedbankPay\Api\Service\Swish\Resource\Request\Payment;
-use SwedbankPay\Api\Service\Swish\Resource\SwishPaymentObject;
+use SwedbankPay\Api\Service\Swish\Resource\Request\SwishPaymentObject;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use SwedbankPay\Api\Service\Swish\Transaction\Request\CreateSale;
@@ -35,7 +35,7 @@ class SwishPaymentTest extends TestCase
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString())
+            ->setPayeeReference($this->generateRandomString(30))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
             ->setOrderReference('or-123456')

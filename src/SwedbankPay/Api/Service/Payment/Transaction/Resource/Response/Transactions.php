@@ -2,8 +2,8 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response;
 
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Collection\TransactionListCollection;
-use SwedbankPay\Api\Service\Payment\Transaction\Response\Data\TransactionsInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Collection\TransactionListCollection;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data\TransactionsInterface;
 
 class Transactions extends TransactionResource implements TransactionsInterface
 {
