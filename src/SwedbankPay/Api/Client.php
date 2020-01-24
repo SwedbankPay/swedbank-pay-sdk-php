@@ -20,6 +20,12 @@ class Client
     const MODE_TEST = 'test';
 
     /**
+     * Version
+     * @var string
+     */
+    protected $version;
+
+    /**
      * Curl Handler
      *
      * @var resource
@@ -83,8 +89,12 @@ class Client
      */
     public function getVersion()
     {
-        $data = json_decode(file_get_contents(__DIR__ . '/../../../composer.json'), true);
-        return $data['version'];
+        if (empty($this->version)) {
+            $data = json_decode(file_get_contents(__DIR__ . '/../../../composer.json'), true);
+            $this->version = $data['version'];
+        }
+
+        return $this->version;
     }
 
     /**

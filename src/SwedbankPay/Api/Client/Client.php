@@ -61,8 +61,10 @@ class Client extends ClientResource
         );
 
         // Set version
-        $data = json_decode(file_get_contents(__DIR__ . '/../../../../composer.json'), true);
-        $this->setVersion($data['version']);
+        if (!$this->offsetExists(self::CLIENT_VERSION)) {
+            $data = json_decode(file_get_contents(__DIR__ . '/../../../../composer.json'), true);
+            $this->setVersion($data['version']);
+        }
 
         $this->setUserAgent(
             sprintf(
