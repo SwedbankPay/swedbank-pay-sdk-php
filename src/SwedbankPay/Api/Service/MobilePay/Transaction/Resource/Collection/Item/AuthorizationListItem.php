@@ -16,12 +16,13 @@ class AuthorizationListItem extends TransactionListItem implements Authorization
     }
 
     /**
-     * @param string $mobilePayTransactionId
+     * @param string $transactionId
+     *
      * @return $this
      */
-    public function setMobilePayTransactionId($mobilePayTransactionId)
+    public function setMobilePayTransactionId($transactionId)
     {
-        $this->offsetSet(self::MOBILEPAY_TRANSACTION_ID, $mobilePayTransactionId);
+        $this->offsetSet(self::MOBILEPAY_TRANSACTION_ID, $transactionId);
         return $this;
     }
     

@@ -15,10 +15,11 @@ interface AuthorizationListItemInterface extends TransactionListItemInterface
     public function getMobilePayTransactionId();
     
     /**
-    * @param string $mobilePayTransactionId
+    * @param string $transactionId
+     *
     * @return $this
     */
-    public function setMobilePayTransactionId($mobilePayTransactionId);
+    public function setMobilePayTransactionId($transactionId);
     
     /**
     * @return string
