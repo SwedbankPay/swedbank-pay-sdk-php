@@ -48,7 +48,7 @@ composer require swedbank-pay/swedbank-pay-sdk-php
   [travis]:           https://travis-ci.org/SwedbankPay/swedbank-pay-sdk-php
   [travis-badge]:     https://travis-ci.org/SwedbankPay/swedbank-pay-sdk-php.svg?branch=master
   [api]:              https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/
-  [releases]:         https://travis-ci.org/SwedbankPay/swedbank-pay-sdk-php/releases
+  [releases]:         https://github.com/SwedbankPay/swedbank-pay-sdk-php/releases
   [composer]:         https://getcomposer.org
   [composer-intro]:   https://getcomposer.org/doc/00-intro.md
   [version-badge]:    https://poser.pugx.org/swedbank-pay/swedbank-pay-sdk-php/version
