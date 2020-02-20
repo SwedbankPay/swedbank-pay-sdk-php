@@ -7,7 +7,12 @@
 
 [![Swedbank Pay SDK for PHP][og-image]][packagist]
 
-## Description
+## About
+
+**IMPORTANT**: This SDK is at an early stage and not yet used in production.
+We do not offer support for this version, but will release supported versions
+in the future. Feel free to play around, but for full functionality and support,
+please wait for the supported, stable release.
 
 The Swedbank Pay SDK for PHP simplifies integrations against
 [Swedbank Pay's API Platform][api] by providing native PHP interface towards
@@ -55,5 +60,5 @@ composer require swedbank-pay/swedbank-pay-sdk-php
   [downloads-badge]:  https://poser.pugx.org/swedbank-pay/swedbank-pay-sdk-php/downloads
   [license-badge]:    https://poser.pugx.org/swedbank-pay/swedbank-pay-sdk-php/license
   [packagist]:        https://packagist.org/packages/swedbank-pay/swedbank-pay-sdk-php
-  [og-image]:         https://repository-images.githubusercontent.com/211837579/b7c1d900-e7a7-11e9-8f55-5ecd50309fe4
+  [og-image]:         https://repository-images.githubusercontent.com/211837579/156c6000-53ed-11ea-8927-782b8067996f
 
