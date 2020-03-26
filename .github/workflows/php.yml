@@ -85,7 +85,7 @@ jobs:
         restore-keys: ${{ runner.os }}-composer-
 
     - name: PHPCS check
-      run: ./vendor/bin/phpcs --standard=WooCommerce-Core --report=code --ignore=vendor/* --runtime-set ignore_warnings_on_exit true src/
+      run: ./vendor/bin/phpcs --standard=PSR2 --report=code --ignore=vendor/* --runtime-set ignore_warnings_on_exit true src/
 
     - name: Unit tests
       run: ./vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/
