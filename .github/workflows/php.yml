@@ -88,6 +88,9 @@ jobs:
       run: ./vendor/bin/phpcs --standard=PSR2 --report=code --ignore=vendor/* --runtime-set ignore_warnings_on_exit true src/
 
     - name: Unit tests
+      env:
+        MERCHANT_TOKEN: ${{ secrets.MERCHANT_TOKEN }}
+        PAYEE_ID: ${{ secrets.PAYEE_ID }}
       run: ./vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/
 
     - name: PHP Mess Detector
