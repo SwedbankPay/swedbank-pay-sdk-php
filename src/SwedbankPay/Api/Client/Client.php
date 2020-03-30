@@ -62,8 +62,25 @@ class Client extends ClientResource
 
         // Set version
         if (!$this->offsetExists(self::CLIENT_VERSION)) {
-            $data = json_decode(file_get_contents(__DIR__ . '/../../../../composer.json'), true);
-            $this->setVersion($data['version']);
+            $version = false;
+
+            if (defined('VERSION')) {
+                $version = VERSION;
+            } elseif (getenv("VERSION") !== false) {
+                $version = getenv("VERSION");
+            } else {
+                $data = json_decode(file_get_contents(__DIR__ . '/../../../../composer.json'), true);
+
+                if (isset($data['version'])) {
+                    $version = $data['version'];
+                }
+            }
+
+            if ($version === false) {
+                throw new ClientException('VERSION not found in environment variable, composer.json or anywhere else.');
+            }
+
+            $this->setVersion($version);
         }
 
         $this->setUserAgent(
