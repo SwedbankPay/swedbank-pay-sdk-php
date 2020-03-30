@@ -8,15 +8,37 @@ namespace SwedbankPay\Api\Client;
  */
 class Version
 {
+    private $version;
+
+    /**
+     * Version constructor
+     *
+     * @throws Exception
+     */
+    public function __construct()
+    {
+        $this->version = $this->getVersionFromEnvironment();
+    }
+
+    /**
+     * Gets the version number from a defined constant VERSION, the environment
+     * variable VERSION or from composer.json.
+     *
+     * @return string Version number
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
     /**
      * Gets the version number from a defined constant VERSION, the environment
      * variable VERSION or from composer.json.
      *
      * @return string Version number
      * @throws ClientException
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
-    public static function getVersion()
+    protected function getVersionFromEnvironment()
     {
         if (defined('VERSION')) {
             return VERSION;
@@ -26,16 +48,14 @@ class Version
             return getenv("VERSION");
         }
 
-        $composer_json_path = __DIR__ . '/../../../../composer.json';
-        $composer_json_contents = file_get_contents($composer_json_path);
-        $data = json_decode($composer_json_contents, true);
+        $path = __DIR__ . '/../../../../composer.json';
+        $contents = file_get_contents($path);
+        $data = json_decode($contents, true);
 
         if (isset($data['version'])) {
             return $data['version'];
         }
 
-        if ($version === false) {
-            throw new ClientException('VERSION not found in environment variable, composer.json or anywhere else.');
-        }
+        throw new ClientException('VERSION not found in environment variable, composer.json or anywhere else.');
     }
 }
