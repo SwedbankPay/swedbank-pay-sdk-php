@@ -94,7 +94,7 @@ jobs:
         MERCHANT_TOKEN: ${{ secrets.MERCHANT_TOKEN }}
         PAYEE_ID: ${{ secrets.PAYEE_ID }}
         VERSION: ${{ steps.composer-version.outputs.version }}
-      run: ./vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/ --coverage-clover=coverage.xml
+      run: ./vendor/bin/phpunit --coverage-clover=coverage.xml --bootstrap tests/bootstrap.php tests/
 
     - name: Upload code coverage report to Codecov
       env:
