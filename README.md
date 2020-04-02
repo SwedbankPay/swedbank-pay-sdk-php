@@ -29,7 +29,7 @@ This SDK includes the following payments options:
 ## Documentation
 
 Documentation about Swedbank Pay's API Platform can be found on the
-[PayEx Developer Portal][api] for now.
+[Swedbank Pay Developer Portal][dev-portal] for now.
 
 ## Installation
 
@@ -51,7 +51,7 @@ composer require swedbank-pay/swedbank-pay-sdk-php
 ```
 
   [build-badge]:      https://github.com/SwedbankPay/swedbank-pay-sdk-php/workflows/PHP/badge.svg?branch=master
-  [api]:              https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/
+  [dev-portal]:       https://developer.swedbankpay.com/
   [releases]:         https://github.com/SwedbankPay/swedbank-pay-sdk-php/releases
   [composer]:         https://getcomposer.org
   [composer-intro]:   https://getcomposer.org/doc/00-intro.md
@@ -60,4 +60,3 @@ composer require swedbank-pay/swedbank-pay-sdk-php
   [license-badge]:    https://poser.pugx.org/swedbank-pay/swedbank-pay-sdk-php/license
   [packagist]:        https://packagist.org/packages/swedbank-pay/swedbank-pay-sdk-php
   [og-image]:         https://repository-images.githubusercontent.com/211837579/156c6000-53ed-11ea-8927-782b8067996f
-
