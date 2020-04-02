@@ -1,6 +1,6 @@
 # Swedbank Pay SDK for PHP
 
-[![Build Status][travis-badge]][travis]
+![Build status][build-badge]
 [![Latest Stable Version][version-badge]][packagist]
 [![Total Downloads][downloads-badge]][packagist]
 [![License][license-badge]][packagist]
@@ -50,8 +50,7 @@ to install this SDK:
 composer require swedbank-pay/swedbank-pay-sdk-php
 ```
 
-  [travis]:           https://travis-ci.org/SwedbankPay/swedbank-pay-sdk-php
-  [travis-badge]:     https://travis-ci.org/SwedbankPay/swedbank-pay-sdk-php.svg?branch=master
+  [build-badge]:      https://github.com/SwedbankPay/swedbank-pay-sdk-php/workflows/PHP/badge.svg?branch=master
   [api]:              https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/
   [releases]:         https://github.com/SwedbankPay/swedbank-pay-sdk-php/releases
   [composer]:         https://getcomposer.org
