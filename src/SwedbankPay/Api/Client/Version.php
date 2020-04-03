@@ -2,6 +2,8 @@
 
 namespace SwedbankPay\Api\Client;
 
+use SwedbankPay\Api\Client\Exception as ClientException;
+
 /**
  * Class Version
  * @package SwedbankPay\Api\Client
