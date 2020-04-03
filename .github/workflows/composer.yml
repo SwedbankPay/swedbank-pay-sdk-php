@@ -1,0 +1,25 @@
+name: Composer
+
+on:
+  push:
+    branches:
+    - '*'
+    tags:
+    - '*'
+  pull_request:
+
+jobs:
+  test:
+    name: Composer install
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Docker build
+      run: docker build --tag swedbankpay/sdk-consumer:0.0.1 . --file tests/sdk-consumer/Dockerfile
+
+    - name: Docker run
+      run: docker run --rm --volume $(pwd)/tests/sdk-consumer:/app --volume $(pwd):/sdk swedbankpay/sdk-consumer:0.0.1
+
+
