@@ -84,6 +84,7 @@ class Version
      */
     private function readJson($path)
     {
+        $path =  realpath($path);
         $contents = file_get_contents($path);
         return json_decode($contents, true);
     }
