@@ -1,0 +1,21 @@
+{
+    "name": "swedbank-pay/swedbank-pay-sdk-php-consumer-project",
+    "description": "Test project consuming the Swedbank Pay SDK for PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Swedbank Pay",
+            "email": "opensource@swedbankpay.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../"
+        }
+    ],
+    "require": {
+        "swedbank-pay/swedbank-pay-sdk-php": "*"
+    }
+}
