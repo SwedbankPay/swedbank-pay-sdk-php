@@ -18,9 +18,6 @@
             "url": "/sdk"
         }
     ],
-    "config": {
-        "optimize-autoloader": true
-    },
     "autoload": {
         "psr-4": {
             "SwedbankPay\\": "vendor/swedbank-pay/swedbank-pay-sdk-php/src/SwedbankPay/"

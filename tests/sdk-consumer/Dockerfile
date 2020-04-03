@@ -14,7 +14,6 @@ VOLUME /sdk
 # RUN find -L /app/
 
 ENTRYPOINT composer install && \
-           composer dump-autoload --optimize && \
            php app.php
 
 # ENTRYPOINT [ "compposer", "install", "php", "app.php" ]
