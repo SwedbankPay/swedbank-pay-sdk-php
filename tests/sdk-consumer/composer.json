@@ -11,5 +11,19 @@
     "minimum-stability": "dev",
     "require": {
         "swedbank-pay/swedbank-pay-sdk-php": "*"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/sdk"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true
+    },
+    "autoload": {
+        "psr-4": {
+            "SwedbankPay\\": "vendor/swedbank-pay/swedbank-pay-sdk-php/src/SwedbankPay/"
+        }
     }
 }

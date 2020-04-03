@@ -2,10 +2,10 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use SwedbankPay\Api\Client;
+use \SwedbankPay\Api\Client;
 
-$client = new Client();
-$version = new SwedbankPay\Api\Client\Version();
+$client = new \SwedbankPay\Api\Client\Client();
+$version = new \SwedbankPay\Api\Client\Version();
 
 var_dump($version->getVersion());
 
