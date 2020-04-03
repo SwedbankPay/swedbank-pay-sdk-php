@@ -9,12 +9,6 @@
         }
     ],
     "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../../"
-        }
-    ],
     "require": {
         "swedbank-pay/swedbank-pay-sdk-php": "*"
     }
