@@ -95,7 +95,7 @@ jobs:
         MERCHANT_TOKEN: ${{ secrets.MERCHANT_TOKEN }}
         PAYEE_ID: ${{ secrets.PAYEE_ID }}
         VERSION: ${{ steps.composer-version.outputs.version }}
-      run: ./vendor/bin/phpunit --bootstrap tests/bootstrap.php tests/
+      run: ./vendor/bin/phpunit --verbose --testdox --bootstrap tests/bootstrap.php tests/
 
     - name: PHP Mess Detector
       run: ./vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
