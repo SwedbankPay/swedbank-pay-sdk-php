@@ -24,8 +24,6 @@ jobs:
           --file tests/sdk-consumer/Dockerfile
 
     - name: Get version number from composer.lock
-      env:
-        SOURCE: dev-${{ github.sha }}
       run: |
         RESULT=$(\
           docker run \
@@ -36,11 +34,11 @@ jobs:
         )
         echo $RESULT
         SDKVERSION=$(echo $RESULT | grep -Po 'sdkversion: .*' | cut -d' ' -f2)
-        if [ "$SDKVERSION" == "$SOURCE" ]; then
-            echo "Equality has been achieved."
+        if case $SDKVERSION in dev-*) ;; *) false;; esac; then
+            echo "'$SDKVERSION' starts with 'dev-*'."
             exit 0
         else
-            echo "'$SDKVERSION' and '$SOURCE' are not equal."
+            echo "'$SDKVERSION' does not start with 'dev-*'."
             exit 1
         fi
 
