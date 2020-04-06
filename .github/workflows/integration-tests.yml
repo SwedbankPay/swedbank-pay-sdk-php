@@ -1,4 +1,4 @@
-name: Composer
+name: Integration tests
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    name: Composer install
+    name: Install SDK and verify version
     runs-on: ubuntu-latest
 
     steps:
@@ -45,5 +45,3 @@ jobs:
             echo "'$RESULT' and '$ID' are not equal."
             exit 1
         fi
-
-
