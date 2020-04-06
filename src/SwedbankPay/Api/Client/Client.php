@@ -62,8 +62,8 @@ class Client extends ClientResource
 
         // Set version
         if (!$this->offsetExists(self::CLIENT_VERSION)) {
-            $version = new Version();
-            $this->setVersion($version->getVersion());
+            $clientVersion = new ClientVersion();
+            $this->setVersion($clientVersion->getVersion());
         }
 
         $this->setUserAgent(

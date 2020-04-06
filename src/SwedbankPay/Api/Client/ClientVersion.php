@@ -6,12 +6,12 @@ use \SwedbankPay\PathResolver as PathResolver;
 use \SwedbankPay\Api\Client\Exception as ClientException;
 
 /**
- * Class Version
+ * Class ClientVersion
  * @package SwedbankPay\Api\Client
  */
-class Version
+class ClientVersion
 {
-    private $version;
+    private $clientVersion;
 
     /**
      * Version constructor
@@ -20,7 +20,7 @@ class Version
      */
     public function __construct()
     {
-        $this->version = $this->getVersionFromEnvironment();
+        $this->clientVersion = $this->getVersionFromEnvironment();
     }
 
     /**
@@ -31,7 +31,7 @@ class Version
      */
     public function getVersion()
     {
-        return $this->version;
+        return $this->clientVersion;
     }
 
     /**

@@ -7,8 +7,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 use \SwedbankPay\Api\Client;
 
 $client = new \SwedbankPay\Api\Client\Client();
-$version = new \SwedbankPay\Api\Client\Version();
-$versionNumber = $version->getVersion();
+$clientVersion = new \SwedbankPay\Api\Client\ClientVersion();
+$versionNumber = $clientVersion->getVersion();
 
 // phpcs:disable
 echo "sdkversion: $versionNumber";
