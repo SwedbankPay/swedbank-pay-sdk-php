@@ -171,7 +171,7 @@ class ClientVersion
      * @param object $decodedJsonObject The by-reference $decodedJsonObject variable to assign the JSON decoded object to.
      * @return bool true if the JSON decoding is successful; otherwise false.
      */
-    private function tryReadJson($path, &$decodedJsonObject) : bool
+    protected function tryReadJson($path, &$decodedJsonObject) : bool
     {
         $pathResolver = new PathResolver();
         $path = $pathResolver->resolve($path);
