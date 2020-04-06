@@ -1,0 +1,129 @@
+name: PHP
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Fetch all history for all tags and branches
+      run: git fetch --prune --unshallow
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.2
+      with:
+        versionSpec: '5.2.x'
+
+    - name: Execute GitVersion
+      id: gitversion # step id used as reference for output values
+      uses: gittools/actions/gitversion/execute@v0.9.2
+
+    - name: Version label for unstable builds
+      id: unstable
+      if: startsWith(github.ref, 'refs/tags/') != true
+      run: |
+        LABEL="-dev${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
+        echo "Pre-release: ${LABEL}"
+        echo "##[set-output name=label;]${LABEL}"
+
+    - name: Composer version
+      id: composer-version
+      run: |
+        COMPOSER_VERSION="${{ steps.gitversion.outputs.majorMinorPatch }}${{ steps.unstable.outputs.label }}"
+        echo "Composer version: ${COMPOSER_VERSION}"
+        echo "::set-output name=version::${COMPOSER_VERSION}"
+
+    - name: PHP Setup
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+
+    - name: Version stamp composer.json
+      run: |
+        jq ".version=\"${{ steps.composer-version.outputs.version }}\"" composer.json > composer.version.json # Add "version" property to composer.version.json
+        mv composer.json composer.clean.json
+        mv composer.version.json composer.json # Rename composer.version.json to composer.json
+
+    - name: Create ZIP archive
+      id: archive
+      env:
+        SEMVER: ${{ steps.gitversion.outputs.fullSemVer }}
+      run: |
+        ARCHIVE=${GITHUB_REPOSITORY#SwedbankPay/}-${SEMVER}.zip
+        echo "Archive: ${ARCHIVE}"
+        echo "::set-output name=name::${ARCHIVE}"
+        zip --recurse-paths --exclude="*.zip" --exclude="vendor/*" --exclude="composer.clean.json" ${ARCHIVE} *
+        unzip -l ${ARCHIVE}
+        rm composer.json
+        mv composer.clean.json composer.json # Move the version-less composer.json back in place so `composer validate` won't react on it in the script section.
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2-preview
+      with:
+        name: ${{ steps.archive.outputs.name }}
+        path: ${{ steps.archive.outputs.name }}
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Get Composer cache directory
+      id: composer-cache
+      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+    - uses: actions/cache@v1
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: PHPCS check
+      run: ./vendor/bin/phpcs --standard=PSR2 --report=code --ignore=vendor/* --runtime-set ignore_warnings_on_exit true src/
+
+    - name: Unit tests
+      env:
+        MERCHANT_TOKEN: ${{ secrets.MERCHANT_TOKEN }}
+        PAYEE_ID: ${{ secrets.PAYEE_ID }}
+        VERSION: ${{ steps.composer-version.outputs.version }}
+      run: ./vendor/bin/phpunit --configuration=./tests/phpunit.xml --bootstrap=./tests/bootstrap.php ./tests/ --coverage-clover=coverage.xml
+
+    - name: Upload code coverage report to Codecov
+      env:
+         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: bash <(curl -s https://codecov.io/bash)
+
+    - name: PHP Mess Detector
+      run: ./vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
+
+    - name: Create GitHub release
+      id: release
+      uses: actions/create-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.release.outputs.upload_url }}
+        asset_path: ${{ steps.archive.outputs.name }}
+        asset_name: ${{ steps.archive.outputs.name }}
+        asset_content_type: application/zip

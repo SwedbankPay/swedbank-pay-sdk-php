@@ -1,13 +1,19 @@
 # Swedbank Pay SDK for PHP
 
-[![Build Status][travis-badge]][travis]
+![Build status][build-badge]
 [![Latest Stable Version][version-badge]][packagist]
 [![Total Downloads][downloads-badge]][packagist]
+[![Codecov][codecov-badge]][codecov]
 [![License][license-badge]][packagist]
 
 [![Swedbank Pay SDK for PHP][og-image]][packagist]
 
-## Description
+## About
+
+**IMPORTANT**: This SDK is at an early stage and not yet used in production.
+We do not offer support for this version, but will release supported versions
+in the future. Feel free to play around, but for full functionality and support,
+please wait for the supported, stable release.
 
 The Swedbank Pay SDK for PHP simplifies integrations against
 [Swedbank Pay's API Platform][api] by providing native PHP interface towards
@@ -24,7 +30,7 @@ This SDK includes the following payments options:
 ## Documentation
 
 Documentation about Swedbank Pay's API Platform can be found on the
-[PayEx Developer Portal][api] for now.
+[Swedbank Pay Developer Portal][dev-portal] for now.
 
 ## Installation
 
@@ -45,9 +51,8 @@ to install this SDK:
 composer require swedbank-pay/swedbank-pay-sdk-php
 ```
 
-  [travis]:           https://travis-ci.org/SwedbankPay/swedbank-pay-sdk-php
-  [travis-badge]:     https://travis-ci.org/SwedbankPay/swedbank-pay-sdk-php.svg?branch=master
-  [api]:              https://developer.payex.com/xwiki/wiki/developer/view/Main/ecommerce/
+  [build-badge]:      https://github.com/SwedbankPay/swedbank-pay-sdk-php/workflows/PHP/badge.svg?branch=master
+  [dev-portal]:       https://developer.swedbankpay.com/
   [releases]:         https://github.com/SwedbankPay/swedbank-pay-sdk-php/releases
   [composer]:         https://getcomposer.org
   [composer-intro]:   https://getcomposer.org/doc/00-intro.md
@@ -55,5 +60,6 @@ composer require swedbank-pay/swedbank-pay-sdk-php
   [downloads-badge]:  https://poser.pugx.org/swedbank-pay/swedbank-pay-sdk-php/downloads
   [license-badge]:    https://poser.pugx.org/swedbank-pay/swedbank-pay-sdk-php/license
   [packagist]:        https://packagist.org/packages/swedbank-pay/swedbank-pay-sdk-php
-  [og-image]:         https://repository-images.githubusercontent.com/211837579/b7c1d900-e7a7-11e9-8f55-5ecd50309fe4
-
+  [codecov]:          https://codecov.io/gh/SwedbankPay/swedbank-pay-sdk-php
+  [codecov-badge]:    https://codecov.io/gh/SwedbankPay/swedbank-pay-sdk-php/branch/master/graph/badge.svg
+  [og-image]:         https://repository-images.githubusercontent.com/211837579/156c6000-53ed-11ea-8927-782b8067996f

@@ -6,10 +6,9 @@ namespace SwedbankPay\Api;
 use SwedbankPay\Api\Client\Exception;
 
 /**
- * Class Response
- * @note For backward compatibility for previous versions
- * @deprecated Use SwedbankPay\Api\Service\Response instead of
- * @package SwedbankPay\Api
+ * Response class to handle JSON objects
+ *
+ * @note For backwards compatibility for previous versions
  * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
