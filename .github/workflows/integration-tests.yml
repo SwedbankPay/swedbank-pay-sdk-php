@@ -63,3 +63,28 @@ jobs:
             echo "'$SDKVERSION' and '$VERSION' are not equal."
             exit 1
         fi
+
+    - name: Get version number from composer.json
+      env:
+        COMPOSER_VERSION: 8.7.6-composer.json.12
+      run: |
+        jq ".version=\"${COMPOSER_VERSION}\"" composer.json > composer.version.json # Add "version" property to composer.version.json
+        rm composer.json
+        mv composer.version.json composer.json
+        RESULT=$(\
+          docker run \
+          --rm \
+          --volume $(pwd)/tests/sdk-consumer:/app \
+          --volume $(pwd):/sdk \
+          --env VERSION=$VERSION \
+          swedbankpay/sdk-consumer:0.0.1\
+        )
+        echo $RESULT
+        SDKVERSION=$(echo $RESULT | grep -Po 'sdkversion: .*' | cut -d' ' -f2)
+        if [ "$SDKVERSION" == "$COMPOSER_VERSION" ]; then
+            echo "Equality has been achieved."
+            exit 0
+        else
+            echo "'$SDKVERSION' and '$COMPOSER_VERSION' are not equal."
+            exit 1
+        fi
