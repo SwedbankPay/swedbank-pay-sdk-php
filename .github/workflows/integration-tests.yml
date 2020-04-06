@@ -23,25 +23,45 @@ jobs:
           . \
           --file tests/sdk-consumer/Dockerfile
 
-    - name: Docker run
+    - name: Get version number from composer.lock
+      env:
+        SOURCE: dev-${{ github.sha }}
       run: |
-        docker run \
+        RESULT=$(\
+          docker run \
           --rm \
           --volume $(pwd)/tests/sdk-consumer:/app \
           --volume $(pwd):/sdk \
-          swedbankpay/sdk-consumer:0.0.1 \
-          >result.txt
-        cat result.txt
-
-    - name: Verify SDK version
-      env:
-        ID: dev-${{ github.sha }}
-      run: |
-        RESULT=$(grep -Po 'sdkversion: .*' result.txt | cut -d' ' -f2)
-        if [ "$RESULT" == "$ID" ]; then
+          swedbankpay/sdk-consumer:0.0.1\
+        )
+        echo $RESULT
+        SDKVERSION=$(echo $RESULT | grep -Po 'sdkversion: .*' | cut -d' ' -f2)
+        if [ "$SDKVERSION" == "$SOURCE" ]; then
             echo "Equality has been achieved."
             exit 0
         else
-            echo "'$RESULT' and '$ID' are not equal."
+            echo "'$SDKVERSION' and '$SOURCE' are not equal."
+            exit 1
+        fi
+
+    - name: Get version number from environment variable
+      env:
+        VERSION: 1.2.3-dev1337
+      run: |
+        RESULT=$(\
+          docker run \
+          --rm \
+          --volume $(pwd)/tests/sdk-consumer:/app \
+          --volume $(pwd):/sdk \
+          --env VERSION=$VERSION \
+          swedbankpay/sdk-consumer:0.0.1\
+        )
+        echo $RESULT
+        SDKVERSION=$(echo $RESULT | grep -Po 'sdkversion: .*' | cut -d' ' -f2)
+        if [ "$SDKVERSION" == "$VERSION" ]; then
+            echo "Equality has been achieved."
+            exit 0
+        else
+            echo "'$SDKVERSION' and '$VERSION' are not equal."
             exit 1
         fi
