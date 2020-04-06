@@ -71,6 +71,7 @@ jobs:
         jq ".version=\"${COMPOSER_VERSION}\"" composer.json > composer.version.json # Add "version" property to composer.version.json
         rm composer.json
         mv composer.version.json composer.json
+        cat composer.json
         RESULT=$(\
           docker run \
           --rm \
