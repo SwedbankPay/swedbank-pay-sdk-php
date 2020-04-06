@@ -56,7 +56,9 @@ class PathResolver
       */
     private function enforceSeparator($path) : string
     {
-        return str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $path);
+        $search = array('/', '\\');
+        $replacement = DIRECTORY_SEPARATOR;
+        return str_replace($search, $replacement, $path);
     }
 
 
@@ -97,9 +99,11 @@ class PathResolver
      */
     private function resolveSymlinks($path) : string
     {
+        // phpcs:disable
         if (file_exists($path) && linkinfo($path) > 0) {
             return readlink($path);
         }
+        // phpcs:enable
 
         return $path;
     }
