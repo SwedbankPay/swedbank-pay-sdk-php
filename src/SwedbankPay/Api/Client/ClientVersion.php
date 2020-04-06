@@ -92,8 +92,10 @@ class ClientVersion
       */
     private function tryGetVersionNumberFromEnv(&$version) : bool
     {
+        // phpcs:disable
         if (getenv("VERSION") !== false) {
             $version = getenv("VERSION");
+            // phpcs:enable
             return true;
         }
 
@@ -166,20 +168,22 @@ class ClientVersion
      * $json if successful. Returns true if successful; otherwise false.
      *
      * @param string $path The path of the file to read and JSON decode.
-     * @param string $json The by-reference $json variable to assign the JSON decoded object to.
+     * @param object $decodedJsonObject The by-reference $decodedJsonObject variable to assign the JSON decoded object to.
      * @return bool true if the JSON decoding is successful; otherwise false.
      */
-    private function tryReadJson($path, &$json) : bool
+    private function tryReadJson($path, &$decodedJsonObject) : bool
     {
         $pathResolver = new PathResolver();
         $path = $pathResolver->resolve($path);
 
+        // phpcs:disable
         if (!file_exists($path)) {
             return false;
         }
 
         $contents = file_get_contents($path);
-        $json = json_decode($contents, true);
+        // phpcs:enable
+        $decodedJsonObject = json_decode($contents, true);
         return true;
     }
 }
