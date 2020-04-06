@@ -8,11 +8,10 @@ use \SwedbankPay\Api\Client;
 
 $client = new \SwedbankPay\Api\Client\Client();
 $version = new \SwedbankPay\Api\Client\Version();
-
-$v = $version->getVersion();
+$versionNumber = $version->getVersion();
 
 // phpcs:disable
-echo "version: $v";
+echo "sdkversion: $versionNumber";
 // phpcs:enable
 
 ?>

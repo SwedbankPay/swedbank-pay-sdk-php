@@ -17,9 +17,33 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Docker build
-      run: docker build --tag swedbankpay/sdk-consumer:0.0.1 . --file tests/sdk-consumer/Dockerfile
+      run: |
+        docker build \
+          --tag swedbankpay/sdk-consumer:0.0.1 \
+          . \
+          --file tests/sdk-consumer/Dockerfile
 
     - name: Docker run
-      run: docker run --rm --volume $(pwd)/tests/sdk-consumer:/app --volume $(pwd):/sdk swedbankpay/sdk-consumer:0.0.1
+      run: |
+        docker run \
+          --rm \
+          --volume $(pwd)/tests/sdk-consumer:/app \
+          --volume $(pwd):/sdk \
+          swedbankpay/sdk-consumer:0.0.1 \
+          >result.txt
+        cat result.txt
+
+    - name: Verify SDK version
+      env:
+        ID: dev-${{ github.sha }}
+      run: |
+        RESULT=$(grep -Po 'sdkversion: .*' result.txt | cut -d' ' -f2)
+        if [ "$RESULT" == "$ID" ]; then
+            echo "Equality has been achieved."
+            exit 0
+        else
+            echo "'$RESULT' and '$ID' are not equal."
+            exit 1
+        fi
 
 
