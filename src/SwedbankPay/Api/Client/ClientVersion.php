@@ -16,7 +16,7 @@ class ClientVersion
     /**
      * Version constructor
      *
-     * @throws Exception
+     * @throws ClientException
      */
     public function __construct()
     {
@@ -29,7 +29,7 @@ class ClientVersion
      *
      * @return string Version number
      */
-    public function getVersion()
+    public function getVersion() : string
     {
         return $this->clientVersion;
     }
@@ -41,25 +41,106 @@ class ClientVersion
      * @return string Version number
      * @throws ClientException
      */
-    protected function getVersionFromEnvironment()
+    protected function getVersionFromEnvironment() : string
+    {
+        $version = null;
+
+        if ($this->tryGetVersionNumberFromConstant($version)) {
+            return $version;
+        }
+
+        if ($this->tryGetVersionNumberFromEnv($version)) {
+            return $version;
+        }
+
+        if ($this->tryGetVersionNumberFromComposerJson($version)) {
+            return $version;
+        }
+
+        if ($this->tryGetVersionNumberFromComposerLock($version)) {
+            return $version;
+        }
+
+        throw new ClientException('VERSION not found in environment variable, composer.json or anywhere else.');
+    }
+
+
+    /**
+      * Tries to get the version number from the constant VERSION.
+      * Returns true if successful; otherwise false.
+      *
+      * @param string $version The by-reference $version variable to assign the version number to, if found.
+      * @return bool true if successful; otherwise false.
+      */
+    private function tryGetVersionNumberFromConstant(&$version) : bool
     {
         if (defined('VERSION')) {
-            return VERSION;
+            $version = VERSION;
+            return true;
         }
 
+        return false;
+    }
+
+
+    /**
+      * Tries to get the version number from the environment variable VERSION.
+      * Returns true if successful; otherwise false.
+      *
+      * @param string $version The by-reference $version variable to assign the version number to, if found.
+      * @return bool true if successful; otherwise false.
+      */
+    private function tryGetVersionNumberFromEnv(&$version) : bool
+    {
         if (getenv("VERSION") !== false) {
-            return getenv("VERSION");
+            $version = getenv("VERSION");
+            return true;
         }
 
+        return false;
+    }
+
+
+    /**
+      * Tries to get the version number from the composer.json file.
+      * Returns true if successful; otherwise false.
+      *
+      * @param string $version The by-reference $version variable to assign the version number to, if found.
+      * @return bool true if successful; otherwise false.
+      */
+    private function tryGetVersionNumberFromComposerJson(&$version) : bool
+    {
         $composerPath = __DIR__ . '/../../../../composer.json';
-        $composer = $this->readJson($composerPath);
+        $composer = null;
+
+        if (!$this->tryReadJson($composerPath, $composer)) {
+            return false;
+        }
 
         if (isset($composer['version'])) {
-            return $composer['version'];
+            $version = $composer['version'];
+            return true;
         }
 
+        return false;
+    }
+
+
+    /**
+      * Tries to get the version number from the composer.lock file.
+      * Returns true if successful; otherwise false.
+      *
+      * @param string $version The by-reference $version variable to assign the version number to, if found.
+      * @return bool true if successful; otherwise false.
+      */
+    private function tryGetVersionNumberFromComposerLock(&$version) : bool
+    {
         $composerLockPath = getcwd() . DIRECTORY_SEPARATOR . 'composer.lock';
-        $composerLock = $this->readJson($composerLockPath);
+        $composerLock = null;
+
+        if (!$this->tryReadJson($composerLockPath, $composerLock)) {
+            return false;
+        }
 
         if (isset($composerLock['packages'])) {
             $packages = $composerLock['packages'];
@@ -70,26 +151,35 @@ class ClientVersion
                 }
 
                 if (isset($package['version'])) {
-                    return $package['version'];
+                    $version = $package['version'];
+                    return true;
                 }
             }
         }
 
-        throw new ClientException('VERSION not found in environment variable, composer.json or anywhere else.');
+        return false;
     }
 
 
     /**
-     * Reads the file at $path and returns it as a JSON decoded object.
+     * Tries to read the file at $path and assigns a JSON decoded object to
+     * $json if successful. Returns true if successful; otherwise false.
      *
-     * @param $path The path of the file to read and JSON decode.
-     * @return object The JSON decoded object.
+     * @param string $path The path of the file to read and JSON decode.
+     * @param string $json The by-reference $json variable to assign the JSON decoded object to.
+     * @return bool true if the JSON decoding is successful; otherwise false.
      */
-    private function readJson($path)
+    private function tryReadJson($path, &$json) : bool
     {
         $pathResolver = new PathResolver();
         $path = $pathResolver->resolve($path);
+
+        if (!file_exists($path)) {
+            return false;
+        }
+
         $contents = file_get_contents($path);
-        return json_decode($contents, true);
+        $json = json_decode($contents, true);
+        return true;
     }
 }
