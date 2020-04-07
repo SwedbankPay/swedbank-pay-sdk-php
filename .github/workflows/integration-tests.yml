@@ -23,25 +23,6 @@ jobs:
           . \
           --file tests/sdk-consumer/Dockerfile
 
-    - name: Get version number from composer.lock
-      run: |
-        RESULT=$(\
-          docker run \
-          --rm \
-          --volume $(pwd)/tests/sdk-consumer:/app \
-          --volume $(pwd):/sdk \
-          swedbankpay/sdk-consumer:0.0.1\
-        )
-        echo $RESULT
-        SDKVERSION=$(echo $RESULT | grep -Po 'sdkversion: .*' | cut -d' ' -f2)
-        if case $SDKVERSION in dev-*) ;; *) false;; esac; then
-            echo "'$SDKVERSION' starts with 'dev-*'."
-            exit 0
-        else
-            echo "'$SDKVERSION' does not start with 'dev-*'."
-            exit 1
-        fi
-
     - name: Get version number from environment variable
       env:
         VERSION: 1.2.3-dev1337
@@ -61,6 +42,25 @@ jobs:
             exit 0
         else
             echo "'$SDKVERSION' and '$VERSION' are not equal."
+            exit 1
+        fi
+
+    - name: Get version number from composer.lock
+      run: |
+        RESULT=$(\
+          docker run \
+          --rm \
+          --volume $(pwd)/tests/sdk-consumer:/app \
+          --volume $(pwd):/sdk \
+          swedbankpay/sdk-consumer:0.0.1\
+        )
+        echo $RESULT
+        SDKVERSION=$(echo $RESULT | grep -Po 'sdkversion: .*' | cut -d' ' -f2)
+        if case $SDKVERSION in dev-*) ;; *) false;; esac; then
+            echo "'$SDKVERSION' starts with 'dev-*'."
+            exit 0
+        else
+            echo "'$SDKVERSION' does not start with 'dev-*'."
             exit 1
         fi
 
