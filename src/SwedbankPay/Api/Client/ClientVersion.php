@@ -74,7 +74,7 @@ class ClientVersion
       */
     private function tryGetVersionNumberFromConstant(&$version) : bool
     {
-        if (defined('VERSION') && !is_null(VERSION) && !empty(VERSION)) {
+        if (defined('VERSION') && VERSION !== null && !empty(VERSION)) {
             $version = VERSION;
             return true;
         }
@@ -96,7 +96,7 @@ class ClientVersion
         $envVersion = getenv("VERSION");
         // phpcs:enable
 
-        if ($envVersion !== false && !is_null($envVersion) && !empty($envVersion)) {
+        if ($envVersion !== false && $envVersion !== null && !empty($envVersion)) {
             $version = $envVersion;
             return true;
         }
@@ -124,7 +124,7 @@ class ClientVersion
         if (isset($composer['version'])) {
             $version = $composer['version'];
 
-            if (!is_null($version) && !empty($version)) {
+            if ($version !== null && !empty($version)) {
                 return true;
             }
         }
@@ -160,7 +160,7 @@ class ClientVersion
                 if (isset($package['version'])) {
                     $version = $package['version'];
 
-                    if (!is_null($version) && !empty($version)) {
+                    if ($version !== null && !empty($version)) {
                         return true;
                     }
                 }
