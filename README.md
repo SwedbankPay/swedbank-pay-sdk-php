@@ -11,10 +11,10 @@
 
 ## About
 
-**IMPORTANT**: This SDK is at an early stage and not yet used in production.
-We do not offer support for this version, but will release supported versions
-in the future. Feel free to play around, but for full functionality and support,
-please wait for the supported, stable release.
+**UNSUPPORTED**: This SDK is at an early stage of development and is not
+supported as of yet by Swedbank Pay. It is provided as a convenience to speed
+up your development, so please feel free to play around. However, if you need
+support, please wait for a future, stable release.
 
 The Swedbank Pay SDK for PHP simplifies integrations against
 [Swedbank Pay's API Platform][api] by providing native PHP interface towards
