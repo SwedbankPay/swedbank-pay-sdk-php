@@ -143,6 +143,9 @@ class ClientVersion
     private function tryGetVersionNumberFromComposerLock(&$version) : bool
     {
         $composerLockPath = getcwd() . DIRECTORY_SEPARATOR . 'composer.lock';
+        if (!file_exists($composerLockPath)) {
+            $composerLockPath = '/../../../../composer.lock';
+        }
         $composerLock = null;
 
         if (!$this->tryReadJson($composerLockPath, $composerLock)) {
