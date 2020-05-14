@@ -52,30 +52,38 @@ class Version
         }
 
         $composerPath = __DIR__ . '/../../../../composer.json';
-        $composer = $this->readJson($composerPath);
+        if (file_exists($composerPath)) {
+            $composer = $this->readJson($composerPath);
 
-        if (isset($composer['version'])) {
-            return $composer['version'];
-        }
-
-        $composerLockPath = getcwd() . DIRECTORY_SEPARATOR . 'composer.lock';
-        $composerLock = $this->readJson($composerLockPath);
-
-        if (isset($composerLock['packages'])) {
-            $packages = $composerLock['packages'];
-            foreach ($packages as $package) {
-                if (!isset($package['name']) ||
-                    $package['name'] != "swedbank-pay/swedbank-pay-sdk-php") {
-                    continue;
-                }
-
-                if (isset($package['version'])) {
-                    return $package['version'];
-                }
+            if (isset($composer['version'])) {
+                return $composer['version'];
             }
         }
 
-        throw new ClientException('VERSION not found in environment variable, composer.json or anywhere else.');
+        $composerLockPath = getcwd() . DIRECTORY_SEPARATOR . 'composer.lock';
+        if (!file_exists($composerLockPath)) {
+            $composerLockPath = __DIR__ . '/../../../../composer.lock';
+        }
+
+        if (file_exists($composerLockPath)) {
+            $composerLock = $this->readJson($composerLockPath);
+
+            if (isset($composerLock['packages'])) {
+                $packages = $composerLock['packages'];
+                foreach ($packages as $package) {
+                    if (!isset($package['name']) ||
+                        $package['name'] != "swedbank-pay/swedbank-pay-sdk-php") {
+                        continue;
+                    }
+
+                    if (isset($package['version'])) {
+                        return $package['version'];
+                    }
+                }
+            }
+
+            throw new ClientException('VERSION not found in environment variable, composer.json or anywhere else.');
+        }
     }
 
 
