@@ -139,6 +139,7 @@ class ClientVersion
       *
       * @param string $version The by-reference $version variable to assign the version number to, if found.
       * @return bool true if successful; otherwise false.
+      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
       */
     private function tryGetVersionNumberFromComposerLock(&$version) : bool
     {
