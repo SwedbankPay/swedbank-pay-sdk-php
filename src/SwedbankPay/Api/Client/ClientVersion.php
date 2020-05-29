@@ -157,7 +157,12 @@ class ClientVersion
         $packages = $composerLock['packages'];
         foreach ($packages as $package) {
             if (isset($package['name']) && $package['name'] === 'swedbank-pay/swedbank-pay-sdk-php') {
-                return isset($package['version']) && !empty($package['version']);
+                if (isset($package['version']) && !empty($package['version'])) {
+                    $version = $package['version'];
+                    return true;
+                }
+
+                return false;
             }
         }
 
