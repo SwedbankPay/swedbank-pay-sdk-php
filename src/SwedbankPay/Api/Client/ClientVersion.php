@@ -143,31 +143,21 @@ class ClientVersion
       */
     private function tryGetVersionNumberFromComposerLock(&$version) : bool
     {
-        $composerLockPath = getcwd() . DIRECTORY_SEPARATOR . 'composer.lock';
-        if (!file_exists($composerLockPath)) {
-            $composerLockPath = '/../../../../composer.lock';
-        }
+        $composerLockPath = __DIR__ . '/../../../../composer.lock';
         $composerLock = null;
 
         if (!$this->tryReadJson($composerLockPath, $composerLock)) {
             return false;
         }
 
-        if (isset($composerLock['packages'])) {
-            $packages = $composerLock['packages'];
-            foreach ($packages as $package) {
-                if (!isset($package['name']) ||
-                    $package['name'] != "swedbank-pay/swedbank-pay-sdk-php") {
-                    continue;
-                }
+        if (!isset($composerLock['packages'])) {
+            return false;
+        }
 
-                if (isset($package['version'])) {
-                    $version = $package['version'];
-
-                    if ($version !== null && !empty($version)) {
-                        return true;
-                    }
-                }
+        $packages = $composerLock['packages'];
+        foreach ($packages as $package) {
+            if (isset($package['name']) && $package['name'] === 'swedbank-pay/swedbank-pay-sdk-php') {
+                return isset($package['version']) && !empty($package['version']);
             }
         }
 
