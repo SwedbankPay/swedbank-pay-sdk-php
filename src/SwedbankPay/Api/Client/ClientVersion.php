@@ -27,7 +27,8 @@ class ClientVersion
      *
      * @return string
      */
-    private function getVersionConstName() {
+    private function getVersionConstName()
+    {
         return __NAMESPACE__ . '\\VERSION';
     }
 
@@ -36,7 +37,8 @@ class ClientVersion
      *
      * @return string
      */
-    private function getVersionEnvName() {
+    private function getVersionEnvName()
+    {
         return str_replace('\\', '_', $this->getVersionConstName());
     }
 
@@ -45,7 +47,8 @@ class ClientVersion
      *
      * @return string
      */
-    private function getComposerPath() {
+    private function getComposerPath()
+    {
         $autoLoadPath = '/src/' . str_replace('\\', '/', __NAMESPACE__);
         if (DIRECTORY_SEPARATOR != '/') {
             str_replace('/', DIRECTORY_SEPARATOR, $autoLoadPath);
