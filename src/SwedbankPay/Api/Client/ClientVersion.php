@@ -98,7 +98,6 @@ class ClientVersion
         throw new ClientException('VERSION not found in environment variable, composer.json or anywhere else.');
     }
 
-
     /**
       * Tries to get the version number from possible (namespaced) VERSION constant.
       * Returns true if successful; otherwise false.
@@ -115,7 +114,6 @@ class ClientVersion
 
         return false;
     }
-
 
     /**
       * Tries to get the version number from possible environment variable.
@@ -137,7 +135,6 @@ class ClientVersion
 
         return false;
     }
-
 
     /**
       * Tries to get the version number from the composer.json file.
@@ -165,7 +162,6 @@ class ClientVersion
         return false;
     }
 
-
     /**
       * Tries to get the version number from the composer.lock file.
       * Returns true if successful; otherwise false.
@@ -182,25 +178,26 @@ class ClientVersion
             return false;
         }
 
-        if (!isset($composerLock['packages'])) {
-            return false;
-        }
-
-        $packages = $composerLock['packages'];
-        foreach ($packages as $package) {
-            if (isset($package['name']) && $package['name'] === 'swedbank-pay/swedbank-pay-sdk-php') {
-                if (isset($package['version']) && !empty($package['version'])) {
-                    $version = $package['version'];
-                    return true;
+        if (isset($composerLock['packages'])) {
+            $packages = $composerLock['packages'];
+            foreach ($packages as $package) {
+                if (!isset($package['name']) ||
+                    $package['name'] !== 'swedbank-pay/swedbank-pay-sdk-php') {
+                    continue;
                 }
 
-                return false;
+                if (isset($package['version'])) {
+                    $version = $package['version'];
+
+                    if ($version !== null && !empty($version)) {
+                        return true;
+                    }
+                }
             }
         }
 
         return false;
     }
-
 
     /**
      * Tries to find composer.json file and assigns a JSON decoded object to
@@ -225,7 +222,6 @@ class ClientVersion
 
         return true;
     }
-
 
     /**
      * Tries to find composer.lock file and assigns a JSON decoded object to

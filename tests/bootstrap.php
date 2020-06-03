@@ -21,7 +21,6 @@ if (getenv('MERCHANT_TOKEN') && getenv('PAYEE_ID') && getenv('VERSION')) {
     define('PAYEE_ID', getenv('PAYEE_ID'));
     define('VERSION', getenv('VERSION'));
     define('SwedbankPay\\Api\\Client\\VERSION', VERSION);
-    setenv('SWEDBANKPAY_API_CLIENT_VERSION', VERSION);
 } else {
     // Load config
     if (file_exists(__DIR__ . '/config.local.ini')) {
@@ -45,6 +44,5 @@ if (getenv('MERCHANT_TOKEN') && getenv('PAYEE_ID') && getenv('VERSION')) {
 
     if (defined('VERSION') && VERSION != '<version>') {
         define('SwedbankPay\\Api\\Client\\VERSION', VERSION);
-        setenv('SWEDBANKPAY_API_CLIENT_VERSION', VERSION);
     }
 }
