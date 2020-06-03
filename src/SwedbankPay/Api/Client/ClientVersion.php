@@ -186,9 +186,8 @@ class ClientVersion
 
         foreach ($paths as $path) {
             $composerLock = null;
-            if ($this->tryReadComposerLock($composerLock, $path) &&
-                $result = $this->tryFindVersionInComposerLock($composerLock)
-            ) {
+            $result = $this->tryFindVersionInComposerLock($composerLock);
+            if ($this->tryReadComposerLock($composerLock, $path) && $result) {
                 $version = $result;
 
                 return true;
@@ -258,15 +257,16 @@ class ClientVersion
      */
     private function tryFindVersionInComposerLock($decodedJsonObject)
     {
-        if (!isset($composerLock['packages'])) {
+        if (!isset($decodedJsonObject['packages'])) {
             return false;
         }
 
-        $packages = $composerLock['packages'];
+        $packages = $decodedJsonObject['packages'];
         foreach ($packages as $package) {
             if (!isset($package['version']) ||
                 !isset($package['name']) ||
-                $package['name'] !== 'swedbank-pay/swedbank-pay-sdk-php') {
+                $package['name'] !== 'swedbank-pay/swedbank-pay-sdk-php')
+            {
                 continue;
             }
 
