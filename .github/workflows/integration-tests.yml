@@ -46,21 +46,29 @@ jobs:
         fi
 
     - name: Get version number from composer.lock
+      env:
+        VERSION: dev-master
       run: |
+        echo "{}" > ./composer.lock
+        jq ".packages = [{\"name\": \"swedbank-pay/swedbank-pay-sdk-php\", \"version\": \"${VERSION}\"}]" composer.lock > composer.version.lock # Add "version" property to composer.version.lock
+        rm composer.lock
+        mv composer.version.lock composer.lock
+        cat composer.lock
         RESULT=$(\
           docker run \
           --rm \
           --volume $(pwd)/tests/sdk-consumer:/app \
           --volume $(pwd):/sdk \
+          --env VERSION=$VERSION \
           swedbankpay/sdk-consumer:0.0.1\
         )
         echo $RESULT
         SDKVERSION=$(echo $RESULT | grep -Po 'sdkversion: .*' | cut -d' ' -f2)
-        if case $SDKVERSION in dev-*) ;; *) false;; esac; then
-            echo "'$SDKVERSION' starts with 'dev-*'."
+        if [ "$SDKVERSION" == "$VERSION" ]; then
+            echo "Equality has been achieved."
             exit 0
         else
-            echo "'$SDKVERSION' does not start with 'dev-*'."
+            echo "'$SDKVERSION' and '$VERSION' are not equal."
             exit 1
         fi
 
@@ -69,6 +77,7 @@ jobs:
         COMPOSER_VERSION: 8.7.6-composer.json.12
       run: |
         jq ".version=\"${COMPOSER_VERSION}\"" composer.json > composer.version.json # Add "version" property to composer.version.json
+        rm composer.lock
         rm composer.json
         mv composer.version.json composer.json
         cat composer.json

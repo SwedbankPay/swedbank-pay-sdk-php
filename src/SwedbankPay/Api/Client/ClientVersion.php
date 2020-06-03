@@ -50,8 +50,8 @@ class ClientVersion
     private function getComposerPath()
     {
         $autoLoadPath = '/src/' . str_replace('\\', '/', __NAMESPACE__);
-        if (DIRECTORY_SEPARATOR != '/') {
-            str_replace('/', DIRECTORY_SEPARATOR, $autoLoadPath);
+        if (DIRECTORY_SEPARATOR !== '/') {
+            $autoLoadPath = str_replace('/', DIRECTORY_SEPARATOR, $autoLoadPath);
         }
 
         return str_replace($autoLoadPath, '', __DIR__);
@@ -95,7 +95,9 @@ class ClientVersion
             return $version;
         }
 
-        throw new ClientException('VERSION not found in environment variable, composer.json or anywhere else.');
+        // phpcs:disable
+        throw new ClientException('VERSION not found in constant variable ' . $this->getVersionConstName() . ' , composer.json or anywhere else.');
+        // phpcs:enable
     }
 
     /**
@@ -172,27 +174,25 @@ class ClientVersion
       */
     private function tryGetVersionNumberFromComposerLock(&$version) : bool
     {
-        $composerLock = null;
+        $paths = [];
 
-        if (!$this->tryReadComposerLock($composerLock)) {
-            return false;
-        }
+        // Standard path of composer.lock
+        $path = $this->getComposerPath() . DIRECTORY_SEPARATOR . 'composer.lock';
+        $paths[] = $path;
 
-        if (isset($composerLock['packages'])) {
-            $packages = $composerLock['packages'];
-            foreach ($packages as $package) {
-                if (!isset($package['name']) ||
-                    $package['name'] !== 'swedbank-pay/swedbank-pay-sdk-php') {
-                    continue;
-                }
+        // Alternate path of composer.lock
+        $pathDirs = explode(DIRECTORY_SEPARATOR, $path);
+        array_splice($pathDirs, -2);
+        $pathDirs[] = 'composer.lock';
+        $paths[] = implode(DIRECTORY_SEPARATOR, $pathDirs);
 
-                if (isset($package['version'])) {
-                    $version = $package['version'];
+        foreach ($paths as $path) {
+            $composerLock = null;
+            $result = $this->tryFindVersionInComposerLock($composerLock);
+            if ($this->tryReadComposerLock($composerLock, $path) && $result) {
+                $version = $result;
 
-                    if ($version !== null && !empty($version)) {
-                        return true;
-                    }
-                }
+                return true;
             }
         }
 
@@ -203,7 +203,7 @@ class ClientVersion
      * Tries to find composer.json file and assigns a JSON decoded object to
      * $json if successful. Returns true if successful; otherwise false.
      *
-     * @param object $decodedJsonObject The by-reference $decodedJsonObject variable to assign the JSON decoded object to.
+     * @param object $decodedJsonObject The by-reference variable to assign the JSON decoded object to.
      * @return bool true if the JSON decoding is successful; otherwise false.
      */
     private function tryReadComposerJson(&$decodedJsonObject) : bool
@@ -229,35 +229,54 @@ class ClientVersion
      * composer package root path because we might be part of another composer install.
      * Returns true if successful; otherwise false.
      *
-     * @param object $decodedJsonObject The by-reference $decodedJsonObject variable to assign the JSON decoded object to.
+     * @param object $decodedJsonObject The by-reference variable to assign the JSON decoded object to.
      * @param string $path Optional alternative path to look for composer lock file.
      * @return bool true if the JSON decoding is successful; otherwise false.
      */
     private function tryReadComposerLock(&$decodedJsonObject, $path = '') : bool
     {
-        if ($path == '') {
-            $path = $this->getComposerPath() . DIRECTORY_SEPARATOR . 'composer.lock';
+        // phpcs:disable
+        if (!is_readable($path)) {
+            return false;
         }
+        // phpcs:enable
 
         // phpcs:disable
-        if (!file_exists($path)) {
-            if ($path == DIRECTORY_SEPARATOR . 'composer.lock') {
-                return false;
-            }
-
-            $pathDirs = explode(DIRECTORY_SEPARATOR, $path);
-            array_splice($pathDirs, -2);
-            $pathDirs[] = 'composer.lock';
-            $path = implode(DIRECTORY_SEPARATOR, $pathDirs);
-
-            return $this->tryReadComposerLock($decodedJsonObject, $path);
-        }
-
         $contents = file_get_contents($path);
 
         // phpcs:enable
         $decodedJsonObject = json_decode($contents, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return false;
+        }
 
         return true;
+    }
+
+    /**
+     * Tries to find the version of package in composer.lock file.
+     *
+     * @param array $decodedJsonObject
+     * @return string|false
+     */
+    private function tryFindVersionInComposerLock($decodedJsonObject)
+    {
+        if (!isset($decodedJsonObject['packages'])) {
+            return false;
+        }
+
+        $packages = $decodedJsonObject['packages'];
+        foreach ($packages as $package) {
+            if (!isset($package['version']) ||
+                !isset($package['name']) ||
+                $package['name'] !== 'swedbank-pay/swedbank-pay-sdk-php'
+            ) {
+                continue;
+            }
+
+            return $package['version'];
+        }
+
+        return false;
     }
 }
