@@ -31,7 +31,7 @@ if (getenv('MERCHANT_TOKEN') && getenv('PAYEE_ID') && getenv('VERSION')) {
     define('MERCHANT_TOKEN', $config['merchant_token']);
     define('PAYEE_ID', $config['payee_id']);
 
-    $data = json_decode(file_get_contents(__DIR__ . '../composer.json'), true);
+    $data = json_decode(file_get_contents(__DIR__ . '/../composer.json'), true);
     if (isset($data['version'])) {
         define('VERSION', $data['version']);
     } else {
