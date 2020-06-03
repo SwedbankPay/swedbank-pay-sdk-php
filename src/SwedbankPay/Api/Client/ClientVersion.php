@@ -235,9 +235,11 @@ class ClientVersion
      */
     private function tryReadComposerLock(&$decodedJsonObject, $path = '') : bool
     {
+        // phpcs:disable
         if (!is_readable($path)) {
             return false;
         }
+        // phpcs:enable
 
         // phpcs:disable
         $contents = file_get_contents($path);
