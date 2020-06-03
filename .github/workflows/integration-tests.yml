@@ -47,6 +47,10 @@ jobs:
 
     - name: Get version number from composer.lock
       run: |
+        jq ".packages = [{\"name\": \"swedbank-pay/swedbank-pay-sdk-php\", \"version\": \"$VERSION\"}]" composer.lock > composer.version.lock # Add "version" property to composer.version.lock
+        rm composer.lock
+        mv composer.version.lock composer.lock
+        cat composer.lock
         RESULT=$(\
           docker run \
           --rm \
@@ -69,6 +73,7 @@ jobs:
         COMPOSER_VERSION: 8.7.6-composer.json.12
       run: |
         jq ".version=\"${COMPOSER_VERSION}\"" composer.json > composer.version.json # Add "version" property to composer.version.json
+        rm composer.lock
         rm composer.json
         mv composer.version.json composer.json
         cat composer.json
