@@ -95,7 +95,9 @@ class ClientVersion
             return $version;
         }
 
+        // phpcs:disable
         throw new ClientException('VERSION not found in constant variable ' . $this->getVersionConstName() . ' , composer.json or anywhere else.');
+        // phpcs:enable
     }
 
     /**
@@ -201,7 +203,7 @@ class ClientVersion
      * Tries to find composer.json file and assigns a JSON decoded object to
      * $json if successful. Returns true if successful; otherwise false.
      *
-     * @param object $decodedJsonObject The by-reference $decodedJsonObject variable to assign the JSON decoded object to.
+     * @param object $decodedJsonObject The by-reference variable to assign the JSON decoded object to.
      * @return bool true if the JSON decoding is successful; otherwise false.
      */
     private function tryReadComposerJson(&$decodedJsonObject) : bool
@@ -227,7 +229,7 @@ class ClientVersion
      * composer package root path because we might be part of another composer install.
      * Returns true if successful; otherwise false.
      *
-     * @param object $decodedJsonObject The by-reference $decodedJsonObject variable to assign the JSON decoded object to.
+     * @param object $decodedJsonObject The by-reference variable to assign the JSON decoded object to.
      * @param string $path Optional alternative path to look for composer lock file.
      * @return bool true if the JSON decoding is successful; otherwise false.
      */
@@ -265,8 +267,8 @@ class ClientVersion
         foreach ($packages as $package) {
             if (!isset($package['version']) ||
                 !isset($package['name']) ||
-                $package['name'] !== 'swedbank-pay/swedbank-pay-sdk-php')
-            {
+                $package['name'] !== 'swedbank-pay/swedbank-pay-sdk-php'
+            ) {
                 continue;
             }
 
