@@ -33,7 +33,10 @@ if (getenv('MERCHANT_TOKEN') && getenv('PAYEE_ID') && getenv('VERSION')) {
     define('MERCHANT_TOKEN', $config['merchant_token']);
     define('PAYEE_ID', $config['payee_id']);
 
+    // phpcs:disable
     $data = json_decode(file_get_contents(__DIR__ . '/../composer.json'), true);
+    // phpcs:enable
+
     if (isset($data['version'])) {
         define('VERSION', $data['version']);
     } elseif (isset($config['version'])) {
