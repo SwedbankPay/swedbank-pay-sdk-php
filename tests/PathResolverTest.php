@@ -12,4 +12,3 @@ class PathResolverTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-?>
