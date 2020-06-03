@@ -2,7 +2,6 @@
 
 namespace SwedbankPay\Api\Client;
 
-use \SwedbankPay\PathResolver as PathResolver;
 use \SwedbankPay\Api\Client\Exception as ClientException;
 
 /**
@@ -21,6 +20,41 @@ class ClientVersion
     public function __construct()
     {
         $this->clientVersion = $this->getVersionFromEnvironment();
+    }
+
+    /**
+     * Gets version constant name
+     *
+     * @return string
+     */
+    private function getVersionConstName()
+    {
+        return __NAMESPACE__ . '\\VERSION';
+    }
+
+    /**
+     * Gets version environment variable name
+     *
+     * @return string
+     */
+    private function getVersionEnvName()
+    {
+        return str_replace('\\', '_', strtoupper($this->getVersionConstName()));
+    }
+
+    /**
+     * Gets path to composer package root directory
+     *
+     * @return string
+     */
+    private function getComposerPath()
+    {
+        $autoLoadPath = '/src/' . str_replace('\\', '/', __NAMESPACE__);
+        if (DIRECTORY_SEPARATOR != '/') {
+            str_replace('/', DIRECTORY_SEPARATOR, $autoLoadPath);
+        }
+
+        return str_replace($autoLoadPath, '', __DIR__);
     }
 
     /**
@@ -66,7 +100,7 @@ class ClientVersion
 
 
     /**
-      * Tries to get the version number from the constant VERSION.
+      * Tries to get the version number from possible (namespaced) VERSION constant.
       * Returns true if successful; otherwise false.
       *
       * @param string $version The by-reference $version variable to assign the version number to, if found.
@@ -74,8 +108,8 @@ class ClientVersion
       */
     private function tryGetVersionNumberFromConstant(&$version) : bool
     {
-        if (defined('VERSION') && VERSION !== null && !empty(VERSION)) {
-            $version = VERSION;
+        if (defined($this->getVersionConstName()) && constant($this->getVersionConstName()) !== '') {
+            $version = constant($this->getVersionConstName());
             return true;
         }
 
@@ -84,7 +118,7 @@ class ClientVersion
 
 
     /**
-      * Tries to get the version number from the environment variable VERSION.
+      * Tries to get the version number from possible environment variable.
       * Returns true if successful; otherwise false.
       *
       * @param string $version The by-reference $version variable to assign the version number to, if found.
@@ -93,7 +127,7 @@ class ClientVersion
     private function tryGetVersionNumberFromEnv(&$version) : bool
     {
         // phpcs:disable
-        $envVersion = getenv("VERSION");
+        $envVersion = getenv($this->getVersionEnvName());
         // phpcs:enable
 
         if ($envVersion !== false && $envVersion !== null && !empty($envVersion)) {
@@ -114,10 +148,9 @@ class ClientVersion
       */
     private function tryGetVersionNumberFromComposerJson(&$version) : bool
     {
-        $composerPath = __DIR__ . '/../../../../composer.json';
         $composer = null;
 
-        if (!$this->tryReadJson($composerPath, $composer)) {
+        if (!$this->tryReadComposerJson($composer)) {
             return false;
         }
 
@@ -143,10 +176,9 @@ class ClientVersion
       */
     private function tryGetVersionNumberFromComposerLock(&$version) : bool
     {
-        $composerLockPath = __DIR__ . '/../../../../composer.lock';
         $composerLock = null;
 
-        if (!$this->tryReadJson($composerLockPath, $composerLock)) {
+        if (!$this->tryReadComposerLock($composerLock)) {
             return false;
         }
 
@@ -171,17 +203,15 @@ class ClientVersion
 
 
     /**
-     * Tries to read the file at $path and assigns a JSON decoded object to
+     * Tries to find composer.json file and assigns a JSON decoded object to
      * $json if successful. Returns true if successful; otherwise false.
      *
-     * @param string $path The path of the file to read and JSON decode.
      * @param object $decodedJsonObject The by-reference $decodedJsonObject variable to assign the JSON decoded object to.
      * @return bool true if the JSON decoding is successful; otherwise false.
      */
-    private function tryReadJson($path, &$decodedJsonObject) : bool
+    private function tryReadComposerJson(&$decodedJsonObject) : bool
     {
-        $pathResolver = new PathResolver();
-        $path = $pathResolver->resolve($path);
+        $path = $this->getComposerPath() . DIRECTORY_SEPARATOR . 'composer.json';
 
         // phpcs:disable
         if (!file_exists($path)) {
@@ -189,8 +219,49 @@ class ClientVersion
         }
 
         $contents = file_get_contents($path);
+
         // phpcs:enable
         $decodedJsonObject = json_decode($contents, true);
+
+        return true;
+    }
+
+
+    /**
+     * Tries to find composer.lock file and assigns a JSON decoded object to
+     * $json if successful. Traverses up in directory tree if not found in
+     * composer package root path because we might be part of another composer install.
+     * Returns true if successful; otherwise false.
+     *
+     * @param object $decodedJsonObject The by-reference $decodedJsonObject variable to assign the JSON decoded object to.
+     * @param string $path Optional alternative path to look for composer lock file.
+     * @return bool true if the JSON decoding is successful; otherwise false.
+     */
+    private function tryReadComposerLock(&$decodedJsonObject, $path = '') : bool
+    {
+        if ($path == '') {
+            $path = $this->getComposerPath() . DIRECTORY_SEPARATOR . 'composer.lock';
+        }
+
+        // phpcs:disable
+        if (!file_exists($path)) {
+            if ($path == DIRECTORY_SEPARATOR . 'composer.lock') {
+                return false;
+            }
+
+            $pathDirs = explode(DIRECTORY_SEPARATOR, $path);
+            array_splice($pathDirs, -2);
+            $pathDirs[] = 'composer.lock';
+            $path = implode(DIRECTORY_SEPARATOR, $pathDirs);
+
+            return $this->tryReadComposerLock($decodedJsonObject, $path);
+        }
+
+        $contents = file_get_contents($path);
+
+        // phpcs:enable
+        $decodedJsonObject = json_decode($contents, true);
+
         return true;
     }
 }
