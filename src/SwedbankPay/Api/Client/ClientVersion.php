@@ -39,7 +39,7 @@ class ClientVersion
      */
     private function getVersionEnvName()
     {
-        return str_replace('\\', '_', $this->getVersionConstName());
+        return str_replace('\\', '_', strtoupper($this->getVersionConstName()));
     }
 
     /**
