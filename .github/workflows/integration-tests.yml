@@ -48,7 +48,7 @@ jobs:
     - name: Get version number from composer.lock
       run: |
         echo "{}" > ./composer.lock
-        jq ".packages = [{\"name\": \"swedbank-pay/swedbank-pay-sdk-php\", \"version\": \"$VERSION\"}]" composer.lock > composer.version.lock # Add "version" property to composer.version.lock
+        jq ".packages = [{\"name\": \"swedbank-pay/swedbank-pay-sdk-php\", \"version\": \"${VERSION}\"}]" composer.lock > composer.version.lock # Add "version" property to composer.version.lock
         rm composer.lock
         mv composer.version.lock composer.lock
         cat composer.lock
