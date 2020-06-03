@@ -172,6 +172,7 @@ class ClientVersion
       *
       * @param string $version The by-reference $version variable to assign the version number to, if found.
       * @return bool true if successful; otherwise false.
+      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
       */
     private function tryGetVersionNumberFromComposerLock(&$version) : bool
     {
@@ -181,21 +182,19 @@ class ClientVersion
             return false;
         }
 
-        if (isset($composerLock['packages'])) {
-            $packages = $composerLock['packages'];
-            foreach ($packages as $package) {
-                if (!isset($package['name']) ||
-                    $package['name'] != "swedbank-pay/swedbank-pay-sdk-php") {
-                    continue;
-                }
+        if (!isset($composerLock['packages'])) {
+            return false;
+        }
 
-                if (isset($package['version'])) {
+        $packages = $composerLock['packages'];
+        foreach ($packages as $package) {
+            if (isset($package['name']) && $package['name'] === 'swedbank-pay/swedbank-pay-sdk-php') {
+                if (isset($package['version']) && !empty($package['version'])) {
                     $version = $package['version'];
-
-                    if ($version !== null && !empty($version)) {
-                        return true;
-                    }
+                    return true;
                 }
+
+                return false;
             }
         }
 
