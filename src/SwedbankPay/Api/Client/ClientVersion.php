@@ -174,13 +174,8 @@ class ClientVersion
       */
     private function tryGetVersionNumberFromComposerLock(&$version) : bool
     {
-        $paths = [];
-
-        // Standard path of composer.lock
-        $path = $this->getComposerPath() . DIRECTORY_SEPARATOR . 'composer.lock';
-
         $composerLock = null;
-        if ($this->tryReadComposerLock($composerLock, $path)) {
+        if ($this->tryReadComposerLock($composerLock)) {
             if ($version = $this->tryFindVersionInComposerLock($composerLock)) {
                 return true;
             }
@@ -225,6 +220,10 @@ class ClientVersion
      */
     private function tryReadComposerLock(&$decodedJsonObject, $path = '') : bool
     {
+        if ($path == '') {
+            $path = $this->getComposerPath() . DIRECTORY_SEPARATOR . 'composer.lock';
+        }
+
         // phpcs:disable
         if (!file_exists($path)) {
             $pathDirs = explode(DIRECTORY_SEPARATOR, $path);
