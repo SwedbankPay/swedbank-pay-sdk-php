@@ -96,7 +96,7 @@ class ClientVersion
         }
 
         // phpcs:disable
-        throw new ClientException('VERSION not found in constant variable ' . $this->getVersionConstName() . ' , composer.json or anywhere else.');
+        throw new ClientException('VERSION not found in constant variable ' . $this->getVersionConstName() . ', composer.json, composer.lock or anywhere else.');
         // phpcs:enable
     }
 
@@ -174,24 +174,9 @@ class ClientVersion
       */
     private function tryGetVersionNumberFromComposerLock(&$version) : bool
     {
-        $paths = [];
-
-        // Standard path of composer.lock
-        $path = $this->getComposerPath() . DIRECTORY_SEPARATOR . 'composer.lock';
-        $paths[] = $path;
-
-        // Alternate path of composer.lock
-        $pathDirs = explode(DIRECTORY_SEPARATOR, $path);
-        array_splice($pathDirs, -2);
-        $pathDirs[] = 'composer.lock';
-        $paths[] = implode(DIRECTORY_SEPARATOR, $pathDirs);
-
-        foreach ($paths as $path) {
-            $composerLock = null;
-            $result = $this->tryFindVersionInComposerLock($composerLock);
-            if ($this->tryReadComposerLock($composerLock, $path) && $result) {
-                $version = $result;
-
+        $composerLock = null;
+        if ($this->tryReadComposerLock($composerLock)) {
+            if ($version = $this->tryFindVersionInComposerLock($composerLock)) {
                 return true;
             }
         }
@@ -235,13 +220,28 @@ class ClientVersion
      */
     private function tryReadComposerLock(&$decodedJsonObject, $path = '') : bool
     {
+        if ($path == '') {
+            $path = $this->getComposerPath() . DIRECTORY_SEPARATOR . 'composer.lock';
+        }
+
         // phpcs:disable
+        if (!file_exists($path)) {
+            $pathDirs = explode(DIRECTORY_SEPARATOR, $path);
+            if (count($pathDirs) <= 2) {
+                return false;
+            }
+
+            array_splice($pathDirs, -2);
+            $pathDirs[] = 'composer.lock';
+            $path = implode(DIRECTORY_SEPARATOR, $pathDirs);
+
+            return $this->tryReadComposerLock($decodedJsonObject, $path);
+        }
+
         if (!is_readable($path)) {
             return false;
         }
-        // phpcs:enable
 
-        // phpcs:disable
         $contents = file_get_contents($path);
 
         // phpcs:enable
