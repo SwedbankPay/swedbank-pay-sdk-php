@@ -4,6 +4,7 @@ namespace SwedbankPay\Api\Service\Paymentorder\Resource\Request;
 
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderRiskIndicatorInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderMetadataInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayeeInfoInterface;
@@ -294,5 +295,22 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     public function setPaymentToken($paymentToken)
     {
         return $this->offsetSet(self::PAYMENT_TOKEN, $paymentToken);
+    }
+
+    /**
+     * @return PaymentorderRiskIndicatorInterface
+     */
+    public function getRiskIndicator()
+    {
+        return $this->offsetGet(self::RISK_INDICATOR);
+    }
+
+    /**
+     * @param PaymentorderRiskIndicatorInterface $riskIndicator
+     * @return $this
+     */
+    public function setRiskIndicator($riskIndicator)
+    {
+        return $this->offsetSet(self::RISK_INDICATOR, $riskIndicator);
     }
 }
