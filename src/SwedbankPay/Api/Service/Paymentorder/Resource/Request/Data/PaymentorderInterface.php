@@ -7,6 +7,7 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCo
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderMetadataInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayeeInfoInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayerInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderRiskIndicatorInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderUrlInterface;
 use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
 
@@ -33,6 +34,7 @@ interface PaymentorderInterface extends RequestInterface
     const ITEMS = 'items';
     const INTENT = 'intent';
     const PAYMENT_TOKEN = 'payment_token';
+    const RISK_INDICATOR = 'risk_indicator';
     
     /**
      * @return string
@@ -220,4 +222,15 @@ interface PaymentorderInterface extends RequestInterface
      * @return $this
      */
     public function setPaymentToken($paymentToken);
+
+    /**
+     * @return PaymentorderRiskIndicatorInterface
+     */
+    public function getRiskIndicator();
+
+    /**
+     * @param PaymentorderRiskIndicatorInterface $riskIndicator
+     * @return $this
+     */
+    public function setRiskIndicator($riskIndicator);
 }

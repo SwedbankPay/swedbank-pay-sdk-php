@@ -107,7 +107,7 @@ class PaymentorderPayer extends Resource implements PaymentorderPayerInterface
 
     /**
      * @param ConsumerAddress $shippingAddress
-     * @return mixed
+     * @return $this
      */
     public function setShippingAddress($shippingAddress)
     {
