@@ -15,6 +15,8 @@ interface PaymentPurchaseInterface extends PaymentRequestInterface
     const PRICES = 'prices';
     const PAYMENT_TOKEN = 'payment_token';
     const GENERATE_PAYMENT_TOKEN = 'generate_payment_token';
+    const CARDHOLDER = 'cardholder';
+    const RISK_INDICATOR = 'risk_indicator';
 
     /**
      * @return PricesCollection
@@ -48,4 +50,26 @@ interface PaymentPurchaseInterface extends PaymentRequestInterface
      * @return $this
      */
     public function setGeneratePaymentToken($generatePaymentToken);
+
+    /**
+     * @return PaymentCardholderInterface
+     */
+    public function getCardholder();
+
+    /**
+     * @param PaymentCardholderInterface $cardholder
+     * @return $this
+     */
+    public function setCardholder($cardholder);
+
+    /**
+     * @return PaymentRiskIndicatorInterface
+     */
+    public function getRiskIndicator();
+
+    /**
+     * @param PaymentRiskIndicatorInterface $riskIndicator
+     * @return $this
+     */
+    public function setRiskIndicator($riskIndicator);
 }

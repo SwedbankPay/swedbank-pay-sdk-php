@@ -2,6 +2,8 @@
 
 namespace SwedbankPay\Api\Service\Creditcard\Resource\Request;
 
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\PaymentCardholderInterface;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\PaymentRiskIndicatorInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Payment as PaymentRequest;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\PaymentPurchaseInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
@@ -64,5 +66,39 @@ class PaymentPurchase extends PaymentRequest implements PaymentPurchaseInterface
     public function setGeneratePaymentToken($generatePaymentToken)
     {
         return $this->offsetSet(self::GENERATE_PAYMENT_TOKEN, $generatePaymentToken);
+    }
+
+    /**
+     * @return PaymentCardholderInterface
+     */
+    public function getCardholder()
+    {
+        return $this->offsetGet(self::CARDHOLDER);
+    }
+
+    /**
+     * @param PaymentCardholderInterface $cardholder
+     * @return $this
+     */
+    public function setCardholder($cardholder)
+    {
+        return $this->offsetSet(self::CARDHOLDER, $cardholder);
+    }
+
+    /**
+     * @return PaymentRiskIndicatorInterface
+     */
+    public function getRiskIndicator()
+    {
+        return $this->offsetGet(self::RISK_INDICATOR);
+    }
+
+    /**
+     * @param PaymentRiskIndicatorInterface $riskIndicator
+     * @return $this
+     */
+    public function setRiskIndicator($riskIndicator)
+    {
+        return $this->offsetSet(self::RISK_INDICATOR, $riskIndicator);
     }
 }
