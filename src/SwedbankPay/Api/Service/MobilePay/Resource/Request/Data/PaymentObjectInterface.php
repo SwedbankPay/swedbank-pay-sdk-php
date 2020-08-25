@@ -9,7 +9,7 @@ use SwedbankPay\Api\Service\Data\ResourceInterface;
  *
  * @api
  */
-interface MobilePayPaymentObjectInterface extends ResourceInterface
+interface PaymentObjectInterface extends ResourceInterface
 {
     const PAYMENT = 'payment';
     const MOBILEPAY = 'mobilepay';

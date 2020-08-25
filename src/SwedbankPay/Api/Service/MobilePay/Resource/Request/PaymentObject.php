@@ -2,14 +2,14 @@
 
 namespace SwedbankPay\Api\Service\MobilePay\Resource\Request;
 
-use SwedbankPay\Api\Service\MobilePay\Resource\Request\Data\MobilePayPaymentObjectInterface;
+use SwedbankPay\Api\Service\MobilePay\Resource\Request\Data\PaymentObjectInterface;
 use SwedbankPay\Api\Service\MobilePay\Resource\Request\Data\PaymentInterface;
 use SwedbankPay\Api\Service\Resource;
 
 /**
  * MobilePay Payment object
  */
-class MobilePayPaymentObject extends Resource implements MobilePayPaymentObjectInterface
+class PaymentObject extends Resource implements PaymentObjectInterface
 {
     /**
      * @return PaymentInterface
@@ -33,7 +33,7 @@ class MobilePayPaymentObject extends Resource implements MobilePayPaymentObjectI
      *
      * @param $url
      *
-     * @return MobilePayPaymentObject
+     * @return PaymentObject
      */
     public function setShoplogoUrl($url)
     {

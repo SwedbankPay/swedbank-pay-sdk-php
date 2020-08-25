@@ -8,7 +8,7 @@ use SwedbankPay\Api\Service\MobilePay\Resource\Request\PaymentPayeeInfo;
 use SwedbankPay\Api\Service\MobilePay\Resource\Request\PaymentPrefillInfo;
 use SwedbankPay\Api\Service\MobilePay\Resource\Request\PaymentUrl;
 use SwedbankPay\Api\Service\MobilePay\Resource\Request\Payment;
-use SwedbankPay\Api\Service\MobilePay\Resource\Request\MobilePayPaymentObject;
+use SwedbankPay\Api\Service\MobilePay\Resource\Request\PaymentObject;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
@@ -61,7 +61,7 @@ class MobilePayPaymentTest extends TestCase
             ->setPrices($prices)
             ->setPayerReference(uniqid());
 
-        $mobilePayPaymentObject = new MobilePayPaymentObject();
+        $mobilePayPaymentObject = new PaymentObject();
         $mobilePayPaymentObject->setPayment($payment);
         $mobilePayPaymentObject->setShoplogoUrl('https://test-dummy.net/logo.png');
 
