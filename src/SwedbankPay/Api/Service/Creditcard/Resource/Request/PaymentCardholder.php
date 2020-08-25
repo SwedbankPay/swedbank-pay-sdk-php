@@ -1,32 +1,46 @@
 <?php
 
-namespace SwedbankPay\Api\Service\Paymentorder\Resource;
 
-use SwedbankPay\Api\Service\Consumer\Resource\ConsumerAddress;
-use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayerInterface;
+namespace SwedbankPay\Api\Service\Creditcard\Resource\Request;
+
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\CardholderShippingAddressInterface;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\PaymentCardholderInterface;
 use SwedbankPay\Api\Service\Resource;
 
-/**
- * Payment order payer data object
- */
-class PaymentorderPayer extends Resource implements PaymentorderPayerInterface
+class PaymentCardholder extends Resource implements PaymentCardholderInterface
 {
+    /**
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->offsetGet(self::FIRST_NAME);
+    }
+
+    /**
+     * @param string $firstName
+     * @return $this
+     */
+    public function setFirstName($firstName)
+    {
+        return $this->offsetSet(self::FIRST_NAME, $firstName);
+    }
 
     /**
      * @return string
      */
-    public function getConsumerProfileRef()
+    public function getLastName()
     {
-        return $this->offsetGet(self::CONSUMER_PROFILE_REF);
+        return $this->offsetGet(self::LAST_NAME);
     }
 
     /**
-     * @param string $consumerProfileRef
+     * @param string $lastName
      * @return $this
      */
-    public function setConsumerProfileRef($consumerProfileRef)
+    public function setLastName($lastName)
     {
-        return $this->offsetSet(self::CONSUMER_PROFILE_REF, $consumerProfileRef);
+        return $this->offsetSet(self::LAST_NAME, $lastName);
     }
 
     /**
@@ -98,7 +112,7 @@ class PaymentorderPayer extends Resource implements PaymentorderPayerInterface
     }
 
     /**
-     * @return ConsumerAddress
+     * @return CardholderShippingAddressInterface
      */
     public function getShippingAddress()
     {
@@ -106,7 +120,7 @@ class PaymentorderPayer extends Resource implements PaymentorderPayerInterface
     }
 
     /**
-     * @param ConsumerAddress $shippingAddress
+     * @param CardholderShippingAddressInterface $shippingAddress
      * @return $this
      */
     public function setShippingAddress($shippingAddress)

@@ -20,6 +20,7 @@ if (getenv('MERCHANT_TOKEN') && getenv('PAYEE_ID') && getenv('VERSION')) {
     define('MERCHANT_TOKEN', getenv('MERCHANT_TOKEN'));
     define('PAYEE_ID', getenv('PAYEE_ID'));
     define('VERSION', getenv('VERSION'));
+    define('SwedbankPay\\Api\\Client\\VERSION', VERSION);
 } else {
     // Load config
     if (file_exists(__DIR__ . '/config.local.ini')) {
@@ -31,10 +32,17 @@ if (getenv('MERCHANT_TOKEN') && getenv('PAYEE_ID') && getenv('VERSION')) {
     define('MERCHANT_TOKEN', $config['merchant_token']);
     define('PAYEE_ID', $config['payee_id']);
 
-    $data = json_decode(file_get_contents(__DIR__ . '../composer.json'), true);
+    // phpcs:disable
+    $data = json_decode(file_get_contents(__DIR__ . '/../composer.json'), true);
+    // phpcs:enable
+
     if (isset($data['version'])) {
         define('VERSION', $data['version']);
-    } else {
+    } elseif (isset($config['version'])) {
         define('VERSION', $config['version']);
+    }
+
+    if (defined('VERSION') && VERSION != '<version>') {
+        define('SwedbankPay\\Api\\Client\\VERSION', VERSION);
     }
 }

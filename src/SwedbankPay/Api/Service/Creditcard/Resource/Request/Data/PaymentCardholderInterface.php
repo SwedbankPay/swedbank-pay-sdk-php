@@ -1,18 +1,13 @@
 <?php
 
-namespace SwedbankPay\Api\Service\Paymentorder\Resource\Data;
+namespace SwedbankPay\Api\Service\Creditcard\Resource\Request\Data;
 
-use SwedbankPay\Api\Service\Consumer\Resource\ConsumerAddress;
 use SwedbankPay\Api\Service\Data\ResourceInterface;
 
-/**
- * Payment order payer interface
- *
- * @api
- */
-interface PaymentorderPayerInterface extends ResourceInterface
+interface PaymentCardholderInterface extends ResourceInterface
 {
-    const CONSUMER_PROFILE_REF = 'consumer_profile_ref';
+    const FIRST_NAME = 'first_name';
+    const LAST_NAME = 'last_name';
     const EMAIL = 'email';
     const MSISDN = 'msisdn';
     const WORK_PHONE_NUMBER = 'work_phone_number';
@@ -22,13 +17,24 @@ interface PaymentorderPayerInterface extends ResourceInterface
     /**
      * @return string
      */
-    public function getConsumerProfileRef();
+    public function getFirstName();
 
     /**
-     * @param string $consumerProfileRef
+     * @param string $firstName
      * @return $this
      */
-    public function setConsumerProfileRef($consumerProfileRef);
+    public function setFirstName($firstName);
+
+    /**
+     * @return string
+     */
+    public function getLastName();
+
+    /**
+     * @param string $lastName
+     * @return $this
+     */
+    public function setLastName($lastName);
 
     /**
      * @return string
@@ -75,12 +81,12 @@ interface PaymentorderPayerInterface extends ResourceInterface
     public function setHomePhoneNumber($homePhoneNumber);
 
     /**
-     * @return ConsumerAddress
+     * @return CardholderShippingAddressInterface
      */
     public function getShippingAddress();
 
     /**
-     * @param ConsumerAddress $shippingAddress
+     * @param CardholderShippingAddressInterface $shippingAddress
      * @return mixed
      */
     public function setShippingAddress($shippingAddress);

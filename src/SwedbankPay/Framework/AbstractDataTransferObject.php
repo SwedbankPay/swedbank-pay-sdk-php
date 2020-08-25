@@ -43,6 +43,6 @@ abstract class AbstractDataTransferObject extends AbstractSimpleDataObject imple
         $data = $this->helper->camelCaseArrayKeys($this->__toArray());
         $data = $this->helper->reIndex($data);
 
-        return json_encode($data, JSON_PRETTY_PRINT);
+        return json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
     }
 }

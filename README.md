@@ -5,15 +5,16 @@
 [![Total Downloads][downloads-badge]][packagist]
 [![Codecov][codecov-badge]][codecov]
 [![License][license-badge]][packagist]
+[![Dependabot Status][dependabot-badge]][dependabot]
 
 [![Swedbank Pay SDK for PHP][og-image]][packagist]
 
 ## About
 
-**IMPORTANT**: This SDK is at an early stage and not yet used in production.
-We do not offer support for this version, but will release supported versions
-in the future. Feel free to play around, but for full functionality and support,
-please wait for the supported, stable release.
+**UNSUPPORTED**: This SDK is at an early stage of development and is not
+supported as of yet by Swedbank Pay. It is provided as a convenience to speed
+up your development, so please feel free to play around. However, if you need
+support, please wait for a future, stable release.
 
 The Swedbank Pay SDK for PHP simplifies integrations against
 [Swedbank Pay's API Platform][api] by providing native PHP interface towards
@@ -62,4 +63,6 @@ composer require swedbank-pay/swedbank-pay-sdk-php
   [packagist]:        https://packagist.org/packages/swedbank-pay/swedbank-pay-sdk-php
   [codecov]:          https://codecov.io/gh/SwedbankPay/swedbank-pay-sdk-php
   [codecov-badge]:    https://codecov.io/gh/SwedbankPay/swedbank-pay-sdk-php/branch/master/graph/badge.svg
+  [dependabot]:       https://dependabot.com
+  [dependabot-badge]: https://api.dependabot.com/badges/status?host=github&repo=SwedbankPay/swedbank-pay-sdk-php
   [og-image]:         https://repository-images.githubusercontent.com/211837579/156c6000-53ed-11ea-8927-782b8067996f
