@@ -41,7 +41,7 @@ class MobilePayPaymentTest extends TestCase
         $prefillInfo->setMsisdn('+45739000001');
 
         $price = new PriceItem();
-        $price->setType('Visa')
+        $price->setType('MobilePay')
             ->setAmount(1500)
             ->setVatAmount(0);
 
