@@ -27,7 +27,8 @@ class TrustlyPaymentTest extends TestCase
             ->setPaymentUrl('https://example.com/perform-payment')
             ->setCallbackUrl('http://test-dummy.net/payment-callback')
             ->setLogoUrl('https://example.com/logo.png')
-            ->setTermsOfService('https://example.com/terms.pdf');
+            ->setTermsOfService('https://example.com/terms.pdf')
+            ->setHostUrls(['http://test-dummy.net', 'https://example.com']);
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
