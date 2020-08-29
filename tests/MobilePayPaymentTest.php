@@ -1,5 +1,6 @@
 <?php
 
+use SwedbankPay\Api\Client\Client;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
 use SwedbankPay\Api\Service\MobilePay\Request\Purchase;
@@ -18,6 +19,24 @@ class MobilePayPaymentTest extends TestCase
     protected $purchaseRequest;
     protected $authorizationRequest;
 
+    protected function setUp(): void
+    {
+        if (!defined('MERCHANT_TOKEN_MOBILEPAY') ||
+            MERCHANT_TOKEN_MOBILEPAY === '<merchant_token>') {
+            $this->fail('MERCHANT_TOKEN_MOBILEPAY not configured in INI file or environment variable.');
+        }
+
+        if (!defined('PAYEE_ID_MOBILEPAY') ||
+            PAYEE_ID_MOBILEPAY === '<payee_id>') {
+            $this->fail('PAYEE_ID_MOBILEPAY not configured in INI file or environment variable.');
+        }
+
+        $this->client = new Client();
+        $this->client->setMerchantToken(MERCHANT_TOKEN_MOBILEPAY)
+            ->setPayeeId(PAYEE_ID_MOBILEPAY)
+            ->setMode(Client::MODE_TEST);
+    }
+
     /**
      * @throws \SwedbankPay\Api\Client\Exception
      */
@@ -30,7 +49,7 @@ class MobilePayPaymentTest extends TestCase
             ->setHostUrls(['https://test-dummy.net']);
 
         $payeeInfo = new PaymentPayeeInfo();
-        $payeeInfo->setPayeeId(PAYEE_ID)
+        $payeeInfo->setPayeeId(PAYEE_ID_MOBILEPAY)
             ->setPayeeReference($this->generateRandomString(12))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
