@@ -148,14 +148,10 @@ class VippsPaymentTest extends TestCase
         $this->assertArrayHasKey('transaction', $result['capture']);
         $this->assertEquals('Capture', $result['capture']['transaction']['type']);
 
-        return $requestService->getPaymentId();
+        return $result['capture'];
     }
 
-    /**
-     * @depends VippsPaymentTest::testCapture
-     * @param string $paymentId
-     */
-    public function testReversal($paymentId)
+    public function testReversal()
     {
         $transactionData = new TransactionReversal();
         $transactionData->setAmount(100)
@@ -168,7 +164,7 @@ class VippsPaymentTest extends TestCase
 
         $requestService = new CreateReversal($transaction);
         $requestService->setClient($this->client);
-        $requestService->setPaymentId($paymentId);
+        $requestService->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -185,6 +181,8 @@ class VippsPaymentTest extends TestCase
         $this->assertArrayHasKey('reversal', $result);
         $this->assertArrayHasKey('transaction', $result['reversal']);
         $this->assertEquals('Reversal', $result['reversal']['transaction']['type']);
+
+        return $result['reversal'];
     }
 
     public function testCancellation()
@@ -218,6 +216,8 @@ class VippsPaymentTest extends TestCase
         $this->assertArrayHasKey('cancellation', $result);
         $this->assertArrayHasKey('transaction', $result['cancellation']);
         $this->assertEquals('Cancellation', $result['cancellation']['transaction']['type']);
+
+        return $result['cancellation'];
     }
 
     public function testGetAuthorizations()
