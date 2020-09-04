@@ -11,6 +11,23 @@ use SwedbankPay\Api\Service\Payment\Resource\Request\Data\UrlInterface;
 class Url extends Resource implements UrlInterface
 {
     /**
+     * @return array
+     */
+    public function getHostUrls()
+    {
+        return $this->offsetGet(self::HOST_URLS);
+    }
+
+    /**
+     * @param array $hostUrls
+     * @return $this
+     */
+    public function setHostUrls($hostUrls)
+    {
+        return $this->offsetSet(self::HOST_URLS, $hostUrls);
+    }
+
+    /**
      * @return string
      */
     public function getCompleteUrl()
