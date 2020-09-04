@@ -1,5 +1,6 @@
 <?php
 
+use SwedbankPay\Api\Client\Exception as ClientException;
 use SwedbankPay\Api\Service\Consumer\Resource\ConsumerAddress;
 use SwedbankPay\Api\Service\Invoice\Request\CreateApprovedLegalAddress;
 use SwedbankPay\Api\Service\Invoice\Request\CreateInvoice;
@@ -19,13 +20,41 @@ use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use SwedbankPay\Api\Service\Invoice\Transaction\Request\CreateAuthorization;
 use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Authorization;
 use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
+
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\CreateCapture;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\CreateReversal;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\CreateCancellation;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Capture as TransactionCapture;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Reversal as TransactionReversal;
+use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Cancellation as TransactionCancellation;
+
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\AuthorizationObject;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CaptureObject;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\ReversalObject;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CancellationObject;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionObject as TransactionObjectResponse;
+
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetAuthorizations;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetCaptures;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetReversals;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetCancellations;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetTransactions;
+
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\AuthorizationsObject;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CancellationsObject;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CapturesObject;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\ReversalsObject;
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionsObject;
+
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetAuthorization;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetCancellation;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetCapture;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetReversal;
+use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetTransaction;
 
 class InvoicePaymentTest extends TestCase
 {
-    protected $addressRequest;
-    protected $invoiceRequest;
-    protected $authorizationRequest;
-
     /**
      * @throws \SwedbankPay\Api\Client\Exception
      */
@@ -73,11 +102,11 @@ class InvoicePaymentTest extends TestCase
         $invoicePaymentObject->setInvoice($invoice);
         
 
-        $this->invoiceRequest = new CreateInvoice($invoicePaymentObject);
-        $this->invoiceRequest->setClient($this->client);
+        $invoiceRequest = new CreateInvoice($invoicePaymentObject);
+        $invoiceRequest->setClient($this->client);
 
         /** @var ResponseServiceInterface $responseService */
-        $responseService = $this->invoiceRequest->send();
+        $responseService = $invoiceRequest->send();
 
         $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
 
@@ -88,14 +117,13 @@ class InvoicePaymentTest extends TestCase
 
         $result = $responseService->getResponseData();
 
-        $this->assertTrue(is_array($result));
-        $this->assertTrue(isset($result['payment']));
-        $this->assertTrue(isset($result['operations']));
-        $this->assertTrue(($result['payment']['operation']) === 'FinancingConsumer');
-        $this->assertTrue(($result['payment']['instrument']) === 'Invoice');
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('operations', $result);
+        $this->assertEquals('FinancingConsumer', $result['payment']['operation']);
+        $this->assertEquals('Invoice', $result['payment']['instrument']);
 
-        $paymentId = str_replace('/psp/invoice/payments/', '', $result['payment']['id']);
-        return $paymentId;
+        return $result['payment']['id'];
     }
 
     /**
@@ -112,12 +140,12 @@ class InvoicePaymentTest extends TestCase
         $addresseeObject = new AddresseeObject();
         $addresseeObject->setAddressee($addressee);
 
-        $this->addressRequest = new CreateApprovedLegalAddress($addresseeObject);
-        $this->addressRequest->setClient($this->client);
-        $this->addressRequest->setRequestEndpointVars($paymentId);
+        $addressRequest = new CreateApprovedLegalAddress($addresseeObject);
+        $addressRequest->setClient($this->client);
+        $addressRequest->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
-        $responseService = $this->addressRequest->send();
+        $responseService = $addressRequest->send();
 
         $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
 
@@ -128,10 +156,10 @@ class InvoicePaymentTest extends TestCase
 
         $result = $responseService->getResponseData();
 
-        $this->assertTrue(is_array($result));
-        $this->assertTrue(isset($result['payment']));
-        $this->assertTrue(isset($result['approved_legal_address']));
-        $this->assertTrue(isset($result['approved_legal_address']['addressee']));
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('approved_legal_address', $result);
+        $this->assertArrayHasKey('addressee', $result['approved_legal_address']);
     }
 
     /**
@@ -172,12 +200,12 @@ class InvoicePaymentTest extends TestCase
                     ->setLegalAddress($legalAddressData)
                     ->setBillingAddress($billingAddressData);
 
-        $this->authorizationRequest = new CreateAuthorization($transaction);
-        $this->authorizationRequest->setClient($this->client);
-        $this->authorizationRequest->setRequestEndpointVars($paymentId);
+        $authorizationRequest = new CreateAuthorization($transaction);
+        $authorizationRequest->setClient($this->client);
+        $authorizationRequest->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
-        $responseService = $this->authorizationRequest->send();
+        $responseService = $authorizationRequest->send();
 
         $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
 
@@ -188,10 +216,433 @@ class InvoicePaymentTest extends TestCase
 
         $result = $responseService->getResponseData();
 
-        $this->assertTrue(is_array($result));
-        $this->assertTrue(isset($result['payment']));
-        $this->assertTrue(isset($result['authorization']));
-        $this->assertTrue(isset($result['authorization']['transaction']));
-        $this->assertTrue(($result['authorization']['transaction']['type']) === 'Authorization');
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('authorization', $result);
+        $this->assertArrayHasKey('transaction', $result['authorization']);
+        $this->assertEquals('Authorization', $result['authorization']['transaction']['type']);
+
+        return $result['authorization'];
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends InvoicePaymentTest::testCreateAuthorizationTransaction
+     * @param string $paymentId
+     * @param array $authorization
+     */
+    public function testCapture($paymentId, $authorization)
+    {
+        $transactionData = new TransactionCapture();
+        $transactionData->setActivity('FinancingConsumer')
+            ->setAmount(100)
+            ->setVatAmount(0)
+            ->setDescription('Test Capture')
+            ->setPayeeReference($this->generateRandomString(12))
+            ->setReceiptReference($this->generateRandomString(12))
+            ->setItemDescriptions([
+                [
+                    'amount' => 100,
+                    'description' => 'item description 1'
+                ]
+            ])
+            ->setVatSummary([
+                [
+                    'amount' => 100,
+                    'vatPercent' => 0,
+                    'vatAmount' => 0
+                ]
+            ]);
+
+        $transaction = new TransactionObject();
+        $transaction->setTransaction($transactionData);
+
+        $requestService = new CreateCapture($transaction);
+        $requestService->setClient($this->client);
+        $requestService->setPaymentId($paymentId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $requestService->send();
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var CaptureObject $responseResource */
+        $responseResource = $responseService->getResponseResource();
+        $this->assertInstanceOf(CaptureObject::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('capture', $result);
+        $this->assertArrayHasKey('transaction', $result['capture']);
+        $this->assertEquals('Capture', $result['capture']['transaction']['type']);
+
+        return $result['capture'];
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends InvoicePaymentTest::testCapture
+     * @param string $paymentId
+     * @param array $capture
+     */
+    public function testReversal($paymentId, $capture)
+    {
+        $transactionData = new TransactionReversal();
+        $transactionData->setActivity('FinancingConsumer')
+            ->setAmount(100)
+            ->setVatAmount(0)
+            ->setDescription('Test refund')
+            ->setPayeeReference($this->generateRandomString(12))
+            ->setReceiptReference($this->generateRandomString(12));
+
+        $transaction = new TransactionObject();
+        $transaction->setTransaction($transactionData);
+
+        $requestService = new CreateReversal($transaction);
+        $requestService->setClient($this->client)
+            ->setPaymentId($paymentId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $requestService->send();
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var ReversalObject $responseResource */
+        $responseResource = $responseService->getResponseResource();
+        $this->assertInstanceOf(ReversalObject::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('reversal', $result);
+        $this->assertArrayHasKey('transaction', $result['reversal']);
+        $this->assertEquals('Reversal', $result['reversal']['transaction']['type']);
+
+        return $result['reversal'];
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends InvoicePaymentTest::testCreateAuthorizationTransaction
+     * @param string $paymentId
+     * @param array $authorization
+     */
+    public function testGetAuthorizations($paymentId, $authorization)
+    {
+        $requestService = new GetAuthorizations();
+        $requestService->setClient($this->client)
+            ->setPaymentId($paymentId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $requestService->send();
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var AuthorizationsObject $responseResource */
+        $responseResource = $responseService->getResponseResource();
+        $this->assertInstanceOf(AuthorizationsObject::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('authorizations', $result);
+        $this->assertIsArray($result['authorizations']);
+
+        return $result['authorizations'];
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testGetAuthorizations
+     * @param array $authorizations
+     */
+    public function testGetAuthorization($authorizations)
+    {
+        foreach ($authorizations['authorization_list'] as $authorization) {
+            $requestService = new GetAuthorization();
+            $requestService->setClient($this->client)
+                ->setRequestEndpoint($authorization['id']);
+
+            /** @var ResponseServiceInterface $responseService */
+            $responseService = $requestService->send();
+            $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+            /** @var AuthorizationObject $responseResource */
+            $responseResource = $responseService->getResponseResource();
+            $this->assertInstanceOf(AuthorizationObject::class, $responseResource);
+
+            $result = $responseService->getResponseData();
+
+            $this->assertIsArray($result);
+            $this->assertArrayHasKey('payment', $result);
+            $this->assertArrayHasKey('authorization', $result);
+            $this->assertIsArray($result['authorization']);
+            $this->assertArrayHasKey('id', $result['authorization']);
+
+            // Test the first item only
+            break;
+        }
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends InvoicePaymentTest::testCapture
+     * @param string $paymentId
+     * @param array $capture
+     */
+    public function testGetCaptures($paymentId, $capture)
+    {
+        $requestService = new GetCaptures();
+        $requestService->setClient($this->client)
+            ->setPaymentId($paymentId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $requestService->send();
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var CapturesObject $responseResource */
+        $responseResource = $responseService->getResponseResource();
+        $this->assertInstanceOf(CapturesObject::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('captures', $result);
+        $this->assertIsArray($result['captures']);
+
+        return $result['captures'];
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testGetCaptures
+     * @param array $capture
+     */
+    public function testGetCapture($capture)
+    {
+        foreach ($capture['capture_list'] as $sale) {
+            $requestService = new GetCapture();
+            $requestService->setClient($this->client)
+                ->setRequestEndpoint($sale['id']);
+
+            /** @var ResponseServiceInterface $responseService */
+            $responseService = $requestService->send();
+            $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+            /** @var CaptureObject $responseResource */
+            $responseResource = $responseService->getResponseResource();
+            $this->assertInstanceOf(CaptureObject::class, $responseResource);
+
+            $result = $responseService->getResponseData();
+
+            $this->assertIsArray($result);
+            $this->assertArrayHasKey('payment', $result);
+            $this->assertArrayHasKey('capture', $result);
+            $this->assertIsArray($result['capture']);
+            $this->assertArrayHasKey('id', $result['capture']);
+
+            // Test the first item only
+            break;
+        }
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends InvoicePaymentTest::testReversal
+     * @param string $paymentId
+     * @param array $reversal
+     */
+    public function testGetReversals($paymentId, $reversal)
+    {
+        $requestService = new GetReversals();
+        $requestService->setClient($this->client)
+            ->setPaymentId($paymentId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $requestService->send();
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var ReversalsObject $responseResource */
+        $responseResource = $responseService->getResponseResource();
+        $this->assertInstanceOf(ReversalsObject::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('reversals', $result);
+        $this->assertIsArray($result['reversals']);
+
+        return $result['reversals'];
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testGetReversals
+     * @param array $reversals
+     */
+    public function testGetReversal($reversals)
+    {
+        foreach ($reversals['reversal_list'] as $reversal) {
+            $requestService = new GetReversal();
+            $requestService->setClient($this->client)
+                ->setRequestEndpoint($reversal['id']);
+
+            /** @var ResponseServiceInterface $responseService */
+            $responseService = $requestService->send();
+            $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+            /** @var ReversalObject $responseResource */
+            $responseResource = $responseService->getResponseResource();
+            $this->assertInstanceOf(ReversalObject::class, $responseResource);
+
+            $result = $responseService->getResponseData();
+
+            $this->assertIsArray($result);
+            $this->assertArrayHasKey('payment', $result);
+            $this->assertArrayHasKey('reversal', $result);
+            $this->assertIsArray($result['reversal']);
+            $this->assertArrayHasKey('id', $result['reversal']);
+
+            // Test the first item only
+            break;
+        }
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @param string $paymentId
+     */
+    public function testGetTransactions($paymentId)
+    {
+        $requestService = new GetTransactions();
+        $requestService->setClient($this->client)
+            ->setPaymentId($paymentId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $requestService->send();
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var TransactionsObject $responseResource */
+        $responseResource = $responseService->getResponseResource();
+        $this->assertInstanceOf(TransactionsObject::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('transactions', $result);
+        $this->assertIsArray($result['transactions']);
+
+        return $result['transactions'];
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testGetTransactions
+     * @param array $transactions
+     */
+    public function testGetTransaction($transactions)
+    {
+        foreach ($transactions['transaction_list'] as $transaction) {
+            $requestService = new GetTransaction();
+            $requestService->setClient($this->client)
+                ->setRequestEndpoint($transaction['id']);
+
+            /** @var ResponseServiceInterface $responseService */
+            $responseService = $requestService->send();
+            $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+            /** @var TransactionObjectResponse $responseResource */
+            $responseResource = $responseService->getResponseResource();
+            $this->assertInstanceOf(TransactionObjectResponse::class, $responseResource);
+
+            $result = $responseService->getResponseData();
+
+            $this->assertIsArray($result);
+            $this->assertArrayHasKey('payment', $result);
+            $this->assertArrayHasKey('transaction', $result);
+            $this->assertIsArray($result['transaction']);
+            $this->assertArrayHasKey('id', $result['transaction']);
+            $this->assertArrayHasKey('created', $result['transaction']);
+            $this->assertArrayHasKey('updated', $result['transaction']);
+            $this->assertArrayHasKey('type', $result['transaction']);
+            $this->assertArrayHasKey('state', $result['transaction']);
+            $this->assertArrayHasKey('number', $result['transaction']);
+            $this->assertArrayHasKey('amount', $result['transaction']);
+            $this->assertArrayHasKey('vat_amount', $result['transaction']);
+            $this->assertArrayHasKey('description', $result['transaction']);
+            $this->assertArrayHasKey('payee_reference', $result['transaction']);
+            $this->assertArrayHasKey('is_operational', $result['transaction']);
+            $this->assertArrayHasKey('operations', $result['transaction']);
+
+            // Test the first item only
+            break;
+        }
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @param string $paymentId
+     */
+    public function testGetCancellations($paymentId)
+    {
+        $this->expectException(ClientException::class);
+
+        $requestService = new GetCancellations();
+        $requestService->setClient($this->client)
+            ->setPaymentId($paymentId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $requestService->send();
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var CancellationsObject $responseResource */
+        $responseResource = $responseService->getResponseResource();
+        $this->assertInstanceOf(CancellationsObject::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('cancellations', $result);
+        $this->assertIsArray($result['cancellations']);
+
+        return $result['cancellations'];
+    }
+
+    /**
+     * @depends InvoicePaymentTest::testGetCancellations
+     * @param array $cancellations
+     */
+    public function testGetCancellation($cancellations)
+    {
+        if (!$cancellations) {
+            $this->assertEquals(null, $cancellations);
+            return;
+        }
+
+        foreach ($cancellations['cancellation_list'] as $cancellation) {
+            $requestService = new GetCancellation();
+            $requestService->setClient($this->client)
+                ->setRequestEndpoint($cancellation['id']);
+
+            /** @var ResponseServiceInterface $responseService */
+            $responseService = $requestService->send();
+            $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+            /** @var CancellationObject $responseResource */
+            $responseResource = $responseService->getResponseResource();
+            $this->assertInstanceOf(CancellationObject::class, $responseResource);
+
+            $result = $responseService->getResponseData();
+
+            $this->assertIsArray($result);
+            $this->assertArrayHasKey('payment', $result);
+            $this->assertArrayHasKey('cancellation', $result);
+            $this->assertIsArray($result['cancellation']);
+            $this->assertArrayHasKey('id', $result['cancellation']);
+
+            // Test the first item only
+            break;
+        }
     }
 }

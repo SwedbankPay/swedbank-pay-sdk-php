@@ -112,4 +112,13 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $response = $purchaseRequest->send();
         return $response;
     }
+
+    /**
+     * Get Payment Id from url
+     * @param string $url
+     * @return string
+     */
+    protected function getPaymentIdFromUrl($url) {
+        return preg_replace('|/psp/[^/]+/payments/|', '', $url);
+    }
 }

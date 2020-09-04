@@ -7,8 +7,6 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\Response\Data\GetPaymentsInter
 
 class PaymentsRequestTest extends TestCase
 {
-    protected $paymentsRequest;
-
     /**
      * @throws \SwedbankPay\Api\Client\Exception
      */
@@ -16,12 +14,12 @@ class PaymentsRequestTest extends TestCase
     {
         $paymentId = $this->getPaymentOrderId();
 
-        $this->paymentsRequest = new GetPayments();
-        $this->paymentsRequest->setRequestEndpoint($paymentId)
+        $paymentsRequest = new GetPayments();
+        $paymentsRequest->setRequestEndpoint($paymentId)
             ->setClient($this->client);
 
         /** @var ResponseServiceInterface $responseService */
-        $responseService = $this->paymentsRequest->send();
+        $responseService = $paymentsRequest->send();
 
         $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
 
@@ -32,7 +30,7 @@ class PaymentsRequestTest extends TestCase
 
         $result = $responseService->getResponseData();
 
-        $this->assertTrue(is_array($result));
-        $this->assertTrue(isset($result['payment_order']));
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment_order', $result);
     }
 }
