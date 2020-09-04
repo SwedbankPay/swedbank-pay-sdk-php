@@ -261,6 +261,8 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
     /**
      * @return ResponseInterface
      * @throws ClientException
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function send()
     {
@@ -289,7 +291,7 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
             /** @var ResponseInterface $response */
             $response = new Response($this, $responseBody);
 
-            // Operations
+            // Check fields
             if (in_array(
                 $this->getOperationRel(),
                 [
@@ -314,30 +316,29 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
                     $this->setRequestEndpoint($responseData['payment'][$this->getOperationRel()]['id']);
                 } elseif (isset($responseData['payment_order'][$this->getOperationRel()])) {
                     $this->setRequestEndpoint($responseData['payment_order'][$this->getOperationRel()]['id']);
-                } else {
-                    throw new ClientException(sprintf('Operation %s is unavailable', $this->getOperationRel()));
-                }
-            } else {
-                // Apply operation options
-                $operation = $response->getOperationByRel($this->getOperationRel());
-                if (!$operation) {
-                    throw new ClientException(sprintf('Operation %s is unavailable', $this->getOperationRel()));
                 }
 
-                // Configure request
-                $this->setRequestMethod($operation['method']);
-                $this->setRequestEndpoint($operation['href']);
+                throw new ClientException(sprintf('Field %s is unavailable', $this->getOperationRel()));
+            } elseif (!$response->getOperationByRel($this->getOperationRel())) {
+                throw new ClientException(sprintf('Operation %s is unavailable', $this->getOperationRel()));
+            }
 
-                // Get rid of full url. There's should be an endpoint only.
-                if (filter_var($operation['href'], FILTER_VALIDATE_URL)) {
-                    $parsed = parse_url($operation['href']);
-                    $url = $parsed['path'];
-                    if (!empty($parsed['query'])) {
-                        $url .= '?' . $parsed['query'];
-                    }
+            // Apply operation options
+            $operation = $response->getOperationByRel($this->getOperationRel());
 
-                    $this->setRequestEndpoint($url);
+            // Configure request
+            $this->setRequestMethod($operation['method']);
+            $this->setRequestEndpoint($operation['href']);
+
+            // Get rid of full url. There's should be an endpoint only.
+            if (filter_var($operation['href'], FILTER_VALIDATE_URL)) {
+                $parsed = parse_url($operation['href']);
+                $url = $parsed['path'];
+                if (!empty($parsed['query'])) {
+                    $url .= '?' . $parsed['query'];
                 }
+
+                $this->setRequestEndpoint($url);
             }
         }
 
