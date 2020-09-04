@@ -19,6 +19,21 @@ interface RequestInterface extends SimpleDataObjectInterface
 
     const SERVICE_OPERATION = 'service_operation';
 
+    /**
+     * Endpoint of Payment Id
+     */
+    const PAYMENT_ID = 'payment_id';
+
+    /**
+     * Endpoint of Payment Order Id
+     */
+    const PAYMENT_ORDER_ID = 'payment_order_id';
+
+    /**
+     * The name of the relation the operation has to the current resource.
+     */
+    const OPERATION_REL = 'operation_rel';
+
     const RESPONSE_RESOURCE_FQCN = 'response_resource_fqcn';
 
     /**
@@ -81,6 +96,51 @@ interface RequestInterface extends SimpleDataObjectInterface
      * @return $this
      */
     public function setServiceOperation($serviceOperation);
+
+    /**
+     * Get Payment Id endpoint of payment.
+     *
+     * @return string|null
+     */
+    public function getPaymentId();
+
+    /**
+     * Set Payment Id endpoint of payment.
+     *
+     * @param string $paymentId
+     * @return $this
+     */
+    public function setPaymentId($paymentId);
+
+    /**
+     * Set Payment Order Id endpoint of payment.
+     *
+     * @param string $paymentOrderId
+     * @return $this
+     */
+    public function setPaymentOrderId($paymentOrderId);
+
+    /**
+     * Get Payment Order Id endpoint of payment.
+     *
+     * @return string|null
+     */
+    public function getPaymentOrderId();
+
+    /**
+     * Get the name of the relation the operation has to the current resource.
+     *
+     * @return string|null
+     */
+    public function getOperationRel();
+
+    /**
+     * Set the name of the relation the operation has to the current resource.
+     *
+     * @param string $operationRel
+     * @return $this
+     */
+    public function setOperationRel($operationRel);
 
     /**
      * @return string

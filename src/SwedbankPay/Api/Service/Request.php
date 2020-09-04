@@ -182,6 +182,69 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
     }
 
     /**
+     * Get Payment Id endpoint of payment.
+     *
+     * @return string|null
+     */
+    public function getPaymentId()
+    {
+        return $this->offsetGet(self::PAYMENT_ID);
+    }
+
+    /**
+     * Set Payment Id endpoint of payment.
+     *
+     * @param string $paymentId
+     * @return $this
+     */
+    public function setPaymentId($paymentId)
+    {
+        return $this->offsetSet(self::PAYMENT_ID, $paymentId);
+    }
+
+    /**
+     * Set Payment Order Id endpoint of payment.
+     *
+     * @param string $paymentOrderId
+     * @return $this
+     */
+    public function setPaymentOrderId($paymentOrderId)
+    {
+        return $this->offsetSet(self::PAYMENT_ORDER_ID, $paymentOrderId);
+    }
+
+    /**
+     * Get Payment Order Id endpoint of payment.
+     *
+     * @return string|null
+     */
+    public function getPaymentOrderId()
+    {
+        return $this->offsetGet(self::PAYMENT_ORDER_ID);
+    }
+
+    /**
+     * Get the name of the relation the operation has to the current resource.
+     *
+     * @return string|null
+     */
+    public function getOperationRel()
+    {
+        return $this->offsetGet(self::OPERATION_REL);
+    }
+
+    /**
+     * Set the name of the relation the operation has to the current resource.
+     *
+     * @param string $operationRel
+     * @return $this
+     */
+    public function setOperationRel($operationRel)
+    {
+        return $this->offsetSet(self::OPERATION_REL, $operationRel);
+    }
+
+    /**
      * @return array|null
      */
     public function getRequestData()
@@ -209,6 +272,72 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
         if (!$this->getClient()->getPayeeId() ||
             $this->getClient()->getPayeeId() === '<payee_id>') {
             throw new ClientException('PAYEE_ID not configured in INI file or environment variable.');
+        }
+
+        // Retrieve parameters of operation
+        $paymentId = $this->getPaymentId();
+        $paymentOrderId = $this->getPaymentOrderId();
+        $operationRel = $this->getOperationRel();
+        if (($paymentId || $paymentOrderId) && $operationRel) {
+            // Fetch payment info
+            $responseBody = $this->getClient()->request(
+                'GET',
+                $paymentId ? $paymentId : $paymentOrderId,
+                $this->getRequestResource()
+            )->getResponseBody();
+
+            /** @var ResponseInterface $response */
+            $response = new Response($this, $responseBody);
+
+            // Operations
+            if (in_array($this->getOperationRel(),
+                [
+                    'sales',
+                    'transactions',
+                    'verifications',
+                    'authorizations',
+                    'captures',
+                    'cancellations',
+                    'reversals',
+                    'urls',
+                    'payeeInfo',
+                    'metadata',
+                    'payer',
+                    'payments',
+                    'current_payment'
+                ]
+            ) ) {
+                // Configure request
+                $responseData = $response->getResponseData();
+                if (isset($responseData['payment'][$this->getOperationRel()])) {
+                    $this->setRequestEndpoint($responseData['payment'][$this->getOperationRel()]['id']);
+                } elseif (isset($responseData['payment_order'][$this->getOperationRel()])) {
+                    $this->setRequestEndpoint($responseData['payment_order'][$this->getOperationRel()]['id']);
+                } else {
+                    throw new ClientException(sprintf('Operation %s is unavailable', $this->getOperationRel()));
+                }
+            } else {
+                // Apply operation options
+                $operation = $response->getOperationByRel($this->getOperationRel());
+                if (!$operation) {
+                    throw new ClientException(sprintf('Operation %s is unavailable', $this->getOperationRel()));
+                }
+
+                // Configure request
+                $this->setRequestMethod($operation['method']);
+                $this->setRequestEndpoint($operation['href']);
+
+                // Get rid of full url. There's should be an endpoint only.
+                if (filter_var($operation['href'], FILTER_VALIDATE_URL)) {
+                    $parsed = parse_url($operation['href']);
+                    $url = $parsed['path'];
+                    if (!empty($parsed['query'])) {
+                        $url .= '?' . $parsed['query'];
+                    }
+
+                    $this->setRequestEndpoint($url);
+                }
+            }
         }
 
         try {
