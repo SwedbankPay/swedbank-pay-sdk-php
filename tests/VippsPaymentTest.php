@@ -11,8 +11,6 @@ use SwedbankPay\Api\Service\Vipps\Resource\Request\Payment;
 use SwedbankPay\Api\Service\Vipps\Resource\Request\VippsPaymentObject;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\CreateAuthorization;
-use SwedbankPay\Api\Service\Vipps\Transaction\Resource\Request\TransactionAuthorization;
 use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
 use SwedbankPay\Api\Service\Vipps\Transaction\Request\CreateCapture;
@@ -117,43 +115,6 @@ class VippsPaymentTest extends TestCase
         $this->assertEquals('Vipps', $result['payment']['instrument']);
 
         return $this->getPaymentIdFromUrl($result['payment']['id']);
-    }
-
-    /**
-     * @depends VippsPaymentTest::testPurchaseRequest
-     * @param string $paymentId
-     * @throws \SwedbankPay\Api\Client\Exception
-     */
-    public function testCreateAuthorizationTransaction($paymentId)
-    {
-        $transactionData = new TransactionAuthorization();
-        $transactionData->setMsisdn('+4759212345');
-
-        $transaction = new TransactionObject();
-        $transaction->setTransaction($transactionData);
-
-        $authorizationRequest = new CreateAuthorization($transaction);
-        $authorizationRequest->setClient($this->client);
-        $authorizationRequest->setRequestEndpointVars($paymentId);
-
-        /** @var ResponseServiceInterface $responseService */
-        $responseService = $authorizationRequest->send();
-
-        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
-
-        /** @var ResponseResourceInterface $response */
-        $responseResource = $responseService->getResponseResource();
-
-        $this->assertInstanceOf(ResponseResourceInterface::class, $responseResource);
-
-        $result = $responseService->getResponseData();
-
-        $this->assertIsArray($result);
-        $this->assertArrayHasKey('payment', $result);
-        $this->assertArrayHasKey('authorization', $result);
-        $this->assertArrayHasKey('transaction', $result['authorization']);
-        $this->assertArrayHasKey('type', $result['authorization']['transaction']);
-        $this->assertEquals('Authorization', $result['authorization']['transaction']['type']);
     }
 
     public function testCapture()
