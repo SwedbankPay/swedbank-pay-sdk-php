@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-interface ReversalsObjectInterface extends TransactionsResponseInterface
+interface ReversalsObjectInterface
 {
     const REVERSALS = 'reversals';
 
