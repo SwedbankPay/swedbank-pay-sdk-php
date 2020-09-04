@@ -290,7 +290,8 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
             $response = new Response($this, $responseBody);
 
             // Operations
-            if (in_array($this->getOperationRel(),
+            if (in_array(
+                $this->getOperationRel(),
                 [
                     'sales',
                     'transactions',
@@ -306,7 +307,7 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
                     'payments',
                     'current_payment'
                 ]
-            ) ) {
+            )) {
                 // Configure request
                 $responseData = $response->getResponseData();
                 if (isset($responseData['payment'][$this->getOperationRel()])) {
