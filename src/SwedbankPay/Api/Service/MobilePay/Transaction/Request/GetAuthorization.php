@@ -2,6 +2,7 @@
 
 namespace SwedbankPay\Api\Service\MobilePay\Transaction\Request;
 
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\AuthorizationObject;
 use SwedbankPay\Api\Service\Request;
 
 class GetAuthorization extends Request
@@ -10,5 +11,6 @@ class GetAuthorization extends Request
     {
         $this->setRequestMethod('GET');
         $this->setRequestEndpoint('/psp/mobilepay/payments/%s/authorizations/%s');
+        $this->setResponseResourceFQCN(AuthorizationObject::class);
     }
 }

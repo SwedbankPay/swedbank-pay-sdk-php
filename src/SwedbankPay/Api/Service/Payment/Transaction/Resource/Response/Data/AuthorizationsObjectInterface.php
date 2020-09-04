@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-interface AuthorizationsObjectInterface extends TransactionsResponseInterface
+interface AuthorizationsObjectInterface
 {
     const AUTHORIZATIONS = 'authorizations';
 
