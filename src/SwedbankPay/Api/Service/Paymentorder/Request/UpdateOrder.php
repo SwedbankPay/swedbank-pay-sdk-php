@@ -8,6 +8,7 @@ class UpdateOrder extends Request
 {
     public function setup()
     {
+        //$this->setOperationRel('update-paymentorder-updateorder');
         $this->setRequestMethod('PATCH');
         $this->setRequestEndpoint('/psp/paymentorders/%s');
         $this->setServiceOperation('UpdateOrder');

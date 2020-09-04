@@ -9,6 +9,8 @@ class GetCurrentPayment extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
+        $this->setOperationRel('current_payment');
+
         $this->setRequestEndpoint('/psp/paymentorders/%s/currentpayment');
     }
 }

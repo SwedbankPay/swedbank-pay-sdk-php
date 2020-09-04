@@ -2,6 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Vipps\Transaction\Request;
 
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CaptureObject;
 use SwedbankPay\Api\Service\Request;
 
 class GetCapture extends Request
@@ -9,6 +10,7 @@ class GetCapture extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/vippsv1/payments/%s/captures/%s');
+        $this->setRequestEndpoint('/psp/vipps/payments/%s/captures/%s');
+        $this->setResponseResourceFQCN(CaptureObject::class);
     }
 }

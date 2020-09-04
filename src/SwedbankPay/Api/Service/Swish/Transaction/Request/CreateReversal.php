@@ -9,8 +9,10 @@ class CreateReversal extends Request
 {
     public function setup()
     {
+        $this->setOperationRel('create-reversal');
+        $this->setResponseResourceFQCN(ReversalObject::class);
+
         $this->setRequestMethod('POST');
         $this->setRequestEndpoint('/psp/swish/payments/%s/reversals');
-        $this->setResponseResourceFQCN(ReversalObject::class);
     }
 }

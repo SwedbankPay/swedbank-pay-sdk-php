@@ -9,6 +9,8 @@ class GetPayments extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
+        $this->setOperationRel('payments');
+
         $this->setRequestEndpoint('/psp/paymentorders/%s/payments');
     }
 }

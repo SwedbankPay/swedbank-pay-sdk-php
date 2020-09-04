@@ -10,7 +10,9 @@ class GetReversals extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/creditcard/payments/%s/reversals');
+        $this->setOperationRel('reversals');
         $this->setResponseResourceFQCN(ReversalsObject::class);
+
+        $this->setRequestEndpoint('/psp/creditcard/payments/%s/reversals');
     }
 }

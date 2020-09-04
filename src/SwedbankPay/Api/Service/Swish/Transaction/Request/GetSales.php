@@ -10,7 +10,9 @@ class GetSales extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/swish/payments/%s/sales');
+        $this->setOperationRel('sales');
         $this->setResponseResourceFQCN(SalesObject::class);
+
+        $this->setRequestEndpoint('/psp/swish/payments/%s/sales');
     }
 }

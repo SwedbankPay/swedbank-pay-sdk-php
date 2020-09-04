@@ -9,8 +9,10 @@ class CreateCapture extends Request
 {
     public function setup()
     {
+        $this->setOperationRel('create-capture');
+        $this->setResponseResourceFQCN(CaptureObject::class);
+
         $this->setRequestMethod('POST');
         $this->setRequestEndpoint('/psp/creditcard/payments/%s/captures');
-        $this->setResponseResourceFQCN(CaptureObject::class);
     }
 }

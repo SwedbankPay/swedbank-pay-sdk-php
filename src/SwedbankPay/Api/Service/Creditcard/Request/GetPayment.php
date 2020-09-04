@@ -10,7 +10,10 @@ class GetPayment extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/creditcard/payments/%s');
         $this->setResponseResourceFQCN(PaymentObject::class);
+
+        if (!$this->getPaymentId()) {
+            $this->setRequestEndpoint('/psp/creditcard/payments/%s');
+        }
     }
 }
