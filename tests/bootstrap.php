@@ -16,6 +16,7 @@ if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
 
 require_once __DIR__ . '/TestCase.php';
 
+// phpcs:disable
 if (getenv('MERCHANT_TOKEN') && getenv('PAYEE_ID') && getenv('VERSION')) {
     define('MERCHANT_TOKEN', getenv('MERCHANT_TOKEN'));
     define('PAYEE_ID', getenv('PAYEE_ID'));
@@ -26,6 +27,7 @@ if (getenv('MERCHANT_TOKEN') && getenv('PAYEE_ID') && getenv('VERSION')) {
         define('MERCHANT_TOKEN_MOBILEPAY', getenv('MERCHANT_TOKEN_MOBILEPAY'));
         define('PAYEE_ID_MOBILEPAY', getenv('PAYEE_ID_MOBILEPAY'));
     }
+    // phpcs:enable
 } else {
     // Load config
     if (file_exists(__DIR__ . '/config.local.ini')) {

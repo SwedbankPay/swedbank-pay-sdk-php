@@ -1,5 +1,6 @@
 <?php
 
+// phpcs:disable
 use SwedbankPay\Api\Client\Client;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
@@ -45,22 +46,28 @@ use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CancellationsO
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CapturesObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\ReversalsObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionsObject;
+// phpcs:enable
 
+// phpcs:ignore
 class MobilePayPaymentTest extends TestCase
 {
     protected $paymentId = '/psp/mobilepay/payments/39465757-14e6-481c-a5c7-08d8509a065a';
 
     protected function setUp(): void
     {
+        // phpcs:disable
         if (!defined('MERCHANT_TOKEN_MOBILEPAY') ||
             MERCHANT_TOKEN_MOBILEPAY === '<merchant_token>') {
             $this->fail('MERCHANT_TOKEN_MOBILEPAY not configured in INI file or environment variable.');
         }
+        // phpcs:enable
 
+        // phpcs:disable
         if (!defined('PAYEE_ID_MOBILEPAY') ||
             PAYEE_ID_MOBILEPAY === '<payee_id>') {
             $this->fail('PAYEE_ID_MOBILEPAY not configured in INI file or environment variable.');
         }
+        // phpcs:enable
 
         $this->client = new Client();
         $this->client->setMerchantToken(MERCHANT_TOKEN_MOBILEPAY)
@@ -111,11 +118,11 @@ class MobilePayPaymentTest extends TestCase
             ->setPrices($prices)
             ->setPayerReference(uniqid());
 
-        $mobilePayPaymentObject = new PaymentObject();
-        $mobilePayPaymentObject->setPayment($payment);
-        $mobilePayPaymentObject->setShoplogoUrl('https://test-dummy.net/logo.png');
+        $paymentObject = new PaymentObject();
+        $paymentObject->setPayment($payment)
+            ->setShoplogoUrl('https://test-dummy.net/logo.png');
 
-        $purchaseRequest = new Purchase($mobilePayPaymentObject);
+        $purchaseRequest = new Purchase($paymentObject);
         $purchaseRequest->setClient($this->client);
 
         /** @var ResponseServiceInterface $responseService */
@@ -145,6 +152,8 @@ class MobilePayPaymentTest extends TestCase
      */
     public function testCapture($paymentId)
     {
+        $this->assertIsString($paymentId);
+
         $transactionData = new TransactionCapture();
         $transactionData->setAmount(100)
             ->setVatAmount(0)
@@ -186,6 +195,9 @@ class MobilePayPaymentTest extends TestCase
      */
     public function testReversal($paymentId, $capture)
     {
+        $this->assertIsString($paymentId);
+        $this->assertIsArray($capture);
+
         $transactionData = new TransactionReversal();
         $transactionData->setAmount(100)
             ->setVatAmount(0)
