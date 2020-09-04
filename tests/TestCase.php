@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Client\Client;
 use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderObject;
@@ -109,8 +110,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $purchaseRequest = new Purchase($paymentOrderObject);
         $purchaseRequest->setClient($this->client);
 
-        $response = $purchaseRequest->send();
-        return $response;
+        return $purchaseRequest->send();
     }
 
     /**

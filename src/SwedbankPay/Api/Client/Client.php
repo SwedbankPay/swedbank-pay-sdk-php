@@ -554,17 +554,23 @@ class Client extends ClientResource
     {
         // If SSL_CERT_FILE env variable points to a valid certificate/bundle, use that.
         // This mimics how OpenSSL uses the SSL_CERT_FILE env variable.
+        // phpcs:ignore
         $caPath = getenv('SSL_CERT_FILE');
+        // phpcs:ignore
         if (is_readable($caPath)) {
             return $caPath;
         }
 
+        // phpcs:ignore
         $caPath = ini_get('curl.cainfo');
+        // phpcs:ignore
         if (is_readable($caPath)) {
             return $caPath;
         }
 
+        // phpcs:ignore
         $caPath = ini_get('openssl.cafile');
+        // phpcs:ignore
         if (is_readable($caPath)) {
             return $caPath;
         }
@@ -604,6 +610,7 @@ class Client extends ClientResource
         ];
 
         foreach ($caBundlePaths as $caPath) {
+            // phpcs:ignore
             if (is_readable($caPath)) {
                 return $caPath;
             }

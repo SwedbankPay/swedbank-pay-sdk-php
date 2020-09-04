@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;

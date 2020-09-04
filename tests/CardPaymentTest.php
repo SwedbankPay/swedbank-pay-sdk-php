@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Service\Creditcard\Request\Purchase;
 use SwedbankPay\Api\Service\Creditcard\Request\Verify;

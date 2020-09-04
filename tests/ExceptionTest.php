@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Client\Exception as ClientException;
 
@@ -10,6 +11,6 @@ class ExceptionTest extends TestCase
 
         // Set empty token
         $this->client->setMerchantToken('');
-        $this->client->request('POST', '/psp/creditcard/payments', array());
+        $this->client->request('POST', '/psp/creditcard/payments', []);
     }
 }

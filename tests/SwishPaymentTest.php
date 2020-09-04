@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Client\Exception as ClientException;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
@@ -156,7 +157,9 @@ class SwishPaymentTest extends TestCase
         $attempts = 0;
 
         do {
+            // phpcs:disable
             sleep(5);
+            // phpcs:enable
             if ($attempts >= 10) {
                 $this->fail('Swish sale has been failed.');
                 return;
@@ -289,6 +292,8 @@ class SwishPaymentTest extends TestCase
      */
     public function testGetReversals($paymentId, $reversal)
     {
+        $this->assertIsArray($reversal);
+
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
             ->setPaymentId($paymentId);

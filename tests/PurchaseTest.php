@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
@@ -110,13 +111,6 @@ class PurchaseTest extends TestCase
         $this->assertInstanceOf(ResponseResourceInterface::class, $responseResource);
 
         $result = $responseService->getResponseData();
-
-        $this->assertTrue(is_array($result));
-        $this->assertTrue(isset($result['payment_order']));
-        $this->assertTrue(isset($result['payment_order']['items']));
-        $this->assertTrue(isset($result['payment_order']['order_items']));
-        $this->assertTrue(isset($result['operations']));
-        $this->assertTrue(($result['payment_order']['operation']) === 'Purchase');
 
         $this->assertIsArray($result);
         $this->assertArrayHasKey('payment_order', $result);

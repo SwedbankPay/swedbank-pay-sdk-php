@@ -233,6 +233,8 @@ class InvoicePaymentTest extends TestCase
      */
     public function testCapture($paymentId, $authorization)
     {
+        $this->assertIsArray($authorization);
+
         $transactionData = new TransactionCapture();
         $transactionData->setActivity('FinancingConsumer')
             ->setAmount(100)
@@ -288,6 +290,8 @@ class InvoicePaymentTest extends TestCase
      */
     public function testReversal($paymentId, $capture)
     {
+        $this->assertIsArray($capture);
+
         $transactionData = new TransactionReversal();
         $transactionData->setActivity('FinancingConsumer')
             ->setAmount(100)
@@ -330,6 +334,8 @@ class InvoicePaymentTest extends TestCase
      */
     public function testGetAuthorizations($paymentId, $authorization)
     {
+        $this->assertIsArray($authorization);
+
         $requestService = new GetAuthorizations();
         $requestService->setClient($this->client)
             ->setPaymentId($paymentId);
@@ -392,6 +398,8 @@ class InvoicePaymentTest extends TestCase
      */
     public function testGetCaptures($paymentId, $capture)
     {
+        $this->assertIsArray($capture);
+
         $requestService = new GetCaptures();
         $requestService->setClient($this->client)
             ->setPaymentId($paymentId);
@@ -454,6 +462,8 @@ class InvoicePaymentTest extends TestCase
      */
     public function testGetReversals($paymentId, $reversal)
     {
+        $this->assertIsArray($reversal);
+
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
             ->setPaymentId($paymentId);

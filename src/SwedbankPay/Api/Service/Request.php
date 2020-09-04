@@ -333,7 +333,9 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
 
                 // Get rid of full url. There's should be an endpoint only.
                 if (filter_var($operation['href'], FILTER_VALIDATE_URL)) {
+                    // phpcs:disable
                     $parsed = parse_url($operation['href']);
+                    // phpcs:enable
                     $url = $parsed['path'];
                     if (!empty($parsed['query'])) {
                         $url .= '?' . $parsed['query'];
