@@ -2,6 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Trustly\Transaction\Request;
 
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\ReversalObject;
 use SwedbankPay\Api\Service\Request;
 
 class GetReversal extends Request
@@ -10,5 +11,6 @@ class GetReversal extends Request
     {
         $this->setRequestMethod('GET');
         $this->setRequestEndpoint('/psp/trustly/payments/%s/reversals/%s');
+        $this->setResponseResourceFQCN(ReversalObject::class);
     }
 }
