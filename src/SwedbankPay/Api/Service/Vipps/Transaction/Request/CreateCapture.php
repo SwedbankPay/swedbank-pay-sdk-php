@@ -11,8 +11,5 @@ class CreateCapture extends Request
     {
         $this->setOperationRel('create-capture');
         $this->setResponseResourceFQCN(CaptureObject::class);
-
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/vipps/payments/%s/captures');
     }
 }

@@ -11,8 +11,5 @@ class TransactionCapture extends Request
     {
         $this->setOperationRel('create-paymentorder-capture');
         $this->setResponseResourceFQCN(TransactionCaptureResponse::class);
-
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/paymentorders/%s/captures');
     }
 }

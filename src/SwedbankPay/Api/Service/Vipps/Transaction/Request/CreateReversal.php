@@ -11,8 +11,5 @@ class CreateReversal extends Request
     {
         $this->setOperationRel('create-reversal');
         $this->setResponseResourceFQCN(ReversalObject::class);
-
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/vipps/payments/%s/reversals');
     }
 }

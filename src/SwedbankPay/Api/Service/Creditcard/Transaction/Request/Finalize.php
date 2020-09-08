@@ -10,7 +10,6 @@ class Finalize extends Request
     public function setup()
     {
         $this->setRequestMethod('PATCH');
-        $this->setRequestEndpoint('/psp/creditcard/payments/%s/authorizations/%s');
         $this->setResponseResourceFQCN(FinalizeObject::class);
     }
 }

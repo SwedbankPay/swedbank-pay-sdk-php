@@ -10,7 +10,5 @@ class GetPayments extends Request
     {
         $this->setRequestMethod('GET');
         $this->setOperationRel('payments');
-
-        $this->setRequestEndpoint('/psp/paymentorders/%s/payments');
     }
 }

@@ -388,6 +388,7 @@ class SwishPaymentTest extends TestCase
             // Value $transaction['id'] isn't url
             $requestService = new GetTransaction();
             $requestService->setClient($this->client)
+                ->setRequestEndpoint('/psp/swish/payments/%s/transactions/%s')
                 ->setRequestEndpointVars($this->getPaymentIdFromUrl($paymentId), $transaction['id']);
 
             /** @var ResponseServiceInterface $responseService */

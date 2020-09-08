@@ -11,8 +11,5 @@ class CreateCancellation extends Request
     {
         $this->setOperationRel('create-cancellation');
         $this->setResponseResourceFQCN(CancellationObject::class);
-
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/creditcard/payments/%s/cancellations');
     }
 }

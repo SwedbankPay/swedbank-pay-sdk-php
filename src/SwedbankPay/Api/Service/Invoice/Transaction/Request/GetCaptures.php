@@ -12,7 +12,5 @@ class GetCaptures extends Request
         $this->setRequestMethod('GET');
         $this->setOperationRel('captures');
         $this->setResponseResourceFQCN(CapturesObject::class);
-
-        $this->setRequestEndpoint('/psp/invoice/payments/%s/captures');
     }
 }

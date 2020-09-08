@@ -10,7 +10,6 @@ class GetCapture extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/invoice/payments/%s/captures/%s');
         $this->setResponseResourceFQCN(CaptureObject::class);
     }
 }

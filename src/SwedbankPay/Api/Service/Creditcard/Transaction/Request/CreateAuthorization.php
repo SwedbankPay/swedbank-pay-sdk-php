@@ -12,7 +12,5 @@ class CreateAuthorization extends Request
         $this->setRequestMethod('POST');
         $this->setOperationRel('authorizations');
         $this->setResponseResourceFQCN(AuthorizationObject::class);
-
-        $this->setRequestEndpoint('/psp/creditcard/payments/%s/authorizations');
     }
 }

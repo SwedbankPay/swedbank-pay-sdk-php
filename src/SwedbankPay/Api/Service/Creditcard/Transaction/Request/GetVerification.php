@@ -10,7 +10,6 @@ class GetVerification extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/creditcard/payments/%s/verifications/%s');
         $this->setResponseResourceFQCN(VerificationObject::class);
     }
 }

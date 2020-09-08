@@ -12,7 +12,5 @@ class GetTransactions extends Request
         $this->setRequestMethod('GET');
         $this->setOperationRel('transactions');
         $this->setResponseResourceFQCN(TransactionsObject::class);
-
-        $this->setRequestEndpoint('/psp/swish/payments/%s/transactions');
     }
 }

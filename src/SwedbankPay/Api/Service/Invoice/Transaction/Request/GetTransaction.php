@@ -10,7 +10,6 @@ class GetTransaction extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/invoice/payments/%s/transactions/%s');
         $this->setResponseResourceFQCN(TransactionObject::class);
     }
 }

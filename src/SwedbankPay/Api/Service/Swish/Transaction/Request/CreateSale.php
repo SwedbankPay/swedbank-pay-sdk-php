@@ -11,8 +11,5 @@ class CreateSale extends Request
     {
         $this->setOperationRel('create-sale');
         $this->setResponseResourceFQCN(SaleObjectInterface::class);
-
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/swish/payments/%s/sales');
     }
 }

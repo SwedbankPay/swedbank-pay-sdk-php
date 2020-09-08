@@ -11,8 +11,5 @@ class TransactionReversal extends Request
     {
         $this->setOperationRel('create-paymentorder-reversal');
         $this->setResponseResourceFQCN(TransactionRevResponse::class);
-
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/paymentorders/%s/reversals');
     }
 }

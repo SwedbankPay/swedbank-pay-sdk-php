@@ -11,8 +11,5 @@ class TransactionCancel extends Request
     {
         $this->setOperationRel('create-paymentorder-cancel');
         $this->setResponseResourceFQCN(TransactionCancelResponse::class);
-
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/paymentorders/%s/cancellations');
     }
 }

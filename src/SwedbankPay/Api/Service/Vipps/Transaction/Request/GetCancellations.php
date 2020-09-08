@@ -12,7 +12,5 @@ class GetCancellations extends Request
         $this->setRequestMethod('GET');
         $this->setOperationRel('cancellations');
         $this->setResponseResourceFQCN(CancellationsObject::class);
-
-        $this->setRequestEndpoint('/psp/vipps/payments/%s/cancellations');
     }
 }

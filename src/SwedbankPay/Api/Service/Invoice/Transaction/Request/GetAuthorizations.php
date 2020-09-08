@@ -12,7 +12,5 @@ class GetAuthorizations extends Request
         $this->setRequestMethod('GET');
         $this->setOperationRel('authorizations');
         $this->setResponseResourceFQCN(AuthorizationsObject::class);
-
-        $this->setRequestEndpoint('/psp/invoice/payments/%s/authorizations');
     }
 }

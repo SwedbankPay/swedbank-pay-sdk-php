@@ -11,7 +11,5 @@ class CreateAuthorization extends Request
     {
         $this->setOperationRel('create-authorization');
         $this->setResponseResourceFQCN(AuthorizationObject::class);
-
-        $this->setRequestEndpoint('/psp/invoice/payments/%s/authorizations');
     }
 }

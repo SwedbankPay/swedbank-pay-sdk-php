@@ -10,7 +10,6 @@ class GetAuthorization extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/vipps/payments/%s/authorizations/%s');
         $this->setResponseResourceFQCN(AuthorizationObject::class);
     }
 }
