@@ -343,7 +343,7 @@ class Client extends ClientResource
             "Response Body:\n%s\n\n" .
             "<<<<<<<< END PAYEX API CLIENT REQUEST DEBUG INFO <<<<<<<<\n\n",
             $this->getMethod(),
-            str_replace('%s', '*', $this->getBaseUrl() . $this->getEndpoint()),
+            $this->getBaseUrl() . $this->getEndpoint(),
             implode("\n", (array)$this->getHeaders()),
             implode("\n", (array)$this->getRequestBody()),
             "%s",
