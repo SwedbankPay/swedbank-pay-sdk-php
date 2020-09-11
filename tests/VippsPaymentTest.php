@@ -1,6 +1,5 @@
 <?php
 
-use SwedbankPay\Api\Client\Exception as ClientException;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
@@ -26,7 +25,7 @@ class VippsPaymentTest extends TestCase
      */
     public function testPurchaseRequest()
     {
-        $this->expectException(ClientException::class);
+        $this->markTestSkipped('VippsV1');
 
         $url = new PaymentUrl();
         $url->setCompleteUrl('http://test-dummy.net/payment-completed')
