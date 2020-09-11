@@ -31,7 +31,8 @@ class VippsPaymentTest extends TestCase
             ->setPaymentUrl('https://example.com/perform-payment')
             ->setCallbackUrl('http://test-dummy.net/payment-callback')
             ->setLogoUrl('https://example.com/logo.png')
-            ->setTermsOfService('https://example.com/terms.pdf');
+            ->setTermsOfService('https://example.com/terms.pdf')
+            ->setHostUrls(['https://example.com', 'https://example.net']);
 
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId(PAYEE_ID)
