@@ -9,6 +9,6 @@ class GetAuthorizations extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/vippsv1/payments/%s/authorizations');
+        $this->setRequestEndpoint('/psp/vipps/payments/%s/authorizations');
     }
 }

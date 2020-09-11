@@ -9,6 +9,6 @@ class GetCapture extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/vippsv1/payments/%s/captures/%s');
+        $this->setRequestEndpoint('/psp/vipps/payments/%s/captures/%s');
     }
 }

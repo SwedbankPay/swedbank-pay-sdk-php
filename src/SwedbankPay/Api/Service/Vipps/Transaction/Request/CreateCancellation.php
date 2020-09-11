@@ -9,6 +9,6 @@ class CreateCancellation extends Request
     public function setup()
     {
         $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/vippsv1/payments/%s/cancellations');
+        $this->setRequestEndpoint('/psp/vipps/payments/%s/cancellations');
     }
 }
