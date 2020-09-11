@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
@@ -27,6 +26,11 @@ use SwedbankPay\Api\Service\Paymentorder\Transaction\Request\TransactionReversal
 use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Response\TransactionCapture as TransactionCaptureResponse;
 use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Response\TransactionReversal as TransactionReversalResponse;
 
+/**
+ * Class PurchaseTest
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class PurchaseTest extends TestCase
 {
     private $paymentOrderId = '/psp/paymentorders/2a53f443-37bf-464c-45e0-08d85013a0e3';

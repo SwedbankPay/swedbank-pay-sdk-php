@@ -53,6 +53,11 @@ use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetCapture;
 use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetReversal;
 use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetTransaction;
 
+/**
+ * Class InvoicePaymentTest
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class InvoicePaymentTest extends TestCase
 {
     /**

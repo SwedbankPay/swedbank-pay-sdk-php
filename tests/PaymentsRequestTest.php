@@ -1,10 +1,10 @@
 <?php
-// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Service\Paymentorder\Request\GetPayments;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
-use SwedbankPay\Api\Service\Paymentorder\Resource\Response\Data\GetPaymentsInterface as GetPaymentsResponseResourceInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Response\Data\GetPaymentsInterface
+    as GetPaymentsResponseResourceInterface;
 
 class PaymentsRequestTest extends TestCase
 {

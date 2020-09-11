@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Client\Exception as ClientException;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
@@ -37,6 +36,11 @@ use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\SalesObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\ReversalsObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionsObject;
 
+/**
+ * Class SwishPaymentTest
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class SwishPaymentTest extends TestCase
 {
     /**

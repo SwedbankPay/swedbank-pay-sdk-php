@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
@@ -45,6 +44,11 @@ use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetCapture;
 use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetReversal;
 use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetTransaction;
 
+/**
+ * Class VippsPaymentTest
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class VippsPaymentTest extends TestCase
 {
     protected $paymentId = '/psp/vipps/payments/fcea6890-7e20-4a75-2aa1-08d84f4b0256';

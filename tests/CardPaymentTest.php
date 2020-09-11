@@ -1,5 +1,4 @@
 <?php
-// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Service\Creditcard\Request\Purchase;
 use SwedbankPay\Api\Service\Creditcard\Request\Verify;
@@ -49,6 +48,11 @@ use SwedbankPay\Api\Service\Creditcard\Transaction\Request\GetCapture;
 use SwedbankPay\Api\Service\Creditcard\Transaction\Request\GetReversal;
 use SwedbankPay\Api\Service\Creditcard\Transaction\Request\GetTransaction;
 
+/**
+ * Class CardPaymentTest
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class CardPaymentTest extends TestCase
 {
     protected $paymentId = '/psp/creditcard/payments/c87ff72f-b336-44c0-04c3-08d850138a2d';
