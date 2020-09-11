@@ -48,7 +48,11 @@ use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\ReversalsObjec
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionsObject;
 // phpcs:enable
 
-// phpcs:ignore
+/**
+ * Class MobilePayPaymentTest
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class MobilePayPaymentTest extends TestCase
 {
     protected $paymentId = '/psp/mobilepay/payments/39465757-14e6-481c-a5c7-08d8509a065a';
