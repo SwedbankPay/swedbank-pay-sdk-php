@@ -9,7 +9,7 @@ class Purchase extends Request
     public function setup()
     {
         $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/vipps/payments');
+        $this->setRequestEndpoint('/psp/vippsv1/payments');
         $this->setServiceOperation('Purchase');
     }
 

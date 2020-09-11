@@ -9,6 +9,6 @@ class CreateReversal extends Request
     public function setup()
     {
         $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/vipps/payments/%s/reversals');
+        $this->setRequestEndpoint('/psp/vippsv1/payments/%s/reversals');
     }
 }

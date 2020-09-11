@@ -9,6 +9,6 @@ class CreateAuthorization extends Request
     public function setup()
     {
         $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/vipps/payments/%s/authorizations');
+        $this->setRequestEndpoint('/psp/vippsv1/payments/%s/authorizations');
     }
 }
