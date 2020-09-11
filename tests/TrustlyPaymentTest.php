@@ -34,6 +34,11 @@ use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\ReversalsObjec
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionsObject;
 // phpcs:enable
 
+/**
+ * Class TrustlyPaymentTest
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class TrustlyPaymentTest extends TestCase
 {
     protected $paymentId = '/psp/trustly/payments/e72c779a-fcdc-4464-ef64-08d85013b189';
