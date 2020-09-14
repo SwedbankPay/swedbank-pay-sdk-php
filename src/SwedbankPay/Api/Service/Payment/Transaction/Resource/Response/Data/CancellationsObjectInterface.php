@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-interface CancellationsObjectInterface extends TransactionsResponseInterface
+interface CancellationsObjectInterface
 {
     const CANCELLATIONS = 'cancellations';
 

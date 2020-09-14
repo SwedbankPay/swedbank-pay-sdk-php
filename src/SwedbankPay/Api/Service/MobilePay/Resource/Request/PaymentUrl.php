@@ -1,12 +1,12 @@
 <?php
 
-namespace SwedbankPay\Api\Service\Vipps\Resource\Request;
+namespace SwedbankPay\Api\Service\MobilePay\Resource\Request;
 
-use SwedbankPay\Api\Service\Vipps\Resource\Request\Data\PaymentUrlInterface;
+use SwedbankPay\Api\Service\MobilePay\Resource\Request\Data\PaymentUrlInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Url;
 
 /**
- * Vipps payment url data object
+ * MobilePay payment url data object
  */
 class PaymentUrl extends Url implements PaymentUrlInterface
 {
