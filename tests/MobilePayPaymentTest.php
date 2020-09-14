@@ -1,73 +1,97 @@
 <?php
 
+// phpcs:disable
+use SwedbankPay\Api\Client\Client;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
-use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
-use SwedbankPay\Api\Service\Vipps\Request\Purchase;
-use SwedbankPay\Api\Service\Vipps\Resource\Request\PaymentPayeeInfo;
-use SwedbankPay\Api\Service\Vipps\Resource\Request\PaymentPrefillInfo;
-use SwedbankPay\Api\Service\Vipps\Resource\Request\PaymentUrl;
-use SwedbankPay\Api\Service\Vipps\Resource\Request\Payment;
-use SwedbankPay\Api\Service\Vipps\Resource\Request\VippsPaymentObject;
+use SwedbankPay\Api\Service\MobilePay\Request\Purchase;
+
+use SwedbankPay\Api\Service\MobilePay\Resource\Request\PaymentPayeeInfo;
+use SwedbankPay\Api\Service\MobilePay\Resource\Request\PaymentPrefillInfo;
+use SwedbankPay\Api\Service\MobilePay\Resource\Request\PaymentUrl;
+use SwedbankPay\Api\Service\MobilePay\Resource\Request\Payment;
+use SwedbankPay\Api\Service\MobilePay\Resource\Request\PaymentObject;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\CreateCapture;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\CreateReversal;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\CreateCancellation;
-use SwedbankPay\Api\Service\Vipps\Transaction\Resource\Request\TransactionCapture;
-use SwedbankPay\Api\Service\Vipps\Transaction\Resource\Request\TransactionReversal;
-use SwedbankPay\Api\Service\Vipps\Transaction\Resource\Request\TransactionCancellation;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\CreateCapture;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\CreateReversal;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\CreateCancellation;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Resource\Request\TransactionCapture;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Resource\Request\TransactionReversal;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Resource\Request\TransactionCancellation;
 
+use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\AuthorizationObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CaptureObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\ReversalObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CancellationObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionObject as TransactionObjectResponse;
 
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetAuthorizations;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetCaptures;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetReversals;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetCancellations;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetTransactions;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\GetAuthorization;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\GetCapture;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\GetReversal;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\GetCancellation;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\GetTransaction;
+
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\GetAuthorizations;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\GetCaptures;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\GetReversals;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\GetCancellations;
+use SwedbankPay\Api\Service\MobilePay\Transaction\Request\GetTransactions;
 
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\AuthorizationsObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CancellationsObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CapturesObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\ReversalsObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionsObject;
-
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetAuthorization;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetCancellation;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetCapture;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetReversal;
-use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetTransaction;
+// phpcs:enable
 
 /**
- * Class VippsPaymentTest
+ * Class MobilePayPaymentTest
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class VippsPaymentTest extends TestCase
+class MobilePayPaymentTest extends TestCase
 {
-    protected $paymentId = '/psp/vipps/payments/fcea6890-7e20-4a75-2aa1-08d84f4b0256';
+    protected $paymentId = '/psp/mobilepay/payments/39465757-14e6-481c-a5c7-08d8509a065a';
 
+    protected function setUp(): void
+    {
+        // phpcs:disable
+        if (!defined('MERCHANT_TOKEN_MOBILEPAY') ||
+            MERCHANT_TOKEN_MOBILEPAY === '<merchant_token>') {
+            $this->fail('MERCHANT_TOKEN_MOBILEPAY not configured in INI file or environment variable.');
+        }
+        // phpcs:enable
+
+        // phpcs:disable
+        if (!defined('PAYEE_ID_MOBILEPAY') ||
+            PAYEE_ID_MOBILEPAY === '<payee_id>') {
+            $this->fail('PAYEE_ID_MOBILEPAY not configured in INI file or environment variable.');
+        }
+        // phpcs:enable
+
+        $this->client = new Client();
+        $this->client->setMerchantToken(MERCHANT_TOKEN_MOBILEPAY)
+            ->setPayeeId(PAYEE_ID_MOBILEPAY)
+            ->setMode(Client::MODE_TEST);
+    }
+
+    /**
+     * @throws \SwedbankPay\Api\Client\Exception
+     */
     public function testPurchaseRequest()
     {
-        $this->markTestSkipped('VippsV1');
-
         $url = new PaymentUrl();
-        $url->setCompleteUrl('http://test-dummy.net/payment-completed')
-            ->setCancelUrl('http://test-dummy.net/payment-canceled')
-            ->setPaymentUrl('https://example.com/perform-payment')
-            ->setCallbackUrl('http://test-dummy.net/payment-callback')
-            ->setLogoUrl('https://example.com/logo.png')
-            ->setTermsOfService('https://example.com/terms.pdf')
-            ->setHostUrls(['https://example.com', 'https://example.net']);
+        $url->setCompleteUrl('https://test-dummy.net/payment-completed')
+            ->setCancelUrl('https://test-dummy.net/payment-canceled')
+            ->setCallbackUrl('https://test-dummy.net/payment-callback')
+            ->setHostUrls(['https://test-dummy.net']);
 
         $payeeInfo = new PaymentPayeeInfo();
-        $payeeInfo->setPayeeId(PAYEE_ID)
+        $payeeInfo->setPayeeId(PAYEE_ID_MOBILEPAY)
             ->setPayeeReference($this->generateRandomString(12))
             ->setPayeeName('Merchant1')
             ->setProductCategory('A123')
@@ -75,10 +99,10 @@ class VippsPaymentTest extends TestCase
             ->setSubsite('MySubsite');
 
         $prefillInfo = new PaymentPrefillInfo();
-        $prefillInfo->setMsisdn('+4759212345');
+        $prefillInfo->setMsisdn('+45739000001');
 
         $price = new PriceItem();
-        $price->setType('Vipps')
+        $price->setType('MobilePay')
             ->setAmount(1500)
             ->setVatAmount(0);
 
@@ -88,19 +112,21 @@ class VippsPaymentTest extends TestCase
         $payment = new Payment();
         $payment->setOperation('Purchase')
             ->setIntent('Authorization')
-            ->setCurrency('NOK')
+            ->setCurrency('DKK')
             ->setDescription('Test Purchase')
             ->setUserAgent('Mozilla/5.0...')
-            ->setLanguage('nb-NO')
+            ->setLanguage('sv-SE')
             ->setUrls($url)
             ->setPayeeInfo($payeeInfo)
             ->setPrefillInfo($prefillInfo)
-            ->setPrices($prices);
+            ->setPrices($prices)
+            ->setPayerReference(uniqid());
 
-        $vippsPaymentObject = new VippsPaymentObject();
-        $vippsPaymentObject->setPayment($payment);
+        $paymentObject = new PaymentObject();
+        $paymentObject->setPayment($payment)
+            ->setShoplogoUrl('https://test-dummy.net/logo.png');
 
-        $purchaseRequest = new Purchase($vippsPaymentObject);
+        $purchaseRequest = new Purchase($paymentObject);
         $purchaseRequest->setClient($this->client);
 
         /** @var ResponseServiceInterface $responseService */
@@ -119,13 +145,19 @@ class VippsPaymentTest extends TestCase
         $this->assertArrayHasKey('payment', $result);
         $this->assertArrayHasKey('operations', $result);
         $this->assertEquals('Purchase', $result['payment']['operation']);
-        $this->assertEquals('Vipps', $result['payment']['instrument']);
+        $this->assertEquals('MobilePay', $result['payment']['instrument']);
 
-        return $this->getPaymentIdFromUrl($result['payment']['id']);
+        return $result['payment']['id'];
     }
 
-    public function testCapture()
+    /**
+     * @depends MobilePayPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     */
+    public function testCapture($paymentId)
     {
+        $this->assertIsString($paymentId);
+
         $transactionData = new TransactionCapture();
         $transactionData->setAmount(100)
             ->setVatAmount(0)
@@ -136,8 +168,9 @@ class VippsPaymentTest extends TestCase
         $transaction->setTransaction($transactionData);
 
         $requestService = new CreateCapture($transaction);
-        $requestService->setClient($this->client);
-        $requestService->setPaymentId($this->paymentId);
+        $requestService->setClient($this->client)
+            //->setPaymentId($this->paymentId)
+            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -158,8 +191,17 @@ class VippsPaymentTest extends TestCase
         return $result['capture'];
     }
 
-    public function testReversal()
+    /**
+     * @depends MobilePayPaymentTest::testPurchaseRequest
+     * @depends MobilePayPaymentTest::testCapture
+     * @param string $paymentId
+     * @param string $capture
+     */
+    public function testReversal($paymentId, $capture)
     {
+        $this->assertIsString($paymentId);
+        $this->assertIsArray($capture);
+
         $transactionData = new TransactionReversal();
         $transactionData->setAmount(100)
             ->setVatAmount(0)
@@ -170,8 +212,9 @@ class VippsPaymentTest extends TestCase
         $transaction->setTransaction($transactionData);
 
         $requestService = new CreateReversal($transaction);
-        $requestService->setClient($this->client);
-        $requestService->setPaymentId($this->paymentId);
+        $requestService->setClient($this->client)
+            //->setPaymentId($this->paymentId)
+            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -205,8 +248,9 @@ class VippsPaymentTest extends TestCase
         $transaction->setTransaction($transactionData);
 
         $requestService = new CreateCancellation($transaction);
-        $requestService->setClient($this->client);
-        $requestService->setPaymentId($this->paymentId);
+        $requestService->setClient($this->client)
+            //->setPaymentId($this->paymentId)
+            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -223,15 +267,14 @@ class VippsPaymentTest extends TestCase
         $this->assertArrayHasKey('cancellation', $result);
         $this->assertArrayHasKey('transaction', $result['cancellation']);
         $this->assertEquals('Cancellation', $result['cancellation']['transaction']['type']);
-
-        return $result['cancellation'];
     }
 
     public function testGetAuthorizations()
     {
         $requestService = new GetAuthorizations();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            //->setPaymentId($this->paymentId)
+            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -252,7 +295,7 @@ class VippsPaymentTest extends TestCase
     }
 
     /**
-     * @depends VippsPaymentTest::testGetAuthorizations
+     * @depends MobilePayPaymentTest::testGetAuthorizations
      * @param array $authorizations
      */
     public function testGetAuthorization($authorizations)
@@ -289,7 +332,8 @@ class VippsPaymentTest extends TestCase
 
         $requestService = new GetCancellations();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            //->setPaymentId($this->paymentId)
+            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -310,7 +354,7 @@ class VippsPaymentTest extends TestCase
     }
 
     /**
-     * @depends VippsPaymentTest::testGetCancellations
+     * @depends MobilePayPaymentTest::testGetCancellations
      * @param array $cancellations
      */
     public function testGetCancellation($cancellations)
@@ -347,7 +391,8 @@ class VippsPaymentTest extends TestCase
     {
         $requestService = new GetCaptures();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            //->setPaymentId($this->paymentId)
+            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -368,7 +413,7 @@ class VippsPaymentTest extends TestCase
     }
 
     /**
-     * @depends VippsPaymentTest::testGetCaptures
+     * @depends MobilePayPaymentTest::testGetCaptures
      * @param array $captures
      */
     public function testGetCapture($captures)
@@ -403,7 +448,8 @@ class VippsPaymentTest extends TestCase
     {
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            //->setPaymentId($this->paymentId)
+            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -424,7 +470,7 @@ class VippsPaymentTest extends TestCase
     }
 
     /**
-     * @depends VippsPaymentTest::testGetReversals
+     * @depends MobilePayPaymentTest::testGetReversals
      * @param array $reversals
      */
     public function testGetReversal($reversals)
@@ -459,7 +505,8 @@ class VippsPaymentTest extends TestCase
     {
         $requestService = new GetTransactions();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            //->setPaymentId($this->paymentId)
+            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -480,7 +527,7 @@ class VippsPaymentTest extends TestCase
     }
 
     /**
-     * @depends VippsPaymentTest::testGetTransactions
+     * @depends MobilePayPaymentTest::testGetTransactions
      * @param array $transactions
      */
     public function testGetTransaction($transactions)
