@@ -176,7 +176,8 @@ class ClientVersion
     {
         $composerLock = null;
         if ($this->tryReadComposerLock($composerLock)) {
-            if ($version = $this->tryFindVersionInComposerLock($composerLock)) {
+            $version = $this->tryFindVersionInComposerLock($composerLock);
+            if ($version) {
                 return true;
             }
         }

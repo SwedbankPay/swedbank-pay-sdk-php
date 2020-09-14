@@ -23,8 +23,8 @@ class DataObjectHelper
         foreach ($assocArray as $key => $value) {
             $key = preg_replace_callback(
                 '/_([^_])/',
-                function (array $m) {
-                    return ucfirst($m[1]);
+                function (array $mKey) {
+                    return ucfirst($mKey[1]);
                 },
                 $key
             );

@@ -93,6 +93,8 @@ jobs:
       env:
         MERCHANT_TOKEN: ${{ secrets.MERCHANT_TOKEN }}
         PAYEE_ID: ${{ secrets.PAYEE_ID }}
+        MERCHANT_TOKEN_MOBILEPAY: ${{ secrets.MERCHANT_TOKEN_MOBILEPAY }}
+        PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
         VERSION: ${{ steps.composer-version.outputs.version }}
       run: ./vendor/bin/phpunit --configuration=./tests/phpunit.xml --bootstrap=./tests/bootstrap.php ./tests/ --coverage-clover=coverage.xml
 
