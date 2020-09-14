@@ -134,8 +134,7 @@ class TrustlyPaymentTest extends TestCase
 
         $requestService = new CreateReversal($transaction);
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -160,8 +159,7 @@ class TrustlyPaymentTest extends TestCase
     {
         $requestService = new GetSales();
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -217,8 +215,7 @@ class TrustlyPaymentTest extends TestCase
     {
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -274,8 +271,7 @@ class TrustlyPaymentTest extends TestCase
     {
         $requestService = new GetTransactions();
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();

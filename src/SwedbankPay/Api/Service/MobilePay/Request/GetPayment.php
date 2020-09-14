@@ -10,7 +10,6 @@ class GetPayment extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/mobilepay/payments/%s');
         $this->setResponseResourceFQCN(PaymentObject::class);
     }
 }

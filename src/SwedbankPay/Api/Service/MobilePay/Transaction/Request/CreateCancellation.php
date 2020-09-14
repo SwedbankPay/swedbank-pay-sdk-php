@@ -9,8 +9,7 @@ class CreateCancellation extends Request
 {
     public function setup()
     {
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/mobilepay/payments/%s/cancellations');
+        $this->setOperationRel('create-cancel');
         $this->setResponseResourceFQCN(CancellationObject::class);
     }
 }

@@ -10,7 +10,7 @@ class GetSales extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/trustly/payments/%s/sales');
+        $this->setOperationRel('sales');
         $this->setResponseResourceFQCN(SalesObject::class);
     }
 }
