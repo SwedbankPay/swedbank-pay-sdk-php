@@ -11,6 +11,8 @@ use SwedbankPay\Api\Service\Payment\Resource\Request\Data\UrlInterface;
 class Url extends Resource implements UrlInterface
 {
     /**
+     * Get the array of URLs valid for embedding.
+     *
      * @return array
      */
     public function getHostUrls()
@@ -19,12 +21,14 @@ class Url extends Resource implements UrlInterface
     }
 
     /**
+     * The array of URLs valid for embedding.
+     *
      * @param array $hostUrls
      * @return $this
      */
-    public function setHostUrls($hostUrls)
+    public function setHostUrls(array $urls)
     {
-        return $this->offsetSet(self::HOST_URLS, $hostUrls);
+        return $this->offsetSet(self::HOST_URLS, $urls);
     }
 
     /**
@@ -127,26 +131,5 @@ class Url extends Resource implements UrlInterface
     public function setLogoUrl($logoUrl)
     {
         return $this->offsetSet(self::LOGO_URL, $logoUrl);
-    }
-
-    /**
-     * Get the array of URLs valid for embedding.
-     *
-     * @return array
-     */
-    public function getHostUrls()
-    {
-        return $this->offsetGet(self::HOST_URLS);
-    }
-
-    /**
-     * The array of URLs valid for embedding.
-     *
-     * @param array $hostUrls
-     * @return $this
-     */
-    public function setHostUrls(array $urls)
-    {
-        return $this->offsetSet(self::HOST_URLS, $urls);
     }
 }

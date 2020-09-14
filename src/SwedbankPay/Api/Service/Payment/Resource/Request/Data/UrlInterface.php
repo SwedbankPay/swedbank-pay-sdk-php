@@ -18,18 +18,6 @@ interface UrlInterface extends ResourceInterface
     const CALLBACK_URL = 'callback_url';
     const TERMS_OF_SERVICE_URL = 'terms_of_service_url';
     const LOGO_URL = 'logo_url';
-    const HOST_URLS = 'host_urls';
-
-    /**
-     * @return array
-     */
-    public function getHostUrls();
-
-    /**
-     * @param array $hostUrls
-     * @return $this
-     */
-    public function setHostUrls($hostUrls);
 
     /**
      * Get the array of URLs valid for embedding.
