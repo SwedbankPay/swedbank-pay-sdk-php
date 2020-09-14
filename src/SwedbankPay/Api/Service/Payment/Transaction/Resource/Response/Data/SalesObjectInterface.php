@@ -2,7 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-interface SalesObjectInterface extends TransactionsResponseInterface
+interface SalesObjectInterface
 {
     const SALES = 'sales';
 

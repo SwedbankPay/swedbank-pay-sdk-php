@@ -1,11 +1,11 @@
 <?php
 
-namespace SwedbankPay\Api\Service\Creditcard\Resource\Request\Data;
+namespace SwedbankPay\Api\Service\Trustly\Resource\Request\Data;
 
 use SwedbankPay\Api\Service\Payment\Resource\Request\Data\UrlInterface;
 
 /**
- * Card payment url interface
+ * Trustly payment url interface
  *
  * @api
  */

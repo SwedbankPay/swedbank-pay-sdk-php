@@ -111,4 +111,25 @@ class Url extends Resource implements UrlInterface
     {
         return $this->offsetSet(self::LOGO_URL, $logoUrl);
     }
+
+    /**
+     * Get the array of URLs valid for embedding.
+     *
+     * @return array
+     */
+    public function getHostUrls()
+    {
+        return $this->offsetGet(self::HOST_URLS);
+    }
+
+    /**
+     * The array of URLs valid for embedding.
+     *
+     * @param array $hostUrls
+     * @return $this
+     */
+    public function setHostUrls(array $urls)
+    {
+        return $this->offsetSet(self::HOST_URLS, $urls);
+    }
 }

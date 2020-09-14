@@ -11,12 +11,28 @@ use SwedbankPay\Api\Service\Data\ResourceInterface;
  */
 interface UrlInterface extends ResourceInterface
 {
+    const HOST_URLS = 'host_urls';
     const COMPLETE_URL = 'complete_url';
     const CANCEL_URL = 'cancel_url';
     const PAYMENT_URL = 'payment_url';
     const CALLBACK_URL = 'callback_url';
     const TERMS_OF_SERVICE_URL = 'terms_of_service_url';
     const LOGO_URL = 'logo_url';
+
+    /**
+     * Get the array of URLs valid for embedding.
+     *
+     * @return array
+     */
+    public function getHostUrls();
+
+    /**
+     * The array of URLs valid for embedding.
+     *
+     * @param array $hostUrls
+     * @return $this
+     */
+    public function setHostUrls(array $hostUrls);
 
     /**
      * @return string
