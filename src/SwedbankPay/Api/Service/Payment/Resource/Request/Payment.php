@@ -7,6 +7,7 @@ use SwedbankPay\Api\Service\Payment\Resource\Request\Data\PayeeInfoInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Data\PrefillInfoInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Data\UrlInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Data\PaymentRequestInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Data\MetadataInterface;
 use SwedbankPay\Api\Service\Resource\Request as RequestResource;
 
 /**
@@ -65,5 +66,26 @@ class Payment extends RequestResource implements PaymentRequestInterface
     public function setPrefillInfo($prefillInfo)
     {
         return $this->offsetSet(self::PREFILL_INFO, $prefillInfo);
+    }
+
+    /**
+     * Get Metadata can be used to store data associated to a payment.
+     *
+     * @return MetadataInterface
+     */
+    public function getMetadata()
+    {
+        return $this->offsetGet(self::METADATA);
+    }
+
+    /**
+     * Set Metadata can be used to store data associated to a payment.
+     *
+     * @param MetadataInterface $metadata
+     * @return $this
+     */
+    public function setMetadata($metadata)
+    {
+        return $this->offsetSet(self::METADATA, $metadata);
     }
 }
