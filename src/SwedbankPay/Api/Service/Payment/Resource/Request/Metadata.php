@@ -40,7 +40,7 @@ class Metadata extends Resource implements MetadataInterface
      * @param mixed $value
      * @return $this
      */
-    public function unsData($key)
+    public function unsetData($key)
     {
         return $this->offsetUnset($key);
     }

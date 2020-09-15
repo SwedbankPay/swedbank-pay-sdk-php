@@ -36,5 +36,5 @@ interface MetadataInterface extends ResourceInterface
      * @param mixed $value
      * @return $this
      */
-    public function unsData($key);
+    public function unsetData($key);
 }
