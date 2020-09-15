@@ -9,6 +9,7 @@ use SwedbankPay\Api\Service\Trustly\Resource\Request\PaymentPrefillInfo;
 use SwedbankPay\Api\Service\Trustly\Resource\Request\PaymentUrl;
 use SwedbankPay\Api\Service\Trustly\Resource\Request\Payment;
 use SwedbankPay\Api\Service\Trustly\Resource\Request\PaymentObject;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Metadata;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
@@ -76,6 +77,9 @@ class TrustlyPaymentTest extends TestCase
         $prices = new PricesCollection();
         $prices->addItem($price);
 
+        $metadata = new Metadata();
+        $metadata->setData('order_id', 'or-123456');
+
         $payment = new Payment();
         $payment->setOperation('Purchase')
             ->setIntent('Sale')
@@ -86,7 +90,8 @@ class TrustlyPaymentTest extends TestCase
             ->setUrls($url)
             ->setPayeeInfo($payeeInfo)
             ->setPrefillInfo($prefillInfo)
-            ->setPrices($prices);
+            ->setPrices($prices)
+            ->setMetadata($metadata);
 
         $paymentObject = new PaymentObject();
         $paymentObject->setPayment($payment);

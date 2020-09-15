@@ -12,6 +12,8 @@ use SwedbankPay\Api\Service\Payment\Resource\Data\PaymentInterface;
 interface PaymentRequestInterface extends PaymentInterface
 {
     const PREFILL_INFO = 'prefill_info';
+    const METADATA = 'metadata';
+
 
     /**
      * @return PrefillInfoInterface
@@ -23,4 +25,19 @@ interface PaymentRequestInterface extends PaymentInterface
      * @return $this
      */
     public function setPrefillInfo($prefillInfo);
+
+    /**
+     * Get Metadata can be used to store data associated to a payment.
+     *
+     * @return MetadataInterface
+     */
+    public function getMetadata();
+
+    /**
+     * Set Metadata can be used to store data associated to a payment.
+     *
+     * @param MetadataInterface $metadata
+     * @return $this
+     */
+    public function setMetadata($metadata);
 }

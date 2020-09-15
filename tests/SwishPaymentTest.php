@@ -2,6 +2,7 @@
 
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Metadata;
 use SwedbankPay\Api\Service\Swish\Request\Purchase;
 use SwedbankPay\Api\Service\Swish\Resource\Request\PaymentPayeeInfo;
 use SwedbankPay\Api\Service\Swish\Resource\Request\PaymentPrefillInfo;
@@ -55,6 +56,9 @@ class SwishPaymentTest extends TestCase
         $prices = new PricesCollection();
         $prices->addItem($price);
 
+        $metadata = new Metadata();
+        $metadata->setData('order_id', 'or-123456');
+
         $payment = new Payment();
         $payment->setOperation('Purchase')
             ->setIntent('Sale')
@@ -66,7 +70,8 @@ class SwishPaymentTest extends TestCase
             ->setPayeeInfo($payeeInfo)
             ->setPrefillInfo($prefillInfo)
             ->setSwish($swish)
-            ->setPrices($prices);
+            ->setPrices($prices)
+            ->setMetadata($metadata);
 
         $swishPaymentObject = new SwishPaymentObject();
         $swishPaymentObject->setPayment($payment);

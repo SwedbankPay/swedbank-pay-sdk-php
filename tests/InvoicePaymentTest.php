@@ -10,6 +10,7 @@ use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Consumer;
 use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Transaction;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Metadata;
 use SwedbankPay\Api\Service\Invoice\Resource\Request\PaymentPayeeInfo;
 use SwedbankPay\Api\Service\Invoice\Resource\Request\PaymentUrl;
 use SwedbankPay\Api\Service\Invoice\Resource\Request\Payment;
@@ -54,6 +55,9 @@ class InvoicePaymentTest extends TestCase
         $prices = new PricesCollection();
         $prices->addItem($price);
 
+        $metadata = new Metadata();
+        $metadata->setData('order_id', 'or-123456');
+
         $payment = new Payment();
         $payment->setOperation('FinancingConsumer')
             ->setIntent('Authorization')
@@ -63,7 +67,8 @@ class InvoicePaymentTest extends TestCase
             ->setLanguage('sv-SE')
             ->setUrls($url)
             ->setPayeeInfo($payeeInfo)
-            ->setPrices($prices);
+            ->setPrices($prices)
+            ->setMetadata($metadata);
 
         $invoice = new Invoice();
         $invoice->setInvoiceType('PayExFinancingSe');
