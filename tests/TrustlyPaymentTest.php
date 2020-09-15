@@ -51,7 +51,6 @@ class TrustlyPaymentTest extends TestCase
         $url = new PaymentUrl();
         $url->setCompleteUrl('http://test-dummy.net/payment-completed')
             ->setCancelUrl('http://test-dummy.net/payment-canceled')
-            ->setPaymentUrl('https://example.com/perform-payment')
             ->setCallbackUrl('http://test-dummy.net/payment-callback')
             ->setLogoUrl('https://example.com/logo.png')
             ->setTermsOfService('https://example.com/terms.pdf')
@@ -66,7 +65,8 @@ class TrustlyPaymentTest extends TestCase
             ->setSubsite('MySubsite');
 
         $prefillInfo = new PaymentPrefillInfo();
-        $prefillInfo->setMsisdn('+4759212345');
+        $prefillInfo->setFirstName('Ola')
+            ->setLastName('Nordmann');
 
         $price = new PriceItem();
         $price->setType('Trustly')
