@@ -19,5 +19,8 @@ class MetadataTest extends TestCase
 
         $data = $metadata->getData('order_id');
         $this->assertEquals('or-123456', $data);
+
+        $metadata->unsetData('order_id');
+        $this->assertNull($metadata->getData('order_id'));
     }
 }
