@@ -11,6 +11,7 @@ use SwedbankPay\Api\Client\Exception;
  * @note For backwards compatibility for previous versions
  * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class Response implements \ArrayAccess
 {
