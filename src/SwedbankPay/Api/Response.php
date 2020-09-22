@@ -221,6 +221,7 @@ class Response implements \ArrayAccess
      * @return bool|string|array
      * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function getOperationByRel($rel, $single = true)
     {
