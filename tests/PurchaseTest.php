@@ -80,7 +80,8 @@ class PurchaseTest extends TestCase
             ->setUrls($urlData)
             ->setPayeeInfo($payeeInfo)
             ->setMetadata($metadata)
-            ->setOrderItems($orderItems);
+            ->setOrderItems($orderItems)
+            ->setPayer($payer);
 
         $paymentOrderObject = new PaymentorderObject();
         $paymentOrderObject->setPaymentorder($paymentOrder);
