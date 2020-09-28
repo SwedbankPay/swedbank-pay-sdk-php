@@ -205,6 +205,27 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     }
 
     /**
+     * Get Payer Reference.
+     *
+     * @return mixed|null
+     */
+    public function getPayerReference()
+    {
+        return $this->offsetGet(self::PAYER_REFERENCE);
+    }
+
+    /**
+     * Set Payer Reference.
+     *
+     * @param string $reference
+     * @return $this
+     */
+    public function setPayerReference($reference)
+    {
+        return $this->offsetSet(self::PAYER_REFERENCE, $reference);
+    }
+
+    /**
      * @return OrderItemsCollection
      */
     public function getOrderItems()

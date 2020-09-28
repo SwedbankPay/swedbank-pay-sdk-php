@@ -81,7 +81,8 @@ class PurchaseTest extends TestCase
             ->setPayeeInfo($payeeInfo)
             ->setMetadata($metadata)
             ->setOrderItems($orderItems)
-            ->setPayer($payer);
+            ->setPayer($payer)
+            ->setPayerReference('payer@refrence.no');
 
         $paymentOrderObject = new PaymentorderObject();
         $paymentOrderObject->setPaymentorder($paymentOrder);
