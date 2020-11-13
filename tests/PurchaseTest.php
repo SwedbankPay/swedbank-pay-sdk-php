@@ -75,7 +75,7 @@ class PurchaseTest extends TestCase
             ->setDescription('Test Purchase')
             ->setUserAgent('Mozilla/5.0...')
             ->setLanguage('nb-NO')
-            ->setGeneratePaymentToken(true)
+            ->setGeneratePaymentToken(false)
             ->setDisablePaymentMenu(false)
             ->setUrls($urlData)
             ->setPayeeInfo($payeeInfo)

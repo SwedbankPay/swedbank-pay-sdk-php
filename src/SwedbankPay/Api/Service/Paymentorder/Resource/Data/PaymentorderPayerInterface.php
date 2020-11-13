@@ -13,11 +13,27 @@ use SwedbankPay\Api\Service\Data\ResourceInterface;
 interface PaymentorderPayerInterface extends ResourceInterface
 {
     const CONSUMER_PROFILE_REF = 'consumer_profile_ref';
+    const PAYER_REFERENCE = 'payer_reference';
     const EMAIL = 'email';
     const MSISDN = 'msisdn';
     const WORK_PHONE_NUMBER = 'work_phone_number';
     const HOME_PHONE_NUMBER = 'home_phone_number';
     const SHIPPING_ADDRESS = 'shipping_address';
+
+    /**
+     * Get Payer Reference.
+     *
+     * @return string|null
+     */
+    public function getPayerReference();
+
+    /**
+     * Set Payer Reference.
+     *
+     * @param string|null $payerReference
+     * @return $this
+     */
+    public function setPayerReference($payerReference);
 
     /**
      * @return string
