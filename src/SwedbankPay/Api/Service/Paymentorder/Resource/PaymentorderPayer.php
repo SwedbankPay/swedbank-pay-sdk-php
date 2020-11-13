@@ -30,6 +30,27 @@ class PaymentorderPayer extends Resource implements PaymentorderPayerInterface
     }
 
     /**
+     * Get Payer Reference.
+     *
+     * @return string|null
+     */
+    public function getPayerReference()
+    {
+        return $this->offsetGet(self::PAYER_REFERENCE);
+    }
+
+    /**
+     * Set Payer Reference.
+     *
+     * @param string|null $payerReference
+     * @return $this
+     */
+    public function setPayerReference($payerReference)
+    {
+        return $this->offsetSet(self::PAYER_REFERENCE, $payerReference);
+    }
+
+    /**
      * @return string
      */
     public function getEmail()
