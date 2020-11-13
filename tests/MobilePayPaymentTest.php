@@ -4,6 +4,7 @@
 use SwedbankPay\Api\Client\Client;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Metadata;
 use SwedbankPay\Api\Service\MobilePay\Request\Purchase;
 
 use SwedbankPay\Api\Service\MobilePay\Resource\Request\PaymentPayeeInfo;
@@ -109,6 +110,9 @@ class MobilePayPaymentTest extends TestCase
         $prices = new PricesCollection();
         $prices->addItem($price);
 
+        $metadata = new Metadata();
+        $metadata->setData('order_id', 'or-123456');
+
         $payment = new Payment();
         $payment->setOperation('Purchase')
             ->setIntent('Authorization')
@@ -120,7 +124,8 @@ class MobilePayPaymentTest extends TestCase
             ->setPayeeInfo($payeeInfo)
             ->setPrefillInfo($prefillInfo)
             ->setPrices($prices)
-            ->setPayerReference(uniqid());
+            ->setPayerReference(uniqid())
+            ->setMetadata($metadata);
 
         $paymentObject = new PaymentObject();
         $paymentObject->setPayment($payment)

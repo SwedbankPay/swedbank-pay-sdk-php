@@ -11,6 +11,7 @@ use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPurchase;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentVerify;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Metadata;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPayeeInfo;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
@@ -98,6 +99,9 @@ class CardPaymentTest extends TestCase
             ->setRejectAuthenticationStatusA(false)
             ->setRejectAuthenticationStatusU(false);
 
+        $metadata = new Metadata();
+        $metadata->setData('order_id', 'or-123456');
+
         $payment = new PaymentPurchase();
         $payment->setOperation('Purchase')
             ->setIntent('Authorization')
@@ -110,7 +114,8 @@ class CardPaymentTest extends TestCase
             ->setPayerReference($this->generateRandomString(30))
             ->setUrls($url)
             ->setPayeeInfo($payeeInfo)
-            ->setPrices($prices);
+            ->setPrices($prices)
+            ->setMetadata($metadata);
 
         $paymentObject = new PaymentPurchaseObject();
         $paymentObject->setPayment($payment);

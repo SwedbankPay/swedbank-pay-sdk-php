@@ -9,6 +9,7 @@ use SwedbankPay\Api\Service\Trustly\Resource\Request\PaymentPrefillInfo;
 use SwedbankPay\Api\Service\Trustly\Resource\Request\PaymentUrl;
 use SwedbankPay\Api\Service\Trustly\Resource\Request\Payment;
 use SwedbankPay\Api\Service\Trustly\Resource\Request\PaymentObject;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Metadata;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
@@ -51,7 +52,6 @@ class TrustlyPaymentTest extends TestCase
         $url = new PaymentUrl();
         $url->setCompleteUrl('http://test-dummy.net/payment-completed')
             ->setCancelUrl('http://test-dummy.net/payment-canceled')
-            ->setPaymentUrl('https://example.com/perform-payment')
             ->setCallbackUrl('http://test-dummy.net/payment-callback')
             ->setLogoUrl('https://example.com/logo.png')
             ->setTermsOfService('https://example.com/terms.pdf')
@@ -66,7 +66,8 @@ class TrustlyPaymentTest extends TestCase
             ->setSubsite('MySubsite');
 
         $prefillInfo = new PaymentPrefillInfo();
-        $prefillInfo->setMsisdn('+4759212345');
+        $prefillInfo->setFirstName('Ola')
+            ->setLastName('Nordmann');
 
         $price = new PriceItem();
         $price->setType('Trustly')
@@ -75,6 +76,9 @@ class TrustlyPaymentTest extends TestCase
 
         $prices = new PricesCollection();
         $prices->addItem($price);
+
+        $metadata = new Metadata();
+        $metadata->setData('order_id', 'or-123456');
 
         $payment = new Payment();
         $payment->setOperation('Purchase')
@@ -86,7 +90,8 @@ class TrustlyPaymentTest extends TestCase
             ->setUrls($url)
             ->setPayeeInfo($payeeInfo)
             ->setPrefillInfo($prefillInfo)
-            ->setPrices($prices);
+            ->setPrices($prices)
+            ->setMetadata($metadata);
 
         $paymentObject = new PaymentObject();
         $paymentObject->setPayment($payment);
