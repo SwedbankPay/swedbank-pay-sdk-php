@@ -92,8 +92,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
             ->setOrderReference('or-123456');
 
         $payer = new PaymentorderPayer();
-        $payer->setConsumerProfileRef('5a17c24e-d459-4567-bbad-aa0f17a76119')
-            ->setEmail('olivia.nyhuus@payex.com')
+        $payer->setEmail('olivia.nyhuus@payex.com')
             ->setMsisdn('+4798765432')
             ->setWorkPhoneNumber('+4787654321')
             ->setHomePhoneNumber('+4776543210');

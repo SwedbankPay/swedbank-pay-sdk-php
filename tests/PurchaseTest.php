@@ -38,7 +38,10 @@ class PurchaseTest extends TestCase
             ->setOrderReference('or-123456');
 
         $payer = new PaymentorderPayer();
-        $payer->setConsumerProfileRef('7d5788219e5bc43350e75ac633e0480ab30ad20f96797a12b96e54da869714c4');
+        $payer->setEmail('olivia.nyhuus@payex.com')
+            ->setMsisdn('+4798765432')
+            ->setWorkPhoneNumber('+4787654321')
+            ->setHomePhoneNumber('+4776543210');
 
         $metadata = new PaymentorderMetadata();
         $metadata->setKey1('value1')
