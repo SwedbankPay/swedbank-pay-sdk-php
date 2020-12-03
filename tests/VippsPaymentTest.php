@@ -2,6 +2,7 @@
 
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Metadata;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\TransactionObject;
 use SwedbankPay\Api\Service\Vipps\Request\Purchase;
 use SwedbankPay\Api\Service\Vipps\Resource\Request\PaymentPayeeInfo;
@@ -85,6 +86,9 @@ class VippsPaymentTest extends TestCase
         $prices = new PricesCollection();
         $prices->addItem($price);
 
+        $metadata = new Metadata();
+        $metadata->setData('order_id', 'or-123456');
+
         $payment = new Payment();
         $payment->setOperation('Purchase')
             ->setIntent('Authorization')
@@ -95,7 +99,8 @@ class VippsPaymentTest extends TestCase
             ->setUrls($url)
             ->setPayeeInfo($payeeInfo)
             ->setPrefillInfo($prefillInfo)
-            ->setPrices($prices);
+            ->setPrices($prices)
+            ->setMetadata($metadata);
 
         $vippsPaymentObject = new VippsPaymentObject();
         $vippsPaymentObject->setPayment($payment);

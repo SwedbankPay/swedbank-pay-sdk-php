@@ -1,6 +1,7 @@
 <?php
 
 use SwedbankPay\Api\Client\Client;
+use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderPayer;
 use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderObject;
 use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderUrl as PaymentorderUrlData;
 use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderPayeeInfo;
@@ -90,6 +91,12 @@ class TestCase extends \PHPUnit\Framework\TestCase
             ->setProductCategory('A123')
             ->setOrderReference('or-123456');
 
+        $payer = new PaymentorderPayer();
+        $payer->setEmail('olivia.nyhuus@payex.com')
+            ->setMsisdn('+4798765432')
+            ->setWorkPhoneNumber('+4787654321')
+            ->setHomePhoneNumber('+4776543210');
+
         $paymentOrder = new Paymentorder();
         $paymentOrder->setOperation('Purchase')
             ->setCurrency('NOK')
@@ -98,10 +105,11 @@ class TestCase extends \PHPUnit\Framework\TestCase
             ->setDescription('Test Purchase')
             ->setUserAgent('Mozilla/5.0...')
             ->setLanguage('nb-NO')
-            ->setGeneratePaymentToken(true)
+            ->setGeneratePaymentToken(false)
             ->setDisablePaymentMenu(false)
             ->setUrls($urlData)
-            ->setPayeeInfo($payeeInfo);
+            ->setPayeeInfo($payeeInfo)
+            ->setPayer($payer);
 
         $paymentOrderObject = new PaymentorderObject();
         $paymentOrderObject->setPaymentorder($paymentOrder);

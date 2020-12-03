@@ -29,6 +29,7 @@ interface PaymentorderInterface extends RequestInterface
     const URLS = 'urls';
     const PAYEE_INFO = 'payee_info';
     const PAYER = 'payer';
+    const PAYER_REFERENCE = 'payerReference';
     const ORDER_ITEMS = 'orderItems';
     const METADATA = 'metadata';
     const ITEMS = 'items';

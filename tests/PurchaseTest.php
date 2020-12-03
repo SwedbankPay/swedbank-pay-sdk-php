@@ -54,7 +54,10 @@ class PurchaseTest extends TestCase
             ->setOrderReference('or-123456');
 
         $payer = new PaymentorderPayer();
-        $payer->setConsumerProfileRef('7d5788219e5bc43350e75ac633e0480ab30ad20f96797a12b96e54da869714c4');
+        $payer->setEmail('olivia.nyhuus@payex.com')
+            ->setMsisdn('+4798765432')
+            ->setWorkPhoneNumber('+4787654321')
+            ->setHomePhoneNumber('+4776543210');
 
         $metadata = new PaymentorderMetadata();
         $metadata->setKey1('value1')
@@ -91,12 +94,14 @@ class PurchaseTest extends TestCase
             ->setDescription('Test Purchase')
             ->setUserAgent('Mozilla/5.0...')
             ->setLanguage('nb-NO')
-            ->setGeneratePaymentToken(true)
+            ->setGeneratePaymentToken(false)
             ->setDisablePaymentMenu(false)
             ->setUrls($urlData)
             ->setPayeeInfo($payeeInfo)
             ->setMetadata($metadata)
-            ->setOrderItems($orderItems);
+            ->setOrderItems($orderItems)
+            ->setPayer($payer)
+            ->setPayerReference('payer@refrence.no');
 
         $paymentOrderObject = new PaymentorderObject();
         $paymentOrderObject->setPaymentorder($paymentOrder);
