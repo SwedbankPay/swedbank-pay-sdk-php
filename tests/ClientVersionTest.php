@@ -4,18 +4,13 @@ use SwedbankPay\Api\Client\ClientVersion;
 
 class ClientVersionTest extends TestCase
 {
-    public function testGetVersion()
+    public function testGetVersionFromJsonFile()
     {
         // phpcs:disable
-        $envVersion = getenv('VERSION');
+        $json = json_decode(file_get_contents(__DIR__ . '/../composer.json'), true);
         // phpcs:enable
 
-        if (!defined('VERSION')) {
-            define('VERSION', $envVersion);
-        }
-
         $instance = new ClientVersion();
-        $this->assertTrue(defined('VERSION'));
-        $this->assertEquals($envVersion, $instance->getVersion());
+        $this->assertEquals($json['version'], $instance->getVersion());
     }
 }
