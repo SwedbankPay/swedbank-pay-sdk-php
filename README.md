@@ -11,11 +11,6 @@
 
 ## About
 
-**UNSUPPORTED**: This SDK is at an early stage of development and is not
-supported as of yet by Swedbank Pay. It is provided as a convenience to speed
-up your development, so please feel free to play around. However, if you need
-support, please wait for a future, stable release.
-
 The Swedbank Pay SDK for PHP simplifies integrations against
 [Swedbank Pay's API Platform][api] by providing native PHP interface towards
 the REST API.
@@ -27,6 +22,8 @@ This SDK includes the following payments options:
 * Invoice
 * Swish
 * Vipps
+* MobilePay Online
+* Trustly
 
 ## Documentation
 
