@@ -28,8 +28,8 @@ jobs:
         COMPOSER_VERSION: 8.7.6-composer.json.12
       run: |
         jq ".version=\"${COMPOSER_VERSION}\"" composer.json > composer.version.json # Add "version" property to composer.version.json
-        rm composer.lock
-        rm composer.json
+        rm -f composer.lock
+        rm -f composer.json
         mv composer.version.json composer.json
         cat composer.json
         RESULT=$(\
