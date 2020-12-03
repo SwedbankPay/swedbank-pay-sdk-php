@@ -197,7 +197,7 @@ class ClientVersion
         $path = $this->getComposerPath() . DIRECTORY_SEPARATOR . 'composer.json';
 
         // phpcs:disable
-        if (!file_exists($path)) {
+        if (!@file_exists($path)) {
             return false;
         }
 
@@ -226,7 +226,7 @@ class ClientVersion
         }
 
         // phpcs:disable
-        if (!file_exists($path)) {
+        if (!@file_exists($path)) {
             $pathDirs = explode(DIRECTORY_SEPARATOR, $path);
             if (count($pathDirs) <= 2) {
                 return false;
@@ -239,7 +239,7 @@ class ClientVersion
             return $this->tryReadComposerLock($decodedJsonObject, $path);
         }
 
-        if (!is_readable($path)) {
+        if (!@is_readable($path)) {
             return false;
         }
 
