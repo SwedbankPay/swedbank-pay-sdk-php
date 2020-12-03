@@ -29,7 +29,7 @@ jobs:
       id: unstable
       if: startsWith(github.ref, 'refs/tags/') != true
       run: |
-        LABEL="-dev${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
+        LABEL="-dev"
         echo "Pre-release: ${LABEL}"
         echo "##[set-output name=label;]${LABEL}"
 
