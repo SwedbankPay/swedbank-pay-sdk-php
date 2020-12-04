@@ -343,7 +343,7 @@ class Client extends ClientResource
             "Response Body:\n%s\n\n" .
             "<<<<<<<< END PAYEX API CLIENT REQUEST DEBUG INFO <<<<<<<<\n\n",
             $this->getMethod(),
-            $this->getBaseUrl() . $this->getEndpoint(),
+            rtrim($this->getBaseUrl() . $this->getEndpoint(), '/'),
             implode("\n", (array)$this->getHeaders()),
             implode("\n", (array)$this->getRequestBody()),
             "%s",
@@ -409,7 +409,7 @@ class Client extends ClientResource
             CURLOPT_CAINFO        => self::getSystemCaRootBundlePath(),
             CURLOPT_USERAGENT     => $this->getUserAgent(),
             CURLOPT_HTTPHEADER    => $this->getHeaders(),
-            CURLOPT_URL           => $this->getBaseUrl() . $this->getEndpoint(),
+            CURLOPT_URL           => rtrim($this->getBaseUrl() . $this->getEndpoint(), '/'),
             CURLOPT_CUSTOMREQUEST => $this->getMethod()
         ]);
 
