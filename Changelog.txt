@@ -1,6 +1,6 @@
-# Changelog
-## [4.0.0] - 2020-12-03
-### Added
+Changelog
+4.0.0 - 2020-12-03
+Added
 - Support for MobilePay
 - Support for Trustly
 - Support for `metadata`
@@ -14,15 +14,15 @@
 - Payer & RiskIndicator resources for 3D Secure 2
 - OrderItems, PaymentUrl & improves functionalities
 
-### Changed
+Changed
 - Got rid of the direct url building
 - Fixed a bug in `prefillInfo`.
 - Added back the `Response` class that was removed before
 - Removed `CreateAuthorization` for Vipps
 
-## [3.4.0] - 2019-10-08
-### Added
+3.4.0 - 2019-10-08
+Added
 - Adds request resources for creditcard, invoice, swish and vipps payment methods
 
-### Changed
+Changed
 - Reworked payment transactions resources for supporting 1-phase payments
