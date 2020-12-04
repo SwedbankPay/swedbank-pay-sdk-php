@@ -41,7 +41,9 @@ class ClientVersion
     {
         $composerPath = realpath(__DIR__ . '/../../../../composer.json');
 
+        // phpcs:disable
         return dirname($composerPath);
+        // phpcs:enable
     }
 
     /**
