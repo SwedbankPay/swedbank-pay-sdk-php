@@ -356,7 +356,7 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
             /** @var ResponseInterface $serviceResponse */
             $serviceResponse = new Response($this, $responseBody);
         } catch (\Exception $exception) {
-            throw new ClientException($exception->getMessage());
+            throw new ClientException($exception->getMessage(), $exception->getCode());
         }
 
         return $serviceResponse;
