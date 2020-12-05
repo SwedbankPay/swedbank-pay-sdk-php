@@ -26,7 +26,7 @@ class Test
             ->setMode($isTest ? Client::MODE_TEST : Client::MODE_PRODUCTION);
 
         $payeeInfo = new PaymentPayeeInfo();
-        $payeeInfo->setPayeeId(PAYEE_ID);
+        $payeeInfo->setPayeeId($payeeId);
 
         $payment = new Payment();
         $payment->setOperation('FinancingConsumer')
