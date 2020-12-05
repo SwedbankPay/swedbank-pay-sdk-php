@@ -358,7 +358,8 @@ class Client extends ClientResource
                     $this->getErrorMessage()
                 )
             );
-            throw new Exception($this->getDebugInfo());
+
+            throw new Exception($this->getDebugInfo(), $this->getErrorCode());
         }
 
         $this->setDebugInfo(
