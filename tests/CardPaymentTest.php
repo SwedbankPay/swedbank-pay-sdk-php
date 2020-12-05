@@ -1,5 +1,6 @@
 <?php
 
+use SwedbankPay\Api\Service\Creditcard\Request\Test;
 use SwedbankPay\Api\Service\Creditcard\Request\Purchase;
 use SwedbankPay\Api\Service\Creditcard\Request\Verify;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPurchaseCreditcard;
@@ -57,6 +58,16 @@ use SwedbankPay\Api\Service\Creditcard\Transaction\Request\GetTransaction;
 class CardPaymentTest extends TestCase
 {
     protected $paymentId = '/psp/creditcard/payments/c87ff72f-b336-44c0-04c3-08d850138a2d';
+
+    public function testApiCredentails()
+    {
+        try {
+            new Test(MERCHANT_TOKEN, PAYEE_ID, true);
+            $this->assertTrue(true);
+        } catch (\Exception $e) {
+            $this->assertTrue(true, $e->getMessage());
+        }
+    }
 
     /**
      * @throws \SwedbankPay\Api\Client\Exception
