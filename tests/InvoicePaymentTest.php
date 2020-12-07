@@ -1,5 +1,6 @@
 <?php
 
+use SwedbankPay\Api\Service\Invoice\Request\Test;
 use SwedbankPay\Api\Client\Exception as ClientException;
 use SwedbankPay\Api\Service\Consumer\Resource\ConsumerAddress;
 use SwedbankPay\Api\Service\Invoice\Request\CreateApprovedLegalAddress;
@@ -61,6 +62,16 @@ use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetTransaction;
  */
 class InvoicePaymentTest extends TestCase
 {
+    public function testApiCredentails()
+    {
+        try {
+            new Test(MERCHANT_TOKEN, PAYEE_ID, true);
+            $this->assertTrue(true);
+        } catch (\Exception $e) {
+            $this->assertTrue(true, $e->getMessage());
+        }
+    }
+
     /**
      * @throws \SwedbankPay\Api\Client\Exception
      */

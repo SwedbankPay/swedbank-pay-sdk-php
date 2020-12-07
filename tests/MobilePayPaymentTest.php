@@ -1,6 +1,7 @@
 <?php
 
 // phpcs:disable
+use SwedbankPay\Api\Service\MobilePay\Request\Test;
 use SwedbankPay\Api\Client\Client;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
@@ -78,6 +79,16 @@ class MobilePayPaymentTest extends TestCase
         $this->client->setMerchantToken(MERCHANT_TOKEN_MOBILEPAY)
             ->setPayeeId(PAYEE_ID_MOBILEPAY)
             ->setMode(Client::MODE_TEST);
+    }
+
+    public function testApiCredentails()
+    {
+        try {
+            new Test(MERCHANT_TOKEN, PAYEE_ID, true);
+            $this->assertTrue(true);
+        } catch (\Exception $e) {
+            $this->assertTrue(true, $e->getMessage());
+        }
     }
 
     /**

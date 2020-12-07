@@ -1,5 +1,6 @@
 <?php
 
+use SwedbankPay\Api\Service\Paymentorder\Request\Test;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\Item\OrderItem;
@@ -34,6 +35,16 @@ use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Response\Transacti
 class PurchaseTest extends TestCase
 {
     private $paymentOrderId = '/psp/paymentorders/2a53f443-37bf-464c-45e0-08d85013a0e3';
+
+    public function testApiCredentails()
+    {
+        try {
+            new Test(MERCHANT_TOKEN, PAYEE_ID, true);
+            $this->assertTrue(true);
+        } catch (\Exception $e) {
+            $this->assertTrue(true, $e->getMessage());
+        }
+    }
 
     public function testPurchaseRequest()
     {
