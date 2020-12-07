@@ -1,6 +1,5 @@
 <?php
 
-use SwedbankPay\Api\Service\Vipps\Request\Test;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Metadata;
@@ -54,18 +53,6 @@ use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetTransaction;
 class VippsPaymentTest extends TestCase
 {
     protected $paymentId = '/psp/vipps/payments/fcea6890-7e20-4a75-2aa1-08d84f4b0256';
-
-    public function testApiCredentails()
-    {
-        $this->markTestSkipped('VippsV1');
-
-        try {
-            new Test(MERCHANT_TOKEN, PAYEE_ID, true);
-            $this->assertTrue(true);
-        } catch (\Exception $e) {
-            $this->assertTrue(true, $e->getMessage());
-        }
-    }
 
     public function testPurchaseRequest()
     {

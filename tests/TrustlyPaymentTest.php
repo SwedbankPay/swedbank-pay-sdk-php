@@ -1,7 +1,6 @@
 <?php
 
 // phpcs:disable
-use SwedbankPay\Api\Service\Trustly\Request\Test;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
 use SwedbankPay\Api\Service\Trustly\Request\Purchase;
@@ -44,16 +43,6 @@ use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionsOb
 class TrustlyPaymentTest extends TestCase
 {
     protected $paymentId = '/psp/trustly/payments/e72c779a-fcdc-4464-ef64-08d85013b189';
-
-    public function testApiCredentails()
-    {
-        try {
-            new Test(MERCHANT_TOKEN, PAYEE_ID, true);
-            $this->assertTrue(true);
-        } catch (\Exception $e) {
-            $this->assertTrue(true, $e->getMessage());
-        }
-    }
 
     /**
      * @throws \SwedbankPay\Api\Client\Exception
