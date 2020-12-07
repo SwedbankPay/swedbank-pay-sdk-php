@@ -2,13 +2,13 @@
 
 namespace SwedbankPay\Api\Service\Creditcard\Request;
 
-use SwedbankPay\Api\Client\Client;
+use SwedbankPay\Api\Service\Base\Request\Test as BaseTest;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPayeeInfo;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPurchase;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPurchaseObject;
 use SwedbankPay\Api\Client\Exception;
 
-class Test
+class Test extends BaseTest
 {
     /**
      * Test constructor.
@@ -27,12 +27,6 @@ class Test
          * If the request fails with 403 something is wrong with the contract.
          * If the request fails with 400 Bad Request, credentials and contracts should be OK.
          */
-
-        $client = new Client();
-        $client->setMerchantToken($merchantToken)
-            ->setPayeeId($payeeId)
-            ->setMode($isTest ? Client::MODE_TEST : Client::MODE_PRODUCTION);
-
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId($payeeId);
 
@@ -44,23 +38,6 @@ class Test
         $paymentObject->setPayment($payment);
 
         $request = new Purchase($paymentObject);
-        $request->setClient($client);
-
-        try {
-            $request->send();
-        } catch (Exception $e) {
-            if (400 === $e->getCode()) {
-                return;
-            }
-
-            switch ($e->getCode()) {
-                case 401:
-                    throw new Exception('Something is wrong with the credentials.');
-                case 403:
-                    throw new Exception('Something is wrong with the contract.');
-            }
-        }
-
-        throw new Exception('API test has been failed.');
+        $this->sendRequest($merchantToken, $payeeId, $isTest, $request);
     }
 }
