@@ -17,7 +17,7 @@ class Test extends BaseTest
      * @param bool $isTest
      * @throws Exception
      */
-    public function __construct($merchantToken, $payeeId, $isTest = true)
+    public function __construct($merchantToken, $payeeId, $isTest)
     {
         /**
          * Perform a POST request to create a payment with invalid data that is known to fail with
