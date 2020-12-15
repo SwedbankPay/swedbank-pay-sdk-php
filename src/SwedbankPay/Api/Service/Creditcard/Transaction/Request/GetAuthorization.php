@@ -10,7 +10,6 @@ class GetAuthorization extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/creditcard/payments/%s/authorizations/%s');
         $this->setResponseResourceFQCN(AuthorizationObject::class);
     }
 }

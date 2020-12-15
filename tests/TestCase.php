@@ -16,9 +16,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
     protected function setUp(): void
     {
-        if (!defined('MERCHANT_TOKEN') ||
-            MERCHANT_TOKEN === '<merchant_token>') {
-            $this->fail('MERCHANT_TOKEN not configured in INI file or environment variable.');
+        if (!defined('ACCESS_TOKEN') ||
+            ACCESS_TOKEN === '<access_token>') {
+            $this->fail('ACCESS_TOKEN not configured in INI file or environment variable.');
         }
 
         if (!defined('PAYEE_ID') ||
@@ -27,7 +27,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         }
 
         $this->client = new Client();
-        $this->client->setMerchantToken(MERCHANT_TOKEN)
+        $this->client->setAccessToken(ACCESS_TOKEN)
             ->setPayeeId(PAYEE_ID)
             ->setMode(Client::MODE_TEST);
     }
@@ -117,7 +117,15 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $purchaseRequest = new Purchase($paymentOrderObject);
         $purchaseRequest->setClient($this->client);
 
-        $response = $purchaseRequest->send();
-        return $response;
+        return $purchaseRequest->send();
+    }
+
+    /**
+     * Get Payment Id from url
+     * @param string $url
+     * @return string
+     */
+    protected function getPaymentIdFromUrl($url) {
+        return preg_replace('|/psp/[^/]+/payments/|', '', $url);
     }
 }

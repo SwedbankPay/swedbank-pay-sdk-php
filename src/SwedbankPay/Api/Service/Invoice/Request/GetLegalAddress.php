@@ -9,6 +9,5 @@ class GetLegalAddress extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/invoice/payments/%s/legaladdress');
     }
 }

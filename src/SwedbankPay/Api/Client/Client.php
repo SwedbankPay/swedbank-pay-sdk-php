@@ -182,7 +182,7 @@ class Client extends ClientResource
             'Accept: application/json',
             'Session-Id: ' . $this->getSessionId(),
             'Forwarded: for=' . $this->getRemoteAddr() . '; proto=https',
-            'Authorization:  Bearer ' . $this->getMerchantToken(),
+            'Authorization:  Bearer ' . $this->getAccessToken(),
             'Content-Type: application/json; charset=utf-8'
         ];
         $headers = array_merge($default, (array)$headers);
@@ -343,7 +343,7 @@ class Client extends ClientResource
             "Response Body:\n%s\n\n" .
             "<<<<<<<< END PAYEX API CLIENT REQUEST DEBUG INFO <<<<<<<<\n\n",
             $this->getMethod(),
-            $this->getBaseUrl() . $this->getEndpoint(),
+            rtrim($this->getBaseUrl() . $this->getEndpoint(), '/'),
             implode("\n", (array)$this->getHeaders()),
             implode("\n", (array)$this->getRequestBody()),
             "%s",
@@ -358,7 +358,8 @@ class Client extends ClientResource
                     $this->getErrorMessage()
                 )
             );
-            throw new Exception($this->getDebugInfo());
+
+            throw new Exception($this->getDebugInfo(), $this->getErrorCode());
         }
 
         $this->setDebugInfo(
@@ -409,7 +410,7 @@ class Client extends ClientResource
             CURLOPT_CAINFO        => self::getSystemCaRootBundlePath(),
             CURLOPT_USERAGENT     => $this->getUserAgent(),
             CURLOPT_HTTPHEADER    => $this->getHeaders(),
-            CURLOPT_URL           => $this->getBaseUrl() . $this->getEndpoint(),
+            CURLOPT_URL           => rtrim($this->getBaseUrl() . $this->getEndpoint(), '/'),
             CURLOPT_CUSTOMREQUEST => $this->getMethod()
         ]);
 

@@ -33,28 +33,19 @@ class ClientVersion
     }
 
     /**
-     * Gets version environment variable name
-     *
-     * @return string
-     */
-    private function getVersionEnvName()
-    {
-        return str_replace('\\', '_', strtoupper($this->getVersionConstName()));
-    }
-
-    /**
      * Gets path to composer package root directory
      *
      * @return string
      */
     private function getComposerPath()
     {
-        $autoLoadPath = '/src/' . str_replace('\\', '/', __NAMESPACE__);
-        if (DIRECTORY_SEPARATOR !== '/') {
-            $autoLoadPath = str_replace('/', DIRECTORY_SEPARATOR, $autoLoadPath);
-        }
+        // phpcs:disable
+        $composerPath = realpath(__DIR__ . '/../../../../composer.json');
+        // phpcs:enable
 
-        return str_replace($autoLoadPath, '', __DIR__);
+        // phpcs:disable
+        return dirname($composerPath);
+        // phpcs:enable
     }
 
     /**
@@ -83,10 +74,6 @@ class ClientVersion
             return $version;
         }
 
-        if ($this->tryGetVersionNumberFromEnv($version)) {
-            return $version;
-        }
-
         if ($this->tryGetVersionNumberFromComposerJson($version)) {
             return $version;
         }
@@ -111,27 +98,6 @@ class ClientVersion
     {
         if (defined($this->getVersionConstName()) && constant($this->getVersionConstName()) !== '') {
             $version = constant($this->getVersionConstName());
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-      * Tries to get the version number from possible environment variable.
-      * Returns true if successful; otherwise false.
-      *
-      * @param string $version The by-reference $version variable to assign the version number to, if found.
-      * @return bool true if successful; otherwise false.
-      */
-    private function tryGetVersionNumberFromEnv(&$version) : bool
-    {
-        // phpcs:disable
-        $envVersion = getenv($this->getVersionEnvName());
-        // phpcs:enable
-
-        if ($envVersion !== false && $envVersion !== null && !empty($envVersion)) {
-            $version = $envVersion;
             return true;
         }
 

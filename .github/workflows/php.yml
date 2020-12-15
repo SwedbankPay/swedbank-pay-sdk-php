@@ -17,19 +17,19 @@ jobs:
       run: git fetch --prune --unshallow
 
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.2
+      uses: gittools/actions/gitversion/setup@v0.9.7
       with:
-        versionSpec: '5.2.x'
+        versionSpec: '5.x'
 
     - name: Execute GitVersion
       id: gitversion # step id used as reference for output values
-      uses: gittools/actions/gitversion/execute@v0.9.3
+      uses: gittools/actions/gitversion/execute@v0.9.7
 
     - name: Version label for unstable builds
       id: unstable
       if: startsWith(github.ref, 'refs/tags/') != true
       run: |
-        LABEL="-dev${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
+        LABEL="-dev"
         echo "Pre-release: ${LABEL}"
         echo "##[set-output name=label;]${LABEL}"
 
@@ -61,8 +61,6 @@ jobs:
         echo "::set-output name=name::${ARCHIVE}"
         zip --recurse-paths --exclude="*.zip" --exclude="vendor/*" --exclude="composer.clean.json" ${ARCHIVE} *
         unzip -l ${ARCHIVE}
-        rm composer.json
-        mv composer.clean.json composer.json # Move the version-less composer.json back in place so `composer validate` won't react on it in the script section.
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2-preview
@@ -91,9 +89,9 @@ jobs:
 
     - name: Unit tests
       env:
-        MERCHANT_TOKEN: ${{ secrets.MERCHANT_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         PAYEE_ID: ${{ secrets.PAYEE_ID }}
-        MERCHANT_TOKEN_MOBILEPAY: ${{ secrets.MERCHANT_TOKEN_MOBILEPAY }}
+        ACCESS_TOKEN_MOBILEPAY: ${{ secrets.ACCESS_TOKEN_MOBILEPAY }}
         PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
         VERSION: ${{ steps.composer-version.outputs.version }}
       run: ./vendor/bin/phpunit --configuration=./tests/phpunit.xml --bootstrap=./tests/bootstrap.php ./tests/ --coverage-clover=coverage.xml

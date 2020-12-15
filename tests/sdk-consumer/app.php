@@ -4,10 +4,9 @@
 require_once __DIR__ . '/vendor/autoload.php';
 // phpcs:enable
 
-use \SwedbankPay\Api\Client;
-
 // phpcs:disable
-$version = getenv('VERSION');
+$json = json_decode(file_get_contents(__DIR__ . '/composer.json'), true);
+$version = $json['version'];
 // phpcs:enable
 
 if (!empty($version)) {

@@ -10,7 +10,6 @@ class GetPayment extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/swish/payments/%s');
         $this->setResponseResourceFQCN(PaymentObject::class);
     }
 }

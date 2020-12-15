@@ -16,6 +16,7 @@ interface CaptureInterface extends TransferInterface
     const ACTIVITY = 'activity';
     const ITEM_DESCRIPTIONS = 'item_descriptions';
     const VAT_SUMMARY = 'vat_summary';
+    const RECEIPT_REFERENCE = 'receiptReference';
 
     /**
      * @return string
@@ -49,4 +50,24 @@ interface CaptureInterface extends TransferInterface
      * @return $this
      */
     public function setVatSummary($vatSummary);
+
+    /**
+     * Get Receipt Reference.
+     * The receiptReference is a reference from the merchant system.
+     * This reference is used as an invoice/receipt number to supplement payeeReference.
+     *
+     * @return string|null
+     */
+    public function getReceiptReference();
+
+    /**
+     * Set Receipt Reference.
+     * The receiptReference is a reference from the merchant system.
+     * This reference is used as an invoice/receipt number to supplement payeeReference.
+     *
+     * @param string $reference
+     *
+     * @return $this
+     */
+    public function setReceiptReference($reference);
 }

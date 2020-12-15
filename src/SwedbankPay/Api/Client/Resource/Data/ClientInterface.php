@@ -6,7 +6,7 @@ interface ClientInterface
 {
     const CLIENT_VERSION = 'client_version';
     const USER_AGENT = 'user_agent';
-    const MERCHANT_TOKEN = 'merchant_token';
+    const ACCESS_TOKEN = 'access_token';
     const PAYEE_ID = 'payee_id';
 
     const MODE = 'mode';
@@ -41,13 +41,13 @@ interface ClientInterface
     /**
      * @return string
      */
-    public function getMerchantToken();
+    public function getAccessToken();
 
     /**
-     * @param string $merchantToken
+     * @param string $accessToken
      * @return $this
      */
-    public function setMerchantToken($merchantToken);
+    public function setAccessToken($accessToken);
 
     /**
      * @return string

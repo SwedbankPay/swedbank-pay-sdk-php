@@ -26,4 +26,31 @@ class Reversal extends Transfer implements ReversalInterface
     {
         return $this->offsetSet(self::ACTIVITY, $activity);
     }
+
+
+    /**
+     * Get Receipt Reference.
+     * The receiptReference is a reference from the merchant system.
+     * This reference is used as an invoice/receipt number to supplement payeeReference.
+     *
+     * @return string|null
+     */
+    public function getReceiptReference()
+    {
+        return $this->offsetGet(self::RECEIPT_REFERENCE);
+    }
+
+    /**
+     * Set Receipt Reference.
+     * The receiptReference is a reference from the merchant system.
+     * This reference is used as an invoice/receipt number to supplement payeeReference.
+     *
+     * @param string $reference
+     *
+     * @return $this
+     */
+    public function setReceiptReference($reference)
+    {
+        return $this->offsetSet(self::RECEIPT_REFERENCE, $reference);
+    }
 }

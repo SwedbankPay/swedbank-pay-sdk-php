@@ -9,8 +9,7 @@ class CreateSale extends Request
 {
     public function setup()
     {
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/trustly/payments/%s/sales');
+        $this->setOperationRel('create-sale');
         $this->setResponseResourceFQCN(SaleObject::class);
     }
 }

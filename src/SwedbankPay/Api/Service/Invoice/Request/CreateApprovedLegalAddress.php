@@ -8,7 +8,6 @@ class CreateApprovedLegalAddress extends Request
 {
     public function setup()
     {
-        $this->setRequestMethod('POST');
-        $this->setRequestEndpoint('/psp/invoice/payments/%s/approvedlegaladdress');
+        $this->setOperationRel('create-approved-legal-address');
     }
 }

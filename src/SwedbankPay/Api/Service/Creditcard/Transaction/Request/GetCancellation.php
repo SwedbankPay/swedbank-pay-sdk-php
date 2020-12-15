@@ -10,7 +10,6 @@ class GetCancellation extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/creditcard/payments/%s/cancellations/%s');
         $this->setResponseResourceFQCN(CancellationObject::class);
     }
 }

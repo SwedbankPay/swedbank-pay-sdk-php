@@ -1,19 +1,15 @@
 <?php
 
+use SwedbankPay\Api\Client\Exception as ClientException;
+
 class ExceptionTest extends TestCase
 {
     public function testExceptionUndefinedEnvironment()
     {
+        $this->expectException(ClientException::class);
+
         // Set empty token
-        $this->client->setMerchantToken('');
-
-        $e = null;
-        try {
-            $result = $this->client->request('POST', '/psp/creditcard/payments', array());
-        } catch (\SwedbankPay\Api\Client\Exception $e) {
-            //
-        }
-
-        $this->assertInstanceOf('\SwedbankPay\Api\Client\Exception', $e);
+        $this->client->setAccessToken('');
+        $this->client->request('POST', '/psp/creditcard/payments', []);
     }
 }

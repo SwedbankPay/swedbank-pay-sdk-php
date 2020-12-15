@@ -10,7 +10,7 @@ class GetCaptures extends Request
     public function setup()
     {
         $this->setRequestMethod('GET');
-        $this->setRequestEndpoint('/psp/creditcard/payments/%s/captures');
+        $this->setOperationRel('captures');
         $this->setResponseResourceFQCN(CapturesObject::class);
     }
 }

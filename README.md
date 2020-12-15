@@ -17,16 +17,18 @@ up your development, so please feel free to play around. However, if you need
 support, please wait for a future, stable release.
 
 The Swedbank Pay SDK for PHP simplifies integrations against
-[Swedbank Pay's API Platform][api] by providing native PHP interface towards
+[Swedbank Pay's API Platform][dev-portal] by providing native PHP interface towards
 the REST API.
 
 This SDK includes the following payments options:
 
-* Checkout
-* Credit and debit cards (Visa, Mastercard, Visa Electron, Maestro etc).
-* Invoice
-* Swish
-* Vipps
+*   Checkout
+*   Credit and debit cards (Visa, Mastercard, Visa Electron, Maestro etc).
+*   Invoice
+*   Swish
+*   Vipps
+*   MobilePay Online
+*   Trustly
 
 ## Documentation
 

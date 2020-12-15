@@ -1,6 +1,7 @@
 <?php
 
 // phpcs:disable
+use SwedbankPay\Api\Service\MobilePay\Request\Test;
 use SwedbankPay\Api\Client\Client;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
@@ -61,9 +62,9 @@ class MobilePayPaymentTest extends TestCase
     protected function setUp(): void
     {
         // phpcs:disable
-        if (!defined('MERCHANT_TOKEN_MOBILEPAY') ||
-            MERCHANT_TOKEN_MOBILEPAY === '<merchant_token>') {
-            $this->fail('MERCHANT_TOKEN_MOBILEPAY not configured in INI file or environment variable.');
+        if (!defined('ACCESS_TOKEN_MOBILEPAY') ||
+            ACCESS_TOKEN_MOBILEPAY === '<access_token>') {
+            $this->fail('ACCESS_TOKEN_MOBILEPAY not configured in INI file or environment variable.');
         }
         // phpcs:enable
 
@@ -75,9 +76,19 @@ class MobilePayPaymentTest extends TestCase
         // phpcs:enable
 
         $this->client = new Client();
-        $this->client->setMerchantToken(MERCHANT_TOKEN_MOBILEPAY)
+        $this->client->setAccessToken(ACCESS_TOKEN_MOBILEPAY)
             ->setPayeeId(PAYEE_ID_MOBILEPAY)
             ->setMode(Client::MODE_TEST);
+    }
+
+    public function testApiCredentails()
+    {
+        try {
+            new Test(ACCESS_TOKEN_MOBILEPAY, PAYEE_ID, true);
+            $this->assertTrue(true);
+        } catch (\Exception $e) {
+            $this->assertTrue(true, $e->getMessage());
+        }
     }
 
     /**
@@ -174,8 +185,7 @@ class MobilePayPaymentTest extends TestCase
 
         $requestService = new CreateCapture($transaction);
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -218,8 +228,7 @@ class MobilePayPaymentTest extends TestCase
 
         $requestService = new CreateReversal($transaction);
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -254,8 +263,7 @@ class MobilePayPaymentTest extends TestCase
 
         $requestService = new CreateCancellation($transaction);
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -278,8 +286,7 @@ class MobilePayPaymentTest extends TestCase
     {
         $requestService = new GetAuthorizations();
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -337,8 +344,7 @@ class MobilePayPaymentTest extends TestCase
 
         $requestService = new GetCancellations();
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -396,8 +402,7 @@ class MobilePayPaymentTest extends TestCase
     {
         $requestService = new GetCaptures();
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -453,8 +458,7 @@ class MobilePayPaymentTest extends TestCase
     {
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -510,8 +514,7 @@ class MobilePayPaymentTest extends TestCase
     {
         $requestService = new GetTransactions();
         $requestService->setClient($this->client)
-            //->setPaymentId($this->paymentId)
-            ->setRequestEndpointVars(preg_replace('|/psp/[^/]+/payments/|', '', $this->paymentId));
+            ->setPaymentId($this->paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();

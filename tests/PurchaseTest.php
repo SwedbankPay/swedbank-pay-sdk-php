@@ -1,5 +1,6 @@
 <?php
 
+use SwedbankPay\Api\Service\Paymentorder\Request\Test;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\Item\OrderItem;
@@ -10,14 +11,40 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderPayer;
 use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderMetadata;
 
 use SwedbankPay\Api\Service\Paymentorder\Request\Purchase;
+use SwedbankPay\Api\Service\Paymentorder\Request\GetCurrentPayment;
+use SwedbankPay\Api\Service\Paymentorder\Request\GetPaymentorder;
+use SwedbankPay\Api\Service\Paymentorder\Request\GetPayments;
 use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderObject;
 
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
 
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Request\Transaction;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Request\TransactionObject;
+
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Request\TransactionCapture;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Request\TransactionReversal;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Response\TransactionCapture as TransactionCaptureResponse;
+use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Response\TransactionReversal as TransactionReversalResponse;
+
+/**
+ * Class PurchaseTest
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class PurchaseTest extends TestCase
 {
-    protected $purchaseRequest;
+    private $paymentOrderId = '/psp/paymentorders/5687d0fb-b414-4e2c-699c-08d8a0d83cf9';
+
+    public function testApiCredentails()
+    {
+        try {
+            new Test(ACCESS_TOKEN, PAYEE_ID, true);
+            $this->assertTrue(true);
+        } catch (\Exception $e) {
+            $this->assertTrue(true, $e->getMessage());
+        }
+    }
 
     public function testPurchaseRequest()
     {
@@ -90,11 +117,11 @@ class PurchaseTest extends TestCase
         $paymentOrderObject = new PaymentorderObject();
         $paymentOrderObject->setPaymentorder($paymentOrder);
 
-        $this->purchaseRequest = new Purchase($paymentOrderObject);
-        $this->purchaseRequest->setClient($this->client);
+        $purchaseRequest = new Purchase($paymentOrderObject);
+        $purchaseRequest->setClient($this->client);
 
         /** @var ResponseServiceInterface $responseService */
-        $responseService = $this->purchaseRequest->send();
+        $responseService = $purchaseRequest->send();
 
         $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
 
@@ -105,11 +132,185 @@ class PurchaseTest extends TestCase
 
         $result = $responseService->getResponseData();
 
-        $this->assertTrue(is_array($result));
-        $this->assertTrue(isset($result['payment_order']));
-        $this->assertTrue(isset($result['payment_order']['items']));
-        $this->assertTrue(isset($result['payment_order']['order_items']));
-        $this->assertTrue(isset($result['operations']));
-        $this->assertTrue(($result['payment_order']['operation']) === 'Purchase');
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment_order', $result);
+        $this->assertArrayHasKey('operations', $result);
+        $this->assertArrayHasKey('items', $result['payment_order']);
+        $this->assertArrayHasKey('order_items', $result['payment_order']);
+        $this->assertEquals('Purchase', $result['payment_order']['operation']);
+    }
+
+    public function testGetCurrentPayment()
+    {
+        $request = new GetCurrentPayment();
+        $request->setClient($this->client)
+            ->setPaymentOrderId($this->paymentOrderId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $request->send();
+
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var ResponseResourceInterface $response */
+        $responseResource = $responseService->getResponseResource();
+
+        $this->assertInstanceOf(ResponseResourceInterface::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('id', $result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('id', $result['payment']);
+    }
+
+    public function testGetPayments()
+    {
+        $request = new GetPayments();
+        $request->setClient($this->client)
+            ->setPaymentOrderId($this->paymentOrderId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $request->send();
+
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var ResponseResourceInterface $response */
+        $responseResource = $responseService->getResponseResource();
+
+        $this->assertInstanceOf(ResponseResourceInterface::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment_order', $result);
+        $this->assertArrayHasKey('payments', $result);
+        $this->assertArrayHasKey('id', $result['payments']);
+        $this->assertArrayHasKey('payment_list', $result['payments']);
+    }
+
+    public function testGetPaymentorder()
+    {
+        $request = new GetPaymentorder();
+        $request->setClient($this->client)
+            ->setPaymentOrderId($this->paymentOrderId)
+            ->setRequestEndpoint($this->paymentOrderId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $request->send();
+
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var ResponseResourceInterface $response */
+        $responseResource = $responseService->getResponseResource();
+
+        $this->assertInstanceOf(ResponseResourceInterface::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment_order', $result);
+        $this->assertArrayHasKey('operations', $result);
+        $this->assertArrayHasKey('id', $result['payment_order']);
+        $this->assertArrayHasKey('operation', $result['payment_order']);
+        $this->assertArrayHasKey('state', $result['payment_order']);
+    }
+
+    public function testCapture()
+    {
+        $transactionData = new Transaction();
+        $transactionData->setAmount(100)
+            ->setVatAmount(0)
+            ->setDescription('Test Capture')
+            ->setPayeeReference($this->generateRandomString(12))
+            ->setOrderItems([
+                [
+                    'reference' => 'test',
+                    'name' => 'Test',
+                    'type' => 'PRODUCT',
+                    'class' => 'Class1',
+                    'description' => 'Description',
+                    'quantity' => 1,
+                    'quantityUnit' => 'pcs',
+                    'unitPrice' => 100,
+                    'vatPercent' => 0,
+                    'amount' => 100,
+                    'vatAmount' => 0
+                ]
+            ]);
+
+        $transaction = new TransactionObject();
+        $transaction->setTransaction($transactionData);
+
+        $requestService = new TransactionCapture($transaction);
+        $requestService->setClient($this->client)
+            ->setPaymentOrderId($this->paymentOrderId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $requestService->send();
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var TransactionCaptureResponse $responseResource */
+        $responseResource = $responseService->getResponseResource();
+        $this->assertInstanceOf(TransactionCaptureResponse::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('capture', $result);
+        $this->assertArrayHasKey('transaction', $result['capture']);
+        $this->assertEquals('Capture', $result['capture']['transaction']['type']);
+
+        return $result['capture'];
+    }
+
+    public function testReversal()
+    {
+        $transactionData = new Transaction();
+        $transactionData->setAmount(100)
+            ->setVatAmount(0)
+            ->setDescription('Test refund')
+            ->setPayeeReference($this->generateRandomString(12))
+            ->setOrderItems([
+                [
+                    'reference' => 'test',
+                    'name' => 'Test',
+                    'type' => 'PRODUCT',
+                    'class' => 'Class1',
+                    'description' => 'Description',
+                    'quantity' => 1,
+                    'quantityUnit' => 'pcs',
+                    'unitPrice' => 100,
+                    'vatPercent' => 0,
+                    'amount' => 100,
+                    'vatAmount' => 0
+                ]
+            ]);
+
+        $transaction = new TransactionObject();
+        $transaction->setTransaction($transactionData);
+
+        $requestService = new TransactionReversal($transaction);
+        $requestService->setClient($this->client)
+            ->setPaymentOrderId($this->paymentOrderId);
+
+        /** @var ResponseServiceInterface $responseService */
+        $responseService = $requestService->send();
+        $this->assertInstanceOf(ResponseServiceInterface::class, $responseService);
+
+        /** @var TransactionReversalResponse $responseResource */
+        $responseResource = $responseService->getResponseResource();
+        $this->assertInstanceOf(TransactionReversalResponse::class, $responseResource);
+
+        $result = $responseService->getResponseData();
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('payment', $result);
+        $this->assertArrayHasKey('reversal', $result);
+        $this->assertArrayHasKey('transaction', $result['reversal']);
+        $this->assertEquals('Reversal', $result['reversal']['transaction']['type']);
+
+        return $result['reversal'];
     }
 }
