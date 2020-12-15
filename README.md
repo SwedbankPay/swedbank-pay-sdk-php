@@ -22,13 +22,13 @@ the REST API.
 
 This SDK includes the following payments options:
 
-  * Checkout
-  * Credit and debit cards (Visa, Mastercard, Visa Electron, Maestro etc).
-  * Invoice
-  * Swish
-  * Vipps
-  * MobilePay Online
-  * Trustly
+*   Checkout
+*   Credit and debit cards (Visa, Mastercard, Visa Electron, Maestro etc).
+*   Invoice
+*   Swish
+*   Vipps
+*   MobilePay Online
+*   Trustly
 
 ## Documentation
 
@@ -68,3 +68,4 @@ composer require swedbank-pay/swedbank-pay-sdk-php
   [dependabot]:       https://dependabot.com
   [dependabot-badge]: https://api.dependabot.com/badges/status?host=github&repo=SwedbankPay/swedbank-pay-sdk-php
   [og-image]:         https://repository-images.githubusercontent.com/211837579/156c6000-53ed-11ea-8927-782b8067996f
+  [api]:              https://developer.swedbankpay.com/
