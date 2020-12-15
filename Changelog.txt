@@ -1,6 +1,7 @@
 Changelog
-4.0.0 - 2020-12-03
+4.0.0 - 2020-12-15
 Added
+- Implemented classes which allows to test api credentials `Test`
 - Support for MobilePay
 - Support for Trustly
 - Support for `metadata`
@@ -15,7 +16,9 @@ Added
 - OrderItems, PaymentUrl & improves functionalities
 
 Changed
+- Renamed `setMerchantToken()` to `setAccessToken()` of `Client` class
 - Got rid of the direct url building
+- Added http code to `Exception` code
 - Fixed a bug in `prefillInfo`.
 - Added back the `Response` class that was removed before
 - Removed `CreateAuthorization` for Vipps
