@@ -60,7 +60,7 @@ class VippsPaymentTest extends TestCase
         $this->markTestSkipped('VippsV1');
 
         try {
-            new Test(MERCHANT_TOKEN, PAYEE_ID, true);
+            new Test(ACCESS_TOKEN, PAYEE_ID, true);
             $this->assertTrue(true);
         } catch (\Exception $e) {
             $this->assertTrue(true, $e->getMessage());

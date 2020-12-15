@@ -48,7 +48,7 @@ class TrustlyPaymentTest extends TestCase
     public function testApiCredentails()
     {
         try {
-            new Test(MERCHANT_TOKEN, PAYEE_ID, true);
+            new Test(ACCESS_TOKEN, PAYEE_ID, true);
             $this->assertTrue(true);
         } catch (\Exception $e) {
             $this->assertTrue(true, $e->getMessage());

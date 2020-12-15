@@ -62,9 +62,9 @@ class MobilePayPaymentTest extends TestCase
     protected function setUp(): void
     {
         // phpcs:disable
-        if (!defined('MERCHANT_TOKEN_MOBILEPAY') ||
-            MERCHANT_TOKEN_MOBILEPAY === '<merchant_token>') {
-            $this->fail('MERCHANT_TOKEN_MOBILEPAY not configured in INI file or environment variable.');
+        if (!defined('ACCESS_TOKEN_MOBILEPAY') ||
+            ACCESS_TOKEN_MOBILEPAY === '<access_token>') {
+            $this->fail('ACCESS_TOKEN_MOBILEPAY not configured in INI file or environment variable.');
         }
         // phpcs:enable
 
@@ -76,7 +76,7 @@ class MobilePayPaymentTest extends TestCase
         // phpcs:enable
 
         $this->client = new Client();
-        $this->client->setAccessToken(MERCHANT_TOKEN_MOBILEPAY)
+        $this->client->setAccessToken(ACCESS_TOKEN_MOBILEPAY)
             ->setPayeeId(PAYEE_ID_MOBILEPAY)
             ->setMode(Client::MODE_TEST);
     }
@@ -84,7 +84,7 @@ class MobilePayPaymentTest extends TestCase
     public function testApiCredentails()
     {
         try {
-            new Test(MERCHANT_TOKEN, PAYEE_ID, true);
+            new Test(ACCESS_TOKEN_MOBILEPAY, PAYEE_ID, true);
             $this->assertTrue(true);
         } catch (\Exception $e) {
             $this->assertTrue(true, $e->getMessage());
