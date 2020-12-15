@@ -17,7 +17,7 @@ up your development, so please feel free to play around. However, if you need
 support, please wait for a future, stable release.
 
 The Swedbank Pay SDK for PHP simplifies integrations against
-[Swedbank Pay's API Platform][api] by providing native PHP interface towards
+[Swedbank Pay's API Platform][dev-portal] by providing native PHP interface towards
 the REST API.
 
 This SDK includes the following payments options:
@@ -68,4 +68,3 @@ composer require swedbank-pay/swedbank-pay-sdk-php
   [dependabot]:       https://dependabot.com
   [dependabot-badge]: https://api.dependabot.com/badges/status?host=github&repo=SwedbankPay/swedbank-pay-sdk-php
   [og-image]:         https://repository-images.githubusercontent.com/211837579/156c6000-53ed-11ea-8927-782b8067996f
-  [api]:              https://developer.swedbankpay.com/
