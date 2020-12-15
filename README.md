@@ -22,13 +22,13 @@ the REST API.
 
 This SDK includes the following payments options:
 
-* Checkout
-* Credit and debit cards (Visa, Mastercard, Visa Electron, Maestro etc).
-* Invoice
-* Swish
-* Vipps
-* MobilePay Online
-* Trustly
+  * Checkout
+  * Credit and debit cards (Visa, Mastercard, Visa Electron, Maestro etc).
+  * Invoice
+  * Swish
+  * Vipps
+  * MobilePay Online
+  * Trustly
 
 ## Documentation
 
