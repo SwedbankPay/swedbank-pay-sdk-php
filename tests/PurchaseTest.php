@@ -34,7 +34,7 @@ use SwedbankPay\Api\Service\Paymentorder\Transaction\Resource\Response\Transacti
  */
 class PurchaseTest extends TestCase
 {
-    private $paymentOrderId = '/psp/paymentorders/2a53f443-37bf-464c-45e0-08d85013a0e3';
+    private $paymentOrderId = '/psp/paymentorders/5687d0fb-b414-4e2c-699c-08d8a0d83cf9';
 
     public function testApiCredentails()
     {
