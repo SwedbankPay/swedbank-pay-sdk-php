@@ -13,12 +13,12 @@ class Test extends BaseTest
 {
     /**
      * Test constructor.
-     * @param string $merchantToken
+     * @param string $accessToken
      * @param string $payeeId
      * @param bool $isTest
      * @throws Exception
      */
-    public function __construct($merchantToken, $payeeId, $isTest)
+    public function __construct($accessToken, $payeeId, $isTest)
     {
         $payeeInfo = new PaymentPayeeInfo();
         $payeeInfo->setPayeeId($payeeId);
@@ -35,6 +35,6 @@ class Test extends BaseTest
         $invoicePaymentObject->setInvoice($invoice);
 
         $request = new CreateInvoice($invoicePaymentObject);
-        $this->sendRequest($merchantToken, $payeeId, $isTest, $request);
+        $this->sendRequest($accessToken, $payeeId, $isTest, $request);
     }
 }

@@ -11,16 +11,16 @@ abstract class Test
     /**
      * Send request to test.
      *
-     * @param string $merchantToken
+     * @param string $accessToken
      * @param string $payeeId
      * @param bool $isTest
      * @param Request $request
      * @throws Exception
      */
-    public function sendRequest($merchantToken, $payeeId, $isTest, Request $request)
+    public function sendRequest($accessToken, $payeeId, $isTest, Request $request)
     {
         $client = new Client();
-        $client->setMerchantToken($merchantToken)
+        $client->setAccessToken($accessToken)
             ->setPayeeId($payeeId)
             ->setMode($isTest ? Client::MODE_TEST : Client::MODE_PRODUCTION);
 

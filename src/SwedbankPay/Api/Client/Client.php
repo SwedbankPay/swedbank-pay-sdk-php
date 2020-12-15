@@ -182,7 +182,7 @@ class Client extends ClientResource
             'Accept: application/json',
             'Session-Id: ' . $this->getSessionId(),
             'Forwarded: for=' . $this->getRemoteAddr() . '; proto=https',
-            'Authorization:  Bearer ' . $this->getMerchantToken(),
+            'Authorization:  Bearer ' . $this->getAccessToken(),
             'Content-Type: application/json; charset=utf-8'
         ];
         $headers = array_merge($default, (array)$headers);

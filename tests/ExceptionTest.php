@@ -9,7 +9,7 @@ class ExceptionTest extends TestCase
         $this->expectException(ClientException::class);
 
         // Set empty token
-        $this->client->setMerchantToken('');
+        $this->client->setAccessToken('');
         $this->client->request('POST', '/psp/creditcard/payments', []);
     }
 }

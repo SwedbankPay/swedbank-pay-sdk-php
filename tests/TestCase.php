@@ -27,7 +27,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         }
 
         $this->client = new Client();
-        $this->client->setMerchantToken(MERCHANT_TOKEN)
+        $this->client->setAccessToken(MERCHANT_TOKEN)
             ->setPayeeId(PAYEE_ID)
             ->setMode(Client::MODE_TEST);
     }

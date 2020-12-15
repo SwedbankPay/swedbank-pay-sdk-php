@@ -44,18 +44,18 @@ class Client extends AbstractDataTransferObject implements ClientInterface
     /**
      * @return string
      */
-    public function getMerchantToken()
+    public function getAccessToken()
     {
-        return $this->offsetGet(self::MERCHANT_TOKEN);
+        return $this->offsetGet(self::ACCESS_TOKEN);
     }
 
     /**
-     * @param string $merchantToken
+     * @param string $accessToken
      * @return $this
      */
-    public function setMerchantToken($merchantToken)
+    public function setAccessToken($accessToken)
     {
-        return $this->offsetSet(self::MERCHANT_TOKEN, $merchantToken);
+        return $this->offsetSet(self::ACCESS_TOKEN, $accessToken);
     }
 
     /**

@@ -12,12 +12,12 @@ class Test extends BaseTest
 {
     /**
      * Test constructor.
-     * @param string $merchantToken
+     * @param string $accessToken
      * @param string $payeeId
      * @param bool $isTest
      * @throws Exception
      */
-    public function __construct($merchantToken, $payeeId, $isTest)
+    public function __construct($accessToken, $payeeId, $isTest)
     {
         $payeeInfo = new PaymentorderPayeeInfo();
         $payeeInfo->setPayeeId($payeeId);
@@ -30,6 +30,6 @@ class Test extends BaseTest
         $paymentOrderObject->setPaymentorder($paymentOrder);
 
         $purchaseRequest = new Purchase($paymentOrderObject);
-        $this->sendRequest($merchantToken, $payeeId, $isTest, $purchaseRequest);
+        $this->sendRequest($accessToken, $payeeId, $isTest, $purchaseRequest);
     }
 }

@@ -267,8 +267,8 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
      */
     public function send()
     {
-        if (!$this->getClient()->getMerchantToken() ||
-            $this->getClient()->getMerchantToken() === '<merchant_token>') {
+        if (!$this->getClient()->getAccessToken() ||
+            $this->getClient()->getAccessToken() === '<merchant_token>') {
             throw new ClientException('MERCHANT_TOKEN not configured in INI file or environment variable.');
         }
 

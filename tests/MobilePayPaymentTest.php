@@ -76,7 +76,7 @@ class MobilePayPaymentTest extends TestCase
         // phpcs:enable
 
         $this->client = new Client();
-        $this->client->setMerchantToken(MERCHANT_TOKEN_MOBILEPAY)
+        $this->client->setAccessToken(MERCHANT_TOKEN_MOBILEPAY)
             ->setPayeeId(PAYEE_ID_MOBILEPAY)
             ->setMode(Client::MODE_TEST);
     }
