@@ -12,7 +12,10 @@ class PaymentorderTest extends TestCase
         $this->assertTrue(method_exists($paymentOrder, 'setInitiatingSystemUserAgent'));
 
         $result = $paymentOrder->setInitiatingSystemUserAgent('swedbankpay-sdk-php/123');
-        $this->assertInstanceOf('Paymentorder', $result);
+        $this->assertInstanceOf(
+            '\SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface',
+            $result
+        );
 
         $result = $paymentOrder->getInitiatingSystemUserAgent();
         $this->assertEquals('swedbankpay-sdk-php/123', $result);
@@ -26,7 +29,10 @@ class PaymentorderTest extends TestCase
         $this->assertTrue(method_exists($paymentOrder, 'setCurrency'));
 
         $result = $paymentOrder->setCurrency('SEK');
-        $this->assertInstanceOf('Paymentorder', $result);
+        $this->assertInstanceOf(
+            '\SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface',
+            $result
+        );
 
         $result = $paymentOrder->getCurrency();
         $this->assertEquals('SEK', $result);
@@ -40,7 +46,10 @@ class PaymentorderTest extends TestCase
         $this->assertTrue(method_exists($paymentOrder, 'setAmount'));
 
         $result = $paymentOrder->setAmount(1);
-        $this->assertInstanceOf('Paymentorder', $result);
+        $this->assertInstanceOf(
+            '\SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface',
+            $result
+        );
 
         $result = $paymentOrder->getAmount();
         $this->assertEquals(1, $result);
@@ -54,7 +63,10 @@ class PaymentorderTest extends TestCase
         $this->assertTrue(method_exists($paymentOrder, 'setVatAmount'));
 
         $result = $paymentOrder->setVatAmount(1);
-        $this->assertInstanceOf('Paymentorder', $result);
+        $this->assertInstanceOf(
+            '\SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface',
+            $result
+        );
 
         $result = $paymentOrder->getVatAmount();
         $this->assertEquals(1, $result);
@@ -68,7 +80,10 @@ class PaymentorderTest extends TestCase
         $this->assertTrue(method_exists($paymentOrder, 'setDescription'));
 
         $result = $paymentOrder->setDescription('Description');
-        $this->assertInstanceOf('Paymentorder', $result);
+        $this->assertInstanceOf(
+            '\SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface',
+            $result
+        );
 
         $result = $paymentOrder->getDescription();
         $this->assertEquals('Description', $result);
@@ -82,7 +97,10 @@ class PaymentorderTest extends TestCase
         $this->assertTrue(method_exists($paymentOrder, 'setUserAgent'));
 
         $result = $paymentOrder->setUserAgent('UserAgent');
-        $this->assertInstanceOf('Paymentorder', $result);
+        $this->assertInstanceOf(
+            '\SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface',
+            $result
+        );
 
         $result = $paymentOrder->getUserAgent();
         $this->assertEquals('UserAgent', $result);
@@ -96,7 +114,10 @@ class PaymentorderTest extends TestCase
         $this->assertTrue(method_exists($paymentOrder, 'setLanguage'));
 
         $result = $paymentOrder->setLanguage('en-US');
-        $this->assertInstanceOf('Paymentorder', $result);
+        $this->assertInstanceOf(
+            '\SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface',
+            $result
+        );
 
         $result = $paymentOrder->getLanguage();
         $this->assertEquals('en-US', $result);
@@ -110,7 +131,10 @@ class PaymentorderTest extends TestCase
         $this->assertTrue(method_exists($paymentOrder, 'setGeneratePaymentToken'));
 
         $result = $paymentOrder->setGeneratePaymentToken(true);
-        $this->assertInstanceOf('Paymentorder', $result);
+        $this->assertInstanceOf(
+            '\SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface',
+            $result
+        );
 
         $result = $paymentOrder->isGeneratePaymentToken();
         $this->assertEquals(true, $result);
@@ -124,7 +148,10 @@ class PaymentorderTest extends TestCase
         $this->assertTrue(method_exists($paymentOrder, 'setDisablePaymentMenu'));
 
         $result = $paymentOrder->setDisablePaymentMenu(true);
-        $this->assertInstanceOf('Paymentorder', $result);
+        $this->assertInstanceOf(
+            '\SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface',
+            $result
+        );
 
         $result = $paymentOrder->isDisablePaymentMenu();
         $this->assertEquals(true, $result);
@@ -138,7 +165,10 @@ class PaymentorderTest extends TestCase
         $this->assertTrue(method_exists($paymentOrder, 'setPayerReference'));
 
         $result = $paymentOrder->setPayerReference('123');
-        $this->assertInstanceOf('Paymentorder', $result);
+        $this->assertInstanceOf(
+            '\SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface',
+            $result
+        );
 
         $result = $paymentOrder->getPayerReference();
         $this->assertEquals('123', $result);
