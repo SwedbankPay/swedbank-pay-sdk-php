@@ -1,12 +1,12 @@
 <?php
 
-use SwedbankPay\Api\Service\Resource\Request as RequestResource;
+use SwedbankPay\Api\Service\Payment\Resource\Request\Payment;
 
 class PaymentRequestTest extends TestCase
 {
     public function testInitiatingSystemUserAgent()
     {
-        $payment = new RequestResource();
+        $payment = new Payment();
 
         $this->assertTrue(method_exists($payment, 'getInitiatingSystemUserAgent'));
         $this->assertTrue(method_exists($payment, 'setInitiatingSystemUserAgent'));
