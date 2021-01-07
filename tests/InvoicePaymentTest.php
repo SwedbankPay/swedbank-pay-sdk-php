@@ -188,12 +188,9 @@ class InvoicePaymentTest extends TestCase
     /**
      * @depends InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
-     * @throws \SwedbankPay\Api\Client\Exception
      */
     public function testCreateAuthorizationTransaction($paymentId)
     {
-        $this->markTestSkipped('Direct Invoice is about to be phased out.');
-
         $transactionData = new Transaction();
         $transactionData->setActivity('FinancingConsumer');
 
