@@ -2,6 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Payment\Resource\Request;
 
+use SwedbankPay\Api\Client\ClientVersion;
 use SwedbankPay\Api\Service\Payment\Resource\PaymentTrait;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Data\PayeeInfoInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Data\PrefillInfoInterface;
@@ -16,6 +17,14 @@ use SwedbankPay\Api\Service\Resource\Request as RequestResource;
 class Payment extends RequestResource implements PaymentRequestInterface
 {
     use PaymentTrait;
+
+    public function __construct($data = [])
+    {
+        parent::__construct($data);
+
+        $version = new ClientVersion();
+        $this->setInitiatingSystemUserAgent('swedbankpay-sdk-php/' . $version->getVersion());
+    }
 
     /**
      * @return UrlInterface

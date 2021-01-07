@@ -2,6 +2,7 @@
 
 namespace SwedbankPay\Api\Service\Paymentorder\Resource\Request;
 
+use SwedbankPay\Api\Client\ClientVersion;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderRiskIndicatorInterface;
@@ -17,6 +18,40 @@ use SwedbankPay\Api\Service\Resource\Request as RequestResource;
  */
 class Paymentorder extends RequestResource implements PaymentorderInterface
 {
+    /**
+     * Paymentorder constructor.
+     *
+     * @param array $data
+     */
+    public function __construct($data = [])
+    {
+        parent::__construct($data);
+
+        $version = new ClientVersion();
+        $this->setInitiatingSystemUserAgent('swedbankpay-sdk-php/' . $version->getVersion());
+    }
+
+    /**
+     * Get Initiating System User Agent.
+     *
+     * @return string|null
+     */
+    public function getInitiatingSystemUserAgent()
+    {
+        return $this->offsetGet(self::INITIATING_SYSTEM_AGENT);
+    }
+
+    /**
+     * Set Initiating System User Agent.
+     *
+     * @param string $agent
+     * @return $this
+     */
+    public function setInitiatingSystemUserAgent($agent)
+    {
+        return $this->offsetSet(self::INITIATING_SYSTEM_AGENT, $agent);
+    }
+
     /**
      * @return string
      */

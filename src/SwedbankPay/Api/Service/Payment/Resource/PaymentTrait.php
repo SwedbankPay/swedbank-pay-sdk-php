@@ -9,6 +9,27 @@ namespace SwedbankPay\Api\Service\Payment\Resource;
 trait PaymentTrait
 {
     /**
+     * Get Initiating System User Agent.
+     *
+     * @return string|null
+     */
+    public function getInitiatingSystemUserAgent()
+    {
+        return $this->offsetGet(self::INITIATING_SYSTEM_AGENT);
+    }
+
+    /**
+     * Set Initiating System User Agent.
+     *
+     * @param string $agent
+     * @return $this
+     */
+    public function setInitiatingSystemUserAgent($agent)
+    {
+        return $this->offsetSet(self::INITIATING_SYSTEM_AGENT, $agent);
+    }
+
+    /**
      * @return string
      */
     public function getCurrency()
