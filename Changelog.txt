@@ -1,4 +1,9 @@
 Changelog
+4.0.1 - 2021-02-12
+Added
+- Add InitiatingSystemUserAgent for `Payment`
+- Add InitiatingSystemUserAgent for `Paymentorder`
+
 4.0.0 - 2020-12-15
 Added
 - Implemented classes which allows to test api credentials `Test`
