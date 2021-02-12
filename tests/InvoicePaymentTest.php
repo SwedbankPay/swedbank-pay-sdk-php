@@ -62,7 +62,7 @@ use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetTransaction;
  */
 class InvoicePaymentTest extends TestCase
 {
-    protected $paymentId = '/psp/invoice/payments/72160e13-6dec-468d-81c9-08d8a4cc1843';
+    protected $paymentId = '/psp/invoice/payments/e775ae17-55da-4332-7436-08d8cf42e7a6';
 
     public function testApiCredentails()
     {
