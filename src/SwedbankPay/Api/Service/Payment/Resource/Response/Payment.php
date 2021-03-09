@@ -5,6 +5,7 @@ namespace SwedbankPay\Api\Service\Payment\Resource\Response;
 use SwedbankPay\Api\Service\Payment\Resource\PaymentTrait;
 use SwedbankPay\Api\Service\Payment\Resource\Response\Data\PaymentResourceUriInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Response\Data\PaymentResponseInterface;
+use SwedbankPay\Api\Service\Payment\Resource\Response\Data\PaymentTransactionsInterface;
 use SwedbankPay\Api\Service\Resource\Response as ResponseResource;
 
 /**
@@ -288,7 +289,7 @@ class Payment extends ResponseResource implements PaymentResponseInterface
     }
 
     /**
-     * @return PaymentResourceUriInterface
+     * @return PaymentTransactionsInterface
      */
     public function getTransactions()
     {
@@ -296,7 +297,7 @@ class Payment extends ResponseResource implements PaymentResponseInterface
     }
 
     /**
-     * @param PaymentResourceUriInterface $transactions
+     * @param PaymentTransactionsInterface $transactions
      * @return $this
      */
     public function setTransactions($transactions)
