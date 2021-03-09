@@ -39,5 +39,10 @@
     "psr-4": {
       "SwedbankPay\\": "src/SwedbankPay/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SwedbankPay\\Test\\Unit\\": "tests/Unit/"
+    }
   }
 }

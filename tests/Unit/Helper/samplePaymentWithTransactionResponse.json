@@ -1,0 +1,113 @@
+{
+  "payment": {
+    "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa",
+    "number": 40106651845,
+    "created": "2021-03-09T10:03:34.5534241Z",
+    "updated": "2021-03-09T10:21:15.9062621Z",
+    "instrument": "CreditCard",
+    "operation": "Purchase",
+    "intent": "Authorization",
+    "state": "Ready",
+    "currency": "SEK",
+    "prices": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/prices"
+    },
+    "amount": 6185,
+    "description": " Purchase",
+    "initiatingSystemUserAgent": "Swedbank Pay PHP SDK/4.0.1 PHP/7.2.28-4+0~20200224.38+debian9~1.gbp1ca010 Linux",
+    "userAgent": "Swedbank Pay PHP SDK/4.0.1 PHP/7.2.28-4+0~20200224.38+debian9~1.gbp1ca010 Linux",
+    "language": "en-US",
+    "transactions": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/transactions",
+      "transactionList": [
+        {
+          "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/transactions/adc9f1b4-7964-4f46-7a33-08d8df0d49b4",
+          "created": "2021-03-09T10:04:11.6577453Z",
+          "updated": "2021-03-09T10:04:23.2890299Z",
+          "type": "Authorization",
+          "state": "Failed",
+          "number": 40106651846,
+          "amount": 6185,
+          "vatAmount": 1185,
+          "description": " Purchase",
+          "payeeReference": "37a0b5c9a1497f3873299114bda985",
+          "failedReason": "UserCancelled",
+          "failedActivityName": "VerifyAuthentication",
+          "failedErrorCode": "UserCancelled",
+          "failedErrorDescription": "3D secure verification unsuccessful",
+          "isOperational": false,
+          "problem": {
+            "type": "https://api.payex.com/psp/errordetail/creditcard/3dsecureusercancelled",
+            "title": "Operation failed",
+            "status": 403,
+            "detail": "Unable to complete VerifyAuthentication transaction, look at problem node!",
+            "problems": [
+              {
+                "name": "ExternalResponse",
+                "description": "UserCancelled-CANCELED"
+              }
+            ]
+          },
+          "operations": []
+        },
+        {
+          "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/transactions/1fd832d1-8c99-4508-368b-08d8df0dc998",
+          "created": "2021-03-09T10:04:46.1048381Z",
+          "updated": "2021-03-09T10:04:59.2595465Z",
+          "type": "Authorization",
+          "state": "Completed",
+          "number": 40106651856,
+          "amount": 6185,
+          "vatAmount": 1185,
+          "description": " Purchase",
+          "payeeReference": "37a0b5c9a1497f3873299114bda985",
+          "isOperational": false,
+          "operations": []
+        },
+        {
+          "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/transactions/4eb91410-c485-4e48-372e-08d8df0dc998",
+          "created": "2021-03-09T10:21:15.5975711Z",
+          "updated": "2021-03-09T10:21:15.9062609Z",
+          "type": "Cancellation",
+          "state": "Completed",
+          "number": 40106652380,
+          "amount": 6185,
+          "vatAmount": 0,
+          "description": "Cancelling 6185",
+          "payeeReference": "5a307ca1ecb83d24003cdfd982b700",
+          "isOperational": false,
+          "operations": []
+        }
+      ]
+    },
+    "authorizations": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/authorizations"
+    },
+    "cancellations": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/cancellations"
+    },
+    "urls": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/urls"
+    },
+    "payeeInfo": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/payeeinfo"
+    },
+    "metadata": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/metadata"
+    }
+  },
+  "operations": [
+    {
+      "method": "GET",
+      "href": "https://api.externalintegration.payex.com/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/paid",
+      "rel": "paid-payment",
+      "contentType": "application/json"
+    },
+    {
+      "method": "GET",
+      "href": "https://ecom.externalintegration.payex.com/creditcardv2/core/scripts/client/px.creditcard.client.js?token=effb4bf438b6f0e4e53c9f5cb6eae9938b4492d8c4bac1322fd1e73411e12e98",
+      "rel": "view-payment",
+      "contentType": "application/javascript"
+    }
+  ]
+}
