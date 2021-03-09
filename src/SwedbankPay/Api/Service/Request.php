@@ -245,6 +245,23 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
     }
 
     /**
+     * @return array
+     */
+    public function getExpands()
+    {
+        return $this->offsetGet(self::EXPANDS);
+    }
+
+    /**
+     * @param array $expands
+     * @return Request
+     */
+    public function setExpands($expands)
+    {
+        return $this->offsetSet(self::EXPANDS, $expands);
+    }
+
+    /**
      * @return array|null
      */
     public function getRequestData()
@@ -281,11 +298,12 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
         $paymentId = $this->getPaymentId();
         $paymentOrderId = $this->getPaymentOrderId();
         $operationRel = $this->getOperationRel();
+
         if (($paymentId || $paymentOrderId) && $operationRel) {
             // Fetch payment info
             $responseBody = $this->getClient()->request(
                 'GET',
-                $paymentId ? $paymentId : $paymentOrderId,
+                $this->buildRequestEndpoint(),
                 $this->getRequestResource()
             )->getResponseBody();
 
@@ -349,7 +367,7 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
         try {
             $responseBody = $this->getClient()->request(
                 $this->getRequestMethod(),
-                $this->getRequestEndpoint(),
+                $this->buildRequestEndpoint(),
                 $this->getRequestResource()
             )->getResponseBody();
 
@@ -360,5 +378,27 @@ class Request extends AbstractSimpleDataObject implements RequestInterface
         }
 
         return $serviceResponse;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function buildRequestEndpoint()
+    {
+        $endpoint = $this->getRequestEndpoint();
+
+        if (!$endpoint && $this->getPaymentId()) {
+            $endpoint = $this->getPaymentId();
+        }
+
+        if (!$endpoint && $this->getPaymentOrderId()) {
+            $endpoint = $this->getPaymentOrderId();
+        }
+
+        if ($endpoint && $this->getExpands()) {
+            $endpoint .= '?$expand=' . implode(',', $this->getExpands());
+        }
+
+        return $endpoint;
     }
 }
