@@ -1,4 +1,6 @@
+.idea/
 *.phar
+tests/*.cache
 tests/*.local.ini
 vendor
 composer.lock

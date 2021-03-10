@@ -189,12 +189,12 @@ interface PaymentResponseInterface extends PaymentInterface
     public function setPrices($prices);
 
     /**
-     * @return PaymentResourceUriInterface
+     * @return PaymentTransactionsInterface
      */
     public function getTransactions();
 
     /**
-     * @param PaymentResourceUriInterface $transactions
+     * @param PaymentTransactionsInterface $transactions
      * @return $this
      */
     public function setTransactions($transactions);

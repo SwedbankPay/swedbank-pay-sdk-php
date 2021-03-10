@@ -1,0 +1,64 @@
+{
+  "payment": {
+    "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa",
+    "number": 40106651845,
+    "created": "2021-03-09T10:03:34.5534241Z",
+    "updated": "2021-03-09T10:04:59.2595453Z",
+    "instrument": "CreditCard",
+    "operation": "Purchase",
+    "intent": "Authorization",
+    "state": "Ready",
+    "currency": "SEK",
+    "prices": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/prices"
+    },
+    "amount": 6185,
+    "remainingCaptureAmount": 6185,
+    "remainingCancellationAmount": 6185,
+    "description": " Purchase",
+    "initiatingSystemUserAgent": "Swedbank Pay PHP SDK/4.0.1 PHP/7.2.28-4+0~20200224.38+debian9~1.gbp1ca010 Linux",
+    "userAgent": "Swedbank Pay PHP SDK/4.0.1 PHP/7.2.28-4+0~20200224.38+debian9~1.gbp1ca010 Linux",
+    "language": "en-US",
+    "transactions": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/transactions"
+    },
+    "authorizations": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/authorizations"
+    },
+    "urls": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/urls"
+    },
+    "payeeInfo": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/payeeinfo"
+    },
+    "metadata": {
+      "id": "/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/metadata"
+    }
+  },
+  "operations": [
+    {
+      "method": "POST",
+      "href": "https://api.externalintegration.payex.com/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/cancellations",
+      "rel": "create-cancellation",
+      "contentType": "application/json"
+    },
+    {
+      "method": "POST",
+      "href": "https://api.externalintegration.payex.com/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/captures",
+      "rel": "create-capture",
+      "contentType": "application/json"
+    },
+    {
+      "method": "GET",
+      "href": "https://api.externalintegration.payex.com/psp/creditcard/payments/0dac01c4-3c2e-4f32-31d2-08d8df0d48aa/paid",
+      "rel": "paid-payment",
+      "contentType": "application/json"
+    },
+    {
+      "method": "GET",
+      "href": "https://ecom.externalintegration.payex.com/creditcardv2/core/scripts/client/px.creditcard.client.js?token=effb4bf438b6f0e4e53c9f5cb6eae9938b4492d8c4bac1322fd1e73411e12e98",
+      "rel": "view-payment",
+      "contentType": "application/javascript"
+    }
+  ]
+}

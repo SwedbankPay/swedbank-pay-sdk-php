@@ -1,6 +1,8 @@
 <?php
 
 // phpcs:disable
+use SwedbankPay\Api\Client\Exception;
+
 use SwedbankPay\Api\Service\Trustly\Request\Test;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
@@ -37,15 +39,13 @@ use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionsOb
 // phpcs:enable
 
 /**
- * Class TrustlyPaymentTest
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class TrustlyPaymentTest extends TestCase
 {
-    protected $paymentId = '/psp/trustly/payments/e72c779a-fcdc-4464-ef64-08d85013b189';
 
-    public function testApiCredentails()
+    public function testApiCredentials()
     {
         try {
             new Test(ACCESS_TOKEN, PAYEE_ID, true);
@@ -56,7 +56,8 @@ class TrustlyPaymentTest extends TestCase
     }
 
     /**
-     * @throws \SwedbankPay\Api\Client\Exception
+     * @return string
+     * @throws Exception
      */
     public function testPurchaseRequest()
     {
@@ -134,9 +135,13 @@ class TrustlyPaymentTest extends TestCase
     /**
      * @depends TrustlyPaymentTest::testPurchaseRequest
      * @param string $paymentId
+     * @return array
+     * @throws Exception
      */
     public function testReversal($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $this->assertIsString($paymentId);
 
         $transactionData = new TransactionReversal();
@@ -150,7 +155,7 @@ class TrustlyPaymentTest extends TestCase
 
         $requestService = new CreateReversal($transaction);
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -171,11 +176,19 @@ class TrustlyPaymentTest extends TestCase
         return $result['reversal'];
     }
 
-    public function testGetSales()
+    /**
+     * @depends TrustlyPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetSales($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetSales();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -198,6 +211,7 @@ class TrustlyPaymentTest extends TestCase
     /**
      * @depends TrustlyPaymentTest::testGetSales
      * @param array $sales
+     * @throws Exception
      */
     public function testGetSale($sales)
     {
@@ -227,11 +241,19 @@ class TrustlyPaymentTest extends TestCase
         }
     }
 
-    public function testGetReversals()
+    /**
+     * @depends TrustlyPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetReversals($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -254,6 +276,7 @@ class TrustlyPaymentTest extends TestCase
     /**
      * @depends TrustlyPaymentTest::testGetReversals
      * @param array $reversals
+     * @throws Exception
      */
     public function testGetReversal($reversals)
     {
@@ -283,11 +306,19 @@ class TrustlyPaymentTest extends TestCase
         }
     }
 
-    public function testGetTransactions()
+    /**
+     * @depends TrustlyPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetTransactions($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetTransactions();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -310,6 +341,7 @@ class TrustlyPaymentTest extends TestCase
     /**
      * @depends TrustlyPaymentTest::testGetTransactions
      * @param array $transactions
+     * @throws Exception
      */
     public function testGetTransaction($transactions)
     {

@@ -34,6 +34,8 @@ interface RequestInterface extends SimpleDataObjectInterface
      */
     const OPERATION_REL = 'operation_rel';
 
+    const EXPANDS = 'expands';
+
     const RESPONSE_RESOURCE_FQCN = 'response_resource_fqcn';
 
     /**
@@ -119,6 +121,17 @@ interface RequestInterface extends SimpleDataObjectInterface
      * @return $this
      */
     public function setPaymentOrderId($paymentOrderId);
+
+    /**
+     * @return array
+     */
+    public function getExpands();
+
+    /**
+     * @param array $expands
+     * @return $this
+     */
+    public function setExpands($expands);
 
     /**
      * Get Payment Order Id endpoint of payment.
