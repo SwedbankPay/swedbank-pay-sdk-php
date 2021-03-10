@@ -44,7 +44,6 @@ use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\TransactionsOb
  */
 class TrustlyPaymentTest extends TestCase
 {
-    protected $paymentId = '/psp/trustly/payments/e72c779a-fcdc-4464-ef64-08d85013b189';
 
     public function testApiCredentials()
     {
@@ -141,6 +140,8 @@ class TrustlyPaymentTest extends TestCase
      */
     public function testReversal($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $this->assertIsString($paymentId);
 
         $transactionData = new TransactionReversal();
@@ -154,7 +155,7 @@ class TrustlyPaymentTest extends TestCase
 
         $requestService = new CreateReversal($transaction);
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -183,6 +184,8 @@ class TrustlyPaymentTest extends TestCase
      */
     public function testGetSales($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetSales();
         $requestService->setClient($this->client)
             ->setPaymentId($paymentId);
@@ -246,6 +249,8 @@ class TrustlyPaymentTest extends TestCase
      */
     public function testGetReversals($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
             ->setPaymentId($paymentId);
@@ -309,6 +314,8 @@ class TrustlyPaymentTest extends TestCase
      */
     public function testGetTransactions($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetTransactions();
         $requestService->setClient($this->client)
             ->setPaymentId($paymentId);
