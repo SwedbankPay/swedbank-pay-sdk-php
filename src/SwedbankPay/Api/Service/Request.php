@@ -17,6 +17,7 @@ use SwedbankPay\Api\Client\Exception as ClientException;
 /**
  * Base class for service requests
  * @SuppressWarnings(PHPMD.NumberOfChildren)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class Request extends AbstractSimpleDataObject implements RequestInterface
 {
