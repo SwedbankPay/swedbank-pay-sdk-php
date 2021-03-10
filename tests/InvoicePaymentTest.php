@@ -26,10 +26,8 @@ use SwedbankPay\Api\Service\Payment\Transaction\Resource\Request\TransactionObje
 
 use SwedbankPay\Api\Service\Invoice\Transaction\Request\CreateCapture;
 use SwedbankPay\Api\Service\Invoice\Transaction\Request\CreateReversal;
-use SwedbankPay\Api\Service\Invoice\Transaction\Request\CreateCancellation;
 use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Capture as TransactionCapture;
 use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Reversal as TransactionReversal;
-use SwedbankPay\Api\Service\Invoice\Transaction\Resource\Request\Cancellation as TransactionCancellation;
 
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\AuthorizationObject;
 use SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\CaptureObject;
@@ -56,26 +54,25 @@ use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetReversal;
 use SwedbankPay\Api\Service\Invoice\Transaction\Request\GetTransaction;
 
 /**
- * Class InvoicePaymentTest
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class InvoicePaymentTest extends TestCase
 {
-    protected $paymentId = '/psp/invoice/payments/e775ae17-55da-4332-7436-08d8cf42e7a6';
 
-    public function testApiCredentails()
+    public function testApiCredentials()
     {
         try {
             new Test(ACCESS_TOKEN, PAYEE_ID, true);
             $this->assertTrue(true);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue(true, $e->getMessage());
         }
     }
 
     /**
-     * @throws \SwedbankPay\Api\Client\Exception
+     * @return string
+     * @throws ClientException
      */
     public function testInvoicePaymentRequest()
     {
@@ -152,7 +149,7 @@ class InvoicePaymentTest extends TestCase
     /**
      * @depends InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
-     * @throws \SwedbankPay\Api\Client\Exception
+     * @throws ClientException
      */
     public function testCreateApprovedLegalAddress($paymentId)
     {
@@ -188,6 +185,8 @@ class InvoicePaymentTest extends TestCase
     /**
      * @depends InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
+     * @return array
+     * @throws ClientException
      */
     public function testCreateAuthorizationTransaction($paymentId)
     {
@@ -247,7 +246,13 @@ class InvoicePaymentTest extends TestCase
         return $result['authorization'];
     }
 
-    public function testCapture()
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @param string $paymentId
+     * @return array
+     * @throws ClientException
+     */
+    public function testCapture($paymentId)
     {
         $transactionData = new TransactionCapture();
         $transactionData->setActivity('FinancingConsumer')
@@ -275,7 +280,7 @@ class InvoicePaymentTest extends TestCase
 
         $requestService = new CreateCapture($transaction);
         $requestService->setClient($this->client);
-        $requestService->setPaymentId($this->paymentId);
+        $requestService->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -297,11 +302,14 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
      * @depends InvoicePaymentTest::testCapture
      * @param string $paymentId
      * @param array $capture
+     * @return array
+     * @throws ClientException
      */
-    public function testReversal($capture)
+    public function testReversal($paymentId, $capture)
     {
         $this->assertIsArray($capture);
 
@@ -318,7 +326,7 @@ class InvoicePaymentTest extends TestCase
 
         $requestService = new CreateReversal($transaction);
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -339,11 +347,17 @@ class InvoicePaymentTest extends TestCase
         return $result['reversal'];
     }
 
-    public function testGetAuthorizations()
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @param string $paymentId
+     * @return array
+     * @throws ClientException
+     */
+    public function testGetAuthorizations($paymentId)
     {
         $requestService = new GetAuthorizations();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -366,6 +380,7 @@ class InvoicePaymentTest extends TestCase
     /**
      * @depends InvoicePaymentTest::testGetAuthorizations
      * @param array $authorizations
+     * @throws ClientException
      */
     public function testGetAuthorization($authorizations)
     {
@@ -395,11 +410,17 @@ class InvoicePaymentTest extends TestCase
         }
     }
 
-    public function testGetCaptures()
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @param string $paymentId
+     * @return array
+     * @throws ClientException
+     */
+    public function testGetCaptures($paymentId)
     {
         $requestService = new GetCaptures();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -422,6 +443,7 @@ class InvoicePaymentTest extends TestCase
     /**
      * @depends InvoicePaymentTest::testGetCaptures
      * @param array $capture
+     * @throws ClientException
      */
     public function testGetCapture($capture)
     {
@@ -451,11 +473,17 @@ class InvoicePaymentTest extends TestCase
         }
     }
 
-    public function testGetReversals()
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @param string $paymentId
+     * @return array
+     * @throws ClientException
+     */
+    public function testGetReversals($paymentId)
     {
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -478,6 +506,7 @@ class InvoicePaymentTest extends TestCase
     /**
      * @depends InvoicePaymentTest::testGetReversals
      * @param array $reversals
+     * @throws ClientException
      */
     public function testGetReversal($reversals)
     {
@@ -507,11 +536,17 @@ class InvoicePaymentTest extends TestCase
         }
     }
 
-    public function testGetTransactions()
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @param string $paymentId
+     * @return array
+     * @throws ClientException
+     */
+    public function testGetTransactions($paymentId)
     {
         $requestService = new GetTransactions();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -534,6 +569,7 @@ class InvoicePaymentTest extends TestCase
     /**
      * @depends InvoicePaymentTest::testGetTransactions
      * @param array $transactions
+     * @throws ClientException
      */
     public function testGetTransaction($transactions)
     {
@@ -574,13 +610,19 @@ class InvoicePaymentTest extends TestCase
         }
     }
 
-    public function testGetCancellations()
+    /**
+     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @param string $paymentId
+     * @return array
+     * @throws ClientException
+     */
+    public function testGetCancellations($paymentId)
     {
         $this->expectException(ClientException::class);
 
         $requestService = new GetCancellations();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -603,6 +645,7 @@ class InvoicePaymentTest extends TestCase
     /**
      * @depends InvoicePaymentTest::testGetCancellations
      * @param array $cancellations
+     * @throws ClientException
      */
     public function testGetCancellation($cancellations)
     {
