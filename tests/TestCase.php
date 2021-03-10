@@ -43,7 +43,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function generateRandomString($length)
     {
-        return substr(str_shuffle(md5(time())),0,$length);
+        return substr(str_shuffle(md5(time())), 0, $length);
     }
 
     /**
@@ -63,7 +63,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     {
         $currentPayment = new GetCurrentPayment();
         $currentPayment->setClient($this->client)
-            ->setRequestEndpoint( $this->getPaymentOrderId() . '/currentPayment');
+            ->setRequestEndpoint($this->getPaymentOrderId() . '/currentPayment');
 
         $response = $currentPayment->send();
 
@@ -125,7 +125,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
      * @param string $url
      * @return string
      */
-    protected function getPaymentIdFromUrl($url) {
+    protected function getPaymentIdFromUrl($url)
+    {
         return preg_replace('|/psp/[^/]+/payments/|', '', $url);
     }
 }

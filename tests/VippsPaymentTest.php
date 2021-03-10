@@ -1,5 +1,7 @@
 <?php
 
+use SwedbankPay\Api\Client\Exception;
+
 use SwedbankPay\Api\Service\Vipps\Request\Test;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
@@ -47,7 +49,6 @@ use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetReversal;
 use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetTransaction;
 
 /**
- * Class VippsPaymentTest
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
@@ -55,10 +56,8 @@ class VippsPaymentTest extends TestCase
 {
     protected $paymentId = '/psp/vipps/payments/fcea6890-7e20-4a75-2aa1-08d84f4b0256';
 
-    public function testApiCredentails()
+    public function testApiCredentials()
     {
-        $this->markTestSkipped('VippsV1');
-
         try {
             new Test(ACCESS_TOKEN, PAYEE_ID, true);
             $this->assertTrue(true);
@@ -67,10 +66,12 @@ class VippsPaymentTest extends TestCase
         }
     }
 
+    /**
+     * @return string
+     * @throws Exception
+     */
     public function testPurchaseRequest()
     {
-        $this->markTestSkipped('VippsV1');
-
         $url = new PaymentUrl();
         $url->setCompleteUrl('http://test-dummy.net/payment-completed')
             ->setCancelUrl('http://test-dummy.net/payment-canceled')
@@ -142,8 +143,16 @@ class VippsPaymentTest extends TestCase
         return $this->getPaymentIdFromUrl($result['payment']['id']);
     }
 
-    public function testCapture()
+    /**
+     * @depends VippsPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testCapture($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $transactionData = new TransactionCapture();
         $transactionData->setAmount(100)
             ->setVatAmount(0)
@@ -155,7 +164,7 @@ class VippsPaymentTest extends TestCase
 
         $requestService = new CreateCapture($transaction);
         $requestService->setClient($this->client);
-        $requestService->setPaymentId($this->paymentId);
+        $requestService->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -176,8 +185,16 @@ class VippsPaymentTest extends TestCase
         return $result['capture'];
     }
 
-    public function testReversal()
+    /**
+     * @depends VippsPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testReversal($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $transactionData = new TransactionReversal();
         $transactionData->setAmount(100)
             ->setVatAmount(0)
@@ -189,7 +206,7 @@ class VippsPaymentTest extends TestCase
 
         $requestService = new CreateReversal($transaction);
         $requestService->setClient($this->client);
-        $requestService->setPaymentId($this->paymentId);
+        $requestService->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -210,7 +227,13 @@ class VippsPaymentTest extends TestCase
         return $result['reversal'];
     }
 
-    public function testCancellation()
+    /**
+     * @depends VippsPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testCancellation($paymentId)
     {
         $this->markTestSkipped('Capture/Reversal tests will be broken if this test will be executed.');
 
@@ -224,7 +247,7 @@ class VippsPaymentTest extends TestCase
 
         $requestService = new CreateCancellation($transaction);
         $requestService->setClient($this->client);
-        $requestService->setPaymentId($this->paymentId);
+        $requestService->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -245,11 +268,19 @@ class VippsPaymentTest extends TestCase
         return $result['cancellation'];
     }
 
-    public function testGetAuthorizations()
+    /**
+     * @depends VippsPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetAuthorizations($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetAuthorizations();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -272,6 +303,7 @@ class VippsPaymentTest extends TestCase
     /**
      * @depends VippsPaymentTest::testGetAuthorizations
      * @param array $authorizations
+     * @throws Exception
      */
     public function testGetAuthorization($authorizations)
     {
@@ -301,13 +333,19 @@ class VippsPaymentTest extends TestCase
         }
     }
 
-    public function testGetCancellations()
+    /**
+     * @depends VippsPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetCancellations($paymentId)
     {
         $this->markTestSkipped('Impossible to test if no any Cancellations.');
 
         $requestService = new GetCancellations();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -330,6 +368,7 @@ class VippsPaymentTest extends TestCase
     /**
      * @depends VippsPaymentTest::testGetCancellations
      * @param array $cancellations
+     * @throws Exception
      */
     public function testGetCancellation($cancellations)
     {
@@ -361,11 +400,19 @@ class VippsPaymentTest extends TestCase
         }
     }
 
-    public function testGetCaptures()
+    /**
+     * @depends VippsPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetCaptures($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetCaptures();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -388,6 +435,7 @@ class VippsPaymentTest extends TestCase
     /**
      * @depends VippsPaymentTest::testGetCaptures
      * @param array $captures
+     * @throws Exception
      */
     public function testGetCapture($captures)
     {
@@ -417,11 +465,19 @@ class VippsPaymentTest extends TestCase
         }
     }
 
-    public function testGetReversals()
+    /**
+     * @depends VippsPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetReversals($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -444,6 +500,7 @@ class VippsPaymentTest extends TestCase
     /**
      * @depends VippsPaymentTest::testGetReversals
      * @param array $reversals
+     * @throws Exception
      */
     public function testGetReversal($reversals)
     {
@@ -473,11 +530,19 @@ class VippsPaymentTest extends TestCase
         }
     }
 
-    public function testGetTransactions()
+    /**
+     * @depends VippsPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetTransactions($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetTransactions();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -500,6 +565,7 @@ class VippsPaymentTest extends TestCase
     /**
      * @depends VippsPaymentTest::testGetTransactions
      * @param array $transactions
+     * @throws Exception
      */
     public function testGetTransaction($transactions)
     {

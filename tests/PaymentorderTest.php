@@ -173,5 +173,4 @@ class PaymentorderTest extends TestCase
         $result = $paymentOrder->getPayerReference();
         $this->assertEquals('123', $result);
     }
-
 }

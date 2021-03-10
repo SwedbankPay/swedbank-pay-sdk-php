@@ -1,5 +1,7 @@
 <?php
 
+use SwedbankPay\Api\Client\Exception;
+
 use SwedbankPay\Api\Service\Creditcard\Request\Test;
 use SwedbankPay\Api\Service\Creditcard\Request\Purchase;
 use SwedbankPay\Api\Service\Creditcard\Request\Verify;
@@ -51,18 +53,16 @@ use SwedbankPay\Api\Service\Creditcard\Transaction\Request\GetReversal;
 use SwedbankPay\Api\Service\Creditcard\Transaction\Request\GetTransaction;
 
 /**
- * Class CardPaymentTest
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class CardPaymentTest extends TestCase
 {
-    protected $paymentId = '/psp/creditcard/payments/c87ff72f-b336-44c0-04c3-08d850138a2d';
 
-    public function testApiCredentails()
+    public function testApiCredentials()
     {
         try {
-            new Test(MERCHANT_TOKEN, PAYEE_ID, true);
+            new Test(ACCESS_TOKEN, PAYEE_ID, true);
             $this->assertTrue(true);
         } catch (\Exception $e) {
             $this->assertTrue(true, $e->getMessage());
@@ -70,7 +70,8 @@ class CardPaymentTest extends TestCase
     }
 
     /**
-     * @throws \SwedbankPay\Api\Client\Exception
+     * @return string
+     * @throws Exception
      */
     public function testPurchaseRequest()
     {
@@ -152,10 +153,13 @@ class CardPaymentTest extends TestCase
         $this->assertArrayHasKey('payment', $result);
         $this->assertArrayHasKey('operations', $result);
         $this->assertEquals('Purchase', $result['payment']['operation']);
+
+        return $result['payment']['id'];
     }
 
     /**
-     * @throws \SwedbankPay\Api\Client\Exception
+     * @return string
+     * @throws Exception
      */
     public function testVerifyRequest()
     {
@@ -219,10 +223,20 @@ class CardPaymentTest extends TestCase
         $this->assertArrayHasKey('payment', $result);
         $this->assertArrayHasKey('operations', $result);
         $this->assertEquals('Verify', $result['payment']['operation']);
+
+        return $result['payment']['id'];
     }
 
-    public function testCapture()
+    /**
+     * @depends CardPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return string|null
+     * @throws Exception
+     */
+    public function testCapture($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $transactionData = new TransactionCapture();
         $transactionData->setAmount(100)
             ->setVatAmount(0)
@@ -234,7 +248,7 @@ class CardPaymentTest extends TestCase
 
         $requestService = new CreateCapture($transaction);
         $requestService->setClient($this->client);
-        $requestService->setPaymentId($this->paymentId);
+        $requestService->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -256,11 +270,14 @@ class CardPaymentTest extends TestCase
     }
 
     /**
-     * @depends CardPaymentTest::testCapture
-     * @param $paymentId
+     * @depends CardPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @throws Exception
      */
     public function testReversal($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $transactionData = new TransactionReversal();
         $transactionData->setAmount(100)
             ->setVatAmount(0)
@@ -291,8 +308,14 @@ class CardPaymentTest extends TestCase
         $this->assertEquals('Reversal', $result['reversal']['transaction']['type']);
     }
 
-    public function testCancellation()
+    /**
+     * @depends CardPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @throws Exception
+     */
+    public function testCancellation($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
         $this->markTestSkipped('Capture/Reversal tests will be broken if this test will be executed.');
 
         $transactionData = new TransactionCancellation();
@@ -305,7 +328,7 @@ class CardPaymentTest extends TestCase
 
         $requestService = new CreateCancellation($transaction);
         $requestService->setClient($this->client);
-        $requestService->setPaymentId($this->paymentId);
+        $requestService->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -324,11 +347,19 @@ class CardPaymentTest extends TestCase
         $this->assertEquals('Cancellation', $result['cancellation']['transaction']['type']);
     }
 
-    public function testGetAuthorizations()
+    /**
+     * @depends CardPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetAuthorizations($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetAuthorizations();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -351,6 +382,7 @@ class CardPaymentTest extends TestCase
     /**
      * @depends CardPaymentTest::testGetAuthorizations
      * @param array $authorizations
+     * @throws Exception
      */
     public function testGetAuthorization($authorizations)
     {
@@ -379,14 +411,19 @@ class CardPaymentTest extends TestCase
             break;
         }
     }
-
-    public function testGetCancellations()
+    /**
+     * @depends CardPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetCancellations($paymentId)
     {
         $this->markTestSkipped('Impossible to test if no any Cancellations.');
 
         $requestService = new GetCancellations();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -409,6 +446,7 @@ class CardPaymentTest extends TestCase
     /**
      * @depends CardPaymentTest::testGetCancellations
      * @param array $cancellations
+     * @throws Exception
      */
     public function testGetCancellation($cancellations)
     {
@@ -443,11 +481,19 @@ class CardPaymentTest extends TestCase
         }
     }
 
-    public function testGetCaptures()
+    /**
+     * @depends CardPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetCaptures($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetCaptures();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -470,6 +516,7 @@ class CardPaymentTest extends TestCase
     /**
      * @depends CardPaymentTest::testGetCaptures
      * @param array $captures
+     * @throws Exception
      */
     public function testGetCapture($captures)
     {
@@ -499,11 +546,19 @@ class CardPaymentTest extends TestCase
         }
     }
 
-    public function testGetReversals()
+    /**
+     * @depends CardPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetReversals($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -526,6 +581,7 @@ class CardPaymentTest extends TestCase
     /**
      * @depends CardPaymentTest::testGetReversals
      * @param array $reversals
+     * @throws Exception
      */
     public function testGetReversal($reversals)
     {
@@ -555,11 +611,19 @@ class CardPaymentTest extends TestCase
         }
     }
 
-    public function testGetTransactions()
+    /**
+     * @depends CardPaymentTest::testPurchaseRequest
+     * @param string $paymentId
+     * @return array
+     * @throws Exception
+     */
+    public function testGetTransactions($paymentId)
     {
+        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+
         $requestService = new GetTransactions();
         $requestService->setClient($this->client)
-            ->setPaymentId($this->paymentId);
+            ->setPaymentId($paymentId);
 
         /** @var ResponseServiceInterface $responseService */
         $responseService = $requestService->send();
@@ -582,6 +646,7 @@ class CardPaymentTest extends TestCase
     /**
      * @depends CardPaymentTest::testGetTransactions
      * @param array $transactions
+     * @throws Exception
      */
     public function testGetTransaction($transactions)
     {
@@ -621,8 +686,4 @@ class CardPaymentTest extends TestCase
             break;
         }
     }
-
-
-
-
 }
