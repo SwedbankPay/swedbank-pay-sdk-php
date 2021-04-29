@@ -1,0 +1,37 @@
+version: 2
+registries:
+  composer-repository-repo-magento-com:
+    type: composer-repository
+    url: https://repo.magento.com
+    username: 3aaee705a2770ada7522c7a131d2d545
+    password: "${{secrets.COMPOSER_REPOSITORY_REPO_MAGENTO_COM_PASSWORD}}"
+
+updates:
+- package-ecosystem: composer
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "03:00"
+    timezone: Europe/Oslo
+  open-pull-requests-limit: 99
+  reviewers:
+  - aait
+  - olegisk
+  assignees:
+  - aait
+  registries:
+  - composer-repository-repo-magento-com
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "03:00"
+    timezone: Europe/Oslo
+  open-pull-requests-limit: 99
+- package-ecosystem: docker
+  directory: "/tests/sdk-consumer"
+  schedule:
+    interval: daily
+    time: "03:00"
+    timezone: Europe/Oslo
+  open-pull-requests-limit: 99
