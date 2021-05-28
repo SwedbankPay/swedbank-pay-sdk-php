@@ -18,7 +18,7 @@ interface TransactionInterface extends RequestInterface
     const AMOUNT = 'amount';
     const VAT_AMOUNT = 'vat_amount';
     const PAYEE_REFERENCE = 'payee_reference';
-	const RECEIPT_REFERENCE = 'receipt_reference';
+    const RECEIPT_REFERENCE = 'receipt_reference';
     const ORDER_ITEMS = 'orderItems';
     const ITEM_DESCRIPTIONS = 'item_descriptions';
     const VAT_SUMMARY = 'vat_summary';
@@ -67,16 +67,16 @@ interface TransactionInterface extends RequestInterface
      */
     public function setPayeeReference($payeeReference);
 
-	/**
-	 * @return string
-	 */
-	public function getReceiptReference();
+    /**
+     * @return string
+     */
+    public function getReceiptReference();
 
-	/**
-	 * @param string $receiptReference
-	 * @return $this
-	 */
-	public function setReceiptReference($receiptReference);
+    /**
+     * @param string $receiptReference
+     * @return $this
+     */
+    public function setReceiptReference($receiptReference);
 
     /**
      * @return OrderItemsCollection

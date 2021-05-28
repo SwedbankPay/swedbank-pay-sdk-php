@@ -96,6 +96,7 @@ class PaymentPurchase extends PaymentRequest implements PaymentPurchaseInterface
     /**
      * @param bool $generateRecurrenceToken
      * @return $this
+     * @SuppressWarnings(PHPMD.LongVariable)
      */
     public function setGenerateRecurrenceToken($generateRecurrenceToken)
     {

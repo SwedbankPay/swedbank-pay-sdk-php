@@ -11,29 +11,29 @@ use SwedbankPay\Api\Service\Data\ResourceInterface;
  */
 interface PaymentorderMetadataInterface extends ResourceInterface
 {
-	/**
-	 * Get Data.
-	 *
-	 * @param string $key
-	 * @return mixed
-	 */
-	public function getData($key);
+    /**
+     * Get Data.
+     *
+     * @param string $key
+     * @return mixed
+     */
+    public function getData($key);
 
-	/**
-	 * Set Data.
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 * @return $this
-	 */
-	public function setData($key, $value);
+    /**
+     * Set Data.
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function setData($key, $value);
 
-	/**
-	 * Unset Data.
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 * @return $this
-	 */
-	public function unsetData($key);
+    /**
+     * Unset Data.
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function unsetData($key);
 }

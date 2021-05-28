@@ -171,39 +171,40 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
         return $this->offsetSet(self::GENERATE_PAYMENT_TOKEN, $generatePaymentToken);
     }
 
-	/**
-	 * @return bool
-	 */
-	public function isGenerateRecurrenceToken()
-	{
-		return $this->offsetGet(self::GENERATE_RECURRENCE_TOKEN);
-	}
+    /**
+     * @return bool
+     */
+    public function isGenerateRecurrenceToken()
+    {
+        return $this->offsetGet(self::GENERATE_RECURRENCE_TOKEN);
+    }
 
-	/**
-	 * @param bool $generateRecurrenceToken
-	 * @return $this
-	 */
-	public function setGenerateRecurrenceToken($generateRecurrenceToken)
-	{
-		return $this->offsetSet(self::GENERATE_RECURRENCE_TOKEN, $generateRecurrenceToken);
-	}
+    /**
+     * @param bool $generateRecurrenceToken
+     * @return $this
+     * @SuppressWarnings(PHPMD.LongVariable)
+     */
+    public function setGenerateRecurrenceToken($generateRecurrenceToken)
+    {
+        return $this->offsetSet(self::GENERATE_RECURRENCE_TOKEN, $generateRecurrenceToken);
+    }
 
-	/**
-	 * @return bool
-	 */
-	public function isGenerateUnscheduledToken()
-	{
-		return $this->offsetGet(self::GENERATE_UNSCHEDULED_TOKEN);
-	}
+    /**
+     * @return bool
+     */
+    public function isGenerateUnscheduledToken()
+    {
+        return $this->offsetGet(self::GENERATE_UNSCHEDULED_TOKEN);
+    }
 
-	/**
-	 * @param bool $generate
-	 * @return $this
-	 */
-	public function setGenerateUnscheduledToken($generate)
-	{
-		return $this->offsetSet(self::GENERATE_UNSCHEDULED_TOKEN, $generate);
-	}
+    /**
+     * @param bool $generate
+     * @return $this
+     */
+    public function setGenerateUnscheduledToken($generate)
+    {
+        return $this->offsetSet(self::GENERATE_UNSCHEDULED_TOKEN, $generate);
+    }
 
     /**
      * @return bool
@@ -387,22 +388,22 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
         return $this->offsetSet(self::PAYMENT_TOKEN, $paymentToken);
     }
 
-	/**
-	 * @return string
-	 */
-	public function getRecurrenceToken()
-	{
-		return $this->offsetGet(self::RECURRENCE_TOKEN);
-	}
+    /**
+     * @return string
+     */
+    public function getRecurrenceToken()
+    {
+        return $this->offsetGet(self::RECURRENCE_TOKEN);
+    }
 
-	/**
-	 * @param string $recurrenceToken
-	 * @return $this
-	 */
-	public function setRecurrenceToken($recurrenceToken)
-	{
-		return $this->offsetSet(self::RECURRENCE_TOKEN, $recurrenceToken);
-	}
+    /**
+     * @param string $recurrenceToken
+     * @return $this
+     */
+    public function setRecurrenceToken($recurrenceToken)
+    {
+        return $this->offsetSet(self::RECURRENCE_TOKEN, $recurrenceToken);
+    }
 
     /**
      * @return PaymentorderRiskIndicatorInterface

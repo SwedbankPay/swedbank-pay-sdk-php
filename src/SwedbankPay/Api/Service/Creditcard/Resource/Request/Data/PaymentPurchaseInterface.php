@@ -72,6 +72,7 @@ interface PaymentPurchaseInterface extends PaymentRequestInterface
     /**
      * @param bool $generateRecurrenceToken
      * @return $this
+     * @SuppressWarnings(PHPMD.LongVariable)
      */
     public function setGenerateRecurrenceToken($generateRecurrenceToken);
 

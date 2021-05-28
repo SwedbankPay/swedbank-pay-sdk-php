@@ -55,6 +55,7 @@ class PaymentVerify extends PaymentRequest implements PaymentVerifyInterface
     /**
      * @param bool $generateRecurrenceToken
      * @return $this
+     * @SuppressWarnings(PHPMD.LongVariable)
      */
     public function setGenerateRecurrenceToken($generateRecurrenceToken)
     {
