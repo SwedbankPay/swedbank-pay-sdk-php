@@ -3,7 +3,8 @@
 
 namespace SwedbankPay\Api\Service\Creditcard\Resource\Request;
 
-use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\CardholderShippingAddressInterface;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\CardholderAddressInterface;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\CardholderAccountInfoInterface;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\PaymentCardholderInterface;
 use SwedbankPay\Api\Service\Resource;
 
@@ -112,7 +113,25 @@ class PaymentCardholder extends Resource implements PaymentCardholderInterface
     }
 
     /**
-     * @return CardholderShippingAddressInterface
+     * @return CardholderAddressInterface
+     */
+    public function getBillingAddress()
+    {
+        return $this->offsetGet(self::BILLING_ADDRESS);
+    }
+
+    /**
+     * @param CardholderAddressInterface $billingAddress
+     *
+     * @return $this
+     */
+    public function setBillingAddress($billingAddress)
+    {
+        return $this->offsetSet(self::BILLING_ADDRESS, $billingAddress);
+    }
+
+    /**
+     * @return CardholderAddressInterface
      */
     public function getShippingAddress()
     {
@@ -120,11 +139,30 @@ class PaymentCardholder extends Resource implements PaymentCardholderInterface
     }
 
     /**
-     * @param CardholderShippingAddressInterface $shippingAddress
+     * @param CardholderAddressInterface $shippingAddress
+     *
      * @return $this
      */
     public function setShippingAddress($shippingAddress)
     {
         return $this->offsetSet(self::SHIPPING_ADDRESS, $shippingAddress);
+    }
+
+    /**
+     * @return CardholderAccountInfoInterface
+     */
+    public function getAccountInfo()
+    {
+        return $this->offsetGet(self::ACCOUNT_INFO);
+    }
+
+    /**
+     * @param CardholderAccountInfoInterface $accountInfo
+     *
+     * @return $this
+     */
+    public function setAccountInfo($accountInfo)
+    {
+        return $this->offsetSet(self::ACCOUNT_INFO, $accountInfo);
     }
 }

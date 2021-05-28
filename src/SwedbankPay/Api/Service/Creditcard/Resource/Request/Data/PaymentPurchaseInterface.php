@@ -14,7 +14,9 @@ interface PaymentPurchaseInterface extends PaymentRequestInterface
 {
     const PRICES = 'prices';
     const PAYMENT_TOKEN = 'payment_token';
+    const RECURRENCE_TOKEN = 'recurrence_token';
     const GENERATE_PAYMENT_TOKEN = 'generate_payment_token';
+    const GENERATE_RECURRENCE_TOKEN = 'generate_recurrence_token';
     const CARDHOLDER = 'cardholder';
     const RISK_INDICATOR = 'risk_indicator';
 
@@ -50,6 +52,28 @@ interface PaymentPurchaseInterface extends PaymentRequestInterface
      * @return $this
      */
     public function setGeneratePaymentToken($generatePaymentToken);
+
+    /**
+     * @return string
+     */
+    public function getRecurrenceToken();
+
+    /**
+     * @param string $recurrenceToken
+     * @return $this
+     */
+    public function setRecurrenceToken($recurrenceToken);
+
+    /**
+     * @return bool
+     */
+    public function isGenerateRecurrenceToken();
+
+    /**
+     * @param bool $generateRecurrenceToken
+     * @return $this
+     */
+    public function setGenerateRecurrenceToken($generateRecurrenceToken);
 
     /**
      * @return PaymentCardholderInterface

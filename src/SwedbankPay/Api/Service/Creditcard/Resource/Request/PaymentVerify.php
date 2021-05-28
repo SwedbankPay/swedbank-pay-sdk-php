@@ -26,4 +26,38 @@ class PaymentVerify extends PaymentRequest implements PaymentVerifyInterface
     {
         return $this->offsetSet(self::PAGE_STRIPDOWN, $pageStripdown);
     }
+
+    /**
+     * @return bool
+     */
+    public function isGeneratePaymentToken()
+    {
+        return $this->offsetGet(self::GENERATE_PAYMENT_TOKEN);
+    }
+
+    /**
+     * @param bool $generatePaymentToken
+     * @return $this
+     */
+    public function setGeneratePaymentToken($generatePaymentToken)
+    {
+        return $this->offsetSet(self::GENERATE_PAYMENT_TOKEN, $generatePaymentToken);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGenerateRecurrenceToken()
+    {
+        return $this->offsetGet(self::GENERATE_RECURRENCE_TOKEN);
+    }
+
+    /**
+     * @param bool $generateRecurrenceToken
+     * @return $this
+     */
+    public function setGenerateRecurrenceToken($generateRecurrenceToken)
+    {
+        return $this->offsetSet(self::GENERATE_RECURRENCE_TOKEN, $generateRecurrenceToken);
+    }
 }

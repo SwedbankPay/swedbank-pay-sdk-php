@@ -12,6 +12,8 @@ use SwedbankPay\Api\Service\Payment\Resource\Request\Data\PaymentRequestInterfac
 interface PaymentVerifyInterface extends PaymentRequestInterface
 {
     const PAGE_STRIPDOWN = 'page_stripdown';
+    const GENERATE_PAYMENT_TOKEN = 'generate_payment_token';
+    const GENERATE_RECURRENCE_TOKEN = 'generate_recurrence_token';
 
     /**
      * @return bool
@@ -23,4 +25,26 @@ interface PaymentVerifyInterface extends PaymentRequestInterface
      * @return $this
      */
     public function setPageStripdown($pageStripdown);
+
+    /**
+     * @return bool
+     */
+    public function isGeneratePaymentToken();
+
+    /**
+     * @param bool $generatePaymentToken
+     * @return $this
+     */
+    public function setGeneratePaymentToken($generatePaymentToken);
+
+    /**
+     * @return bool
+     */
+    public function isGenerateRecurrenceToken();
+
+    /**
+     * @param bool $generateRecurrenceToken
+     * @return $this
+     */
+    public function setGenerateRecurrenceToken($generateRecurrenceToken);
 }

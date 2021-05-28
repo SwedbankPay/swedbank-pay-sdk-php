@@ -69,6 +69,40 @@ class PaymentPurchase extends PaymentRequest implements PaymentPurchaseInterface
     }
 
     /**
+     * @return string
+     */
+    public function getRecurrenceToken()
+    {
+        return $this->offsetGet(self::RECURRENCE_TOKEN);
+    }
+
+    /**
+     * @param string $recurrenceToken
+     * @return $this
+     */
+    public function setRecurrenceToken($recurrenceToken)
+    {
+        return $this->offsetSet(self::RECURRENCE_TOKEN, $recurrenceToken);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGenerateRecurrenceToken()
+    {
+        return $this->offsetGet(self::GENERATE_RECURRENCE_TOKEN);
+    }
+
+    /**
+     * @param bool $generateRecurrenceToken
+     * @return $this
+     */
+    public function setGenerateRecurrenceToken($generateRecurrenceToken)
+    {
+        return $this->offsetSet(self::GENERATE_RECURRENCE_TOKEN, $generateRecurrenceToken);
+    }
+
+    /**
      * @return PaymentCardholderInterface
      */
     public function getCardholder()
