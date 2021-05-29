@@ -14,7 +14,13 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderUrlInterface;
 use SwedbankPay\Api\Service\Resource\Request as RequestResource;
 
 /**
- * Payment order data object
+ * Class Paymentorder
+ * Payment order data object.
+ *
+ * @package SwedbankPay\Api\Service\Paymentorder\Resource\Request
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class Paymentorder extends RequestResource implements PaymentorderInterface
 {

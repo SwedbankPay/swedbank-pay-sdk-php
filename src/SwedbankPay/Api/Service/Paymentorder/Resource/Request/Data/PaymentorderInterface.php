@@ -12,9 +12,14 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderUrlInterface;
 use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
 
 /**
+ * Interface PaymentorderInterface
  * Payment order interface
  *
  * @api
+ * @package SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 interface PaymentorderInterface extends RequestInterface
 {
