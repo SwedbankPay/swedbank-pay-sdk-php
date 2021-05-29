@@ -10,72 +10,38 @@ use SwedbankPay\Api\Service\Resource;
  */
 class PaymentorderMetadata extends Resource implements PaymentorderMetadataInterface
 {
-
     /**
-     * @return string
-     */
-    public function getKey1()
-    {
-        return $this->offsetGet(self::KEY1);
-    }
-
-    /**
-     * @param string $key1
-     * @return $this
-     */
-    public function setKey1($key1)
-    {
-        return $this->offsetSet(self::KEY1, $key1);
-    }
-
-    /**
-     * @return int
-     */
-    public function getKey2()
-    {
-        return $this->offsetGet(self::KEY2);
-    }
-
-    /**
-     * @param int $key2
-     * @return $this
-     */
-    public function setKey2($key2)
-    {
-        return $this->offsetSet(self::KEY2, $key2);
-    }
-
-    /**
-     * @return float
-     */
-    public function getKey3()
-    {
-        return $this->offsetGet(self::KEY3);
-    }
-
-    /**
-     * @param float $key3
-     * @return $this
-     */
-    public function setKey3($key3)
-    {
-        return $this->offsetSet(self::KEY3, $key3);
-    }
-
-    /**
+     * Get Data.
+     *
+     * @param string $key
      * @return mixed
      */
-    public function getKey4()
+    public function getData($key)
     {
-        return $this->offsetGet(self::KEY4);
+        return $this->offsetGet($key);
     }
 
     /**
-     * @param mixed $key4
+     * Set Data.
+     *
+     * @param string $key
+     * @param mixed $value
      * @return $this
      */
-    public function setKey4($key4)
+    public function setData($key, $value)
     {
-        return $this->offsetSet(self::KEY4, $key4);
+        return $this->offsetSet($key, $value);
+    }
+
+    /**
+     * Unset Data.
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function unsetData($key)
+    {
+        return $this->offsetUnset($key);
     }
 }

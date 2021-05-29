@@ -4,27 +4,39 @@ namespace SwedbankPay\Api\Service\Creditcard\Resource\Request\Data;
 
 use SwedbankPay\Api\Service\Data\ResourceInterface;
 
-interface CardholderShippingAddressInterface extends ResourceInterface
+interface CardholderAddressInterface extends ResourceInterface
 {
-    const ADDRESSEE = 'addressee';
+    const FIRST_NAME = 'first_name';
+    const LAST_NAME = 'last_name';
     const EMAIL = 'email';
     const MSISDN = 'msisdn';
     const STREET_ADDRESS = 'street_address';
     const CO_ADDRESS = 'co_address';
-    const ZIP_CODE = 'zip_code';
     const CITY = 'city';
+    const ZIP_CODE = 'zip_code';
     const COUNTRY_CODE = 'country_code';
 
     /**
      * @return string
      */
-    public function getAddressee();
+    public function getFirstName();
 
     /**
-     * @param string $addressee
+     * @param string $firstName
      * @return $this
      */
-    public function setAddressee($addressee);
+    public function setFirstName($firstName);
+
+    /**
+     * @return string
+     */
+    public function getLastName();
+
+    /**
+     * @param string $lastName
+     * @return $this
+     */
+    public function setLastName($lastName);
 
     /**
      * @return string
@@ -73,17 +85,6 @@ interface CardholderShippingAddressInterface extends ResourceInterface
     /**
      * @return string
      */
-    public function getZipCode();
-
-    /**
-     * @param string $zipCode
-     * @return $this
-     */
-    public function setZipCode($zipCode);
-
-    /**
-     * @return string
-     */
     public function getCity();
 
     /**
@@ -91,6 +92,17 @@ interface CardholderShippingAddressInterface extends ResourceInterface
      * @return $this
      */
     public function setCity($city);
+
+    /**
+     * @return string
+     */
+    public function getZipCode();
+
+    /**
+     * @param string $zipCode
+     * @return $this
+     */
+    public function setZipCode($zipCode);
 
     /**
      * @return string

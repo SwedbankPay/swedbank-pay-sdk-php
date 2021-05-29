@@ -11,52 +11,29 @@ use SwedbankPay\Api\Service\Data\ResourceInterface;
  */
 interface PaymentorderMetadataInterface extends ResourceInterface
 {
-    const KEY1 = 'key1';
-    const KEY2 = 'key2';
-    const KEY3 = 'key3';
-    const KEY4 = 'key4';
-
     /**
-     * @return string
-     */
-    public function getKey1();
-
-    /**
-     * @param string $key1
-     * @return $this
-     */
-    public function setKey1($key1);
-
-    /**
-     * @return int
-     */
-    public function getKey2();
-
-    /**
-     * @param int $key2
-     * @return $this
-     */
-    public function setKey2($key2);
-
-    /**
-     * @return float
-     */
-    public function getKey3();
-
-    /**
-     * @param float $key3
-     * @return $this
-     */
-    public function setKey3($key3);
-
-    /**
+     * Get Data.
+     *
+     * @param string $key
      * @return mixed
      */
-    public function getKey4();
+    public function getData($key);
 
     /**
-     * @param mixed $key4
+     * Set Data.
+     *
+     * @param string $key
+     * @param mixed $value
      * @return $this
      */
-    public function setKey4($key4);
+    public function setData($key, $value);
+
+    /**
+     * Unset Data.
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function unsetData($key);
 }

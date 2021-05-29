@@ -12,9 +12,14 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderUrlInterface;
 use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
 
 /**
+ * Interface PaymentorderInterface
  * Payment order interface
  *
  * @api
+ * @package SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 interface PaymentorderInterface extends RequestInterface
 {
@@ -26,6 +31,8 @@ interface PaymentorderInterface extends RequestInterface
     const USER_AGENT = 'user_agent';
     const LANGUAGE = 'language';
     const GENERATE_PAYMENT_TOKEN = 'generate_payment_token';
+    const GENERATE_RECURRENCE_TOKEN = 'generate_recurrence_token';
+    const GENERATE_UNSCHEDULED_TOKEN = 'generate_unscheduled_token';
     const DISABLE_PAYMENT_MENU = 'disable_payment_menu';
     const URLS = 'urls';
     const PAYEE_INFO = 'payee_info';
@@ -36,6 +43,7 @@ interface PaymentorderInterface extends RequestInterface
     const ITEMS = 'items';
     const INTENT = 'intent';
     const PAYMENT_TOKEN = 'payment_token';
+    const RECURRENCE_TOKEN = 'recurrence_token';
     const RISK_INDICATOR = 'risk_indicator';
 
     /**
@@ -144,6 +152,29 @@ interface PaymentorderInterface extends RequestInterface
     /**
      * @return bool
      */
+    public function isGenerateRecurrenceToken();
+
+    /**
+     * @param bool $generateRecurrenceToken
+     * @return $this
+     * @SuppressWarnings(PHPMD.LongVariable)
+     */
+    public function setGenerateRecurrenceToken($generateRecurrenceToken);
+
+    /**
+     * @return bool
+     */
+    public function isGenerateUnscheduledToken();
+
+    /**
+     * @param bool $generate
+     * @return $this
+     */
+    public function setGenerateUnscheduledToken($generate);
+
+    /**
+     * @return bool
+     */
     public function isDisablePaymentMenu();
 
     /**
@@ -239,6 +270,17 @@ interface PaymentorderInterface extends RequestInterface
      * @return $this
      */
     public function setPaymentToken($paymentToken);
+
+    /**
+     * @return string
+     */
+    public function getRecurrenceToken();
+
+    /**
+     * @param string $recurrenceToken
+     * @return $this
+     */
+    public function setRecurrenceToken($recurrenceToken);
 
     /**
      * @return PaymentorderRiskIndicatorInterface

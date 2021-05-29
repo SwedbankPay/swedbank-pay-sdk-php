@@ -3,26 +3,43 @@
 
 namespace SwedbankPay\Api\Service\Creditcard\Resource\Request;
 
-use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\CardholderShippingAddressInterface;
+use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\CardholderAddressInterface;
 use SwedbankPay\Api\Service\Resource;
 
-class CardholderShippingAddress extends Resource implements CardholderShippingAddressInterface
+class CardholderAddress extends Resource implements CardholderAddressInterface
 {
     /**
      * @return string
      */
-    public function getAddressee()
+    public function getFirstName()
     {
-        return $this->offsetGet(self::ADDRESSEE);
+        return $this->offsetGet(self::FIRST_NAME);
     }
 
     /**
-     * @param string $addressee
+     * @param string $firstName
      * @return $this
      */
-    public function setAddressee($addressee)
+    public function setFirstName($firstName)
     {
-        return $this->offsetSet(self::ADDRESSEE, $addressee);
+        return $this->offsetSet(self::FIRST_NAME, $firstName);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->offsetGet(self::LAST_NAME);
+    }
+
+    /**
+     * @param string $lastName
+     * @return $this
+     */
+    public function setLastName($lastName)
+    {
+        return $this->offsetSet(self::LAST_NAME, $lastName);
     }
 
     /**
@@ -96,23 +113,6 @@ class CardholderShippingAddress extends Resource implements CardholderShippingAd
     /**
      * @return string
      */
-    public function getZipCode()
-    {
-        return $this->offsetGet(self::ZIP_CODE);
-    }
-
-    /**
-     * @param string $zipCode
-     * @return $this
-     */
-    public function setZipCode($zipCode)
-    {
-        return $this->offsetSet(self::ZIP_CODE, $zipCode);
-    }
-
-    /**
-     * @return string
-     */
     public function getCity()
     {
         return $this->offsetGet(self::CITY);
@@ -125,6 +125,23 @@ class CardholderShippingAddress extends Resource implements CardholderShippingAd
     public function setCity($city)
     {
         return $this->offsetSet(self::CITY, $city);
+    }
+
+    /**
+     * @return string
+     */
+    public function getZipCode()
+    {
+        return $this->offsetGet(self::ZIP_CODE);
+    }
+
+    /**
+     * @param string $zipCode
+     * @return $this
+     */
+    public function setZipCode($zipCode)
+    {
+        return $this->offsetSet(self::ZIP_CODE, $zipCode);
     }
 
     /**

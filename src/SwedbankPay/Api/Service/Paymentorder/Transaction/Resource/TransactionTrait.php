@@ -75,4 +75,21 @@ trait TransactionTrait
     {
         return $this->offsetSet(self::PAYEE_REFERENCE, $payeeReference);
     }
+
+    /**
+     * @return string
+     */
+    public function getReceiptReference()
+    {
+        return $this->offsetGet(self::RECEIPT_REFERENCE);
+    }
+
+    /**
+     * @param string $receiptReference
+     * @return $this
+     */
+    public function setReceiptReference($receiptReference)
+    {
+        return $this->offsetSet(self::RECEIPT_REFERENCE, $receiptReference);
+    }
 }

@@ -14,7 +14,13 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderUrlInterface;
 use SwedbankPay\Api\Service\Resource\Request as RequestResource;
 
 /**
- * Payment order data object
+ * Class Paymentorder
+ * Payment order data object.
+ *
+ * @package SwedbankPay\Api\Service\Paymentorder\Resource\Request
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class Paymentorder extends RequestResource implements PaymentorderInterface
 {
@@ -169,6 +175,41 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     public function setGeneratePaymentToken($generatePaymentToken)
     {
         return $this->offsetSet(self::GENERATE_PAYMENT_TOKEN, $generatePaymentToken);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGenerateRecurrenceToken()
+    {
+        return $this->offsetGet(self::GENERATE_RECURRENCE_TOKEN);
+    }
+
+    /**
+     * @param bool $generateRecurrenceToken
+     * @return $this
+     * @SuppressWarnings(PHPMD.LongVariable)
+     */
+    public function setGenerateRecurrenceToken($generateRecurrenceToken)
+    {
+        return $this->offsetSet(self::GENERATE_RECURRENCE_TOKEN, $generateRecurrenceToken);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGenerateUnscheduledToken()
+    {
+        return $this->offsetGet(self::GENERATE_UNSCHEDULED_TOKEN);
+    }
+
+    /**
+     * @param bool $generate
+     * @return $this
+     */
+    public function setGenerateUnscheduledToken($generate)
+    {
+        return $this->offsetSet(self::GENERATE_UNSCHEDULED_TOKEN, $generate);
     }
 
     /**
@@ -351,6 +392,23 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     public function setPaymentToken($paymentToken)
     {
         return $this->offsetSet(self::PAYMENT_TOKEN, $paymentToken);
+    }
+
+    /**
+     * @return string
+     */
+    public function getRecurrenceToken()
+    {
+        return $this->offsetGet(self::RECURRENCE_TOKEN);
+    }
+
+    /**
+     * @param string $recurrenceToken
+     * @return $this
+     */
+    public function setRecurrenceToken($recurrenceToken)
+    {
+        return $this->offsetSet(self::RECURRENCE_TOKEN, $recurrenceToken);
     }
 
     /**

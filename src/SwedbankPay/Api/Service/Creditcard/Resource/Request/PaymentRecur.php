@@ -27,6 +27,22 @@ class PaymentRecur extends PaymentRequest implements PaymentRecurInterface
         return $this->offsetSet(self::PAYMENT_TOKEN, $paymentToken);
     }
 
+    /**
+     * @return string
+     */
+    public function getRecurrenceToken()
+    {
+        return $this->offsetGet(self::RECURRENCE_TOKEN);
+    }
+
+    /**
+     * @param string $recurrenceToken
+     * @return $this
+     */
+    public function setRecurrenceToken($recurrenceToken)
+    {
+        return $this->offsetSet(self::RECURRENCE_TOKEN, $recurrenceToken);
+    }
 
     /**
      * @return int
