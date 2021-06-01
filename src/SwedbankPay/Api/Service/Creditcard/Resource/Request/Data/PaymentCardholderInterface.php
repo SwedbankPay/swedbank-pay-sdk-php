@@ -12,7 +12,10 @@ interface PaymentCardholderInterface extends ResourceInterface
     const MSISDN = 'msisdn';
     const WORK_PHONE_NUMBER = 'work_phone_number';
     const HOME_PHONE_NUMBER = 'home_phone_number';
+    const BILLING_ADDRESS = 'billing_address';
     const SHIPPING_ADDRESS = 'shipping_address';
+    const ACCOUNT_INFO = 'account_info';
+
 
     /**
      * @return string
@@ -81,13 +84,38 @@ interface PaymentCardholderInterface extends ResourceInterface
     public function setHomePhoneNumber($homePhoneNumber);
 
     /**
-     * @return CardholderShippingAddressInterface
+     * @return CardholderAddressInterface
+     */
+    public function getBillingAddress();
+
+    /**
+     * @param CardholderAddressInterface $billingAddress
+     *
+     * @return mixed
+     */
+    public function setBillingAddress($billingAddress);
+
+    /**
+     * @return CardholderAddressInterface
      */
     public function getShippingAddress();
 
     /**
-     * @param CardholderShippingAddressInterface $shippingAddress
+     * @param CardholderAddressInterface $shippingAddress
+     *
      * @return mixed
      */
     public function setShippingAddress($shippingAddress);
+
+    /**
+     * @return CardholderAccountInfoInterface
+     */
+    public function getAccountInfo();
+
+    /**
+     * @param CardholderAccountInfoInterface $accountInfo
+     *
+     * @return $this
+     */
+    public function setAccountInfo($accountInfo);
 }
