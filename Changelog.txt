@@ -1,4 +1,21 @@
 Changelog
+5.0.0 - 2021-06-04
+Added
+- PaymentCardholder: getBillingAddress(), setBillingAddress(), getAccountInfo(), setAccountInfo()
+- PaymentPurchase: getRecurrenceToken(), setRecurrenceToken(), isGenerateRecurrenceToken(), setGenerateRecurrenceToken()
+- PaymentRecur: getRecurrenceToken(), setRecurrenceToken()
+- PaymentVerify: isGeneratePaymentToken(), setGeneratePaymentToken(), isGenerateRecurrenceToken(), setGenerateRecurrenceToken()
+- Paymentorder: isGenerateUnscheduledToken(), setGenerateUnscheduledToken(), getRecurrenceToken(), setRecurrenceToken()
+- `CardholderAccountInfo` class
+- `PaymentPrefillInfo` class
+- Added resources for Transaction in Payment response if it's expanded
+- Added expands to build request endpoint
+
+Changed
+- Updated `Recur` class
+- Updated `PaymentorderMetadata` class
+- Renamed `CardholderShippingAddress` class to `CardholderAddress` class
+
 4.0.1 - 2021-02-12
 Added
 - Add InitiatingSystemUserAgent for `Payment`
