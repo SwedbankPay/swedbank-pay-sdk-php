@@ -54,6 +54,10 @@ to install this SDK:
 composer require swedbank-pay/swedbank-pay-sdk-php
 ```
 
+## Examples
+
+You can find examples in `/tests` directory or check out [Swedbank Pay Core for WooCommerce][core-library] code.
+
   [build-badge]:      https://github.com/SwedbankPay/swedbank-pay-sdk-php/workflows/PHP/badge.svg?branch=master
   [dev-portal]:       https://developer.swedbankpay.com/
   [releases]:         https://github.com/SwedbankPay/swedbank-pay-sdk-php/releases
@@ -68,3 +72,4 @@ composer require swedbank-pay/swedbank-pay-sdk-php
   [dependabot]:       https://dependabot.com
   [dependabot-badge]: https://api.dependabot.com/badges/status?host=github&repo=SwedbankPay/swedbank-pay-sdk-php
   [og-image]:         https://repository-images.githubusercontent.com/211837579/156c6000-53ed-11ea-8927-782b8067996f
+  [core-library]:     https://github.com/SwedbankPay/swedbank-pay-woocommerce-core
