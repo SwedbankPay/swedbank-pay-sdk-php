@@ -81,7 +81,7 @@ class ResourceFactory
      * @param array|object|string $data
      * @return ResourceInterface
      */
-    public function newServiceResource($service = '', $resource = '', $data = [])
+    private function newServiceResource($service = '', $resource = '', $data = [])
     {
         $resourceFqcn = $this->getResourceFqcn($resource, $service);
 
@@ -147,7 +147,7 @@ class ResourceFactory
      * @param array $items
      * @return CollectionInterface
      */
-    public function newCollectionResource($service = '', $resource = '', $items = [])
+    private function newCollectionResource($service = '', $resource = '', $items = [])
     {
         $resourceFqcn = $this->getResourceFqcn($resource, $service, 'collection');
 
@@ -173,7 +173,7 @@ class ResourceFactory
      * @param array $item
      * @return CollectionItemInterface
      */
-    public function newCollectionResourceItem($service = '', $resource = '', $item = [])
+    private function newCollectionResourceItem($service = '', $resource = '', $item = [])
     {
         $resourceFqcn = $this->getResourceFqcn($resource, $service, 'item');
 
