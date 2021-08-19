@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Api\Service;
+
+use TestCase;
 use SwedbankPay\Api\Service\Data\ResponseInterface;
 use SwedbankPay\Api\Service\Request;
 use SwedbankPay\Api\Service\Resource\Data\ResponseInterface as ResponseResourceInterface;
@@ -7,7 +10,7 @@ use SwedbankPay\Api\Service\Response;
 use SwedbankPay\Api\Service\Consumer\Request\GetBillingDetails;
 use SwedbankPay\Api\Service\Consumer\Resource\Response\GetBillingDetails as GetBillingDetailsResponseResource;
 
-class ResponseServiceTest extends TestCase
+class ResponseTest extends TestCase
 {
     public function testResponse()
     {

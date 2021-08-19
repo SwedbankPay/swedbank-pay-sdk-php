@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Api\Service;
+
+use TestCase;
 use SwedbankPay\Api\Service\Data\RequestInterface;
 use SwedbankPay\Api\Service\Data\ResourceInterface;
 use SwedbankPay\Api\Service\Request;
