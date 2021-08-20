@@ -10,5 +10,20 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayeeInfoInte
  */
 class PaymentorderPayeeInfo extends PayeeInfo implements PaymentorderPayeeInfoInterface
 {
+    /**
+     * @return string
+     */
+    public function getSubsite()
+    {
+        return $this->offsetGet(self::SUBSITE);
+    }
 
+    /**
+     * @param string $subsite
+     * @return $this
+     */
+    public function setSubsite($subsite)
+    {
+        return $this->offsetSet(self::SUBSITE, $subsite);
+    }
 }
