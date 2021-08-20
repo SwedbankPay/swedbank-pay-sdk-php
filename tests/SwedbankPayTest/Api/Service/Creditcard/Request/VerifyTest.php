@@ -1,15 +1,15 @@
 <?php
 
-namespace SwedbankPayTest\Api\Service\CreditCard\Request;
+namespace SwedbankPayTest\Api\Service\Creditcard\Request;
 
 use TestCase;
-use SwedbankPay\Api\Service\CreditCard\Request\Recur;
+use SwedbankPay\Api\Service\Creditcard\Request\Verify;
 
-class RecurTest extends TestCase
+class VerifyTest extends TestCase
 {
     public function testData()
     {
-        $object = new Recur();
+        $object = new Verify();
         $object->setClient($this->client);
         $this->assertTrue(method_exists($object, 'setup'));
         $this->assertNull($object->setup());

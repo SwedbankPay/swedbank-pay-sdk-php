@@ -1,9 +1,9 @@
 <?php
 
-namespace SwedbankPayTest\Api\Service\CreditCard\Request;
+namespace SwedbankPayTest\Api\Service\Creditcard\Request;
 
 use TestCase;
-use SwedbankPay\Api\Service\CreditCard\Request\GetPayment;
+use SwedbankPay\Api\Service\Creditcard\Request\GetPayment;
 
 class GetPaymentTest extends TestCase
 {

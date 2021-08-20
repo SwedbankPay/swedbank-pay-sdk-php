@@ -1,6 +1,6 @@
 <?php
 
-namespace SwedbankPayTest\Api\Service\CreditCard\Resource\Request;
+namespace SwedbankPayTest\Api\Service\Creditcard\Resource\Request;
 
 use TestCase;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPurchase;
