@@ -1,6 +1,6 @@
 <?php
 
-namespace SwedbankPayTest\Api\Service\Payment\Response;
+namespace SwedbankPayTest\Api\Service\Payment\Resource\Response;
 
 use TestCase;
 use SwedbankPay\Api\Service\Payment\Resource\Response\PaymentObject;
