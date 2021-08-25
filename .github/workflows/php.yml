@@ -93,7 +93,7 @@ jobs:
     - name: Install chromedriver
       uses: nanasess/setup-chromedriver@master
       with:
-        chromedriver-version: '93.0.4577.15'
+        chromedriver-version: '92.0.4515.107'
 
     - name: Acceptance tests with steward
       run: |
