@@ -40,10 +40,13 @@ jobs:
         echo "Composer version: ${COMPOSER_VERSION}"
         echo "::set-output name=version::${COMPOSER_VERSION}"
 
-    - name: PHP Setup
-      uses: shivammathur/setup-php@v2
+    - name: Install tools
+      uses: shivammathur/setup-php@master
       with:
         php-version: '7.4'
+        extension: intl, mbstring, json, bcmath
+        coverage: xdebug
+        tools: composer, php-cs-fixer, phpunit:8.5.14, phpcpd, phpmd
 
     - name: Version stamp composer.json
       run: |
@@ -86,6 +89,20 @@ jobs:
 
     - name: PHPCS check
       run: ./vendor/bin/phpcs --standard=PSR2 --report=code --ignore=vendor/* --runtime-set ignore_warnings_on_exit true src/
+
+    - name: Acceptance tests with steward
+      uses: nanasess/setup-chromedriver@master
+      with:
+        chromedriver-version: '93.0.4577.15'
+      run: |
+        export DISPLAY=:99
+        chromedriver --url-base=/wd/hub &
+        #sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+        ./vendor/bin/steward install 3.141.59
+        apt-get install openjdk-14-jre-headless
+        java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar ./vendor/bin/selenium-server-standalone-3.141.59.jar -debug &
+        php -S localhost:8000 -t ./tests/stand &
+        ./vendor/bin/steward run staging chrome --server-url http://localhost:4444/wd/hub -vvv --tests-dir=./tests/SwedbankPayUITest/Test
 
     - name: Unit tests
       env:
