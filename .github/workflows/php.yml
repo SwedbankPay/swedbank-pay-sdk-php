@@ -96,6 +96,12 @@ jobs:
         chromedriver-version: '92.0.4515.107'
 
     - name: Acceptance tests with steward
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        PAYEE_ID: ${{ secrets.PAYEE_ID }}
+        ACCESS_TOKEN_MOBILEPAY: ${{ secrets.ACCESS_TOKEN_MOBILEPAY }}
+        PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
+        VERSION: ${{ steps.composer-version.outputs.version }}
       run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
