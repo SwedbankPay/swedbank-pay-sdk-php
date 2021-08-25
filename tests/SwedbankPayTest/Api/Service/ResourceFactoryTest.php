@@ -1,8 +1,9 @@
 <?php
 
+namespace SwedbankPayTest\Api\Service;
 
+use TestCase;
 use SwedbankPay\Api\Service\ResourceFactory;
-
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\PaymentUrlInterface;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentUrl;
 use SwedbankPay\Api\Service\Resource\Request;

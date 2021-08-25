@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Framework;
+
+use TestCase;
 use SwedbankPay\Framework\DataObjectCollection;
 use SwedbankPay\Framework\Data\DataObjectCollectionInterface;
 use SwedbankPay\Framework\Data\DataObjectCollectionItemInterface;

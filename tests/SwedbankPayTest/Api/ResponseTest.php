@@ -1,5 +1,7 @@
 <?php
 
+namespace SwedbankPayTest\Api;
+
 use SwedbankPay\Api\Client\Exception;
 use SwedbankPay\Api\Response;
 
@@ -23,6 +25,45 @@ class ResponseTest extends \PHPUnit\Framework\TestCase
                     "number": 40000000456
                 }
             }';
+    }
+
+    public function testData()
+    {
+        $response = new Response($this->callbackResponse);
+
+        $this->assertIsString($response->toJson());
+        $this->assertIsString($response->__toString());
+
+        $this->assertNull(
+            $response->__set('test', 'test')
+        );
+        $this->assertEquals('test', $response->__get('test'));
+        $this->assertEquals(true, $response->__isset('test'));
+
+        $this->assertNull(
+            $response->__unset('test', 'test')
+        );
+        $this->assertEquals(false, $response->__isset('test'));
+
+        $this->assertNull(
+            $response->offsetSet('test', 'test')
+        );
+        $this->assertEquals('test', $response->offsetGet('test'));
+        $this->assertEquals(true, $response->offsetExists('test'));
+
+        $this->assertNull(
+            $response->offsetUnset('test', 'test')
+        );
+        $this->assertEquals(false, $response->offsetExists('test'));
+
+        $this->assertEquals(false, $response->__call('hasTest', []));
+    }
+
+    public function testGetOperationByRel()
+    {
+        $response = new Response($this->callbackResponse);
+
+        $this->assertEquals(false, $response->getOperationByRel('invalid'));
     }
 
     /**

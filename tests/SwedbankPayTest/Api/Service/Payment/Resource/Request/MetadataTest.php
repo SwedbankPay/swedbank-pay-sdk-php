@@ -23,4 +23,24 @@ class MetadataTest extends TestCase
         );
         $this->assertEquals(null, $object->getData('test'));
     }
+
+    public function testMetadata()
+    {
+        $metadata = new Metadata();
+        $metadata->setData('order_id', 'or-123456');
+
+        $data = json_decode($metadata->__toJson(), true);
+        $this->assertIsArray($data);
+        $this->assertArrayHasKey('orderId', $data);
+
+        $data = $metadata->__toArray();
+        $this->assertIsArray($data);
+        $this->assertArrayHasKey('order_id', $data);
+
+        $data = $metadata->getData('order_id');
+        $this->assertEquals('or-123456', $data);
+
+        $metadata->unsetData('order_id');
+        $this->assertNull($metadata->getData('order_id'));
+    }
 }

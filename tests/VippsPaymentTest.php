@@ -54,7 +54,6 @@ use SwedbankPay\Api\Service\Vipps\Transaction\Request\GetTransaction;
  */
 class VippsPaymentTest extends TestCase
 {
-    protected $paymentId = '/psp/vipps/payments/fcea6890-7e20-4a75-2aa1-08d84f4b0256';
 
     public function testApiCredentials()
     {
@@ -139,8 +138,16 @@ class VippsPaymentTest extends TestCase
         $this->assertArrayHasKey('operations', $result);
         $this->assertEquals('Purchase', $result['payment']['operation']);
         $this->assertEquals('Vipps', $result['payment']['instrument']);
+        $this->assertNotEmpty($result['payment']['id']);
 
-        return $this->getPaymentIdFromUrl($result['payment']['id']);
+        // phpcs:disable
+        if (file_exists(__DIR__ . '/payments.ini')) {
+            $data = parse_ini_file(__DIR__ . '/payments.ini', true);
+            return $data['Vipps']['payment_id'];
+        }
+        // phpcs:enable
+
+        return false;
     }
 
     /**
@@ -151,7 +158,9 @@ class VippsPaymentTest extends TestCase
      */
     public function testCapture($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $transactionData = new TransactionCapture();
         $transactionData->setAmount(100)
@@ -193,7 +202,9 @@ class VippsPaymentTest extends TestCase
      */
     public function testReversal($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $transactionData = new TransactionReversal();
         $transactionData->setAmount(100)
@@ -276,7 +287,9 @@ class VippsPaymentTest extends TestCase
      */
     public function testGetAuthorizations($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $requestService = new GetAuthorizations();
         $requestService->setClient($this->client)
@@ -341,7 +354,12 @@ class VippsPaymentTest extends TestCase
      */
     public function testGetCancellations($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if no any Cancellations.');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
+
+        // SwedbankPay\Api\Client\Exception: Field cancellations is unavailable
+        $this->expectException(Exception::class);
 
         $requestService = new GetCancellations();
         $requestService->setClient($this->client)
@@ -372,7 +390,10 @@ class VippsPaymentTest extends TestCase
      */
     public function testGetCancellation($cancellations)
     {
-        $this->markTestSkipped('Impossible to test if no any Cancellations.');
+        if (!$cancellations) {
+            $this->assertEquals(null, $cancellations);
+            return;
+        }
 
         foreach ($cancellations['cancellation_list'] as $cancellation) {
             $requestService = new GetCancellation();
@@ -408,7 +429,9 @@ class VippsPaymentTest extends TestCase
      */
     public function testGetCaptures($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $requestService = new GetCaptures();
         $requestService->setClient($this->client)
@@ -473,7 +496,9 @@ class VippsPaymentTest extends TestCase
      */
     public function testGetReversals($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
@@ -538,7 +563,9 @@ class VippsPaymentTest extends TestCase
      */
     public function testGetTransactions($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $requestService = new GetTransactions();
         $requestService->setClient($this->client)

@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Framework;
+
+use TestCase;
 use SwedbankPay\Framework\DataObjectHelper;
 
 class DataObjectHelperTest  extends TestCase

@@ -102,7 +102,7 @@ class PurchaseTest extends TestCase
 
         $paymentOrder = new Paymentorder();
         $paymentOrder->setOperation('Purchase')
-            ->setCurrency('NOK')
+            ->setCurrency('SEK')
             ->setAmount('1500')
             ->setVatAmount(0)
             ->setDescription('Test Purchase')
@@ -141,8 +141,16 @@ class PurchaseTest extends TestCase
         $this->assertArrayHasKey('items', $result['payment_order']);
         $this->assertArrayHasKey('order_items', $result['payment_order']);
         $this->assertEquals('Purchase', $result['payment_order']['operation']);
+        $this->assertNotEmpty($result['payment_order']['id']);
 
-        return $result['payment_order']['id'];
+        // phpcs:disable
+        if (file_exists(__DIR__ . '/payments.ini')) {
+            $data = parse_ini_file(__DIR__ . '/payments.ini', true);
+            return $data['Checkout']['payment_order_id'];
+        }
+        // phpcs:enable
+
+        return false;
     }
 
     /**
@@ -152,7 +160,9 @@ class PurchaseTest extends TestCase
      */
     public function testGetCurrentPayment($paymentOrderId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentOrderId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $request = new GetCurrentPayment();
         $request->setClient($this->client)
@@ -183,7 +193,9 @@ class PurchaseTest extends TestCase
      */
     public function testGetPayments($paymentOrderId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentOrderId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $request = new GetPayments();
         $request->setClient($this->client)
@@ -247,25 +259,27 @@ class PurchaseTest extends TestCase
      */
     public function testCapture($paymentOrderId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentOrderId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $transactionData = new Transaction();
-        $transactionData->setAmount(100)
+        $transactionData->setAmount(1500)
             ->setVatAmount(0)
             ->setDescription('Test Capture')
             ->setPayeeReference($this->generateRandomString(12))
             ->setOrderItems([
                 [
-                    'reference' => 'test',
-                    'name' => 'Test',
+                    'reference' => 'P1',
+                    'name' => 'Product1',
                     'type' => 'PRODUCT',
-                    'class' => 'Class1',
-                    'description' => 'Description',
+                    'class' => 'ProductGroup1',
+                    'description' => 'Product 1 description',
                     'quantity' => 1,
                     'quantityUnit' => 'pcs',
-                    'unitPrice' => 100,
+                    'unitPrice' => 1500,
                     'vatPercent' => 0,
-                    'amount' => 100,
+                    'amount' => 1500,
                     'vatAmount' => 0
                 ]
             ]);
@@ -304,25 +318,27 @@ class PurchaseTest extends TestCase
      */
     public function testReversal($paymentOrderId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentOrderId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $transactionData = new Transaction();
-        $transactionData->setAmount(100)
+        $transactionData->setAmount(1500)
             ->setVatAmount(0)
             ->setDescription('Test refund')
             ->setPayeeReference($this->generateRandomString(12))
             ->setOrderItems([
                 [
-                    'reference' => 'test',
-                    'name' => 'Test',
+                    'reference' => 'P1',
+                    'name' => 'Product1',
                     'type' => 'PRODUCT',
-                    'class' => 'Class1',
-                    'description' => 'Description',
+                    'class' => 'ProductGroup1',
+                    'description' => 'Product 1 description',
                     'quantity' => 1,
                     'quantityUnit' => 'pcs',
-                    'unitPrice' => 100,
+                    'unitPrice' => 1500,
                     'vatPercent' => 0,
-                    'amount' => 100,
+                    'amount' => 1500,
                     'vatAmount' => 0
                 ]
             ]);

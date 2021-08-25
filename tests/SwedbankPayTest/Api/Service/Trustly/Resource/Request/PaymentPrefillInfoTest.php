@@ -17,4 +17,20 @@ class PaymentPrefillInfoTest extends TestCase
 
         $this->assertEquals('test', $object->getMsisdn());
     }
+
+    public function testPaymentPrefillInfo()
+    {
+        $prefillInfo = new PaymentPrefillInfo();
+
+        $this->assertTrue(method_exists($prefillInfo, 'setFirstName'));
+        $this->assertTrue(method_exists($prefillInfo, 'getFirstName'));
+        $this->assertTrue(method_exists($prefillInfo, 'setLastName'));
+        $this->assertTrue(method_exists($prefillInfo, 'getLastName'));
+
+        $prefillInfo->setFirstName('Ola')
+            ->setLastName('Nordmann');
+
+        $this->assertEquals('Ola', $prefillInfo->getFirstName());
+        $this->assertEquals('Nordmann', $prefillInfo->getLastName());
+    }
 }

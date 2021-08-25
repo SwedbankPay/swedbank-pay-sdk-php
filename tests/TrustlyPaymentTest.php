@@ -128,8 +128,16 @@ class TrustlyPaymentTest extends TestCase
         $this->assertArrayHasKey('operations', $result);
         $this->assertEquals('Purchase', $result['payment']['operation']);
         $this->assertEquals('Trustly', $result['payment']['instrument']);
+        $this->assertNotEmpty($result['payment']['id']);
 
-        return $result['payment']['id'];
+        // phpcs:disable
+        if (file_exists(__DIR__ . '/payments.ini')) {
+            $data = parse_ini_file(__DIR__ . '/payments.ini', true);
+            return $data['Trustly']['payment_id'];
+        }
+        // phpcs:enable
+
+        return false;
     }
 
     /**
@@ -140,7 +148,9 @@ class TrustlyPaymentTest extends TestCase
      */
     public function testReversal($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $this->assertIsString($paymentId);
 
@@ -184,7 +194,9 @@ class TrustlyPaymentTest extends TestCase
      */
     public function testGetSales($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $requestService = new GetSales();
         $requestService->setClient($this->client)
@@ -249,7 +261,9 @@ class TrustlyPaymentTest extends TestCase
      */
     public function testGetReversals($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $requestService = new GetReversals();
         $requestService->setClient($this->client)
@@ -314,7 +328,9 @@ class TrustlyPaymentTest extends TestCase
      */
     public function testGetTransactions($paymentId)
     {
-        $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        if (!$paymentId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
 
         $requestService = new GetTransactions();
         $requestService->setClient($this->client)

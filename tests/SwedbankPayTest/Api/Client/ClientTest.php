@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Api\Client;
+
+use TestCase;
 use SwedbankPay\Api\Client\Exception as ClientException;
 
 class ClientTest extends TestCase
@@ -42,7 +45,7 @@ class ClientTest extends TestCase
                 '/psp/creditcard/payments',
                 $params
             );
-        } catch (Exception $e) {
+        } catch (ClientException $e) {
             $this->assertNotNull($e->getCode());
             $this->assertNotNull($this->client->getResponseCode());
             $this->assertNotNull($this->client->getResponseBody());

@@ -4,7 +4,7 @@ namespace SwedbankPayTest\Api\Service\Payment\Resource\Request;
 
 use TestCase;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Payment;
-
+use SwedbankPay\Api\Service\Payment\Resource\Request\Data\PaymentRequestInterface;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
 use SwedbankPay\Api\Service\Payment\Resource\Request\Metadata;
@@ -81,5 +81,19 @@ class PaymentTest extends TestCase
             $payment->setMetadata($metadata)
         );
         $this->assertInstanceOf(Metadata::class, $payment->getMetadata());
+    }
+
+    public function testInitiatingSystemUserAgent()
+    {
+        $payment = new Payment();
+
+        $this->assertTrue(method_exists($payment, 'getInitiatingSystemUserAgent'));
+        $this->assertTrue(method_exists($payment, 'setInitiatingSystemUserAgent'));
+
+        $result = $payment->setInitiatingSystemUserAgent('swedbankpay-sdk-php/123');
+        $this->assertInstanceOf(PaymentRequestInterface::class, $result);
+
+        $result = $payment->getInitiatingSystemUserAgent();
+        $this->assertEquals('swedbankpay-sdk-php/123', $result);
     }
 }

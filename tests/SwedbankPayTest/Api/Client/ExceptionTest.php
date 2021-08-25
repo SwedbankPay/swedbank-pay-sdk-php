@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Api\Client;
+
+use TestCase;
 use SwedbankPay\Api\Client\Exception as ClientException;
 
 class ExceptionTest extends TestCase
