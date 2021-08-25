@@ -227,6 +227,10 @@ class PurchaseTest extends TestCase
      */
     public function testGetPaymentorder($paymentOrderId)
     {
+        if (!$paymentOrderId) {
+            $this->markTestSkipped('Impossible to test if the payment request is not paid');
+        }
+
         $request = new GetPaymentorder();
         $request->setClient($this->client)
             ->setPaymentOrderId($paymentOrderId);
