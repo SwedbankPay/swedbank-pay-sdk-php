@@ -90,10 +90,12 @@ jobs:
     - name: PHPCS check
       run: ./vendor/bin/phpcs --standard=PSR2 --report=code --ignore=vendor/* --runtime-set ignore_warnings_on_exit true src/
 
-    - name: Acceptance tests with steward
+    - name: Install chromedriver
       uses: nanasess/setup-chromedriver@master
       with:
         chromedriver-version: '93.0.4577.15'
+
+    - name: Acceptance tests with steward
       run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
