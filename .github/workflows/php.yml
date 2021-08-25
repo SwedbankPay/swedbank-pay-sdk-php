@@ -101,10 +101,11 @@ jobs:
         chromedriver --url-base=/wd/hub &
         #sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
         ./vendor/bin/steward install 3.141.59
-        sudo apt-get install openjdk-14-jre-headless
-        java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar ./vendor/bin/selenium-server-standalone-3.141.59.jar -debug &
+        sudo apt-get install openjdk-14-jre-headless > /dev/null 2>&1
+        sudo Xvfb :0 -ac -screen 0 1024x768x24 &
+        xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar ./vendor/bin/selenium-server-standalone-3.141.59.jar -debug &
         php -S localhost:8000 -t ./tests/stand &
-        sleep 10
+        sleep 30
         ./vendor/bin/steward run staging chrome --server-url http://localhost:4444/wd/hub -vvv --tests-dir=./tests/SwedbankPayUITest/Test
 
     - name: Unit tests
