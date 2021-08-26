@@ -9,7 +9,7 @@ use SwedbankPay\Api\Client\Resource\Client;
 class ClientTest extends TestCase
 {
     /**
-     * @SuppressWarnings(PHPMD.LongMethod)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function testData()
     {

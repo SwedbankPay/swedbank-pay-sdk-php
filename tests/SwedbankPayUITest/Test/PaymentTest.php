@@ -19,6 +19,8 @@ class PaymentTest extends AbstractTestCase
      *
      * @throws \Facebook\WebDriver\Exception\NoSuchElementException
      * @throws \Facebook\WebDriver\Exception\TimeoutException
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function testCreditCard()
     {
@@ -76,6 +78,8 @@ class PaymentTest extends AbstractTestCase
      *
      * @throws \Facebook\WebDriver\Exception\NoSuchElementException
      * @throws \Facebook\WebDriver\Exception\TimeoutException
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function testVipps()
     {
@@ -123,6 +127,8 @@ class PaymentTest extends AbstractTestCase
      *
      * @throws \Facebook\WebDriver\Exception\NoSuchElementException
      * @throws \Facebook\WebDriver\Exception\TimeoutException
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function testMobilePay()
     {
@@ -183,6 +189,8 @@ class PaymentTest extends AbstractTestCase
      *
      * @throws \Facebook\WebDriver\Exception\NoSuchElementException
      * @throws \Facebook\WebDriver\Exception\TimeoutException
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function testCheckout()
     {
@@ -245,7 +253,8 @@ class PaymentTest extends AbstractTestCase
      *
      * @throws \Facebook\WebDriver\Exception\NoSuchElementException
      * @throws \Facebook\WebDriver\Exception\TimeoutException
-     * @SuppressWarnings(PHPMD.LongMethod)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function testTrustly()
     {
@@ -431,6 +440,8 @@ class PaymentTest extends AbstractTestCase
      *
      * @throws \Facebook\WebDriver\Exception\NoSuchElementException
      * @throws \Facebook\WebDriver\Exception\TimeoutException
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function testInvoice()
     {
