@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Service\Creditcard\Request\Purchase;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPurchaseCreditcard;
@@ -28,10 +29,11 @@ class CreditCardStand extends Stand
      */
     public function __construct()
     {
+        // phpcs:disable
         if (php_sapi_name() !== 'cli-server') {
-            // phpcs:ignore
             exit();
         }
+        // phpcs:enable
 
         $url = new PaymentUrl();
         $url->setCompleteUrl('http://localhost:8000/complete.php')
@@ -87,13 +89,14 @@ class CreditCardStand extends Stand
         $responseService = $purchaseRequest->send();
         $responseData = $responseService->getResponseData();
 
-        // phpcs:ignore
+        // phpcs:disable
         session_start();
         $_SESSION['payment_id'] = $responseData['payment']['id'];
 
         $redirectUrl = $responseService->getOperationByRel('redirect-authorization', 'href');
         header('Location: ' . $redirectUrl);
         exit();
+        // phpcs:enable
     }
 }
 

@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
@@ -28,10 +29,11 @@ class CheckoutStand extends Stand
      */
     public function __construct()
     {
+        // phpcs:disable
         if (php_sapi_name() !== 'cli-server') {
-            // phpcs:ignore
             exit();
         }
+        // phpcs:enable
 
         $urlData = new PaymentorderUrl();
         $urlData->setCompleteUrl('http://localhost:8000/complete.php')
@@ -108,13 +110,14 @@ class CheckoutStand extends Stand
         $responseService = $purchaseRequest->send();
         $responseData = $responseService->getResponseData();
 
-        // phpcs:ignore
+        // phpcs:disable
         session_start();
         $_SESSION['payment_order_id'] = $responseData['payment_order']['id'];
 
         $redirectUrl = $responseService->getOperationByRel('redirect-paymentorder', 'href');
         header('Location: ' . $redirectUrl);
         exit();
+        // phpcs:enable
     }
 }
 

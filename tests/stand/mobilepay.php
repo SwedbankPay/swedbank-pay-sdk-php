@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Client\Client;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
@@ -29,10 +30,11 @@ class MobilePayStand extends Stand
      */
     public function __construct()
     {
+        // phpcs:disable
         if (php_sapi_name() !== 'cli-server') {
-            // phpcs:ignore
             exit();
         }
+        // phpcs:enable
 
         $this->client = new Client();
         $this->client->setAccessToken(ACCESS_TOKEN_MOBILEPAY)
@@ -99,13 +101,14 @@ class MobilePayStand extends Stand
             $responseData['payment']['id']
         );
 
-        // phpcs:ignore
+        // phpcs:disable
         session_start();
         $_SESSION['payment_id'] = $responseData['payment']['id'];
 
         $redirectUrl = $responseService->getOperationByRel('redirect-authorization', 'href');
         header('Location: ' . $redirectUrl);
         exit();
+        // phpcs:enable
     }
 }
 

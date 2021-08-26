@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 // phpcs:disable
 require_once __DIR__ . '/abstract.php';
@@ -14,17 +15,20 @@ class CompleteStand extends Stand
      * @throws Exception
      * @SuppressWarnings(PHPMD.Superglobals)
      * @SuppressWarnings(PHPMD.ExitExpression)
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function __construct()
     {
+        // phpcs:disable
         if (php_sapi_name() !== 'cli-server') {
-            // phpcs:ignore
             exit();
         }
 
-        // phpcs:ignore
         session_start();
+        // phpcs:enable
 
+        // phpcs:disable
         if (isset($_SESSION['payment_order_id'])) {
             $this->processPaymentOrder($_SESSION['payment_order_id']);
 
@@ -40,6 +44,7 @@ class CompleteStand extends Stand
         }
 
         $payment_id = $_SESSION['payment_id'];
+        // phpcs:enable
         $info = $this->request('GET', $payment_id);
 
         $this->configSet(

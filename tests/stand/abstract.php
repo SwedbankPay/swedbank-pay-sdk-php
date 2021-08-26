@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 use SwedbankPay\Api\Client\Client;
 
@@ -38,6 +39,7 @@ abstract class Stand
      */
     protected function configSet($file, $section, $key, $value)
     {
+        // phpcs:disable
         $data = [];
         if (file_exists($file)) {
             $data = parse_ini_file($file, true);
@@ -51,7 +53,7 @@ abstract class Stand
 
         $content = '';
         foreach ($data as $section => $sectionContent) {
-            $sectionContent = array_map(function($value, $key) {
+            $sectionContent = array_map(function ($value, $key) {
                 return "$key = $value";
             }, array_values($sectionContent), array_keys($sectionContent));
 
@@ -60,6 +62,7 @@ abstract class Stand
         }
 
         file_put_contents($file, $content);
+        // phpcs:enable
     }
 
     /**
@@ -77,7 +80,7 @@ abstract class Stand
     {
         // Get rid of full url. There's should be an endpoint only.
         if (filter_var($url, FILTER_VALIDATE_URL)) {
-            $parsed = parse_url($url);
+            $parsed = parse_url($url); // phpcs: ignore
             $url = $parsed['path'];
             if (!empty($parsed['query'])) {
                 $url .= '?' . $parsed['query'];

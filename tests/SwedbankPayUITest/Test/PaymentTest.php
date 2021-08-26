@@ -244,6 +244,7 @@ class PaymentTest extends AbstractTestCase
      *
      * @throws \Facebook\WebDriver\Exception\NoSuchElementException
      * @throws \Facebook\WebDriver\Exception\TimeoutException
+     * @SuppressWarnings(PHPMD.LongMethod)
      */
     public function testTrustly()
     {
