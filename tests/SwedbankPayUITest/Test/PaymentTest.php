@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 namespace SwedbankPayUITest\Test;
 

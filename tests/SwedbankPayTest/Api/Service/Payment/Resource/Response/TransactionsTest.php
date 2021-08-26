@@ -1,5 +1,5 @@
 <?php
-
+// phpcs:ignoreFile -- this is test
 
 namespace SwedbankPayTest\Api\Service\Payment\Resource\Response;
 

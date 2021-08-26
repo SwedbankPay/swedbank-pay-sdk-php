@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile -- this is test
 
 namespace SwedbankPayTest\Api\Client\Resource;
 
@@ -7,6 +8,9 @@ use SwedbankPay\Api\Client\Resource\Client;
 
 class ClientTest extends TestCase
 {
+    /**
+     * @SuppressWarnings(PHPMD.LongMethod)
+     */
     public function testData()
     {
         $client = new Client();
