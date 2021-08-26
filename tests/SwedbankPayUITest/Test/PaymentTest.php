@@ -7,6 +7,10 @@ use Facebook\WebDriver\WebDriverExpectedCondition;
 use Facebook\WebDriver\WebDriverSelect;
 use Lmc\Steward\Test\AbstractTestCase;
 
+/**
+ * @codeCoverageIgnore
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ */
 class PaymentTest extends AbstractTestCase
 {
     /**

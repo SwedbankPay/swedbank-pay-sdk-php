@@ -12,17 +12,28 @@ use SwedbankPay\Api\Service\MobilePay\Resource\Request\Payment;
 use SwedbankPay\Api\Service\MobilePay\Resource\Request\PaymentObject;
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 
-if (php_sapi_name() !== 'cli-server') {
-    exit();
-}
-
+// phpcs:disable
 require_once __DIR__ . '/abstract.php';
 require_once __DIR__ . '/../bootstrap.php';
+// phpcs:enable
 
+/**
+ * @codeCoverageIgnore
+ */
 class MobilePayStand extends Stand
 {
+    /**
+     * @throws \SwedbankPay\Api\Client\Exception
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.ExitExpression)
+     */
     public function __construct()
     {
+        if (php_sapi_name() !== 'cli-server') {
+            // phpcs:ignore
+            exit();
+        }
+
         $this->client = new Client();
         $this->client->setAccessToken(ACCESS_TOKEN_MOBILEPAY)
             ->setPayeeId(PAYEE_ID_MOBILEPAY)
@@ -88,6 +99,7 @@ class MobilePayStand extends Stand
             $responseData['payment']['id']
         );
 
+        // phpcs:ignore
         session_start();
         $_SESSION['payment_id'] = $responseData['payment']['id'];
 

@@ -11,17 +11,28 @@ use SwedbankPay\Api\Service\Payment\Resource\Request\Metadata;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPayeeInfo;
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 
-if (php_sapi_name() !== 'cli-server') {
-    exit();
-}
-
+// phpcs:disable
 require_once __DIR__ . '/abstract.php';
 require_once __DIR__ . '/../bootstrap.php';
+// phpcs:enable
 
+/**
+ * @codeCoverageIgnore
+ */
 class CreditCardStand extends Stand
 {
+    /**
+     * @throws \SwedbankPay\Api\Client\Exception
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.ExitExpression)
+     */
     public function __construct()
     {
+        if (php_sapi_name() !== 'cli-server') {
+            // phpcs:ignore
+            exit();
+        }
+
         $url = new PaymentUrl();
         $url->setCompleteUrl('http://localhost:8000/complete.php')
             ->setCancelUrl('http://localhost:8000/cancel.php')
@@ -76,6 +87,7 @@ class CreditCardStand extends Stand
         $responseService = $purchaseRequest->send();
         $responseData = $responseService->getResponseData();
 
+        // phpcs:ignore
         session_start();
         $_SESSION['payment_id'] = $responseData['payment']['id'];
 

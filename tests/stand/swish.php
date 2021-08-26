@@ -12,72 +12,84 @@ use SwedbankPay\Api\Service\Swish\Resource\Request\Payment;
 use SwedbankPay\Api\Service\Swish\Resource\Request\SwishPaymentObject;
 use SwedbankPay\Api\Service\Data\ResponseInterface as ResponseServiceInterface;
 
-if (php_sapi_name() !== 'cli-server') {
-    exit();
-}
-
+// phpcs:disable
 require_once __DIR__ . '/abstract.php';
 require_once __DIR__ . '/../bootstrap.php';
+// phpcs:enable
 
+/**
+ * @codeCoverageIgnore
+ */
 class SwishStand extends Stand
 {
+    /**
+     * @throws \SwedbankPay\Api\Client\Exception
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.ExitExpression)
+     */
    public function __construct()
    {
-        $url = new PaymentUrl();
-        $url->setCompleteUrl('http://localhost:8000/complete.php')
-            ->setCancelUrl('http://localhost:8000/cancel.php')
-            ->setCallbackUrl('http://localhost:8000/callback.php')
-            ->setHostUrls(['http://localhost:8000']);
+       if (php_sapi_name() !== 'cli-server') {
+           // phpcs:ignore
+           exit();
+       }
 
-        $payeeInfo = new PaymentPayeeInfo();
-        $payeeInfo->setPayeeId(PAYEE_ID)
-            ->setPayeeReference($this->generateRandomString(30))
-            ->setPayeeName('Merchant1')
-            ->setProductCategory('A123')
-            ->setOrderReference('or-123456')
-            ->setSubsite('MySubsite');
+       $url = new PaymentUrl();
+       $url->setCompleteUrl('http://localhost:8000/complete.php')
+           ->setCancelUrl('http://localhost:8000/cancel.php')
+           ->setCallbackUrl('http://localhost:8000/callback.php')
+           ->setHostUrls(['http://localhost:8000']);
 
-        $prefillInfo = new PaymentPrefillInfo();
-        $prefillInfo->setMsisdn('+46760000000');
+       $payeeInfo = new PaymentPayeeInfo();
+       $payeeInfo->setPayeeId(PAYEE_ID)
+           ->setPayeeReference($this->generateRandomString(30))
+           ->setPayeeName('Merchant1')
+           ->setProductCategory('A123')
+           ->setOrderReference('or-123456')
+           ->setSubsite('MySubsite');
 
-        $swish = new PaymentSwish();
-        $swish->setEcomOnlyEnabled(false);
+       $prefillInfo = new PaymentPrefillInfo();
+       $prefillInfo->setMsisdn('+46760000000');
 
-        $price = new PriceItem();
-        $price->setType('Swish')
-            ->setAmount(1500)
-            ->setVatAmount(0);
+       $swish = new PaymentSwish();
+       $swish->setEcomOnlyEnabled(false);
 
-        $prices = new PricesCollection();
-        $prices->addItem($price);
+       $price = new PriceItem();
+       $price->setType('Swish')
+           ->setAmount(1500)
+           ->setVatAmount(0);
 
-        $metadata = new Metadata();
-        $metadata->setData('order_id', 'or-123456');
+       $prices = new PricesCollection();
+       $prices->addItem($price);
 
-        $payment = new Payment();
-        $payment->setOperation('Purchase')
-            ->setIntent('Sale')
-            ->setCurrency('SEK')
-            ->setDescription('Test Purchase')
-            ->setUserAgent('Mozilla/5.0...')
-            ->setLanguage('nb-NO')
-            ->setUrls($url)
-            ->setPayeeInfo($payeeInfo)
-            ->setPrefillInfo($prefillInfo)
-            ->setSwish($swish)
-            ->setPrices($prices)
-            ->setMetadata($metadata);
+       $metadata = new Metadata();
+       $metadata->setData('order_id', 'or-123456');
 
-        $swishPaymentObject = new SwishPaymentObject();
-        $swishPaymentObject->setPayment($payment);
+       $payment = new Payment();
+       $payment->setOperation('Purchase')
+           ->setIntent('Sale')
+           ->setCurrency('SEK')
+           ->setDescription('Test Purchase')
+           ->setUserAgent('Mozilla/5.0...')
+           ->setLanguage('nb-NO')
+           ->setUrls($url)
+           ->setPayeeInfo($payeeInfo)
+           ->setPrefillInfo($prefillInfo)
+           ->setSwish($swish)
+           ->setPrices($prices)
+           ->setMetadata($metadata);
 
-        $purchaseRequest = new Purchase($swishPaymentObject);
-        $purchaseRequest->setClient($this->getClient());
+       $swishPaymentObject = new SwishPaymentObject();
+       $swishPaymentObject->setPayment($payment);
 
-        /** @var ResponseServiceInterface $responseService */
-        $responseService = $purchaseRequest->send();
+       $purchaseRequest = new Purchase($swishPaymentObject);
+       $purchaseRequest->setClient($this->getClient());
+
+       /** @var ResponseServiceInterface $responseService */
+       $responseService = $purchaseRequest->send();
        $responseData = $responseService->getResponseData();
 
+       // phpcs:ignore
        session_start();
        $_SESSION['payment_id'] = $responseData['payment']['id'];
 

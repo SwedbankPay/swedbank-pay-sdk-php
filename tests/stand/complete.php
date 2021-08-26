@@ -1,16 +1,28 @@
 <?php
 
+// phpcs:disable
 require_once __DIR__ . '/abstract.php';
 require_once __DIR__ . '/../bootstrap.php';
+// phpcs:enable
 
-if (php_sapi_name() !== 'cli-server') {
-    exit();
-}
-
+/**
+ * @codeCoverageIgnore
+ */
 class CompleteStand extends Stand
 {
+    /**
+     * @throws Exception
+     * @SuppressWarnings(PHPMD.Superglobals)
+     * @SuppressWarnings(PHPMD.ExitExpression)
+     */
     public function __construct()
     {
+        if (php_sapi_name() !== 'cli-server') {
+            // phpcs:ignore
+            exit();
+        }
+
+        // phpcs:ignore
         session_start();
 
         if (isset($_SESSION['payment_order_id'])) {
