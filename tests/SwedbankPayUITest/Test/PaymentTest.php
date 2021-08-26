@@ -403,6 +403,8 @@ class PaymentTest extends AbstractTestCase
      *
      * @throws \Facebook\WebDriver\Exception\NoSuchElementException
      * @throws \Facebook\WebDriver\Exception\TimeoutException
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function testSwish()
     {
