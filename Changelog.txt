@@ -3,6 +3,10 @@ Changelog
 Added
 - PaymentorderPayeeInfo: getSubsite(), setSubsite()
 
+Changed
+- Updated `VerificationObject` class
+- Updated `VerificationObjectInterface` interface
+
 5.0.0 - 2021-06-04
 Added
 - PaymentCardholder: getBillingAddress(), setBillingAddress(), getAccountInfo(), setAccountInfo()
