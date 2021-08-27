@@ -15,7 +15,7 @@ class AuthorizationsObjectTest extends TestCase
 
         // @todo Object instance of AuthorizationsInterface hasn't implemented yet
         $object = new AuthorizationsObject();
-        //$authorizations = new Authorization();
+        $authorizations = new Authorization();
 
         $this->assertInstanceOf(
             AuthorizationsObject::class,

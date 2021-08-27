@@ -10,6 +10,9 @@ use SwedbankPay\Api\Service\Resource\Collection\OperationsCollection;
 
 class TransactionListItemTest extends TestCase
 {
+    /**
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     */
     public function testData()
     {
         $item = new TransactionListItem();
