@@ -5,6 +5,10 @@ namespace SwedbankPayTest\Api\Service\Consumer\Resource;
 
 use TestCase;
 use SwedbankPay\Api\Service\Consumer\Resource\Consumer;
+use SwedbankPay\Api\Service\Consumer\Resource\Data\ConsumerAddressInterface;
+use SwedbankPay\Api\Service\Consumer\Resource\Data\ConsumerNationalIdentifierInterface;
+use SwedbankPay\Api\Service\Consumer\Resource\ConsumerNationalIdentifier;
+use SwedbankPay\Api\Service\Consumer\Resource\ConsumerAddress;
 
 class ConsumerTest extends TestCase
 {
@@ -14,7 +18,8 @@ class ConsumerTest extends TestCase
         $this->assertInstanceOf(Consumer::class, $object->setToken('test'));
         $this->assertEquals('test', $object->getToken());
 
-        // @todo setNationalIdentifier()
+        $this->assertInstanceOf(Consumer::class, $object->setNationalIdentifier(new ConsumerNationalIdentifier()));
+        $this->assertInstanceOf(ConsumerNationalIdentifierInterface::class, $object->getNationalIdentifier());
 
         $this->assertInstanceOf(Consumer::class, $object->setFirstName('test'));
         $this->assertEquals('test', $object->getFirstName());
@@ -28,8 +33,13 @@ class ConsumerTest extends TestCase
         $this->assertInstanceOf(Consumer::class, $object->setMsisdn('test'));
         $this->assertEquals('test', $object->getMsisdn());
 
-        // @todo setLegalAddress()
-        // @todo setBillingAddress()
-        // @todo setShippingAddress()
+        $this->assertInstanceOf(Consumer::class, $object->setLegalAddress(new ConsumerAddress()));
+        $this->assertInstanceOf(ConsumerAddressInterface::class, $object->getLegalAddress());
+
+        $this->assertInstanceOf(Consumer::class, $object->setBillingAddress(new ConsumerAddress()));
+        $this->assertInstanceOf(ConsumerAddressInterface::class, $object->getBillingAddress());
+
+        $this->assertInstanceOf(Consumer::class, $object->setShippingAddress(new ConsumerAddress()));
+        $this->assertInstanceOf(ConsumerAddressInterface::class, $object->getShippingAddress());
     }
 }

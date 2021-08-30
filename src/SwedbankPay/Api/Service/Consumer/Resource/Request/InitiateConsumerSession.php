@@ -71,7 +71,7 @@ class InitiateConsumerSession extends RequestResource implements InitiateConsume
     }
 
     /**
-     * @param string $nationalIdentifier
+     * @param ConsumerNationalIdentifierInterface $nationalIdentifier
      * @return $this
      */
     public function setNationalIdentifier($nationalIdentifier)
