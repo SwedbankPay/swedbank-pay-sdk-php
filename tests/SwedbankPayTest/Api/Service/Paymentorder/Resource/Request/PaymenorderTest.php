@@ -18,8 +18,14 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderUrl;
 use TestCase;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class PaymenorderTest extends TestCase
 {
+    /**
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     */
     public function testData()
     {
         $object = new Paymentorder();
