@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Test;
+
+use TestCase;
 use SwedbankPay\Api\Service\Swish\Request\Test;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
 use SwedbankPay\Api\Service\Payment\Resource\Collection\Item\PriceItem;
@@ -133,7 +136,7 @@ class SwishPaymentTest extends TestCase
     }
 
     /**
-     * @depends SwishPaymentTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\SwishPaymentTest::testPurchaseRequest
      * @param string $paymentId
      * @throws \SwedbankPay\Api\Client\Exception
      */
@@ -206,7 +209,7 @@ class SwishPaymentTest extends TestCase
     }
 
     /**
-     * @depends SwishPaymentTest::testCreateSaleTransaction
+     * @depends SwedbankPayTest\Test\SwishPaymentTest::testCreateSaleTransaction
      * @param string $paymentId
      */
     public function testReversal($paymentId)
@@ -244,7 +247,7 @@ class SwishPaymentTest extends TestCase
     }
 
     /**
-     * @depends SwishPaymentTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\SwishPaymentTest::testPurchaseRequest
      * @param string $paymentId
      */
     public function testGetSales($paymentId)
@@ -272,7 +275,7 @@ class SwishPaymentTest extends TestCase
     }
 
     /**
-     * @depends SwishPaymentTest::testGetSales
+     * @depends SwedbankPayTest\Test\SwishPaymentTest::testGetSales
      * @param array $sales
      */
     public function testGetSale($sales)
@@ -304,8 +307,8 @@ class SwishPaymentTest extends TestCase
     }
 
     /**
-     * @depends SwishPaymentTest::testPurchaseRequest
-     * @depends SwishPaymentTest::testReversal
+     * @depends SwedbankPayTest\Test\SwishPaymentTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\SwishPaymentTest::testReversal
      * @param string $paymentId
      * @param array $reversal
      */
@@ -336,7 +339,7 @@ class SwishPaymentTest extends TestCase
     }
 
     /**
-     * @depends SwishPaymentTest::testGetReversals
+     * @depends SwedbankPayTest\Test\SwishPaymentTest::testGetReversals
      * @param array $reversals
      */
     public function testGetReversal($reversals)
@@ -368,7 +371,7 @@ class SwishPaymentTest extends TestCase
     }
 
     /**
-     * @depends SwishPaymentTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\SwishPaymentTest::testPurchaseRequest
      * @param string $paymentId
      */
     public function testGetTransactions($paymentId)
@@ -396,8 +399,8 @@ class SwishPaymentTest extends TestCase
     }
 
     /**
-     * @depends SwishPaymentTest::testPurchaseRequest
-     * @depends SwishPaymentTest::testGetTransactions
+     * @depends SwedbankPayTest\Test\SwishPaymentTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\SwishPaymentTest::testGetTransactions
      * @param string $paymentId
      * @param array $transactions
      */

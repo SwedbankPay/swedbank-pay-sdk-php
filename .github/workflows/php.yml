@@ -110,7 +110,7 @@ jobs:
         xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar ./vendor/bin/selenium-server-standalone-3.141.59.jar &
         php -S localhost:8000 -t ./tests/stand > /dev/null &
         sleep 30
-        ./vendor/bin/steward run staging chrome --server-url http://localhost:4444/wd/hub --tests-dir=./tests/SwedbankPayUITest/Test
+        ./vendor/bin/steward run staging chrome --server-url http://localhost:4444/wd/hub --tests-dir=./tests/Acceptance/SwedbankPayUITest/Test
 
     - name: Unit tests
       env:
@@ -119,7 +119,7 @@ jobs:
         ACCESS_TOKEN_MOBILEPAY: ${{ secrets.ACCESS_TOKEN_MOBILEPAY }}
         PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
         VERSION: ${{ steps.composer-version.outputs.version }}
-      run: ./vendor/bin/phpunit --configuration=./tests/phpunit.xml --bootstrap=./tests/bootstrap.php ./tests/ --coverage-clover=coverage.xml
+      run: ./vendor/bin/phpunit --configuration=./tests/phpunit.xml --bootstrap=./tests/bootstrap.php --coverage-clover=coverage.xml
 
     - name: Upload code coverage report to Codecov
       env:

@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Test;
+
+use TestCase;
 use SwedbankPay\Api\Service\Invoice\Request\Test;
 use SwedbankPay\Api\Client\Exception as ClientException;
 use SwedbankPay\Api\Service\Consumer\Resource\ConsumerAddress;
@@ -65,7 +68,7 @@ class InvoicePaymentTest extends TestCase
         try {
             new Test(ACCESS_TOKEN, PAYEE_ID, true);
             $this->assertTrue(true);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertTrue(true, $e->getMessage());
         }
     }
@@ -147,7 +150,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
      * @throws ClientException
      */
@@ -183,7 +186,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
      * @return array
      * @throws ClientException
@@ -247,7 +250,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
      * @return array
      * @throws ClientException
@@ -302,8 +305,8 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testInvoicePaymentRequest
-     * @depends InvoicePaymentTest::testCapture
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testCapture
      * @param string $paymentId
      * @param array $capture
      * @return array
@@ -348,7 +351,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
      * @return array
      * @throws ClientException
@@ -378,7 +381,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testGetAuthorizations
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testGetAuthorizations
      * @param array $authorizations
      * @throws ClientException
      */
@@ -411,7 +414,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
      * @return array
      * @throws ClientException
@@ -441,7 +444,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testGetCaptures
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testGetCaptures
      * @param array $capture
      * @throws ClientException
      */
@@ -474,7 +477,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
      * @return array
      * @throws ClientException
@@ -504,7 +507,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testGetReversals
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testGetReversals
      * @param array $reversals
      * @throws ClientException
      */
@@ -537,7 +540,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
      * @return array
      * @throws ClientException
@@ -567,7 +570,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testGetTransactions
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testGetTransactions
      * @param array $transactions
      * @throws ClientException
      */
@@ -611,7 +614,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testInvoicePaymentRequest
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testInvoicePaymentRequest
      * @param string $paymentId
      * @return array
      * @throws ClientException
@@ -643,7 +646,7 @@ class InvoicePaymentTest extends TestCase
     }
 
     /**
-     * @depends InvoicePaymentTest::testGetCancellations
+     * @depends SwedbankPayTest\Test\InvoicePaymentTest::testGetCancellations
      * @param array $cancellations
      * @throws ClientException
      */

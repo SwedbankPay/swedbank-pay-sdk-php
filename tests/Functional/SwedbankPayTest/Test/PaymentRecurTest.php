@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Test;
+
+use TestCase;
 use SwedbankPay\Api\Client\Exception as ClientException;
 use SwedbankPay\Api\Service\Creditcard\Request\Purchase;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentPayeeInfo;

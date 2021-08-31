@@ -1,5 +1,9 @@
 <?php
 
+namespace SwedbankPayTest\Test;
+
+use TestCase;
+
 use SwedbankPay\Api\Client\Exception as ClientException;
 use SwedbankPay\Api\Service\Paymentorder\Request\Recur;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\Item\OrderItem;

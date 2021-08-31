@@ -43,9 +43,9 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "SwedbankPay\\Test\\Unit\\": "tests/Unit/",
-      "SwedbankPayTest\\": "tests/SwedbankPayTest/",
-      "SwedbankPayUITest\\Test\\": "tests/SwedbankPayUITest/Test/"
+      "SwedbankPayTest\\": "tests/Unit/SwedbankPayTest/",
+      "SwedbankPayUITest\\Test\\": "tests/Acceptance/SwedbankPayUITest/Test/",
+      "SwedbankPayTest\\Test\\": "tests/Functional/SwedbankPayTest/Test/"
     }
   }
 }

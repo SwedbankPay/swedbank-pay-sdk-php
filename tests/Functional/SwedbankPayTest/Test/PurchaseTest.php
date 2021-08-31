@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Test;
+
+use TestCase;
 use SwedbankPay\Api\Client\Exception;
 
 use SwedbankPay\Api\Service\Paymentorder\Request\Test;
@@ -144,8 +147,8 @@ class PurchaseTest extends TestCase
         $this->assertNotEmpty($result['payment_order']['id']);
 
         // phpcs:disable
-        if (file_exists(__DIR__ . '/payments.ini')) {
-            $data = parse_ini_file(__DIR__ . '/payments.ini', true);
+        if (file_exists(__DIR__ . '/../../../payments.ini')) {
+            $data = parse_ini_file(__DIR__ . '/../../../payments.ini', true);
             return $data['Checkout']['payment_order_id'];
         }
         // phpcs:enable
@@ -154,7 +157,7 @@ class PurchaseTest extends TestCase
     }
 
     /**
-     * @depends PurchaseTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\PurchaseTest::testPurchaseRequest
      * @param string $paymentOrderId
      * @throws Exception
      */
@@ -187,7 +190,7 @@ class PurchaseTest extends TestCase
     }
 
     /**
-     * @depends PurchaseTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\PurchaseTest::testPurchaseRequest
      * @param string $paymentOrderId
      * @throws Exception
      */
@@ -221,7 +224,7 @@ class PurchaseTest extends TestCase
     }
 
     /**
-     * @depends PurchaseTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\PurchaseTest::testPurchaseRequest
      * @param string $paymentOrderId
      * @throws Exception
      */
@@ -256,7 +259,7 @@ class PurchaseTest extends TestCase
     }
 
     /**
-     * @depends PurchaseTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\PurchaseTest::testPurchaseRequest
      * @param string $paymentOrderId
      * @return array
      * @throws Exception
@@ -315,7 +318,7 @@ class PurchaseTest extends TestCase
     }
 
     /**
-     * @depends PurchaseTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\PurchaseTest::testPurchaseRequest
      * @param string $paymentOrderId
      * @return array
      * @throws Exception

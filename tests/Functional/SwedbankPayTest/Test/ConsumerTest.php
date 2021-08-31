@@ -1,5 +1,9 @@
 <?php
 
+namespace SwedbankPayTest\Test;
+
+use TestCase;
+
 use SwedbankPay\Api\Service\Data\ResponseInterface;
 
 use SwedbankPay\Api\Service\Consumer\Resource\ConsumerNationalIdentifier as ConsumerNationalIdentifierData;

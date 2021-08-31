@@ -1,5 +1,8 @@
 <?php
 
+namespace SwedbankPayTest\Test;
+
+use TestCase;
 // phpcs:disable
 use SwedbankPay\Api\Client\Exception;
 
@@ -131,8 +134,8 @@ class TrustlyPaymentTest extends TestCase
         $this->assertNotEmpty($result['payment']['id']);
 
         // phpcs:disable
-        if (file_exists(__DIR__ . '/payments.ini')) {
-            $data = parse_ini_file(__DIR__ . '/payments.ini', true);
+        if (file_exists(__DIR__ . '/../../../payments.ini')) {
+            $data = parse_ini_file(__DIR__ . '/../../../payments.ini', true);
             return $data['Trustly']['payment_id'];
         }
         // phpcs:enable
@@ -141,7 +144,7 @@ class TrustlyPaymentTest extends TestCase
     }
 
     /**
-     * @depends TrustlyPaymentTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\TrustlyPaymentTest::testPurchaseRequest
      * @param string $paymentId
      * @return array
      * @throws Exception
@@ -187,7 +190,7 @@ class TrustlyPaymentTest extends TestCase
     }
 
     /**
-     * @depends TrustlyPaymentTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\TrustlyPaymentTest::testPurchaseRequest
      * @param string $paymentId
      * @return array
      * @throws Exception
@@ -221,7 +224,7 @@ class TrustlyPaymentTest extends TestCase
     }
 
     /**
-     * @depends TrustlyPaymentTest::testGetSales
+     * @depends SwedbankPayTest\Test\TrustlyPaymentTest::testGetSales
      * @param array $sales
      * @throws Exception
      */
@@ -254,7 +257,7 @@ class TrustlyPaymentTest extends TestCase
     }
 
     /**
-     * @depends TrustlyPaymentTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\TrustlyPaymentTest::testPurchaseRequest
      * @param string $paymentId
      * @return array
      * @throws Exception
@@ -288,7 +291,7 @@ class TrustlyPaymentTest extends TestCase
     }
 
     /**
-     * @depends TrustlyPaymentTest::testGetReversals
+     * @depends SwedbankPayTest\Test\TrustlyPaymentTest::testGetReversals
      * @param array $reversals
      * @throws Exception
      */
@@ -321,7 +324,7 @@ class TrustlyPaymentTest extends TestCase
     }
 
     /**
-     * @depends TrustlyPaymentTest::testPurchaseRequest
+     * @depends SwedbankPayTest\Test\TrustlyPaymentTest::testPurchaseRequest
      * @param string $paymentId
      * @return array
      * @throws Exception
@@ -355,7 +358,7 @@ class TrustlyPaymentTest extends TestCase
     }
 
     /**
-     * @depends TrustlyPaymentTest::testGetTransactions
+     * @depends SwedbankPayTest\Test\TrustlyPaymentTest::testGetTransactions
      * @param array $transactions
      * @throws Exception
      */
