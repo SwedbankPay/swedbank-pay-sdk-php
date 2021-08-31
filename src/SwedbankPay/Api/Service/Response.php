@@ -132,6 +132,9 @@ class Response extends AbstractSimpleDataObject implements ResponseInterface
     {
         /** @var DataObjectCollectionInterface $operations */
         $operations = $this->getResponseResource()->getOperations();
+        if (!$operations) {
+            return false;
+        }
 
         /** @var array $matchingOperations */
         $matchingOperations = $operations->getItemsByColumnFilter('rel', $rel);

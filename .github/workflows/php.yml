@@ -40,10 +40,13 @@ jobs:
         echo "Composer version: ${COMPOSER_VERSION}"
         echo "::set-output name=version::${COMPOSER_VERSION}"
 
-    - name: PHP Setup
-      uses: shivammathur/setup-php@v2
+    - name: Install tools
+      uses: shivammathur/setup-php@master
       with:
         php-version: '7.4'
+        extension: intl, mbstring, json, bcmath
+        coverage: xdebug
+        tools: composer, php-cs-fixer, phpunit:8.5.14, phpcpd, phpmd
 
     - name: Version stamp composer.json
       run: |
@@ -87,6 +90,28 @@ jobs:
     - name: PHPCS check
       run: ./vendor/bin/phpcs --standard=PSR2 --report=code --ignore=vendor/* --runtime-set ignore_warnings_on_exit true src/
 
+    - name: Install chromedriver
+      uses: nanasess/setup-chromedriver@master
+      with:
+        chromedriver-version: '92.0.4515.107'
+
+    - name: Acceptance tests with steward
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        PAYEE_ID: ${{ secrets.PAYEE_ID }}
+        ACCESS_TOKEN_MOBILEPAY: ${{ secrets.ACCESS_TOKEN_MOBILEPAY }}
+        PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
+        VERSION: ${{ steps.composer-version.outputs.version }}
+      run: |
+        export DISPLAY=:99
+        chromedriver --url-base=/wd/hub > /dev/null &
+        ./vendor/bin/steward install 3.141.59
+        sudo Xvfb :0 -ac -screen 0 1024x768x24 > /dev/null 2>&1 &
+        xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar ./vendor/bin/selenium-server-standalone-3.141.59.jar &
+        php -S localhost:8000 -t ./tests/stand > /dev/null &
+        sleep 30
+        ./vendor/bin/steward run staging chrome --server-url http://localhost:4444/wd/hub --tests-dir=./tests/Acceptance/SwedbankPayUITest/Test
+
     - name: Unit tests
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -94,7 +119,7 @@ jobs:
         ACCESS_TOKEN_MOBILEPAY: ${{ secrets.ACCESS_TOKEN_MOBILEPAY }}
         PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
         VERSION: ${{ steps.composer-version.outputs.version }}
-      run: ./vendor/bin/phpunit --configuration=./tests/phpunit.xml --bootstrap=./tests/bootstrap.php ./tests/ --coverage-clover=coverage.xml
+      run: ./vendor/bin/phpunit --configuration=./tests/phpunit.xml --bootstrap=./tests/bootstrap.php --coverage-clover=coverage.xml
 
     - name: Upload code coverage report to Codecov
       env:

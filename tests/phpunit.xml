@@ -1,7 +1,8 @@
 <phpunit bootstrap="./bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="Tests">
-            <directory>.</directory>
+            <directory suffix="Test.php">./Unit/*</directory>
+            <directory suffix="Test.php">./Functional/*</directory>
         </testsuite>
     </testsuites>
     <filter>

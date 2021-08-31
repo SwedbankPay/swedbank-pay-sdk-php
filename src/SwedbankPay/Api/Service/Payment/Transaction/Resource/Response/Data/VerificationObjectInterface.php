@@ -2,7 +2,9 @@
 
 namespace SwedbankPay\Api\Service\Payment\Transaction\Resource\Response\Data;
 
-interface VerificationObjectInterface extends TransactionsResponseInterface
+use SwedbankPay\Api\Service\Resource\Data\ResponseInterface;
+
+interface VerificationObjectInterface extends ResponseInterface
 {
     const VERIFICATION = 'verification';
 
