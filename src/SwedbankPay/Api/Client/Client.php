@@ -354,28 +354,29 @@ class Client extends ClientResource
         return $this;
     }
 
-	/**
-	 * Creates debug information.
-	 *
-	 * @param $code
-	 * @param $body
-	 *
-	 * @return string
-	 */
-	protected function createDebugInfo($code, $body) {
-		$requestMethod = $this->getMethod();
-		$requestUrl = rtrim($this->getBaseUrl() . $this->getEndpoint(), '/');
-		$requestHeaders = implode("\n", (array)$this->getHeaders());
-		$requestBody = implode("\n", (array)$this->getRequestBody());
-		return "\n>>>>>>>> BEGIN PAYEX API CLIENT REQUEST DEBUG INFO >>>>>>>>\n\n" .
-			"Request Method: $requestMethod\n" .
-			"Request URL: $requestUrl\n" .
-			"Request Headers: $requestHeaders\n" .
-			"Request Body:\n$requestBody\n\n" .
-			"Response Code: $code\n" .
-			"Response Body:\n$body\n\n" .
-			"<<<<<<<< END PAYEX API CLIENT REQUEST DEBUG INFO <<<<<<<<\n\n";
-	}
+    /**
+     * Creates debug information.
+     *
+     * @param $code
+     * @param $body
+     *
+     * @return string
+     */
+    protected function createDebugInfo($code, $body)
+    {
+        $requestMethod = $this->getMethod();
+        $requestUrl = rtrim($this->getBaseUrl() . $this->getEndpoint(), '/');
+        $requestHeaders = implode("\n", (array)$this->getHeaders());
+        $requestBody = implode("\n", (array)$this->getRequestBody());
+        return "\n>>>>>>>> BEGIN PAYEX API CLIENT REQUEST DEBUG INFO >>>>>>>>\n\n" .
+            "Request Method: $requestMethod\n" .
+            "Request URL: $requestUrl\n" .
+            "Request Headers: $requestHeaders\n" .
+            "Request Body:\n$requestBody\n\n" .
+            "Response Code: $code\n" .
+            "Response Body:\n$body\n\n" .
+            "<<<<<<<< END PAYEX API CLIENT REQUEST DEBUG INFO <<<<<<<<\n\n";
+    }
 
     /**
      * Do Client
