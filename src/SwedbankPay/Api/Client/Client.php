@@ -335,20 +335,20 @@ class Client extends ClientResource
     {
         if ($this->getErrorCode()) {
             $this->setDebugInfo(
-				$this->createDebugInfo(
-					$this->getErrorCode(),
-					$this->getErrorMessage()
-				)
+                $this->createDebugInfo(
+                    $this->getErrorCode(),
+                    $this->getErrorMessage()
+                )
             );
 
             throw new Exception($this->getDebugInfo(), $this->getErrorCode());
         }
 
         $this->setDebugInfo(
-			$this->createDebugInfo(
-				$this->getResponseCode(),
-				trim($this->getResponseBody())
-			)
+            $this->createDebugInfo(
+                $this->getResponseCode(),
+                trim($this->getResponseBody())
+            )
         );
 
         return $this;
