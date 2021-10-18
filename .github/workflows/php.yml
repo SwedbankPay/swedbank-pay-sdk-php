@@ -8,8 +8,9 @@ on:
 
 jobs:
   build:
+    # Prevent forks from running this to be nice
+    if: github.repository == 'SwedbankPay/swedbank-pay-sdk-php'
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
 
