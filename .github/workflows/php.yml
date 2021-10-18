@@ -115,7 +115,7 @@ jobs:
         xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar ./vendor/bin/selenium-server-standalone-3.141.59.jar &
         php -S localhost:8000 -t ./tests/stand > /dev/null &
         sleep 30
-        php ./vendor/bin/codecept run build
+        php ./vendor/bin/codecept build
         php ./vendor/bin/codecept run acceptance
     - name: Unit tests
       env:
