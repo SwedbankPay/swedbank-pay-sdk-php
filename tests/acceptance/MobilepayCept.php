@@ -28,7 +28,7 @@ $I->seeElement('#TestCardsType');
 $I->selectOption('#TestCardsType', ['text' => 'Visa']);
 
 // Submit the form
-$I->click('//input[@value=Pay]');
+$I->click('.btn-primary');
 
 // Wait for the redirection
 $I->executeInSelenium(function(\Facebook\WebDriver\Remote\RemoteWebDriver $webdriver) {
