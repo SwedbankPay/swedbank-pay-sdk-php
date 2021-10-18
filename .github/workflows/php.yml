@@ -96,7 +96,7 @@ jobs:
     - name: Install chromedriver
       uses: nanasess/setup-chromedriver@master
       with:
-        chromedriver-version: '92.0.4515.107'
+        chromedriver-version: '94.0.4606.61'
 
     - name: Acceptance tests with codeception
       env:
