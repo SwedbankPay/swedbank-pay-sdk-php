@@ -108,7 +108,7 @@ jobs:
       run: |
         cd ./vendor/bin/
         wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-3.141.59/selenium-server-standalone-3.141.59.jar
-        cd ..
+        cd ../..
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub > /dev/null &
         sudo Xvfb :0 -ac -screen 0 1024x768x24 > /dev/null 2>&1 &
