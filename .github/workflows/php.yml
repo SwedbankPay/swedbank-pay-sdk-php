@@ -107,7 +107,7 @@ jobs:
         PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
         VERSION: ${{ steps.composer-version.outputs.version }}
       run: |
-        if [ "$ACCESS_TOKEN" == "" ]; then
+        if [ "$ACCESS_TOKEN" != "" ]; then
           cd ./vendor/bin/
           wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-3.141.59/selenium-server-standalone-3.141.59.jar
           cd ../..
@@ -128,7 +128,7 @@ jobs:
         PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
         VERSION: ${{ steps.composer-version.outputs.version }}
       run: |
-        if [ "$ACCESS_TOKEN" == "" ]; then
+        if [ "$ACCESS_TOKEN" != "" ]; then
           ./vendor/bin/phpunit --configuration=./tests/phpunit.xml --bootstrap=./tests/bootstrap.php --coverage-clover=coverage.xml
         fi
 
