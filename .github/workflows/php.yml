@@ -107,17 +107,19 @@ jobs:
         PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
         VERSION: ${{ steps.composer-version.outputs.version }}
       run: |
-        cd ./vendor/bin/
-        wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-3.141.59/selenium-server-standalone-3.141.59.jar
-        cd ../..
-        export DISPLAY=:99
-        chromedriver --url-base=/wd/hub > /dev/null &
-        sudo Xvfb :0 -ac -screen 0 1024x768x24 > /dev/null 2>&1 &
-        xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar ./vendor/bin/selenium-server-standalone-3.141.59.jar &
-        php -S localhost:8000 -t ./tests/stand > /dev/null &
-        sleep 30
-        php ./vendor/bin/codecept build
-        php ./vendor/bin/codecept run acceptance
+        if [ "$ACCESS_TOKEN" == "" ]; then
+          cd ./vendor/bin/
+          wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-3.141.59/selenium-server-standalone-3.141.59.jar
+          cd ../..
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub > /dev/null &
+          sudo Xvfb :0 -ac -screen 0 1024x768x24 > /dev/null 2>&1 &
+          xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar ./vendor/bin/selenium-server-standalone-3.141.59.jar &
+          php -S localhost:8000 -t ./tests/stand > /dev/null &
+          sleep 30
+          php ./vendor/bin/codecept build
+          php ./vendor/bin/codecept run acceptance
+        fi
     - name: Unit tests
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -125,7 +127,10 @@ jobs:
         ACCESS_TOKEN_MOBILEPAY: ${{ secrets.ACCESS_TOKEN_MOBILEPAY }}
         PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
         VERSION: ${{ steps.composer-version.outputs.version }}
-      run: ./vendor/bin/phpunit --configuration=./tests/phpunit.xml --bootstrap=./tests/bootstrap.php --coverage-clover=coverage.xml
+      run: |
+        if [ "$ACCESS_TOKEN" == "" ]; then
+          ./vendor/bin/phpunit --configuration=./tests/phpunit.xml --bootstrap=./tests/bootstrap.php --coverage-clover=coverage.xml
+        fi
 
     - name: Upload code coverage report to Codecov
       env:
