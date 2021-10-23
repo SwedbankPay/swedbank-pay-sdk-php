@@ -333,27 +333,9 @@ class Client extends ClientResource
      */
     protected function processRequestResult()
     {
-        $debugMsgFormat = sprintf(
-            "\n>>>>>>>> BEGIN PAYEX API CLIENT REQUEST DEBUG INFO >>>>>>>>\n\n" .
-            "Request Method: %s\n" .
-            "Request URL: %s\n" .
-            "Request Headers: %s\n" .
-            "Request Body:\n%s\n\n" .
-            "Response Code: %s\n" .
-            "Response Body:\n%s\n\n" .
-            "<<<<<<<< END PAYEX API CLIENT REQUEST DEBUG INFO <<<<<<<<\n\n",
-            $this->getMethod(),
-            rtrim($this->getBaseUrl() . $this->getEndpoint(), '/'),
-            implode("\n", (array)$this->getHeaders()),
-            implode("\n", (array)$this->getRequestBody()),
-            "%s",
-            "%s"
-        );
-
         if ($this->getErrorCode()) {
             $this->setDebugInfo(
-                sprintf(
-                    $debugMsgFormat,
+                $this->createDebugInfo(
                     $this->getErrorCode(),
                     $this->getErrorMessage()
                 )
@@ -363,14 +345,37 @@ class Client extends ClientResource
         }
 
         $this->setDebugInfo(
-            sprintf(
-                $debugMsgFormat,
+            $this->createDebugInfo(
                 $this->getResponseCode(),
                 trim($this->getResponseBody())
             )
         );
 
         return $this;
+    }
+
+    /**
+     * Creates debug information.
+     *
+     * @param $code
+     * @param $body
+     *
+     * @return string
+     */
+    protected function createDebugInfo($code, $body)
+    {
+        $requestMethod = $this->getMethod();
+        $requestUrl = rtrim($this->getBaseUrl() . $this->getEndpoint(), '/');
+        $requestHeaders = implode("\n", (array)$this->getHeaders());
+        $requestBody = implode("\n", (array)$this->getRequestBody());
+        return "\n>>>>>>>> BEGIN PAYEX API CLIENT REQUEST DEBUG INFO >>>>>>>>\n\n" .
+            "Request Method: $requestMethod\n" .
+            "Request URL: $requestUrl\n" .
+            "Request Headers: $requestHeaders\n" .
+            "Request Body:\n$requestBody\n\n" .
+            "Response Code: $code\n" .
+            "Response Body:\n$body\n\n" .
+            "<<<<<<<< END PAYEX API CLIENT REQUEST DEBUG INFO <<<<<<<<\n\n";
     }
 
     /**
