@@ -612,7 +612,7 @@ class Client extends ClientResource
 
         foreach ($caBundlePaths as $caPath) {
             // phpcs:ignore
-            if (is_readable($caPath)) {
+            if (@is_readable($caPath)) {
                 return $caPath;
             }
         }
