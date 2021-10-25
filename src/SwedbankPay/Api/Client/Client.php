@@ -8,6 +8,7 @@ use SwedbankPay\Api\Client\Resource\Client as ClientResource;
  * Class Client
  * @package SwedbankPay\Api\Client
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.ErrorControlOperator)
  */
 class Client extends ClientResource
 {
@@ -617,7 +618,7 @@ class Client extends ClientResource
 
         foreach ($caBundlePaths as $caPath) {
             // phpcs:ignore
-            if (is_readable($caPath)) {
+            if (@is_readable($caPath)) {
                 return $caPath;
             }
         }
