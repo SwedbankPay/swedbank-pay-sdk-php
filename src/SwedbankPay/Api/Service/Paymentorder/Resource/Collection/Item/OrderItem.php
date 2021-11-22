@@ -277,27 +277,27 @@ class OrderItem extends DataObjectCollectionItem implements OrderItemInterface
         return $this;
     }
 
-	/**
-	 * Get "Restricted To Instruments"
-	 *
-	 * @return array|null
-	 */
-	public function getRestrictedToInstruments()
-	{
-		return $this->offsetGet(self::RESTRICTED_TO_INSTRUMENTS);
-	}
+    /**
+     * Get "Restricted To Instruments"
+     *
+     * @return array|null
+     */
+    public function getRestrictedToInstruments()
+    {
+        return $this->offsetGet(self::RESTRICTED_TO_INSTRUMENTS);
+    }
 
-	/**
-	 * Set "Restricted To Instruments"
-	 *
-	 * @param array $instruments
-	 *
-	 * @return $this
-	 */
-	public function setRestrictedToInstruments($instruments)
-	{
-		$this->offsetSet(self::RESTRICTED_TO_INSTRUMENTS, $instruments);
+    /**
+     * Set "Restricted To Instruments"
+     *
+     * @param array $instruments
+     *
+     * @return $this
+     */
+    public function setRestrictedToInstruments($instruments)
+    {
+        $this->offsetSet(self::RESTRICTED_TO_INSTRUMENTS, $instruments);
 
-		return $this;
-	}
+        return $this;
+    }
 }
