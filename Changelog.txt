@@ -1,4 +1,15 @@
 Changelog
+
+5.1.0 - 2021-11-23
+Added
+- Add RestrictedToInstruments
+- Add codeception tests
+
+Changed
+- Remove invalid usage of sprintf under PHP 8
+- Change token name in exception message
+- Suppress PHP warnings on is_readable
+
 5.0.1 - 2021-08-31
 Added
 - PaymentorderPayeeInfo: getSubsite(), setSubsite()
