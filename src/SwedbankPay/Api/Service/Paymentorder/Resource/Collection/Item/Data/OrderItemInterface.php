@@ -19,6 +19,7 @@ interface OrderItemInterface
     const VAT_PERCENT = 'vat_percent';
     const AMOUNT = 'amount';
     const VAT_AMOUNT = 'vat_amount';
+    const RESTRICTED_TO_INSTRUMENTS = 'restricted_to_instruments';
 
     /**
     * @return string
@@ -184,4 +185,20 @@ interface OrderItemInterface
     * @return $this
     */
     public function setVatAmount($vatAmount);
+
+    /**
+     * Get "Restricted To Instruments"
+     *
+     * @return array|null
+     */
+    public function getRestrictedToInstruments();
+
+    /**
+     * Set "Restricted To Instruments"
+     *
+     * @param array $instruments
+     *
+     * @return $this
+     */
+    public function setRestrictedToInstruments($instruments);
 }
