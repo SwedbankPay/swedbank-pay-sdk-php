@@ -316,7 +316,7 @@ class ResourceFactory
 
     private function findFileByNamespace($resourceFqcn)
     {
-        $basePath = str_replace(str_replace('\\', '/', __NAMESPACE__), '', __DIR__);
+        $basePath = str_replace('\\', '/', str_replace(__NAMESPACE__, '', __DIR__));
         return file_exists($basePath . str_replace('\\', '/', $resourceFqcn) . '.php');
     }
 
