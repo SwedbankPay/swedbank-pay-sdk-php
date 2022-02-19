@@ -94,16 +94,15 @@ jobs:
     - name: PHP Mess Detector
       run: ./vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
 
+    - name: Install Chrome browser
+      run: |
+        sudo apt-get update
+        sudo apt-cache policy google-chrome
+
     - name: Install chromedriver
       uses: nanasess/setup-chromedriver@master
-      with:
-        chromedriver-version: '98.0.4758.80'
-
-    - name: Install Google Chrome browser
-      run: |
-        sudo apt-get update 
-        sudo apt-cache policy google-chrome
-        sudo apt-get install -y google-chrome=98.0.4758.80
+      #with:
+        #chromedriver-version: '98.0.4758.80'
 
     - name: Acceptance tests with codeception
       env:
