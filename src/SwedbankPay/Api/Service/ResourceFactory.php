@@ -314,9 +314,21 @@ class ResourceFactory
         return $resourceNsLookUps;
     }
 
+    /**
+     * Find file by namespace
+     *
+     * @param string $resourceFqcn
+     * @return bool
+     * @SuppressWarnings(PHPMD.ElseExpression)
+     */
     private function findFileByNamespace($resourceFqcn)
     {
-        $basePath = str_replace(str_replace('\\', '/', __NAMESPACE__), '', __DIR__);
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            $basePath = str_replace('\\', '/', str_replace(__NAMESPACE__, '', __DIR__));
+        } else {
+            $basePath = str_replace(str_replace('\\', '/', __NAMESPACE__), '', __DIR__);
+        }
+
         return file_exists($basePath . str_replace('\\', '/', $resourceFqcn) . '.php');
     }
 
