@@ -5,7 +5,6 @@
 [![Total Downloads][downloads-badge]][packagist]
 [![Codecov][codecov-badge]][codecov]
 [![License][license-badge]][packagist]
-[![Dependabot Status][dependabot-badge]][dependabot]
 
 [![Swedbank Pay SDK for PHP][og-image]][packagist]
 
@@ -69,7 +68,5 @@ You can find examples in `/tests` directory or check out [Swedbank Pay Core for 
   [packagist]:        https://packagist.org/packages/swedbank-pay/swedbank-pay-sdk-php
   [codecov]:          https://codecov.io/gh/SwedbankPay/swedbank-pay-sdk-php
   [codecov-badge]:    https://codecov.io/gh/SwedbankPay/swedbank-pay-sdk-php/branch/master/graph/badge.svg
-  [dependabot]:       https://dependabot.com
-  [dependabot-badge]: https://api.dependabot.com/badges/status?host=github&repo=SwedbankPay/swedbank-pay-sdk-php
   [og-image]:         https://repository-images.githubusercontent.com/211837579/156c6000-53ed-11ea-8927-782b8067996f
   [core-library]:     https://github.com/SwedbankPay/swedbank-pay-woocommerce-core
