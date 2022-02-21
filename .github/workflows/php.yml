@@ -10,7 +10,7 @@ jobs:
   build:
     # Prevent forks from running this to be nice
     if: github.repository_owner == 'SwedbankPay'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
 
@@ -94,10 +94,15 @@ jobs:
     - name: PHP Mess Detector
       run: ./vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
 
+    - name: Install Chrome browser
+      run: |
+        sudo apt-get update
+        sudo apt-cache policy google-chrome
+
     - name: Install chromedriver
       uses: nanasess/setup-chromedriver@master
-      with:
-        chromedriver-version: '94.0.4606.61'
+      #with:
+        #chromedriver-version: '98.0.4758.80'
 
     - name: Acceptance tests with codeception
       env:

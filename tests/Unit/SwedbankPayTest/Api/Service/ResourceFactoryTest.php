@@ -5,6 +5,7 @@ namespace SwedbankPayTest\Api\Service;
 
 use TestCase;
 use SwedbankPay\Api\Service\ResourceFactory;
+use SwedbankPay\Api\Service\Payment\Resource\Response\PaymentObject;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\Data\PaymentUrlInterface;
 use SwedbankPay\Api\Service\Creditcard\Resource\Request\PaymentUrl;
 use SwedbankPay\Api\Service\Resource\Request;
@@ -12,6 +13,16 @@ use SwedbankPay\Api\Service\Resource\Response;
 
 class ResourceFactoryTest extends TestCase
 {
+    public function testFindFileByNamespace()
+    {
+        $factory = new ResourceFactory();
+        $reflection = new \ReflectionClass($factory);
+        $method = $reflection->getMethod('findFileByNamespace');
+        $method->setAccessible(true);
+        $result = $method->invoke($factory, PaymentObject::class);
+        $this->assertTrue($result);
+    }
+
     public function testData()
     {
         $factory = new ResourceFactory();

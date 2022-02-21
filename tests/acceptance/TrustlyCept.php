@@ -23,7 +23,7 @@ $I->executeInSelenium(function(\Facebook\WebDriver\Remote\RemoteWebDriver $webdr
 $I->waitForElementVisible('#core_order_holder');
 
 // Select Swedbank payment method
-$I->click("//img[@alt='Swedbank']");
+$I->click("//img[@alt='Swedbank ']");
 
 // Wait for page load
 $I->waitForElementNotVisible('#core_loader_text');
