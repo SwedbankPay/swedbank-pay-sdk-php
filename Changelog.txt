@@ -1,5 +1,10 @@
 Changelog
 
+5.2.0 - 2022-02-21
+Changed
+- Fixes for Windows Platform
+- Update cacert.pem
+
 5.1.0 - 2021-11-23
 Added
 - Add RestrictedToInstruments
