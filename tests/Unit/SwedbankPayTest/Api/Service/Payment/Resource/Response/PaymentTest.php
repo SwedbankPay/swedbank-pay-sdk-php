@@ -89,12 +89,6 @@ class PaymentTest extends TestCase
 
         $this->assertInstanceOf(
             Payment::class,
-            $object->setInitiatingSystemUserAgent('test')
-        );
-        $this->assertEquals('test', $object->getInitiatingSystemUserAgent());
-
-        $this->assertInstanceOf(
-            Payment::class,
             $object->setPaymentToken('test')
         );
         $this->assertEquals('test', $object->getPaymentToken());

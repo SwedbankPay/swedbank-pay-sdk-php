@@ -23,7 +23,11 @@ use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
  */
 interface PaymentorderInterface extends RequestInterface
 {
+	/**
+	 * @depecated
+	 */
     const INITIATING_SYSTEM_AGENT = 'initiatingSystemUserAgent';
+
     const CURRENCY = 'currency';
     const AMOUNT = 'amount';
     const VAT_AMOUNT = 'vat_amount';
@@ -50,6 +54,8 @@ interface PaymentorderInterface extends RequestInterface
      * Get Initiating System User Agent.
      *
      * @return string|null
+     * @depecated
+     * @codeCoverageIgnore
      */
     public function getInitiatingSystemUserAgent();
 
@@ -58,6 +64,8 @@ interface PaymentorderInterface extends RequestInterface
      *
      * @param string $agent
      * @return $this
+     * @depecated
+     * @codeCoverageIgnore
      */
     public function setInitiatingSystemUserAgent($agent);
     

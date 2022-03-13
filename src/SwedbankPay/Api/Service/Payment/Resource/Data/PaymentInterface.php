@@ -13,7 +13,11 @@ use SwedbankPay\Api\Service\Payment\Resource\Request\Data\UrlInterface;
  */
 interface PaymentInterface extends ResourceInterface
 {
+	/**
+	 * @depecated
+	 */
     const INITIATING_SYSTEM_AGENT = 'initiatingSystemUserAgent';
+
     const INTENT = 'intent';
     const CURRENCY = 'currency';
     const DESCRIPTION = 'description';
@@ -27,6 +31,8 @@ interface PaymentInterface extends ResourceInterface
      * Get Initiating System User Agent.
      *
      * @return string|null
+     * @depecated
+     * @codeCoverageIgnore
      */
     public function getInitiatingSystemUserAgent();
 
@@ -35,6 +41,8 @@ interface PaymentInterface extends ResourceInterface
      *
      * @param string $agent
      * @return $this
+     * @depecated
+     * @codeCoverageIgnore
      */
     public function setInitiatingSystemUserAgent($agent);
 

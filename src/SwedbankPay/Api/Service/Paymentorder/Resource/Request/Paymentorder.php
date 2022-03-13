@@ -32,15 +32,14 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     public function __construct($data = [])
     {
         parent::__construct($data);
-
-        $version = new ClientVersion();
-        $this->setInitiatingSystemUserAgent('swedbankpay-sdk-php/' . $version->getVersion());
     }
 
     /**
      * Get Initiating System User Agent.
      *
      * @return string|null
+     * @depecated
+     * @codeCoverageIgnore
      */
     public function getInitiatingSystemUserAgent()
     {
@@ -52,6 +51,8 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
      *
      * @param string $agent
      * @return $this
+     * @depecated
+     * @codeCoverageIgnore
      */
     public function setInitiatingSystemUserAgent($agent)
     {
