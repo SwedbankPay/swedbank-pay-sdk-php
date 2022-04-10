@@ -84,9 +84,6 @@ class PaymentTest extends TestCase
         $this->assertInstanceOf(Metadata::class, $payment->getMetadata());
     }
 
-	/**
-	 * @depecated
-	 */
     public function testInitiatingSystemUserAgent()
     {
         $payment = new Payment();

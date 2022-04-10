@@ -12,8 +12,6 @@ trait PaymentTrait
      * Get Initiating System User Agent.
      *
      * @return string|null
-     * @depecated
-     * @codeCoverageIgnore
      */
     public function getInitiatingSystemUserAgent()
     {
@@ -25,8 +23,6 @@ trait PaymentTrait
      *
      * @param string $agent
      * @return $this
-     * @depecated
-     * @codeCoverageIgnore
      */
     public function setInitiatingSystemUserAgent($agent)
     {

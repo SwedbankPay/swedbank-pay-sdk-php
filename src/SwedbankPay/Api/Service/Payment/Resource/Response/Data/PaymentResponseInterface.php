@@ -157,16 +157,12 @@ interface PaymentResponseInterface extends PaymentInterface
 
     /**
      * @return string
-     * @depecated
-     * @codeCoverageIgnore
      */
     public function getInitiatingSystemUserAgent();
 
     /**
      * @param string $userAgent
      * @return $this
-     * @depecated
-     * @codeCoverageIgnore
      */
     public function setInitiatingSystemUserAgent($userAgent);
 

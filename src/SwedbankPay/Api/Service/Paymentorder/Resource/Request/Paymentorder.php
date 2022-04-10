@@ -25,20 +25,9 @@ use SwedbankPay\Api\Service\Resource\Request as RequestResource;
 class Paymentorder extends RequestResource implements PaymentorderInterface
 {
     /**
-     * Paymentorder constructor.
-     *
-     * @param array $data
-     */
-    public function __construct($data = [])
-    {
-        parent::__construct($data);
-    }
-
-    /**
      * Get Initiating System User Agent.
      *
      * @return string|null
-     * @depecated
      * @codeCoverageIgnore
      */
     public function getInitiatingSystemUserAgent()
@@ -51,7 +40,6 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
      *
      * @param string $agent
      * @return $this
-     * @depecated
      * @codeCoverageIgnore
      */
     public function setInitiatingSystemUserAgent($agent)

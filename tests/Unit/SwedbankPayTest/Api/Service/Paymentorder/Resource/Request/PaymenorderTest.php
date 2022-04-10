@@ -159,9 +159,6 @@ class PaymenorderTest extends TestCase
         $this->assertInstanceOf(PaymentorderRiskIndicatorInterface::class, $object->getRiskIndicator());
     }
 
-	/**
-	 * @depecated
-	 */
     public function testInitiatingSystemUserAgent()
     {
         $paymentOrder = new Paymentorder();
