@@ -9,7 +9,7 @@ $I->amOnPage('/checkout.php');
 $I->seeInTitle('Swedbank Pay PaymentMenu');
 $I->seeInCurrentUrl('/paymentmenu');
 //$I->wait(15);
-$I->switchToIFrame('#pxhv-paymentmenu iframe');
+$I->switchToIFrame('//*[@id="pxhv-instrument"]/iframe');
 
 // Click "Credit Card"
 $I->click('#creditcard-container > .menu-card-header');

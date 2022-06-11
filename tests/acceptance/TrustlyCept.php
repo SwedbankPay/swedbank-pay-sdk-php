@@ -10,6 +10,7 @@ $I->seeInCurrentUrl('/trustly');
 $I->switchToIFrame('//*[@id="pxhv-instrument"]/iframe');
 
 // Submit the form
+$I->wait(3);
 $I->click('#px-submit');
 
 // Wait until the target page is loaded
