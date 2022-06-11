@@ -8,8 +8,8 @@ $I->wantTo('perform actions and see result');
 $I->amOnPage('/checkout.php');
 $I->seeInTitle('Swedbank Pay PaymentMenu');
 $I->seeInCurrentUrl('/paymentmenu');
-//$I->wait(15);
-$I->switchToIFrame('//*[@id="pxhv-instrument"]/iframe');
+$I->wait(15);
+$I->switchToIFrame('//*[@id="pxhv-paymentmenu"]/iframe');
 
 // Click "Credit Card"
 $I->click('#creditcard-container > .menu-card-header');
