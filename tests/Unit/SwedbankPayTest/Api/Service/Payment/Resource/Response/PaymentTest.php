@@ -3,6 +3,9 @@
 
 namespace SwedbankPayTest\Api\Service\Payment\Resource\Response;
 
+use SwedbankPay\Api\Service\Payment\Resource\Collection\TransactionListCollection;
+use SwedbankPay\Api\Service\Payment\Resource\Collection\PricesCollection;
+use SwedbankPay\Api\Service\Payment\Resource\Response\Data\PaymentResourceUriInterface;
 use TestCase;
 use SwedbankPay\Api\Service\Payment\Resource\Response\Payment;
 use SwedbankPay\Api\Service\Payment\Resource\Request\PayeeInfo;
@@ -94,5 +97,19 @@ class PaymentTest extends TestCase
         $this->assertEquals('test', $object->getPaymentToken());
 
         // @todo Add methods testing
+	    // @todo Check instance PaymentResourceUriInterface
+	    $prices = new PricesCollection();
+	    $this->assertInstanceOf(
+		    Payment::class,
+		    $object->setPrices($prices)
+	    );
+	    $this->assertInstanceOf(PricesCollection::class, $object->getPrices());
+
+	    $transactions = new TransactionListCollection();
+	    $this->assertInstanceOf(
+		    Payment::class,
+		    $object->setTransactions($transactions)
+	    );
+	    $this->assertInstanceOf(TransactionListCollection::class, $object->getTransactions());
     }
 }
