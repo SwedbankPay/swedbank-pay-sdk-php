@@ -239,6 +239,7 @@ class Payment extends ResponseResource implements PaymentResponseInterface
 
     /**
      * @return string
+     * @codeCoverageIgnore
      */
     public function getInitiatingSystemUserAgent()
     {
@@ -248,6 +249,7 @@ class Payment extends ResponseResource implements PaymentResponseInterface
     /**
      * @param string $userAgent
      * @return $this
+     * @codeCoverageIgnore
      */
     public function setInitiatingSystemUserAgent($userAgent)
     {

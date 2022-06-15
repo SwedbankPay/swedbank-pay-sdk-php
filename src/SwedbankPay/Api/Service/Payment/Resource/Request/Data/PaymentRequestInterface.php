@@ -13,6 +13,7 @@ interface PaymentRequestInterface extends PaymentInterface
 {
     const PREFILL_INFO = 'prefill_info';
     const METADATA = 'metadata';
+    const INITIATING_SYSTEM_AGENT = 'initiating_system_user_agent';
 
 
     /**
