@@ -97,4 +97,78 @@ class PaymentTest extends TestCase
         $result = $payment->getInitiatingSystemUserAgent();
         $this->assertEquals('swedbankpay-sdk-php/123', $result);
     }
+
+	public function testMethods()
+	{
+		$object = new Payment();
+
+		$urls = new PaymentUrl();
+		$this->assertInstanceOf(
+			Payment::class,
+			$object->setUrls($urls)
+		);
+		$this->assertInstanceOf(PaymentUrl::class, $object->getUrls());
+
+		$payeeInfo = new PaymentPayeeInfo();
+		$this->assertInstanceOf(
+			Payment::class,
+			$object->setPayeeInfo($payeeInfo)
+		);
+		$this->assertInstanceOf(PaymentPayeeInfo::class, $object->getPayeeInfo());
+
+		$prefillInfo = new PaymentPrefillInfo();
+		$this->assertInstanceOf(
+			Payment::class,
+			$object->setPrefillInfo($prefillInfo)
+		);
+		$this->assertInstanceOf(PaymentPrefillInfo::class, $object->getPrefillInfo());
+
+		$metadata = new Metadata();
+		$this->assertInstanceOf(
+			Payment::class,
+			$object->setMetadata($metadata)
+		);
+		$this->assertInstanceOf(Metadata::class, $object->getMetadata());
+	}
+
+	public function testMethodsInTrait()
+	{
+		$object = new Payment();
+
+		$this->assertInstanceOf(
+			Payment::class,
+			$object->setDescription('test')
+		);
+		$this->assertEquals('test', $object->getDescription());
+
+		$this->assertInstanceOf(
+			Payment::class,
+			$object->setCurrency('test')
+		);
+		$this->assertEquals('test', $object->getCurrency());
+
+		$this->assertInstanceOf(
+			Payment::class,
+			$object->setUserAgent('test')
+		);
+		$this->assertEquals('test', $object->getUserAgent());
+
+		$this->assertInstanceOf(
+			Payment::class,
+			$object->setLanguage('test')
+		);
+		$this->assertEquals('test', $object->getLanguage());
+
+		$this->assertInstanceOf(
+			Payment::class,
+			$object->setIntent('test')
+		);
+		$this->assertEquals('test', $object->getIntent());
+
+		$this->assertInstanceOf(
+			Payment::class,
+			$object->setPayerReference('test')
+		);
+		$this->assertEquals('test', $object->getPayerReference());
+	}
 }

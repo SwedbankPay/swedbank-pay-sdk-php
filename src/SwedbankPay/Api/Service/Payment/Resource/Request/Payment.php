@@ -21,9 +21,6 @@ class Payment extends RequestResource implements PaymentRequestInterface
     public function __construct($data = [])
     {
         parent::__construct($data);
-
-        $version = new ClientVersion();
-        $this->setInitiatingSystemUserAgent('swedbankpay-sdk-php/' . $version->getVersion());
     }
 
     /**

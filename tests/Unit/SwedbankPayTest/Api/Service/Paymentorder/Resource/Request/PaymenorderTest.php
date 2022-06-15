@@ -34,12 +34,6 @@ class PaymenorderTest extends TestCase
 
         $this->assertInstanceOf(
             Paymentorder::class,
-            $object->setInitiatingSystemUserAgent('test')
-        );
-        $this->assertEquals('test', $object->getInitiatingSystemUserAgent());
-
-        $this->assertInstanceOf(
-            Paymentorder::class,
             $object->setCurrency('test')
         );
         $this->assertEquals('test', $object->getCurrency());
