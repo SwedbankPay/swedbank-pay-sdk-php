@@ -90,6 +90,7 @@ abstract class AbstractSimpleDataObject implements SimpleDataObjectInterface, \A
      * @abstracting ArrayAccess
      * @return $this
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -109,6 +110,7 @@ abstract class AbstractSimpleDataObject implements SimpleDataObjectInterface, \A
      * @return boolean
      * @abstracting ArrayAccess
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->data[$offset]);
@@ -122,6 +124,7 @@ abstract class AbstractSimpleDataObject implements SimpleDataObjectInterface, \A
      * @abstracting ArrayAccess
      * @return $this
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         if ($this->offsetExists($offset)) {
@@ -138,6 +141,7 @@ abstract class AbstractSimpleDataObject implements SimpleDataObjectInterface, \A
      * @abstracting ArrayAccess
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->offsetExists($offset) ? $this->data[$offset] : null;
