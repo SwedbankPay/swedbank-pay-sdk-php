@@ -1,4 +1,8 @@
 Changelog
+5.4.0 - 2022-08-15
+Fixed
+- Fix ArrayAccess deprecation notices on php 8.1
+
 5.3.0 - 2022-06-15
 Changed
 - System User Agent Fixes
