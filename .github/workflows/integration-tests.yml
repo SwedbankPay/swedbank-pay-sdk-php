@@ -10,7 +10,6 @@ on:
 
 jobs:
   test:
-    name: Install SDK and verify version
     runs-on: ubuntu-latest
 
     steps:
