@@ -1,4 +1,4 @@
-FROM prooph/composer:7.4 as build
+FROM prooph/composer:8.1 as build
 
 # docker build --tag swedbankpay/sdk-consumer:0.0.1 . --file tests/sdk-consumer/Dockerfile
 # docker run --rm --volume $(pwd)/tests/sdk-consumer:/app --volume $(pwd):/sdk -it swedbankpay/sdk-consumer:0.0.1
