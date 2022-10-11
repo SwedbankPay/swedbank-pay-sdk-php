@@ -54,7 +54,9 @@ class Response extends AbstractSimpleDataObject implements ResponseInterface
             $serviceBaseName .= '\\' . $subServiceBaseName;
         }
 
-        if (class_exists($this->getRequestService()->getResponseResourceFQCN())) {
+        if ($this->getRequestService()->getResponseResourceFQCN() &&
+            class_exists($this->getRequestService()->getResponseResourceFQCN())
+        ) {
             $responseResourceFCQN = $this->getRequestService()->getResponseResourceFQCN();
             $responseResource = $this->resourceFactory->createFromFqcn($serviceBaseName, $responseResourceFCQN, $data);
             $this->setResponseResource($responseResource);
