@@ -2,7 +2,6 @@
 
 namespace SwedbankPay\Api\Service\Paymentorder\Resource\Request;
 
-use SwedbankPay\Api\Client\ClientVersion;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderRiskIndicatorInterface;

@@ -61,4 +61,21 @@ class PaymentVerify extends PaymentRequest implements PaymentVerifyInterface
     {
         return $this->offsetSet(self::GENERATE_RECURRENCE_TOKEN, $generateRecurrenceToken);
     }
+
+    /**
+     * @return bool
+     */
+    public function isGenerateUnscheduledToken()
+    {
+        return $this->offsetGet(self::GENERATE_UNSCHEDULED_TOKEN);
+    }
+
+    /**
+     * @param bool $flag
+     * @return $this
+     */
+    public function setGenerateUnscheduledToken($flag)
+    {
+        return $this->offsetSet(self::GENERATE_UNSCHEDULED_TOKEN, $flag);
+    }
 }

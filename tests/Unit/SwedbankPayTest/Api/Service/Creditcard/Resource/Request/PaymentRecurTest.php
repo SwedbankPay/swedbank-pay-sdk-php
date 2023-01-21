@@ -26,6 +26,12 @@ class PaymentRecurTest extends TestCase
 
         $this->assertInstanceOf(
             PaymentRecur::class,
+            $object->setUnscheduledToken('test')
+        );
+        $this->assertEquals('test', $object->getUnscheduledToken());
+
+        $this->assertInstanceOf(
+            PaymentRecur::class,
             $object->setAmount(123)
         );
         $this->assertEquals(123, $object->getAmount());

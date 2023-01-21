@@ -45,6 +45,23 @@ class PaymentRecur extends PaymentRequest implements PaymentRecurInterface
     }
 
     /**
+     * @return string
+     */
+    public function getUnscheduledToken()
+    {
+        return $this->offsetGet(self::UNSCHEDULED_TOKEN);
+    }
+
+    /**
+     * @param string $paymentToken
+     * @return $this
+     */
+    public function setUnscheduledToken($paymentToken)
+    {
+        return $this->offsetSet(self::UNSCHEDULED_TOKEN, $paymentToken);
+    }
+
+    /**
      * @return int
      */
     public function getAmount()
