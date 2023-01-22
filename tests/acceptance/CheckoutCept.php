@@ -20,8 +20,8 @@ $I->seeElement('#panInput');
 $I->fillField(['id' => 'panInput'], '4925000000000004');
 $I->seeElement('#expiryInput');
 $I->fillField(['id' => 'expiryInput'], '11/25');
-$I->seeElement('#cvcInput');
-$I->fillField(['id' => 'cvcInput'], '123');
+$I->seeElement('#cvcInput-1');
+$I->fillField(['id' => 'cvcInput-1'], '123');
 
 // Submit the form
 $I->wait(5);
