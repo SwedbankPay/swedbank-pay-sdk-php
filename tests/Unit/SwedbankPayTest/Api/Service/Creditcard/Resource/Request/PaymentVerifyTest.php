@@ -29,5 +29,11 @@ class PaymentVerifyTest extends TestCase
             $object->setGenerateRecurrenceToken(true)
         );
         $this->assertEquals(true, $object->isGenerateRecurrenceToken());
+
+        $this->assertInstanceOf(
+            PaymentVerify::class,
+            $object->setGenerateUnscheduledToken(true)
+        );
+        $this->assertEquals(true, $object->isGenerateUnscheduledToken());
     }
 }

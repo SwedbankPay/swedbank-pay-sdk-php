@@ -148,6 +148,12 @@ class PaymenorderTest extends TestCase
 
         $this->assertInstanceOf(
             Paymentorder::class,
+            $object->setUnscheduledToken('test')
+        );
+        $this->assertEquals('test', $object->getUnscheduledToken());
+
+        $this->assertInstanceOf(
+            Paymentorder::class,
             $object->setRecurrenceToken('test')
         );
         $this->assertEquals('test', $object->getRecurrenceToken());

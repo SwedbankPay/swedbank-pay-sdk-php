@@ -52,6 +52,23 @@ class PaymentPurchase extends PaymentRequest implements PaymentPurchaseInterface
     }
 
     /**
+     * @return string
+     */
+    public function getUnscheduledToken()
+    {
+        return $this->offsetGet(self::UNSCHEDULED_TOKEN);
+    }
+
+    /**
+     * @param string $paymentToken
+     * @return $this
+     */
+    public function setUnscheduledToken($paymentToken)
+    {
+        return $this->offsetSet(self::UNSCHEDULED_TOKEN, $paymentToken);
+    }
+
+    /**
      * @return bool
      */
     public function isGeneratePaymentToken()
@@ -101,6 +118,23 @@ class PaymentPurchase extends PaymentRequest implements PaymentPurchaseInterface
     public function setGenerateRecurrenceToken($generateRecurrenceToken)
     {
         return $this->offsetSet(self::GENERATE_RECURRENCE_TOKEN, $generateRecurrenceToken);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isGenerateUnscheduledToken()
+    {
+        return $this->offsetGet(self::GENERATE_UNSCHEDULED_TOKEN);
+    }
+
+    /**
+     * @param bool $flag
+     * @return $this
+     */
+    public function setGenerateUnscheduledToken($flag)
+    {
+        return $this->offsetSet(self::GENERATE_UNSCHEDULED_TOKEN, $flag);
     }
 
     /**

@@ -42,6 +42,7 @@ interface PaymentorderInterface extends RequestInterface
     const ITEMS = 'items';
     const INTENT = 'intent';
     const PAYMENT_TOKEN = 'payment_token';
+    const UNSCHEDULED_TOKEN = 'unscheduled_token';
     const RECURRENCE_TOKEN = 'recurrence_token';
     const RISK_INDICATOR = 'risk_indicator';
     const INITIATING_SYSTEM_AGENT = 'initiatingSystemUserAgent';

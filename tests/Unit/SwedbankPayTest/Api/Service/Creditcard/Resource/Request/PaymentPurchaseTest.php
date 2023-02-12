@@ -67,5 +67,17 @@ class PaymentPurchaseTest extends TestCase
             $object->setGenerateRecurrenceToken(true)
         );
         $this->assertEquals(true, $object->isGenerateRecurrenceToken());
+
+        $this->assertInstanceOf(
+            PaymentPurchase::class,
+            $object->setUnscheduledToken('test')
+        );
+        $this->assertEquals('test', $object->getUnscheduledToken());
+
+        $this->assertInstanceOf(
+            PaymentPurchase::class,
+            $object->setGenerateUnscheduledToken(true)
+        );
+        $this->assertEquals(true, $object->isGenerateUnscheduledToken());
     }
 }

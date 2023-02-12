@@ -2,7 +2,6 @@
 
 namespace SwedbankPay\Api\Service\Paymentorder\Resource\Request;
 
-use SwedbankPay\Api\Client\ClientVersion;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderRiskIndicatorInterface;
@@ -381,6 +380,23 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     public function setPaymentToken($paymentToken)
     {
         return $this->offsetSet(self::PAYMENT_TOKEN, $paymentToken);
+    }
+
+    /**
+     * @return string
+     */
+    public function getUnscheduledToken()
+    {
+        return $this->offsetGet(self::UNSCHEDULED_TOKEN);
+    }
+
+    /**
+     * @param string $paymentToken
+     * @return $this
+     */
+    public function setUnscheduledToken($paymentToken)
+    {
+        return $this->offsetSet(self::UNSCHEDULED_TOKEN, $paymentToken);
     }
 
     /**
