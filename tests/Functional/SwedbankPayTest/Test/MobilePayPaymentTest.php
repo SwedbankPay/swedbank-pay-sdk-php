@@ -170,7 +170,9 @@ class MobilePayPaymentTest extends TestCase
         // phpcs:disable
         if (file_exists(__DIR__ . '/../../../payments.ini')) {
             $data = parse_ini_file(__DIR__ . '/../../../payments.ini', true);
-            return $data['MobilePay']['payment_id'];
+			if (isset($data['MobilePay'])) {
+				return $data['MobilePay']['payment_id'];
+			}
         }
         // phpcs:enable
 
