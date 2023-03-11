@@ -3,6 +3,9 @@
 use Facebook\WebDriver\WebDriverExpectedCondition;
 use Facebook\WebDriver\WebDriverSelect;
 
+$scenario->skip('Temporary problem with Mobilepay test page');
+$scenario->incomplete('Temporary problem with Mobilepay test page');
+
 $I = new AcceptanceTester($scenario);
 $I->wantTo('perform actions and see result');
 $I->amOnPage('/mobilepay.php');
