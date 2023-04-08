@@ -136,7 +136,7 @@ class TrustlyPaymentTest extends TestCase
         // phpcs:disable
         if (file_exists(__DIR__ . '/../../../payments.ini')) {
             $data = parse_ini_file(__DIR__ . '/../../../payments.ini', true);
-            return $data['Trustly']['payment_id'];
+            return isset($data['Trustly']['payment_id']) ? $data['Trustly']['payment_id'] : false;
         }
         // phpcs:enable
 

@@ -2,6 +2,9 @@
 
 use Facebook\WebDriver\WebDriverExpectedCondition;
 
+$scenario->skip('Temporary problem with Trustly test page');
+$scenario->incomplete('Temporary problem with Trustly test page');
+
 $I = new AcceptanceTester($scenario);
 $I->wantTo('perform actions and see result');
 $I->amOnPage('/trustly.php');

@@ -163,6 +163,12 @@ class PaymenorderTest extends TestCase
             $object->setRiskIndicator(new PaymentorderRiskIndicator())
         );
         $this->assertInstanceOf(PaymentorderRiskIndicatorInterface::class, $object->getRiskIndicator());
+
+        $this->assertInstanceOf(
+            Paymentorder::class,
+            $object->setProductName('Checkout3')
+        );
+        $this->assertEquals('Checkout3', $object->getProductName());
     }
 
     public function testInitiatingSystemUserAgent()
