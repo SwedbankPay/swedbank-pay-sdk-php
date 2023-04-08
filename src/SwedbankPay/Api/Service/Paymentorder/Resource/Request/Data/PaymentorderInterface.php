@@ -46,6 +46,7 @@ interface PaymentorderInterface extends RequestInterface
     const RECURRENCE_TOKEN = 'recurrence_token';
     const RISK_INDICATOR = 'risk_indicator';
     const INITIATING_SYSTEM_AGENT = 'initiatingSystemUserAgent';
+    const PRODUCT_NAME = 'product_name';
 
     /**
      * Get Initiating System User Agent.
@@ -293,4 +294,19 @@ interface PaymentorderInterface extends RequestInterface
      * @return $this
      */
     public function setRiskIndicator($riskIndicator);
+
+    /**
+     * Set Product name.
+     *
+     * @param $productName
+     * @return $this
+     */
+    public function setProductName($productName);
+
+    /**
+     * Get Product name.
+     *
+     * @return string|null
+     */
+    public function getProductName();
 }

@@ -20,6 +20,7 @@ use SwedbankPay\Api\Service\Resource\Request as RequestResource;
  * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class Paymentorder extends RequestResource implements PaymentorderInterface
 {
@@ -431,5 +432,26 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     public function setRiskIndicator($riskIndicator)
     {
         return $this->offsetSet(self::RISK_INDICATOR, $riskIndicator);
+    }
+
+    /**
+     * Set Product name.
+     *
+     * @param $productName
+     * @return Paymentorder
+     */
+    public function setProductName($productName)
+    {
+        return $this->offsetSet(self::PRODUCT_NAME, $productName);
+    }
+
+    /**
+     * Get Product name.
+     *
+     * @return string|null
+     */
+    public function getProductName()
+    {
+        return $this->offsetGet(self::PRODUCT_NAME);
     }
 }
