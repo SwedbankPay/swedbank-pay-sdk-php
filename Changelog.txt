@@ -1,4 +1,11 @@
 Changelog
+6.0.0 - 2023-04-17
+Added
+- Checkout v3 classes and methods
+- Add `setImplementation()` and `getImplementation()` for Paymentorder
+- Add classes `TransactionCancelV3`, `TransactionCaptureV3`, `TransactionReversalV3`
+- Add methods `getFirstName()`, `setFirstName()`, `getLastName()`, `setLastName()`, `getDigitalProducts()`, `setDigitalProducts()`, `getShippingAddressRestrictedToCountryCodes()`, `setShippingAddressRestrictedToCountryCodes()` in `PaymentorderPayer`
+
 5.6.0 - 2023-04-07
 Added
 - Add `setProductName()` and `getProductName()` for Paymentorder

@@ -454,4 +454,25 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     {
         return $this->offsetGet(self::PRODUCT_NAME);
     }
+
+    /**
+     * Set Implementation.
+     *
+     * @param $implementation
+     * @return Paymentorder
+     */
+    public function setImplementation($implementation)
+    {
+        return $this->offsetSet(self::IMPLEMENTATION, $implementation);
+    }
+
+    /**
+     * Get Implementation name.
+     *
+     * @return string|null
+     */
+    public function getImplementation()
+    {
+        return $this->offsetGet(self::IMPLEMENTATION);
+    }
 }

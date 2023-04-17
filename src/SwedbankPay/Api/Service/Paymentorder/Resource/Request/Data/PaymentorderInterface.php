@@ -9,6 +9,7 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayeeInfoInte
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayerInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderRiskIndicatorInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderUrlInterface;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
 use SwedbankPay\Api\Service\Resource\Data\RequestInterface;
 
 /**
@@ -47,6 +48,8 @@ interface PaymentorderInterface extends RequestInterface
     const RISK_INDICATOR = 'risk_indicator';
     const INITIATING_SYSTEM_AGENT = 'initiatingSystemUserAgent';
     const PRODUCT_NAME = 'product_name';
+
+    const IMPLEMENTATION = 'implementation';
 
     /**
      * Get Initiating System User Agent.
@@ -309,4 +312,19 @@ interface PaymentorderInterface extends RequestInterface
      * @return string|null
      */
     public function getProductName();
+
+    /**
+     * Set Implementation.
+     *
+     * @param $implementation
+     * @return Paymentorder
+     */
+    public function setImplementation($implementation);
+
+    /**
+     * Get Implementation name.
+     *
+     * @return string|null
+     */
+    public function getImplementation();
 }
