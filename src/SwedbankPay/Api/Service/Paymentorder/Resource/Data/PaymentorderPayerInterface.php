@@ -16,9 +16,13 @@ interface PaymentorderPayerInterface extends ResourceInterface
     const PAYER_REFERENCE = 'payer_reference';
     const EMAIL = 'email';
     const MSISDN = 'msisdn';
+    const FIRST_NAME = 'first_name';
+    const LAST_NAME = 'last_name';
     const WORK_PHONE_NUMBER = 'work_phone_number';
     const HOME_PHONE_NUMBER = 'home_phone_number';
     const SHIPPING_ADDRESS = 'shipping_address';
+    const DIGITAL_PRODUCTS = 'digital_products';
+    const SHIPPING_ADDRESS_RESTRICTED_COUNTRIES = 'shipping_address_restricted_to_country_codes';
 
     /**
      * Get Payer Reference.
@@ -69,6 +73,28 @@ interface PaymentorderPayerInterface extends ResourceInterface
     public function setMsisdn($msisdn);
 
     /**
+     * @return string|null
+     */
+    public function getFirstName();
+
+    /**
+     * @param string $firstName
+     * @return $this
+     */
+    public function setFirstName($firstName);
+
+    /**
+     * @return string|null
+     */
+    public function getLastName();
+
+    /**
+     * @param string $lastName
+     * @return $this
+     */
+    public function setLastName($lastName);
+
+    /**
      * @return string
      */
     public function getWorkPhoneNumber();
@@ -100,4 +126,27 @@ interface PaymentorderPayerInterface extends ResourceInterface
      * @return mixed
      */
     public function setShippingAddress($shippingAddress);
+
+    /**
+     * @return bool|null
+     */
+    public function getDigitalProducts();
+
+    /**
+     * @param bool $flag
+     * @return $this
+     */
+    public function setDigitalProducts($flag);
+
+    /**
+     * @return array|null
+     */
+    public function getShippingAddressRestrictedToCountryCodes();
+
+    /**
+     * @param array $countries
+     *
+     * @return $this
+     */
+    public function setShippingAddressRestrictedToCountryCodes($countries);
 }

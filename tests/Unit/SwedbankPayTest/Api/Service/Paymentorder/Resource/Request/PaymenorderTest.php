@@ -169,6 +169,12 @@ class PaymenorderTest extends TestCase
             $object->setProductName('Checkout3')
         );
         $this->assertEquals('Checkout3', $object->getProductName());
+
+        $this->assertInstanceOf(
+            Paymentorder::class,
+            $object->setImplementation('Starter')
+        );
+        $this->assertEquals('Starter', $object->getImplementation());
     }
 
     public function testInitiatingSystemUserAgent()

@@ -55,6 +55,18 @@ class PaymentorderPayerTest extends TestCase
             $object->setShippingAddress($address)
         );
         $this->assertInstanceOf(ConsumerAddress::class, $object->getShippingAddress());
+
+        $this->assertInstanceOf(
+            PaymentorderPayer::class,
+            $object->setDigitalProducts(true)
+        );
+        $this->assertEquals(true, $object->getDigitalProducts());
+
+        $this->assertInstanceOf(
+            PaymentorderPayer::class,
+            $object->setShippingAddressRestrictedToCountryCodes(['NO', 'US'])
+        );
+        $this->assertIsArray($object->getShippingAddressRestrictedToCountryCodes());
     }
 
     public function testMethods()

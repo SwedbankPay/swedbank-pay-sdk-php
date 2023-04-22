@@ -85,6 +85,40 @@ class PaymentorderPayer extends Resource implements PaymentorderPayerInterface
     }
 
     /**
+     * @return string|null
+     */
+    public function getFirstName()
+    {
+        return $this->offsetGet(self::FIRST_NAME);
+    }
+
+    /**
+     * @param string $firstName
+     * @return $this
+     */
+    public function setFirstName($firstName)
+    {
+        return $this->offsetSet(self::FIRST_NAME, $firstName);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastName()
+    {
+        return $this->offsetGet(self::FIRST_NAME);
+    }
+
+    /**
+     * @param string $lastName
+     * @return $this
+     */
+    public function setLastName($lastName)
+    {
+        return $this->offsetSet(self::LAST_NAME, $lastName);
+    }
+
+    /**
      * @return string
      */
     public function getWorkPhoneNumber()
@@ -133,5 +167,40 @@ class PaymentorderPayer extends Resource implements PaymentorderPayerInterface
     public function setShippingAddress($shippingAddress)
     {
         return $this->offsetSet(self::SHIPPING_ADDRESS, $shippingAddress);
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getDigitalProducts()
+    {
+        return $this->offsetGet(self::DIGITAL_PRODUCTS);
+    }
+
+    /**
+     * @param bool $flag
+     * @return $this
+     */
+    public function setDigitalProducts($flag)
+    {
+        return $this->offsetSet(self::DIGITAL_PRODUCTS, $flag);
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getShippingAddressRestrictedToCountryCodes()
+    {
+        return $this->offsetGet(self::SHIPPING_ADDRESS_RESTRICTED_COUNTRIES);
+    }
+
+    /**
+     * @param array $countries
+     *
+     * @return $this
+     */
+    public function setShippingAddressRestrictedToCountryCodes($countries)
+    {
+        return $this->offsetSet(self::SHIPPING_ADDRESS_RESTRICTED_COUNTRIES, $countries);
     }
 }
