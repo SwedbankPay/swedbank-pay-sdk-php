@@ -12,7 +12,7 @@ jobs:
     if: github.repository_owner == 'SwedbankPay'
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Fetch all history for all tags and branches
       run: git fetch --prune --unshallow
