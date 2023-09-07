@@ -67,7 +67,7 @@ jobs:
         unzip -l ${ARCHIVE}
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v3.1.3
       with:
         name: ${{ steps.archive.outputs.name }}
         path: ${{ steps.archive.outputs.name }}
