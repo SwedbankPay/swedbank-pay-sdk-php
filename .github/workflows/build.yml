@@ -18,13 +18,13 @@ jobs:
       run: git fetch --prune --unshallow
 
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.13.4
+      uses: gittools/actions/gitversion/setup@v0.13.6
       with:
         versionSpec: '5.x'
 
     - name: Execute GitVersion
       id: gitversion # step id used as reference for output values
-      uses: gittools/actions/gitversion/execute@v0.13.4
+      uses: gittools/actions/gitversion/execute@v0.13.6
 
     - name: Version label for unstable builds
       id: unstable
