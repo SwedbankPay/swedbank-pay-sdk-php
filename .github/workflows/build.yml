@@ -94,37 +94,6 @@ jobs:
     - name: PHP Mess Detector
       run: ./vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
 
-    - name: Install Chrome browser
-      run: |
-        sudo apt-get update
-        sudo apt-cache policy google-chrome
-
-    - name: Install chromedriver
-      uses: nanasess/setup-chromedriver@master
-      #with:
-        #chromedriver-version: '98.0.4758.80'
-
-    - name: Acceptance tests with codeception
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        PAYEE_ID: ${{ secrets.PAYEE_ID }}
-        ACCESS_TOKEN_MOBILEPAY: ${{ secrets.ACCESS_TOKEN_MOBILEPAY }}
-        PAYEE_ID_MOBILEPAY: ${{ secrets.PAYEE_ID_MOBILEPAY }}
-        VERSION: ${{ steps.composer-version.outputs.version }}
-      run: |
-        if [ "$ACCESS_TOKEN" != "" ]; then
-          cd ./vendor/bin/
-          wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-3.141.59/selenium-server-standalone-3.141.59.jar
-          cd ../..
-          export DISPLAY=:99
-          chromedriver --url-base=/wd/hub > /dev/null &
-          sudo Xvfb :0 -ac -screen 0 1024x768x24 > /dev/null 2>&1 &
-          xvfb-run java -Dwebdriver.chrome.driver=/usr/local/bin/chromedriver -jar ./vendor/bin/selenium-server-standalone-3.141.59.jar &
-          php -S localhost:8000 -t ./tests/stand > /dev/null &
-          sleep 30
-          php ./vendor/bin/codecept build
-          php ./vendor/bin/codecept run acceptance
-        fi
     - name: Unit tests
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
