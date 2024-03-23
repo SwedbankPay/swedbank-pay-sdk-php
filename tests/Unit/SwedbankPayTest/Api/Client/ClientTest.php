@@ -22,12 +22,6 @@ class ClientTest extends TestCase
         $this->assertContains('X-Powered-By: Swedbank Pay', $headers);
     }
 
-    public function testGetSystemCaRootBundlePath()
-    {
-        $path = $this->client::getSystemCaRootBundlePath();
-        $this->assertNotNull($path);
-    }
-
     public function testRequest()
     {
         $params = [

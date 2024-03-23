@@ -1,4 +1,7 @@
 Changelog
+6.1.0 - 2024-04-23
+- Removed CURLOPT_CAINFO in the client
+
 6.0.0 - 2023-04-17
 Added
 - Checkout v3 classes and methods
