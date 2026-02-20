@@ -60,6 +60,18 @@ class ClientVersion
     }
 
     /**
+     * Static convenience method to get the version without needing to
+     * instantiate the class manually.
+     *
+     * @return string Version number
+     * @throws \SwedbankPay\Api\Client\Exception
+     */
+    public static function version() : string
+    {
+        return (new static())->getVersion();
+    }
+
+    /**
      * Gets the version number from a defined constant VERSION, the environment
      * variable VERSION or from composer.json.
      *
