@@ -4,8 +4,6 @@
 namespace SwedbankPayTest\Api\Service\Paymentorder\Resource;
 
 use TestCase;
-use SwedbankPay\Api\Service\Paymentorder\Resource\ClientInfo;
-use SwedbankPay\Api\Service\Paymentorder\Resource\Data\ClientInfoInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderObject;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Paymentorder;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface;
@@ -24,21 +22,6 @@ class PaymentorderObjectTest extends TestCase
         $this->assertInstanceOf(
             PaymentorderInterface::class,
             $paymentObject->getPaymentorder()
-        );
-
-        $this->assertInstanceOf(
-            ClientInfoInterface::class,
-            $paymentObject->getClientInfo()
-        );
-
-        $clientInfo = new ClientInfo();
-        $this->assertInstanceOf(
-            PaymentorderObject::class,
-            $paymentObject->setClientInfo($clientInfo)
-        );
-        $this->assertInstanceOf(
-            ClientInfo::class,
-            $paymentObject->getClientInfo()
         );
     }
 }

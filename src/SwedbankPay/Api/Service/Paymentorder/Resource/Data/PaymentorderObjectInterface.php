@@ -13,7 +13,6 @@ use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInter
 interface PaymentorderObjectInterface extends ResourceInterface
 {
     const PAYMENTORDER = 'paymentorder';
-	const CLIENT_INFO  = 'client_info';
 
     /**
      * @return PaymentorderInterface
@@ -25,15 +24,4 @@ interface PaymentorderObjectInterface extends ResourceInterface
      * @return $this
      */
     public function setPaymentorder($paymentorder);
-
-	/**
-	 * @return ClientInfoInterface
-	 */
-	public function getClientInfo();
-
-	/**
-	 * @param ClientInfoInterface $clientInfo
-	 * @return $this
-	 */
-	public function setClientInfo( $clientInfo );
 }
