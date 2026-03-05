@@ -73,26 +73,26 @@ interface ClientInfoInterface extends ResourceInterface
     public function setPlatformName($platformName);
 
     /**
-     * @param string|null $presentationSdkName
+     * @param string|null $presSdkName
      * @return $this
      */
-    public function setPresentationSdkName($presentationSdkName);
+    public function setPresentationSdkName($presSdkName);
 
     /**
-     * @param string|null $presentationSdkVersion
+     * @param string|null $presSdkVersion
      * @return $this
      */
-    public function setPresentationSdkVersion($presentationSdkVersion);
+    public function setPresentationSdkVersion($presSdkVersion);
 
     /**
-     * @param string|null $integrationModuleName
+     * @param string|null $intModuleName
      * @return $this
      */
-    public function setIntegrationModuleName($integrationModuleName);
+    public function setIntegrationModuleName($intModuleName);
 
     /**
-     * @param string|null $integrationModuleVersion
+     * @param string|null $intModuleVersion
      * @return $this
      */
-    public function setIntegrationModuleVersion($integrationModuleVersion);
+    public function setIntegrationModuleVersion($intModuleVersion);
 }

@@ -20,7 +20,7 @@ class ClientInfo extends Resource implements ClientInfoInterface
     {
         parent::__construct($data);
         $this->offsetSet(self::INTEGRATION_SDK_NAME, 'PHP');
-        $this->offsetSet(self::INTEGRATION_SDK_VERSION, ClientVersion::version());
+        $this->offsetSet(self::INTEGRATION_SDK_VERSION, (new ClientVersion())->getVersion());
     }
 
     /**
@@ -106,38 +106,38 @@ class ClientInfo extends Resource implements ClientInfoInterface
     }
 
     /**
-     * @param string|null $presentationSdkName
+     * @param string|null $presSdkName
      * @return $this
      */
-    public function setPresentationSdkName($presentationSdkName)
+    public function setPresentationSdkName($presSdkName)
     {
-        return $this->offsetSet(self::PRESENTATION_SDK_NAME, $presentationSdkName);
+        return $this->offsetSet(self::PRESENTATION_SDK_NAME, $presSdkName);
     }
 
     /**
-     * @param string|null $presentationSdkVersion
+     * @param string|null $presSdkVersion
      * @return $this
      */
-    public function setPresentationSdkVersion($presentationSdkVersion)
+    public function setPresentationSdkVersion($presSdkVersion)
     {
-        return $this->offsetSet(self::PRESENTATION_SDK_VERSION, $presentationSdkVersion);
+        return $this->offsetSet(self::PRESENTATION_SDK_VERSION, $presSdkVersion);
     }
 
     /**
-     * @param string|null $integrationModuleName
+     * @param string|null $intModuleName
      * @return $this
      */
-    public function setIntegrationModuleName($integrationModuleName)
+    public function setIntegrationModuleName($intModuleName)
     {
-        return $this->offsetSet(self::INTEGRATION_MODULE_NAME, $integrationModuleName);
+        return $this->offsetSet(self::INTEGRATION_MODULE_NAME, $intModuleName);
     }
 
     /**
-     * @param string|null $integrationModuleVersion
+     * @param string|null $intModuleVersion
      * @return $this
      */
-    public function setIntegrationModuleVersion($integrationModuleVersion)
+    public function setIntegrationModuleVersion($intModuleVersion)
     {
-        return $this->offsetSet(self::INTEGRATION_MODULE_VERSION, $integrationModuleVersion);
+        return $this->offsetSet(self::INTEGRATION_MODULE_VERSION, $intModuleVersion);
     }
 }
