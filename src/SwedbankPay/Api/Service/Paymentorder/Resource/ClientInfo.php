@@ -10,7 +10,8 @@ use SwedbankPay\Api\Service\Resource;
  * Class ClientInfo
  * @package SwedbankPay\Api\Service\Paymentorder\Resource
  */
-class ClientInfo extends Resource implements ClientInfoInterface {
+class ClientInfo extends Resource implements ClientInfoInterface
+{
     /**
      * ClientInfo constructor.
      * @param object|array|string $data
@@ -138,6 +139,5 @@ class ClientInfo extends Resource implements ClientInfoInterface {
     public function setIntegrationModuleVersion($integrationModuleVersion)
     {
         return $this->offsetSet(self::INTEGRATION_MODULE_VERSION, $integrationModuleVersion);
-
     }
 }
