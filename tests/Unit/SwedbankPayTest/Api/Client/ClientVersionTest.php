@@ -17,4 +17,10 @@ class ClientVersionTest extends TestCase
         $instance = new ClientVersion();
         $this->assertEquals($json['version'], $instance->getVersion());
     }
+
+    public function testStaticVersionMatchesInstanceVersion()
+    {
+        $instance = new ClientVersion();
+        $this->assertEquals($instance->getVersion(), ClientVersion::version());
+    }
 }

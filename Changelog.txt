@@ -1,4 +1,11 @@
 Changelog
+6.2.0 - 2026-02-26
+Added
+- Add `setClientInfo()` and `getClientInfo()` for Paymentorder
+- Add Constructor for `Paymentorder` that sets the ClientInfo with the Integration SDK name and version
+- Add `ClientInfoInterface` interface with `getIntegrationSdkName()`, `getIntegrationSdkVersion()`, `getClientType()`, `setClientType()` `getPlatformName()`, `setPlatformName()`, `getPresentationSdkName()`, `setPresentationSdkName()`, `getPresentationSdkVersion()`, `setPresentationSdkVersion()`, `getIntegrationModuleName()`, `setIntegrationModuleName()`, `getIntegrationModuleVersion()` and `setIntegrationModuleVersion()` methods
+- Add `ClientInfo` class implementing `ClientInfoInterface` with a constructor that sets the Integration SDK name and version, and methods to get and set the client type, platform name, presentation SDK name and version
+
 6.1.0 - 2024-04-23
 - Removed CURLOPT_CAINFO in the client
 

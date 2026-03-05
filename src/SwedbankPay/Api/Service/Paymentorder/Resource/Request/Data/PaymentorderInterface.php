@@ -4,6 +4,7 @@ namespace SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data;
 
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\ClientInfoInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderMetadataInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayeeInfoInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderPayerInterface;
@@ -48,6 +49,7 @@ interface PaymentorderInterface extends RequestInterface
     const RISK_INDICATOR = 'risk_indicator';
     const INITIATING_SYSTEM_AGENT = 'initiatingSystemUserAgent';
     const PRODUCT_NAME = 'product_name';
+    const CLIENT_INFO  = 'client_info';
 
     const IMPLEMENTATION = 'implementation';
 
@@ -65,7 +67,7 @@ interface PaymentorderInterface extends RequestInterface
      * @return $this
      */
     public function setInitiatingSystemUserAgent($agent);
-    
+
     /**
      * @return string
      */
@@ -327,4 +329,15 @@ interface PaymentorderInterface extends RequestInterface
      * @return string|null
      */
     public function getImplementation();
+
+    /**
+     * @return ClientInfoInterface
+     */
+    public function getClientInfo();
+
+    /**
+     * @param ClientInfoInterface $clientInfo
+     * @return $this
+     */
+    public function setClientInfo($clientInfo);
 }

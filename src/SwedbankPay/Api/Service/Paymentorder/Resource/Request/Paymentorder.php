@@ -2,8 +2,10 @@
 
 namespace SwedbankPay\Api\Service\Paymentorder\Resource\Request;
 
+use SwedbankPay\Api\Service\Paymentorder\Resource\ClientInfo;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\OrderItemsCollection;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Collection\PaymentorderItemsCollection;
+use SwedbankPay\Api\Service\Paymentorder\Resource\Data\ClientInfoInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderRiskIndicatorInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Request\Data\PaymentorderInterface;
 use SwedbankPay\Api\Service\Paymentorder\Resource\Data\PaymentorderMetadataInterface;
@@ -24,6 +26,16 @@ use SwedbankPay\Api\Service\Resource\Request as RequestResource;
  */
 class Paymentorder extends RequestResource implements PaymentorderInterface
 {
+    /**
+     * Paymentorder constructor.
+     * @param object|array|string $data
+     */
+    public function __construct($data = [])
+    {
+        parent::__construct($data);
+        $this->offsetSet(self::CLIENT_INFO, new ClientInfo());
+    }
+
     /**
      * Get Initiating System User Agent.
      *
@@ -474,5 +486,22 @@ class Paymentorder extends RequestResource implements PaymentorderInterface
     public function getImplementation()
     {
         return $this->offsetGet(self::IMPLEMENTATION);
+    }
+
+    /**
+     * @return ClientInfoInterface
+     */
+    public function getClientInfo()
+    {
+        return $this->offsetGet(self::CLIENT_INFO);
+    }
+
+    /**
+     * @param ClientInfoInterface $clientInfo
+     * @return $this
+     */
+    public function setClientInfo($clientInfo)
+    {
+        return $this->offsetSet(self::CLIENT_INFO, $clientInfo);
     }
 }
