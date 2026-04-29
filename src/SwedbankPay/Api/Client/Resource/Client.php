@@ -93,6 +93,23 @@ class Client extends AbstractDataTransferObject implements ClientInterface
     }
 
     /**
+     * @return string|null
+     */
+    public function getApiVersion()
+    {
+        return $this->offsetGet(self::API_VERSION);
+    }
+
+    /**
+     * @param string|null $apiVersion
+     * @return $this
+     */
+    public function setApiVersion($apiVersion)
+    {
+        return $this->offsetSet(self::API_VERSION, $apiVersion);
+    }
+
+    /**
      * @return string
      */
     public function getBaseUrl()

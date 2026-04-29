@@ -8,6 +8,7 @@ interface ClientInterface
     const USER_AGENT = 'user_agent';
     const ACCESS_TOKEN = 'access_token';
     const PAYEE_ID = 'payee_id';
+    const API_VERSION = 'api_version';
 
     const MODE = 'mode';
     const BASE_URL = 'base_url';
@@ -70,6 +71,17 @@ interface ClientInterface
      * @return $this
      */
     public function setMode($mode);
+
+    /**
+     * @return string|null
+     */
+    public function getApiVersion();
+
+    /**
+     * @param string|null $apiVersion
+     * @return $this
+     */
+    public function setApiVersion($apiVersion);
 
     /**
      * @return string
