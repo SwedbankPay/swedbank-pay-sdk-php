@@ -1,0 +1,8 @@
+{
+    "orderReference": "PO-638423890947905216",
+    "paymentOrder": {
+        "id": "/psp/paymentorders/a9bd5ea2-d2b0-48d1-59c8-08dc230b04ba",
+        "instrument": "CreditCard",
+        "number": 40129161258
+    }
+}
