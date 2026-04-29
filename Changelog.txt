@@ -1,4 +1,18 @@
 Changelog
+6.3.0 - 2026-04-29
+Added
+- Add typed response support for Online Payments v3.1 under the new `Paymentorder\V3` namespace
+- Add `Client::setApiVersion()` and `getApiVersion()`; when an API version is set, the `Content-Type` header becomes `application/json;version=<version>` (default behaviour unchanged)
+- Add v3.1 request classes `Paymentorder\V3\Request\{Purchase, Verify, UnscheduledPurchase, UpdateOrder, GetPaymentorder, TransactionCapture, TransactionCancel, TransactionReversal}`
+- Add top-level v3.1 response DTO `Paymentorder\V3\Resource\PaymentOrder` (factory-resolved from the `paymentOrder` JSON key)
+- Add post-purchase response wrapper `Paymentorder\V3\Resource\Response\PaymentorderResponse` with `getPaymentOrder()`, `getOperations()`, and a `getLatestFinancialTransaction()` convenience helper
+- Add typed `Paid` resource (with `Details` sub-object) and `FinancialTransactions` resource (with `FinancialTransaction` items in a `FinancialTransactionsListCollection`)
+- Add link-only sub-resource DTOs: `OrderItems`, `Urls`, `PayeeInfo`, `Payer`, `History`, `Failed`, `Aborted`, `Cancelled`, `Reversed`, `FailedAttempts`, `PostPurchaseFailedAttempts`, `Metadata` — all sharing `LinkResourceTrait`
+- Add `Paymentorder\V3\Resource\Response\CallbackPayload` for typed parsing of v3.1 webhook bodies
+
+Fixed
+- `ResourceFactory` service-path lookup now splits on both `/` and `\` separators, allowing nested service namespaces (`Paymentorder\V3`, `Paymentorder\Transaction`, etc.) to resolve sub-resources correctly
+
 6.2.0 - 2026-02-26
 Added
 - Add `setClientInfo()` and `getClientInfo()` for Paymentorder
