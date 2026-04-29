@@ -270,7 +270,11 @@ class ResourceFactory
         $resource = $this->camelCaseStr($resource);
 
         if ($service) {
-            $service = implode('\\', array_map([$this, 'camelCaseStr'], explode('/', $service))) . '\\';
+            // Service paths arrive either with `/` separators (when callers build them manually)
+            // or with `\` separators (when Response auto-derives them from a request FQCN, e.g.
+            // `Paymentorder\V3` or `Paymentorder\Transaction`). Split on either so multi-segment
+            // service namespaces resolve correctly.
+            $service = implode('\\', array_map([$this, 'camelCaseStr'], preg_split('#[/\\\\]+#', $service))) . '\\';
         }
 
         $type = ($type) ? $this->camelCaseStr($type) . '\\' : '';
