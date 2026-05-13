@@ -327,13 +327,11 @@ class ResourceFactory
      */
     private function findFileByNamespace($resourceFqcn)
     {
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $basePath = str_replace('\\', '/', str_replace(__NAMESPACE__, '', __DIR__));
-        } else {
-            $basePath = str_replace(str_replace('\\', '/', __NAMESPACE__), '', __DIR__);
-        }
-
-        return file_exists($basePath . str_replace('\\', '/', $resourceFqcn) . '.php');
+        // Resolve via the active autoloader rather than a path-based file_exists check.
+        // The path-based approach assumes __DIR__ ends with the same segments as __NAMESPACE__,
+        // which breaks when the SDK is consumed through tooling that prefixes namespaces
+        // (i.e. scopes the project) without rewriting the on-disk directory layout.
+        return class_exists($resourceFqcn) || interface_exists($resourceFqcn);
     }
 
     /**
