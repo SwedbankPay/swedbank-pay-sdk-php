@@ -47,7 +47,7 @@ jobs:
         php-version: '7.4'
         extension: intl, mbstring, json, bcmath
         coverage: xdebug
-        tools: composer, php-cs-fixer, phpunit:8.5.14, phpcpd, phpmd
+        tools: composer, php-cs-fixer, phpunit:9.6.34, phpmd
 
     - name: Version stamp composer.json
       run: |

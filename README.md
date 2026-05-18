@@ -57,6 +57,59 @@ composer require swedbank-pay/swedbank-pay-sdk-php
 
 You can find examples in `/tests` directory or check out [Swedbank Pay Core for WooCommerce][core-library] code.
 
+## Using Online Payments v3.1
+
+Version 6.3.0 introduces typed response support for Online Payments v3.1. The v3.1 surface
+lives under the `SwedbankPay\Api\Service\Paymentorder\V3` namespace and is fully additive —
+existing v2 classes are unchanged.
+
+Opt in by setting the API version on the Client (this switches the `Content-Type` header
+to `application/json;version=3.1`):
+
+```php
+use SwedbankPay\Api\Client\Client;
+use SwedbankPay\Api\Service\Paymentorder\V3\Request\Purchase;
+use SwedbankPay\Api\Service\Paymentorder\V3\Request\TransactionCapture;
+
+$client = new Client();
+$client->setAccessToken('...')->setPayeeId('...');
+$client->setApiVersion('3.1');
+
+// Create paymentOrder
+$purchase = new Purchase($paymentOrderObject);
+$purchase->setClient($client);
+$response = $purchase->send();
+
+$paymentOrder = $response->getResponseResource()->getPaymentOrder();
+echo $paymentOrder->getStatus();      // "Initialized" / "Paid" / "Aborted" / ...
+echo $paymentOrder->getId();
+```
+
+For post-purchase actions (Capture, Cancel, Reversal), call `setExpands(['financialtransactions', 'paid'])`
+when you want the freshly-created transaction inlined in the response:
+
+```php
+$capture = new TransactionCapture($transactionObject);
+$capture->setClient($client);
+$capture->setPaymentOrderId($paymentOrderId);
+$capture->setExpands(['financialtransactions', 'paid']);
+
+$response = $capture->send();
+$latest   = $response->getResponseResource()->getLatestFinancialTransaction();
+echo $latest->getType();    // "Capture"
+echo $latest->getNumber();
+```
+
+Typed callback parsing:
+
+```php
+use SwedbankPay\Api\Service\Paymentorder\V3\Resource\Response\CallbackPayload;
+
+$payload = new CallbackPayload($webhookBody);
+$orderRef = $payload->getOrderReference();
+$paymentOrderId = $payload->getPaymentOrder()->getId();
+```
+
   [build-badge]:      https://github.com/SwedbankPay/swedbank-pay-sdk-php/workflows/PHP/badge.svg?branch=master
   [dev-portal]:       https://developer.swedbankpay.com/
   [releases]:         https://github.com/SwedbankPay/swedbank-pay-sdk-php/releases

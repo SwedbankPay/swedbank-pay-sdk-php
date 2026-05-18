@@ -179,12 +179,16 @@ class Client extends ClientResource
      */
     public function setHeaders($headers = [])
     {
+        $contentType = $this->getApiVersion()
+            ? 'Content-Type: application/json;version=' . $this->getApiVersion() . '; charset=utf-8'
+            : 'Content-Type: application/json; charset=utf-8';
+
         $default = [
             'Accept: application/json',
             'Session-Id: ' . $this->getSessionId(),
             'Forwarded: for=' . $this->getRemoteAddr() . '; proto=https',
             'Authorization:  Bearer ' . $this->getAccessToken(),
-            'Content-Type: application/json; charset=utf-8'
+            $contentType
         ];
         $headers = array_merge($default, (array)$headers);
         return $this->offsetSet(self::HEADERS, $headers);
