@@ -79,6 +79,12 @@ class PaymentorderPayerTest extends TestCase
             $object->setLastName('last')
         );
         $this->assertEquals('last', $object->getLastName());
+
+        $this->assertInstanceOf(
+            PaymentorderPayer::class,
+            $object->setCountryCode('test')
+        );
+        $this->assertEquals('test', $object->getCountryCode());
     }
 
     public function testMethods()
@@ -103,6 +109,8 @@ class PaymentorderPayerTest extends TestCase
         $this->assertTrue(method_exists($payer, 'setFirstName'));
         $this->assertTrue(method_exists($payer, 'getLastName'));
         $this->assertTrue(method_exists($payer, 'setLastName'));
+        $this->assertTrue(method_exists($payer, 'getCountryCode'));
+        $this->assertTrue(method_exists($payer, 'setCountryCode'));
 
         $payer->setEmail('test@email.no')
             ->setMsisdn('1234567');

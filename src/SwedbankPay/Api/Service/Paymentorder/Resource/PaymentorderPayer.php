@@ -106,7 +106,6 @@ class PaymentorderPayer extends Resource implements PaymentorderPayerInterface
      */
     public function getLastName()
     {
-        return $this->offsetGet(self::FIRST_NAME);
         return $this->offsetGet(self::LAST_NAME);
     }
 
@@ -203,5 +202,22 @@ class PaymentorderPayer extends Resource implements PaymentorderPayerInterface
     public function setShippingAddressRestrictedToCountryCodes($countries)
     {
         return $this->offsetSet(self::SHIPPING_ADDRESS_RESTRICTED_COUNTRIES, $countries);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCountryCode()
+    {
+        return $this->offsetGet(self::COUNTRY_CODE);
+    }
+
+    /**
+     * @param string $countryCode
+     * @return $this
+     */
+    public function setCountryCode($countryCode)
+    {
+        return $this->offsetSet(self::COUNTRY_CODE, $countryCode);
     }
 }

@@ -1,5 +1,5 @@
 Changelog
-6.3.0 - 2026-04-29
+6.3.0 - 2026-05-27
 Added
 - Add typed response support for Online Payments v3.1 under the new `Paymentorder\V3` namespace
 - Add `Client::setApiVersion()` and `getApiVersion()`; when an API version is set, the `Content-Type` header becomes `application/json;version=<version>` (default behaviour unchanged)
@@ -12,6 +12,7 @@ Added
 
 Fixed
 - `ResourceFactory::findFileByNamespace()` now resolves resource classes via the active autoloader (`class_exists`) instead of a path-based `file_exists` check, fixing resolution when the SDK is consumed through tooling that prefixes namespaces (e.g. PHP-Scoper) without rewriting the on-disk directory layout
+- Fix an issue where `SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderPayer::getLastName()` was incorrectly returning the first name.
 
 6.2.0 - 2026-02-26
 Added
