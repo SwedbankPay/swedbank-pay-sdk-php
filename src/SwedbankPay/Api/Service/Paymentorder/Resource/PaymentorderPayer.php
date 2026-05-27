@@ -107,6 +107,7 @@ class PaymentorderPayer extends Resource implements PaymentorderPayerInterface
     public function getLastName()
     {
         return $this->offsetGet(self::FIRST_NAME);
+        return $this->offsetGet(self::LAST_NAME);
     }
 
     /**
