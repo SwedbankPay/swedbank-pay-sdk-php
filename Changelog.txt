@@ -9,6 +9,7 @@ Added
 - Add typed `Paid` resource (with `Details` sub-object) and `FinancialTransactions` resource (with `FinancialTransaction` items in a `FinancialTransactionsListCollection`)
 - Add link-only sub-resource DTOs: `OrderItems`, `Urls`, `PayeeInfo`, `Payer`, `History`, `Failed`, `Aborted`, `Cancelled`, `Reversed`, `FailedAttempts`, `PostPurchaseFailedAttempts`, `Metadata` — all sharing `LinkResourceTrait`
 - Add `Paymentorder\V3\Resource\Response\CallbackPayload` for typed parsing of v3.1 webhook bodies
+- Add the field `countryCode` to the class `SwedbankPay\Api\Service\Paymentorder\Resource\PaymentorderPayer` with methods `PaymentorderPayer::setCountryCode()` and `::getCountryCode()` to allow passing the customer's country code to the API.
 
 Fixed
 - `ResourceFactory::findFileByNamespace()` now resolves resource classes via the active autoloader (`class_exists`) instead of a path-based `file_exists` check, fixing resolution when the SDK is consumed through tooling that prefixes namespaces (e.g. PHP-Scoper) without rewriting the on-disk directory layout
