@@ -270,7 +270,11 @@ class ResourceFactory
         $resource = $this->camelCaseStr($resource);
 
         if ($service) {
-            $service = implode('\\', array_map([$this, 'camelCaseStr'], explode('/', $service))) . '\\';
+            // Service paths arrive either with `/` separators (when callers build them manually)
+            // or with `\` separators (when Response auto-derives them from a request FQCN, e.g.
+            // `Paymentorder\V3` or `Paymentorder\Transaction`). Split on either so multi-segment
+            // service namespaces resolve correctly.
+            $service = implode('\\', array_map([$this, 'camelCaseStr'], preg_split('#[/\\\\]+#', $service))) . '\\';
         }
 
         $type = ($type) ? $this->camelCaseStr($type) . '\\' : '';
@@ -323,13 +327,18 @@ class ResourceFactory
      */
     private function findFileByNamespace($resourceFqcn)
     {
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $basePath = str_replace('\\', '/', str_replace(__NAMESPACE__, '', __DIR__));
-        } else {
-            $basePath = str_replace(str_replace('\\', '/', __NAMESPACE__), '', __DIR__);
+        // getResourceFqcn() returns false when a resource name can't be resolved; guard against
+        // that (and any other non-string input) so we never hand a non-string value to
+        // class_exists(), which would emit warnings or throw under strict_types.
+        if (!\is_string($resourceFqcn) || $resourceFqcn === '') {
+            return false;
         }
 
-        return file_exists($basePath . str_replace('\\', '/', $resourceFqcn) . '.php');
+        // Resolve via the active autoloader rather than a path-based file_exists check.
+        // The path-based approach assumes __DIR__ ends with the same segments as __NAMESPACE__,
+        // which breaks when the SDK is consumed through tooling that prefixes namespaces
+        // (i.e. scopes the project) without rewriting the on-disk directory layout.
+        return class_exists($resourceFqcn);
     }
 
     /**

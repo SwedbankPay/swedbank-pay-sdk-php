@@ -23,6 +23,7 @@ interface PaymentorderPayerInterface extends ResourceInterface
     const SHIPPING_ADDRESS = 'shipping_address';
     const DIGITAL_PRODUCTS = 'digital_products';
     const SHIPPING_ADDRESS_RESTRICTED_COUNTRIES = 'shipping_address_restricted_to_country_codes';
+    const COUNTRY_CODE = 'country_code';
 
     /**
      * Get Payer Reference.
@@ -149,4 +150,15 @@ interface PaymentorderPayerInterface extends ResourceInterface
      * @return $this
      */
     public function setShippingAddressRestrictedToCountryCodes($countries);
+
+    /**
+     * @return string|null
+     */
+    public function getCountryCode();
+
+    /**
+     * @param string $countryCode
+     * @return $this
+     */
+    public function setCountryCode($countryCode);
 }

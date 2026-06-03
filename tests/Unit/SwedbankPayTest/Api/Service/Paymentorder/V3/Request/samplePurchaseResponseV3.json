@@ -1,0 +1,54 @@
+{
+    "paymentOrder": {
+        "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407",
+        "created": "2023-12-08T13:42:08.1297502Z",
+        "updated": "2023-12-08T13:43:10.8951496Z",
+        "operation": "Purchase",
+        "status": "Initialized",
+        "currency": "SEK",
+        "amount": 100,
+        "vatAmount": 0,
+        "description": "Test Purchase",
+        "initiatingSystemUserAgent": "PostmanRuntime/7.35.0",
+        "language": "sv-SE",
+        "availableInstruments": [
+            "CreditCard",
+            "Invoice-PayExFinancingSe",
+            "Swish",
+            "Trustly",
+            "MobilePay"
+        ],
+        "implementation": "PaymentsOnly",
+        "integration": "",
+        "instrumentMode": false,
+        "guestMode": true,
+        "orderItems": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/orderitems" },
+        "urls": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/urls" },
+        "payeeInfo": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/payeeinfo" },
+        "payer": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/payers" },
+        "history": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/history" },
+        "failed": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/failed" },
+        "aborted": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/aborted" },
+        "paid": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/paid" },
+        "cancelled": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/cancelled" },
+        "reversed": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/reversed" },
+        "financialTransactions": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/financialtransactions" },
+        "failedAttempts": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/failedattempts" },
+        "postPurchaseFailedAttempts": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/postpurchasefailedattempts" },
+        "metadata": { "id": "/psp/paymentorders/d4c5684f-c2dc-4c18-680d-08dbf62de407/metadata" }
+    },
+    "operations": [
+        {
+            "method": "GET",
+            "href": "https://ecom.externalintegration.payex.com/checkout/8a18154cd0eb695537d871ab9936bd16f2a05cdaf42b84b4d027bdd843de4d09",
+            "rel": "redirect-checkout",
+            "contentType": "text/html"
+        },
+        {
+            "method": "GET",
+            "href": "https://ecom.externalintegration.payex.com/checkout/client/8a18154cd0eb695537d871ab9936bd16f2a05cdaf42b84b4d027bdd843de4d09?culture=sv-SE",
+            "rel": "view-checkout",
+            "contentType": "application/javascript"
+        }
+    ]
+}

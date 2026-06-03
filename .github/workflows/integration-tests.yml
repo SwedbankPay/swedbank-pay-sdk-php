@@ -3,9 +3,9 @@ name: Integration tests
 on:
   push:
     branches:
-    - '*'
+      - "*"
     tags:
-    - '*'
+      - "*"
   pull_request:
 
 jobs:
@@ -13,38 +13,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # Version 6.0.3
 
-    - name: Docker build
-      run: |
-        docker build \
-          --tag swedbankpay/sdk-consumer:0.0.1 \
-          . \
-          --file tests/sdk-consumer/Dockerfile
+      - name: Docker build
+        run: |
+          docker build \
+            --tag swedbankpay/sdk-consumer:0.0.1 \
+            . \
+            --file tests/sdk-consumer/Dockerfile
 
-    - name: Get version number from composer.json
-      env:
-        COMPOSER_VERSION: 99.98.97-dev
-      run: |
-        jq ".version=\"${COMPOSER_VERSION}\"" composer.json > composer.version.json # Add "version" property to composer.version.json
-        rm -f composer.lock
-        rm -f composer.json
-        mv composer.version.json composer.json
-        cat composer.json
-        RESULT=$(\
-          docker run \
-          --rm \
-          --volume $(pwd)/tests/sdk-consumer:/app \
-          --volume $(pwd):/sdk \
-          --env VERSION=$VERSION \
-          swedbankpay/sdk-consumer:0.0.1\
-        )
-        echo $RESULT
-        SDKVERSION=$(echo $RESULT | grep -Po 'sdkversion: .*' | cut -d' ' -f2)
-        if [ "$SDKVERSION" == "$COMPOSER_VERSION" ]; then
-            echo "Equality has been achieved."
-            exit 0
-        else
-            echo "'$SDKVERSION' and '$COMPOSER_VERSION' are not equal."
-            exit 1
-        fi
+      - name: Get version number from composer.json
+        env:
+          COMPOSER_VERSION: 99.98.97-dev
+        run: |
+          jq ".version=\"${COMPOSER_VERSION}\"" composer.json > composer.version.json # Add "version" property to composer.version.json
+          rm -f composer.lock
+          rm -f composer.json
+          mv composer.version.json composer.json
+          cat composer.json
+          RESULT=$(\
+            docker run \
+            --rm \
+            --volume $(pwd)/tests/sdk-consumer:/app \
+            --volume $(pwd):/sdk \
+            --env VERSION=$VERSION \
+            swedbankpay/sdk-consumer:0.0.1\
+          )
+          echo $RESULT
+          SDKVERSION=$(echo $RESULT | grep -Po 'sdkversion: .*' | cut -d' ' -f2)
+          if [ "$SDKVERSION" == "$COMPOSER_VERSION" ]; then
+              echo "Equality has been achieved."
+              exit 0
+          else
+              echo "'$SDKVERSION' and '$COMPOSER_VERSION' are not equal."
+              exit 1
+          fi

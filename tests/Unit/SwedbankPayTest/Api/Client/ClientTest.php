@@ -22,6 +22,28 @@ class ClientTest extends TestCase
         $this->assertContains('X-Powered-By: Swedbank Pay', $headers);
     }
 
+    public function testDefaultContentTypeHeader()
+    {
+        $this->client->setApiVersion(null);
+        $this->client->setHeaders();
+
+        $headers = $this->client->offsetGet($this->client::HEADERS);
+
+        $this->assertContains('Content-Type: application/json; charset=utf-8', $headers);
+    }
+
+    public function testApiVersionHeader()
+    {
+        $this->client->setApiVersion('3.1');
+        $this->client->setHeaders();
+
+        $headers = $this->client->offsetGet($this->client::HEADERS);
+
+        $this->assertContains('Content-Type: application/json;version=3.1; charset=utf-8', $headers);
+        $this->assertNotContains('Content-Type: application/json; charset=utf-8', $headers);
+        $this->assertEquals('3.1', $this->client->getApiVersion());
+    }
+
     public function testRequest()
     {
         $params = [
