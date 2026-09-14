@@ -27,7 +27,7 @@ jobs:
 
       - name: Execute GitVersion
         id: gitversion # step id used as reference for output values
-        uses: gittools/actions/gitversion/execute@da21e58e55c27ade894dab7c390a5cc3213a7552 # Version 3.1.1
+        uses: gittools/actions/gitversion/execute@2ba4f080b075a09e1a6efe81f3d1b0bffc1e4c8e # Version 3.1.1
 
       - name: Version label for unstable builds
         id: unstable
