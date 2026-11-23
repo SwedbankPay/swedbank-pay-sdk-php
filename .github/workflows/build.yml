@@ -21,7 +21,7 @@ jobs:
         run: git fetch --prune --unshallow
 
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@d2063e59b58a89fa78aa5efa39f6efb8ffea7308 # Version 3.1.1
+        uses: gittools/actions/gitversion/setup@389fe43e6b0189b98c40c43553070ac029304635 # Version 3.1.1
         with:
           versionSpec: "5.x"
 
